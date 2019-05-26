@@ -139,7 +139,7 @@ public class DSageBuilder extends DWeaponSwordBase {
 	    		worldIn.setBlockState(pos.up(), getBlockToPlace(stack));
 	    		
 	    		Random rand = new Random();
-	    		if (rand.nextInt(GetPearlCount(stack) + 1) == 0)
+	    		if (!IsSky(stack) || rand.nextInt(GetPearlCount(stack) + 1) == 0)
 	    		{	
 	    			//stack.setItemDamage(stack.getItemDamage() - 1);
 	    			stack.damageItem(1, player);
