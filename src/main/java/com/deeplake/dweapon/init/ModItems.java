@@ -8,6 +8,7 @@ import com.deeplake.dweapon.item.misc.SealedWeapon;
 import com.deeplake.dweapon.item.weapon.DBloodSword;
 import com.deeplake.dweapon.item.weapon.DDeathSword;
 import com.deeplake.dweapon.item.weapon.DSageBuilder;
+import com.deeplake.dweapon.item.weapon.DSnowSword;
 import com.deeplake.dweapon.item.weapon.DSpaceAffinitySword;
 import com.deeplake.dweapon.util.Reference;
 
@@ -65,6 +66,7 @@ public class ModItems {
 	public static final DDeathSword DEATH_SWORD = new DDeathSword("death_sword", TOOL_MATERIAL_DIVINE);
 	public static final DSpaceAffinitySword SPACE_SWORD = new DSpaceAffinitySword("space_affinity_sword", TOOL_MATERIAL_DIVINE);
 	public static final DSageBuilder SAGE_BUILDER = new DSageBuilder("sage_builder", TOOL_MATERIAL_DIVINE);
+	public static final DSnowSword SNOW_SWORD = new DSnowSword("snow_sword", TOOL_MATERIAL_DIVINE);
 	
 	//public static final Item ANGEL_STATUE = new ItemBase("angel_statue");
 	

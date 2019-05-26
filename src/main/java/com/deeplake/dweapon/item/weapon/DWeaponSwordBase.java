@@ -261,6 +261,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
 //        //return "item." + this.unlocalizedName;
 //    }
     
+    @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {
     }

@@ -1,6 +1,7 @@
 package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
@@ -19,6 +20,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -101,24 +103,50 @@ public class DBloodSword extends DWeaponSwordBase {
 			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
 		}
 		
-		if (IsSky(stack))
+		if (success)
 		{
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, skyBuffTick, skyRegenLevel - 1));
-			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, skyBuffTick, skyStrengthLevel - 1));
+			if (IsSky(stack))
+			{
+				player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, skyBuffTick, skyRegenLevel - 1));
+				player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, skyBuffTick, skyStrengthLevel - 1));
+			
+				for (int i = 1; i <= 9; i++)
+				{	
+					CreateParticle(stack, player, 1);
+				}
+			}
+			else if (IsEarth(stack))
+			{
+				player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, (pearl_count + 1) * buff_tick_per_pearl, 0));
+			}
+			
+			stack.damageItem(1, player);
+			
+			if (IsNameHidden(stack) && (player.getHealth() / player.getMaxHealth() <= 0.6f))
+			{
+				SetNameHidden(stack, false);
+				player.addExperience(15);
+			}
+			
+			CreateParticle(stack, player, 1);
 		}
-		else if (IsEarth(stack))
-		{
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, (pearl_count + 1) * buff_tick_per_pearl, 0));
-		}
-		
-		stack.damageItem(1, player);
-		
-		if (IsNameHidden(stack) && (player.getHealth() / player.getMaxHealth() <= 0.6f))
-		{
-			SetNameHidden(stack, false);
-		}
-		
+			
 		return success;
+	}
+	
+	private void CreateParticle(ItemStack stack, EntityLivingBase living, double vm) {
+		Random rand = new Random();
+		double r = 0.5d;
+		double x = living.posX + (rand.nextDouble() - 0.5d) * r;
+		double y = living.posY + rand.nextDouble() * living.height;
+		double z = living.posZ + (rand.nextDouble() - 0.5d) * r;
+		
+		double vx = 0d;
+		double vy = - rand.nextDouble() * vm - 1d;
+		double vz = 0d;
+		
+		living.world.spawnParticle(EnumParticleTypes.DAMAGE_INDICATOR,
+				x,y,z,vx,vy,vz);
 	}
 	
 	@SideOnly(Side.CLIENT)
