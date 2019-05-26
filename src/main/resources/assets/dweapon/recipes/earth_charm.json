@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "I I",
+        " A ",
+        "I I"
+    ],
+    
+    "key":
+    {
+        "I":
+        {
+            "item": "dweapon:divine_ingot"
+        },
+        "A":
+        {
+            "item": "minecraft:anvil",
+            "data": 0
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "dweapon:earth_charm",
+        "count": 1
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "GDG",
+        "DED",
+        "GDG"
+    ],
+    
+    "key":
+    {
+        "D":
+        {
+            "item": "minecraft:diamond_block"
+        },
+        "G":
+        {
+            "item": "minecraft:gold_block"
+        },
+        "E":
+        {
+            "item": "dweapon:earth_charm"
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "dweapon:sky_charm",
+        "count": 1
+    }
+}
