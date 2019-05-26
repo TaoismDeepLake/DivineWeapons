@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import org.apache.logging.log4j.LogManager;
 
+import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
@@ -30,6 +31,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -117,16 +119,24 @@ public class DSageBuilder extends DWeaponSwordBase {
     {
     	//BlockPos target = pos.offset(facing);
     	BlockPos target = pos.up();
+    	DWeapons.LogWarning(String.format("Target = (%s, %s, %s)", target.getX(), target.getY(), target.getZ()) );
+    	
     	IBlockState topBlock = worldIn.getBlockState(target);
     	
     	ItemStack stack = player.getHeldItem(hand);
     	
-		if (//topBlock.getBlock().up() == Blocks.AIR) ||
-			(topBlock.getBlock().isReplaceable(worldIn, pos)))
+    	
+    	int entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(target, target.add(1, 1, 1))).size();
+    	boolean noEntities = entities == 0;
+    	
+		if (
+				(topBlock.getBlock() == Blocks.AIR 
+				|| (topBlock.getBlock().isReplaceable(worldIn, target)))
+			&& noEntities)
 		{
 			if (!worldIn.isRemote) 
 	    	{
-	    		worldIn.setBlockState(target,getBlockToPlace(stack));
+	    		worldIn.setBlockState(pos.up(), getBlockToPlace(stack));
 	    		
 	    		Random rand = new Random();
 	    		if (rand.nextInt(GetPearlCount(stack) + 1) == 0)
@@ -142,6 +152,8 @@ public class DSageBuilder extends DWeaponSwordBase {
 //	    				SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.6F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 	    		player.playSound(SoundEvents.BLOCK_GRAVEL_PLACE, 0.6f, 1);
 	    	}
+			
+			return EnumActionResult.SUCCESS;
 		}
     	
     	

@@ -270,6 +270,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
     	String strMain ="";
     	if (IsNameHidden(stack))
     	{
+    		
     		strMain = I18n.format(getUnlocalizedName(stack) + DWNBTDef.TOOLTIP_HIDDEN);
     	}
     	else
@@ -312,7 +313,8 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
     {
     	if (IsNameHidden(stack)) 
     	{
-    		String pearlDesc = I18n.format("postfix.hidden_desc.name", GetPearlCount(stack));
+    		//strMain = I18n.format("");
+    		String pearlDesc = I18n.format("item.shared.hidden_desc", GetPearlCount(stack));
     		tooltip.add(pearlDesc);
     		return;
     	}

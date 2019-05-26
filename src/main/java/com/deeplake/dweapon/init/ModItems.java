@@ -62,7 +62,7 @@ public class ModItems {
 	
 	
 	public static final DBloodSword BLOOD_SWORD = new DBloodSword("blood_sword", TOOL_MATERIAL_DIVINE);
-	public static final DDeathSword Death_SWORD = new DDeathSword("death_sword", TOOL_MATERIAL_DIVINE);
+	public static final DDeathSword DEATH_SWORD = new DDeathSword("death_sword", TOOL_MATERIAL_DIVINE);
 	public static final DSpaceAffinitySword SPACE_SWORD = new DSpaceAffinitySword("space_affinity_sword", TOOL_MATERIAL_DIVINE);
 	public static final DSageBuilder SAGE_BUILDER = new DSageBuilder("sage_builder", TOOL_MATERIAL_DIVINE);
 	

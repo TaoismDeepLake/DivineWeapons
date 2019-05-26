@@ -1,14 +1,19 @@
 package com.deeplake.dweapon.item.weapon;
 
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.DWeapons;
+import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +31,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class DSpaceAffinitySword extends DWeaponSwordBase {
@@ -95,7 +102,7 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 	
 	@Override
 	public void clientUseTick(ItemStack stack, EntityLivingBase living, int count) {
-		//Particle;
+//		//Particle;
 		//DWeapons.LogWarning(String.format("onUsingTick %s",count));
 
 		if (getMaxItemUseDuration(stack) - count >=  backTick) 
@@ -151,15 +158,24 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 		
 	}
 	
+	@Nonnull
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+		player.setActiveHand(hand);
+		ItemStack stack = player.getHeldItem(hand);
+		
+		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
+	}
+	
 	/**
      * Called when the player stops using an Item (stops holding the right mouse button).
      */
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase living, int time) {
-		DWeapons.LogWarning("onPlayerStoppedUsing");
+		//DWeapons.LogWarning("onPlayerStoppedUsing");
 		if (!world.isRemote) {
 
-			DWeapons.LogWarning(String.format("onPlayerStoppedUsing %s",time));
+			//DWeapons.LogWarning(String.format("onPlayerStoppedUsing %s",time));
 			
 			if ((IsEarth(stack) || IsSky(stack)) && 
 					(getMaxItemUseDuration(stack) - time >= backTick)) {
@@ -178,7 +194,7 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 					}
 				}
 				
-				DWeapons.LogWarning(String.format("Space Affinity to (%s, %s, %s)", pos.getX(), pos.getY(), pos.getZ()) );
+				DWeapons.LogWarning(String.format("SpaceAffinity: %s to (%s, %s, %s)",living.getName() , pos.getX(), pos.getY(), pos.getZ()) );
 				
 				living.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 				stack.damageItem(10, living);
@@ -190,4 +206,31 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 		}
 		return;
 	}
+	
+	@SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+    	super.addInformation(stack, worldIn, tooltip, flagIn);
+    	if (IsNameHidden(stack)) 
+    	{
+    		return;
+    	}
+    	
+    	String shared = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SHARED);
+		tooltip.add(shared);
+    	
+    	if (IsSky(stack)) 
+    	{
+    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY, GetPearlCount(stack));
+    		tooltip.add(skyDesc);
+    	}else if (IsEarth(stack))
+    	{
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH, GetPearlCount(stack));
+    		tooltip.add(earthDesc);
+    	}else
+    	{
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL);
+    		tooltip.add(earthDesc);
+    	}
+    }
 }

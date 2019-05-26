@@ -25,7 +25,7 @@ public class RegistryHandler {
 	}
 	
 	@SubscribeEvent
-	public static void omModelRegister(ModelRegistryEvent event)
+	public static void onModelRegister(ModelRegistryEvent event)
 	{
 		for(Item item : ModItems.ITEMS)
 		{

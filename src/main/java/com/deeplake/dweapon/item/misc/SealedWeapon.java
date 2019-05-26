@@ -85,7 +85,7 @@ public class SealedWeapon extends ItemBase {
 			result = new ItemStack(ModItems.BLOOD_SWORD);
 			break;
 		case DEATH_INDEX:
-			result = new ItemStack(ModItems.Death_SWORD);
+			result = new ItemStack(ModItems.DEATH_SWORD);
 			break;
 		case SPACE_AF_INDEX:
 			result = new ItemStack(ModItems.SPACE_SWORD);
