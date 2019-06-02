@@ -9,22 +9,27 @@ import javax.annotation.Nullable;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.DWeapons;
+import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.WorldInfo;
@@ -33,7 +38,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class DSnowSword extends DWeaponSwordBase {
-	// /give @p dweapon:blood_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
+	// /give @p dweapon:snow_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
 	public DSnowSword(String name, ToolMaterial material) {
 		super(name, material);
 		
@@ -48,6 +53,13 @@ public class DSnowSword extends DWeaponSwordBase {
 	static final float snowing_multiplier = 2.0f;//damage rate when snowing
 	
 	static final int skyBuffTick = 100;
+	
+	@Override
+	public boolean getIsRepairable(ItemStack stack, ItemStack repairMaterial) {
+		boolean isSnowBlock = repairMaterial.getItem() == Item.getItemFromBlock(Blocks.SNOW);
+		
+		return isSnowBlock || super.getIsRepairable(stack, repairMaterial);
+	}
 	
 	@Override
 	public float getAttackDamage()
@@ -108,17 +120,16 @@ public class DSnowSword extends DWeaponSwordBase {
 			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
 		}
 		
-		if (IsSky(stack))
-		{
-			player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0));
-		}
+//		if (IsSky(stack))
+//		{
+//			player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0));
+//		}
 		
 		stack.damageItem(1, player);
 		
 		if (IsNameHidden(stack) && (isSnowing))
 		{
-			SetNameHidden(stack, false);
-			player.addExperience(10);
+			TrueNameReveal(stack, player.getEntityWorld(), player);
 		}
 		
 		return success;
@@ -127,13 +138,41 @@ public class DSnowSword extends DWeaponSwordBase {
 	@Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {
+		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
 		//DWeapons.LogWarning("onUpdate");
 		//DWeapons.LogWarning(String.valueOf(worldIn.isRemote));
 		
+
 		if (entityIn instanceof EntityPlayerMP)
 		{
-			
 			EntityPlayerMP playerMP = (EntityPlayerMP)(entityIn); 
+			
+			//creating snow
+			
+			if (IsSky(stack) && isSelected)
+			{//same as snow golem
+				int i = 0;
+	            int j = 0;
+	            int k = 0;
+				
+				playerMP.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0));
+			
+				for (int l = 0; l < 4; ++l)
+	            {
+	                i = MathHelper.floor(playerMP.posX + (double)((float)(l % 2 * 2 - 1) * 0.25F));
+	                j = MathHelper.floor(playerMP.posY);
+	                k = MathHelper.floor(playerMP.posZ + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25F));
+	                BlockPos blockpos = new BlockPos(i, j, k);
+
+	                if (playerMP.world.getBlockState(blockpos).getMaterial() == Material.AIR && 
+	                		playerMP.world.getBiome(blockpos).getTemperature(blockpos) < 0.8F &&
+	                		Blocks.SNOW_LAYER.canPlaceBlockAt(playerMP.world, blockpos))
+	                {
+	                	playerMP.world.setBlockState(blockpos, Blocks.SNOW_LAYER.getDefaultState());
+	                }
+	            }
+			}
+	
 			
 			//DWeapons.LogWarning(String.valueOf(worldIn.isRemote));
 			//DWeapons.LogWarning(String.valueOf(playerMP.world.isRemote));
@@ -149,7 +188,7 @@ public class DSnowSword extends DWeaponSwordBase {
 			boolean isSnowing = (t < 0.15f) && raining;
 			
 			//auto fix
-			if (stack.isItemDamaged())
+			if (stack.isItemDamaged() && isSnowing )
 			{
 				int curDamage = stack.getItemDamage();
 				int fixAmount = 1 + playerMP.getRNG().nextInt(1 + GetPearlCount(stack));
@@ -159,14 +198,12 @@ public class DSnowSword extends DWeaponSwordBase {
 		
 			//TODO: set block to snow if possible
 			
-			//TODO: create particles
-			
 		}
 		
 		if (worldIn.isRemote && isSelected)
 		{
 			//DWeapons.LogWarning("create particle");
-			//wont work in main hand!
+			//wont work in second hand!
 			
 			CreateParticle(stack,(EntityLivingBase) entityIn, 0.1f);
 //			CreateParticle(stack,(EntityLivingBase) entityIn, -2);

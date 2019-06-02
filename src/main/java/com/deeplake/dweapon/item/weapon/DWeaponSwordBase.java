@@ -25,6 +25,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 //import net.minecraft.util.text.translation.I18n;
 import net.minecraft.client.resources.I18n;
@@ -33,7 +35,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class DWeaponSwordBase extends ItemSword implements IHasModel{
+public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEnhanceable{
 
 	//public DWNBT myNBT;
 	
@@ -95,7 +97,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
 			return;
 		}
 		
-		if (count > 0 && count < GetPearlMax(stack)) {
+		if (count > 0 && count <= GetPearlMax(stack)) {
 			DWNBTUtil.SetInt(stack, DWNBTDef.PEARL_COUNT, count);
 		}
 	}
@@ -118,6 +120,16 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
 		}
 		
 		return GetPearlMax(stack) - GetPearlCount(stack);
+	}
+	
+	public static boolean IsManualReady(ItemStack stack)
+	{
+		return DWNBTUtil.GetBoolean(stack, DWNBTDef.IS_MANUAL_READY);
+	}
+	
+	public static void SetManualReady(ItemStack stack, boolean isReady)
+	{
+		DWNBTUtil.SetBoolean(stack, DWNBTDef.IS_MANUAL_READY, isReady);
 	}
 	
 	//---------------------------------------------------------
@@ -145,7 +157,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
 	public void onUsingTick(ItemStack stack, EntityLivingBase living, int count) {
 		//Particle;
 		super.onUsingTick(stack, living, count);
-		DWeapons.LogWarning(String.format("base onUsingTick %s",count));
+		//DWeapons.LogWarning(String.format("base onUsingTick %s",count));
 		
 		if (living.world.isRemote)
 		{
@@ -166,8 +178,22 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
 	{
 		
 	}
-	
-	
+	//----------------------------------------------------------------
+	public ItemStack CreateManual() {
+		ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
+		
+		NBTTagList bookPages = new NBTTagList();
+		bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, gnawed on by monsters]]\u00A70\n\nI have begun examining the strange aura surrounding this tower. The bricks of the tower are protected by a curse, stronger than any I've seen before. The magic from the curse"));
+        bookPages.appendTag(new NBTTagString("is boiling off into the surrounding area.\n\nIn my homeland I would have many options for dealing with this magic, but here my supplies are limited. I shall have to research..."));
+        bookPages.appendTag(new NBTTagString("\u00A78[[Many entries later]]\u00A70\n\nA breakthrough!  In my journeys I sighted a huge snake-like monster in a decorated courtyard. Nearby, I picked up a worn down, discarded green scale.\n\nThe magic in the scale seems to have the"));
+        bookPages.appendTag(new NBTTagString("curse-breaking properties I need, but the magic is too dim. I may need to acquire a fresher specimen, directly from the creature."));
+		
+        book.setTagInfo("pages", bookPages);
+		book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
+		book.setTagInfo("title", new NBTTagString("Notes on a Pointy Tower"));
+		
+		return book;
+	}
 	
 	//----------------------------------------------------------------
 	@Override
@@ -243,15 +269,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
     {
         super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving);
         //disable this after real play
-        int pearlCount = GetPearlCount(stack);
-		if (pearlCount == 5) 
-		{
-			SetPearlCount(stack, 0);
-		}
-		else
-		{
-			SetPearlCount(stack, pearlCount + 1);
-		}
+        
 		
 		return true;
     }
@@ -264,6 +282,37 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {
+    	if (entityIn instanceof EntityPlayer && !worldIn.isRemote)
+    	{
+    		if (IsManualReady(stack))
+    		{
+    			EntityPlayer player = (EntityPlayer) entityIn;
+    			TrueNameReveal(stack, worldIn, player);
+    		}
+    	}
+    }
+    
+    public void TrueNameReveal(ItemStack stack, World worldIn, EntityPlayer player)
+    {
+    	if (!worldIn.isRemote) {
+    		
+    		if (IsNameHidden(stack))
+    		{
+    			SetNameHidden(stack, false);
+    			player.addExperience(100);
+    		}
+    		
+    		if (IsNameHidden(stack) || IsManualReady(stack))
+    		{
+    			//unlocking by using goes former
+    			//unlocking by book craft goes latter
+    			//maybe some fix can make this logic clearer
+    			
+    			player.addItemStackToInventory(CreateManual());
+    			SetManualReady(stack, false);
+    		}
+    		//achievement TODO		
+    	}
     }
     
     public String getItemStackDisplayName(ItemStack stack)
@@ -271,8 +320,15 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
     	String strMain ="";
     	if (IsNameHidden(stack))
     	{
+//    		if (IsManualReady(stack))
+//    		{
+//    			
+//    		}
+//    		else
+    		{
+    			strMain = I18n.format(getUnlocalizedName(stack) + DWNBTDef.TOOLTIP_HIDDEN);
+    		}
     		
-    		strMain = I18n.format(getUnlocalizedName(stack) + DWNBTDef.TOOLTIP_HIDDEN);
     	}
     	else
     	{
@@ -315,8 +371,16 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
     	if (IsNameHidden(stack)) 
     	{
     		//strMain = I18n.format("");
-    		String pearlDesc = I18n.format("item.shared.hidden_desc", GetPearlCount(stack));
-    		tooltip.add(pearlDesc);
+    		if (IsManualReady(stack))
+    		{
+    			String pearlDesc = I18n.format("item.shared.true_name_reveal");
+	    		tooltip.add(pearlDesc);
+    		}
+    		else
+    		{
+	    		String pearlDesc = I18n.format("item.shared.hidden_desc");
+	    		tooltip.add(pearlDesc);
+    		}
     		return;
     	}
     	
@@ -339,23 +403,27 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel{
     }
 
 
-	    /**
-	     * Returns true if this item has an enchantment glint. By default, this returns
-	     * <code>stack.isItemEnchanted()</code>, but other items can override it (for instance, written books always return
-	     * true).
-	     *  
-	     * Note that if you override this method, you generally want to also call the super version (on {@link Item}) to get
-	     * the glint for enchanted items. Of course, that is unnecessary if the overwritten version always returns true.
-	     */
-	    @SideOnly(Side.CLIENT)
-	    public boolean hasEffect(ItemStack stack)
-	    {
-	        return IsSky(stack) || IsEarth(stack);
-	    }
-	    
-	    @Override
-		public boolean getIsRepairable(ItemStack stack, ItemStack repairMaterial) {
-			return repairMaterial.getItem() != Items.ENCHANTED_BOOK && 
-					OreDictionary.itemMatches(repairMaterial, new ItemStack(ModItems.DIVINE_INGOT), false) || super.getIsRepairable(stack, repairMaterial);
-		}
+    /**
+     * Returns true if this item has an enchantment glint. By default, this returns
+     * <code>stack.isItemEnchanted()</code>, but other items can override it (for instance, written books always return
+     * true).
+     *  
+     * Note that if you override this method, you generally want to also call the super version (on {@link Item}) to get
+     * the glint for enchanted items. Of course, that is unnecessary if the overwritten version always returns true.
+     */
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack)
+    {
+        return IsSky(stack) || IsEarth(stack);
+    }
+    
+    @Override
+	public boolean getIsRepairable(ItemStack stack, ItemStack repairMaterial) {
+    	
+    	boolean isEnchantedBook = repairMaterial.getItem() == Items.ENCHANTED_BOOK;
+		boolean isDivineIngot = OreDictionary.itemMatches(repairMaterial, new ItemStack(ModItems.DIVINE_INGOT), false);  
+		boolean base = super.getIsRepairable(stack, repairMaterial);
+    	
+		return !isEnchantedBook && isDivineIngot;
+	}
 }

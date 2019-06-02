@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class DDeathSword extends DWeaponSwordBase {
-	// /give @p dweapon:death_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
+	// /give @p dweapon:death_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0, name_hidden:false}
 	public DDeathSword(String name, ToolMaterial material) {
 		super(name, material);
 		
@@ -82,7 +82,7 @@ public class DDeathSword extends DWeaponSwordBase {
 			{
 				if (IsNameHidden(stack))
 				{
-					SetNameHidden(stack, false);
+					TrueNameReveal(stack, player.getEntityWorld(), player);
 				}
 				damage = Float.MAX_VALUE;
 			}

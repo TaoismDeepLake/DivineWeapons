@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -55,7 +56,9 @@ public class DBloodSword extends DWeaponSwordBase {
 	public float getAttackDamage()
     {
 		//useless
+		NBTTagString s = new NBTTagString();
 		return base_damage;
+		
     }
 	
 	public float getActualDamage(ItemStack stack, float ratio)
@@ -124,8 +127,7 @@ public class DBloodSword extends DWeaponSwordBase {
 			
 			if (IsNameHidden(stack) && (player.getHealth() / player.getMaxHealth() <= 0.6f))
 			{
-				SetNameHidden(stack, false);
-				player.addExperience(15);
+				TrueNameReveal(stack, player.getEntityWorld(), player);
 			}
 			
 			CreateParticle(stack, player, 1);

@@ -1,7 +1,9 @@
 package com.deeplake.dweapon.init;
 
 import com.deeplake.dweapon.recipe.special.EarthEnhance;
+import com.deeplake.dweapon.recipe.special.NameRevealByBook;
 import com.deeplake.dweapon.recipe.special.PearlSocket;
+import com.deeplake.dweapon.recipe.special.SkyEnhance;
 import com.deeplake.dweapon.util.Reference;
 
 import net.minecraft.init.Blocks;
@@ -45,6 +47,9 @@ public class ModRecipes {
 		r.register(new EarthEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_earth_enhance")));
 		
 		IForgeRegistry<IRecipe> r_sky = evt.getRegistry();
-		r.register(new EarthEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_sky_enhance")));
+		r.register(new SkyEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_sky_enhance")));
+		
+		IForgeRegistry<IRecipe> r_book = evt.getRegistry();
+		r.register(new NameRevealByBook().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_name_reveal_by_book")));
 	}
 }

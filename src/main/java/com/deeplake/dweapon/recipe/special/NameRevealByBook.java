@@ -9,15 +9,16 @@ import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class SkyEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+public class NameRevealByBook extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 
-	private String pearlName = ModItems.SKY_CHARM.getUnlocalizedName();
+	private String bookName = Items.BOOK.getUnlocalizedName();
 	
 	
 	
@@ -28,7 +29,7 @@ public class SkyEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements IRe
 
 	@Override
 	public boolean matches(@Nonnull InventoryCrafting var1, @Nonnull World var2) {
-		boolean foundSky = false;
+		boolean foundBook = false;
 		
 		boolean foundSword = false;
 
@@ -49,22 +50,22 @@ public class SkyEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements IRe
 					DWeaponSwordBase sword = (DWeaponSwordBase)stack.getItem();
 					foundSword = true;
 					
-					if (sword.IsSky(stack) || !sword.IsEarth(stack))
+					if (!sword.IsNameHidden(stack))
 					{
-						//cannot set earth again
+						//cannot reveal true-name again
 						return false;
 					}
 					
 				}
-				else if (stack.getItem().getUnlocalizedName(stack).equals(pearlName))
+				else if (stack.getItem().getUnlocalizedName(stack).equals(bookName))
 				{//found a pearl
-					if (foundSky) {
-						//DWeapons.logger.warn("Found more than 1 sky charm");
-						return false;//only one sword at a time
+					if (foundBook) {
+						//DWeapons.logger.warn("Found more than 1 blank book");
+						return false;//only one book at a time
 					}
 					
-					//DWeapons.logger.warn("Found sky charm");
-					foundSky = true;
+					//DWeapons.logger.warn("Found book");
+					foundBook = true;
 				}
 				else
 				{
@@ -75,7 +76,7 @@ public class SkyEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements IRe
 		}
 		
 
-		return foundSky && foundSword;
+		return foundBook && foundSword;
 	}
 
 	@Nonnull
@@ -104,8 +105,11 @@ public class SkyEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements IRe
 		}
 
 		ItemStack swordResult = sword.copy();
-		DWeaponSwordBase.SetSky(swordResult);
-
+		//DWeaponSwordBase.SetNameHidden(swordResult, false);
+		//	I cant just reveal it here, other wise a player may use one book
+		//to peek at all the true names of the weapons they have by not actually crafting it
+		
+		DWeaponSwordBase.SetManualReady(swordResult, true);
 		return swordResult;
 	}
 

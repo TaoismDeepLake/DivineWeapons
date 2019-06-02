@@ -24,12 +24,13 @@ item.shared.hidden_desc=????
 item.shared.sky_desc=Sky Weapon
 item.shared.earth_desc=Earth Weapon
 item.shared.pearl_desc=Pearl:%s
+item.shared.true_name_reveal=True Name reveal!
 
 //-------------
 item.blood_sword.name=Bloodburst
 item.blood_sword.hidden=A Bloody Sword
 
-item.blood_sword.shared_desc=[Blood Burst]Let out your own blood to increase damage.
+item.blood_sword.shared_desc=[Blood Burst] Let out your own blood to increase damage.
 item.blood_sword.sky_desc=Drain 5 Heart, deal 100 damage.[Str X, Regen II]. 
 item.blood_sword.earth_desc=Drain %s Heart, deal %s damage.[Regen I].
 item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.\
@@ -38,7 +39,7 @@ item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.\
 item.death_sword.name=Death Within
 item.death_sword.hidden=A Dark Sword
 
-item.death_sword.shared_desc=[Death Visit]Chance to kill at once.
+item.death_sword.shared_desc=[Death Visit] Chance to kill at once.
 item.death_sword.sky_desc=Kill target at once. NOTE: Has %.0f%% chance to SUICIDE.
 item.death_sword.earth_desc=Kill target with (1+%s)/(targetHP) + %.0f%% chance.
 item.death_sword.normal_desc=Kill target with (1+%s)/(targetHP) chance.
@@ -47,7 +48,7 @@ item.death_sword.normal_desc=Kill target with (1+%s)/(targetHP) chance.
 item.space_affinity_sword.name=Space Flunctuation
 item.space_affinity_sword.hidden=Some Unstable Sword
 
-item.space_affinity_sword.shared_desc=[Fourier Affinity]Damage is related to coordinates
+item.space_affinity_sword.shared_desc=[Fourier Affinity] Damage is related to coordinates
 item.space_affinity_sword.sky_desc=Damage is Max(x%%16, y%%16, z%%16, %s)
 item.space_affinity_sword.earth_desc=Damage is Max(x%%16, y%%16, z%%16, %s), Hold RMB to teleport to spawn
 item.space_affinity_sword.normal_desc=Damage is Max(x%%128, y%%128, z%%128, 16), Hold RMB to teleport to spawn
@@ -56,7 +57,16 @@ item.space_affinity_sword.normal_desc=Damage is Max(x%%128, y%%128, z%%128, 16),
 item.sage_builder.name=Fu Yue Shovel
 item.sage_builder.hidden=Random Building Tool
 
-item.sage_builder.shared_desc=[Between Bricks]RMB to place blocks, pearl = durabilty.
-item.sage_builder.sky_desc=RMB Place dirt.
+item.sage_builder.shared_desc=[Between Bricks] RMB to place blocks, pearl = durabilty enchantement.
+item.sage_builder.sky_desc=Places concrete.[WIP:coloring and transforming to sword]
 item.sage_builder.earth_desc=Places blocks.
-item.sage_builder.normal_desc=Places concrete.[WIP:coloring and transforming to sword]
+item.sage_builder.normal_desc=RMB Place dirt.
+
+//-------------
+item.snow_sword.name=Forged in Snow
+item.snow_sword.hidden=A Cold Sword
+
+item.snow_sword.shared_desc=[Snow Covered] Doubles the damage and self-repair when snowing. Can be repaired by snow blocks.
+item.snow_sword.sky_desc=Holding it grants anti-fire buff, walking leaves a trail of snow.
+item.snow_sword.earth_desc=Increase damage in hot AND cold places.
+item.snow_sword.normal_desc=Increase damage in cold places.

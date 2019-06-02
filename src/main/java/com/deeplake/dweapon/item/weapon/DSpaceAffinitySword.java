@@ -85,7 +85,7 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 		
 		if (IsNameHidden(stack) && (ratio > 15f/16f))
 		{
-			SetNameHidden(stack, false);
+			TrueNameReveal(stack, player.getEntityWorld(), player);
 		}
 		
 		return success;

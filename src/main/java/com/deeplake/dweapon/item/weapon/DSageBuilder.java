@@ -145,6 +145,8 @@ public class DSageBuilder extends DWeaponSwordBase {
 	    			stack.damageItem(1, player);
 	    			//stack.attemptDamageItem(amount, rand, damager)
 	    		}
+	    		
+	    		TrueNameReveal(stack, worldIn, player);
 	    	}
 	    	else
 	    	{
