@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModCreativeTab;
 import com.deeplake.dweapon.init.ModItems;
+import com.deeplake.dweapon.util.DWNBT;
 import com.deeplake.dweapon.util.IHasModel;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
@@ -182,15 +183,26 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	public ItemStack CreateManual() {
 		ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
 		
+		// https://minecraftjson.com/
+		
+		// /give @p written_book{pages:["[\"\",{\"text\":\"123 45\"}]","[\"\",{\"text\":\"678 90\"}]"],title:CustomBook,author:Player}
+		
 		NBTTagList bookPages = new NBTTagList();
-		bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, gnawed on by monsters]]\u00A70\n\nI have begun examining the strange aura surrounding this tower. The bricks of the tower are protected by a curse, stronger than any I've seen before. The magic from the curse"));
-        bookPages.appendTag(new NBTTagString("is boiling off into the surrounding area.\n\nIn my homeland I would have many options for dealing with this magic, but here my supplies are limited. I shall have to research..."));
-        bookPages.appendTag(new NBTTagString("\u00A78[[Many entries later]]\u00A70\n\nA breakthrough!  In my journeys I sighted a huge snake-like monster in a decorated courtyard. Nearby, I picked up a worn down, discarded green scale.\n\nThe magic in the scale seems to have the"));
-        bookPages.appendTag(new NBTTagString("curse-breaking properties I need, but the magic is too dim. I may need to acquire a fresher specimen, directly from the creature."));
+		//NBTTagCompound aPage = new NBTTagCompound();
+		//aPage.setString("text", "This is set by way A");
+		//aPage.setTag(key, value);
+		bookPages.appendTag(DWNBT.bookPageFromLine("The real name revealed. "+ I18n.format(getUnlocalizedName() + ".name")));
+		bookPages.appendTag(DWNBT.bookPageFromLine("A manual will be given in the future version."));
+		bookPages.appendTag(DWNBT.bookPageFromLine("It will explain the lore and the tale of it."));
+		bookPages.appendTag(DWNBT.bookPageFromLine("Hopefully it will be very Interesting."));
+		
+		//DWeapons.LogWarning("[EEEEEE]" + (bookPages.getStringTagAt(1).toString()));
 		
         book.setTagInfo("pages", bookPages);
-		book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
-		book.setTagInfo("title", new NBTTagString("Notes on a Pointy Tower"));
+		book.setTagInfo("author", new NBTTagString("Divine Weaponsmith"));
+		book.setTagInfo("title", new NBTTagString("Test Manual"));
+		
+		//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 		
 		return book;
 	}

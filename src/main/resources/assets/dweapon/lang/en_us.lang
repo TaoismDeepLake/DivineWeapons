@@ -1,10 +1,8 @@
 itemGroup.DWeaponMainTab=DivineWeapon
 
 //Blocks
-title.ruby_block.name=Buff Block
-title.divine_ore.name=Divine Ore
+tile.divine_ore.name=Divine Ore
 
-//
 
 
 item.sealed_sword.name=Coated Weapon
@@ -25,6 +23,8 @@ item.shared.sky_desc=Sky Weapon
 item.shared.earth_desc=Earth Weapon
 item.shared.pearl_desc=Pearl:%s
 item.shared.true_name_reveal=True Name reveal!
+
+item.sealed_weapon.name=Weapon Coming into Shape
 
 //-------------
 item.blood_sword.name=Bloodburst

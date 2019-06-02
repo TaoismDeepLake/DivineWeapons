@@ -20,7 +20,7 @@ public class DWeapons
 {
     public static final String MODID = "dweapon";
     public static final String NAME = "Divine Weapon";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "0.0.2";
 
     public static Logger logger;
     
@@ -42,7 +42,7 @@ public class DWeapons
 		ModRecipes.Init();
 		//DWeapons.logger.warn("Init A");
 		
-		DWeapons.LogWarning("Init A");
+		DWeapons.LogWarning("Init DWeapons");
 	}
     
     public static void LogWarning(String str)

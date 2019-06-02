@@ -4,6 +4,8 @@ import javax.annotation.Nullable;
 
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -18,6 +20,28 @@ public class DWNBTUtil {
 		}
 		return nbt;
 	}
+	
+	public static NBTTagCompound getNBT(Entity entity) {
+		NBTTagCompound nbt = entity.getEntityData();
+		
+		if(nbt == null) {
+	      return new NBTTagCompound();
+	    }
+
+	    return nbt;
+	  }
+	
+	
+	public static NBTTagCompound getNBT(NBTTagCompound tag) {
+	    if(tag == null) {
+	      return new NBTTagCompound();
+	    }
+
+	    return tag;
+	  }
+	
+	//writeEntityToNBT
+	//readEntityFromNBT
 	
 	@Nullable
 	public static boolean StackHasKey(ItemStack stack, String key)
@@ -98,4 +122,34 @@ public class DWNBTUtil {
 	{
 		return GetInt(stack, key, 0);
 	}
+	
+	//entity
+	@Nullable
+	public static boolean EntityHasKey(Entity entity, String key)
+	{
+		return getNBT(entity).hasKey(key);
+			
+	}
+	
+	//Boolean
+	public static boolean GetBoolean(Entity entity, String key, boolean defaultVal)
+	{	
+		if (EntityHasKey(entity, key))
+		{
+			NBTTagCompound nbt = getNBT(entity);
+			return nbt.getBoolean(key);
+		}		
+		else
+		{
+			return defaultVal;
+		}
+	}
+	
+	public static boolean SetBoolean(Entity stack, String key, boolean value)
+	{
+		NBTTagCompound nbt = getNBT(stack);
+		nbt.setBoolean(key, value);
+		return true;
+	}
+		
 }

@@ -17,5 +17,8 @@ public class DWNBTDef {
 	public static final String TOOLTIP_SHARED = ".shared_desc";
 	public static final String TOOLTIP_HIDDEN = ".hidden";
 	
-	public static final String TRUENAME_TO_REVEAL = "¡£true_name_reveal";
+	public static final String TRUENAME_TO_REVEAL = ".true_name_reveal";
+	
+	//player
+	public static final String STARTER_BOOK_GIVEN = "¡£starter_book_given";
 }

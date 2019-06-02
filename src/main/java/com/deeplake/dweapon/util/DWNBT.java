@@ -3,6 +3,7 @@ package com.deeplake.dweapon.util;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagString;
 
 public class DWNBT {
 	public int pearlCount;
@@ -62,5 +63,8 @@ public class DWNBT {
 	
 	}
 	
-	
+	public static NBTTagString bookPageFromLine(String str)
+	{
+		return new NBTTagString("[\"\",{\"text\":\"" + str + "\"}]");
+	}
 }
