@@ -10,6 +10,8 @@ public class DWNBTDef {
 	
 	public static final String BASE_DATA = "d_weapon_data";
 	
+	public static final String WEAPON_MODE = "weapon_mode";
+	
 	//TOOLTIP
 	public static final String TOOLTIP_SKY = ".sky_desc";
 	public static final String TOOLTIP_EARTH = ".earth_desc";

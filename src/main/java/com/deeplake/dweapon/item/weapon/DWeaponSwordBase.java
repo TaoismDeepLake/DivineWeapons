@@ -22,12 +22,14 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 //import net.minecraft.util.text.translation.I18n;
 import net.minecraft.client.resources.I18n;
@@ -47,6 +49,15 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setCreativeTab(ModCreativeTab.DW_MAIN);
+		
+		this.addPropertyOverride(new ResourceLocation(DWNBTDef.WEAPON_MODE), new IItemPropertyGetter()
+        {
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
+            {
+                return (float)GetWeaponMode(stack);//note this is a int in the NBT
+            }
+        });
 		
 		ModItems.ITEMS.add(this);
 	}
@@ -131,6 +142,20 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	public static void SetManualReady(ItemStack stack, boolean isReady)
 	{
 		DWNBTUtil.SetBoolean(stack, DWNBTDef.IS_MANUAL_READY, isReady);
+	}
+	
+	public static int GetWeaponMode(ItemStack stack)
+	{
+		return DWNBTUtil.GetInt(stack, DWNBTDef.WEAPON_MODE);
+	}
+	
+	public static void SetWeaponMode(ItemStack stack, int mode)
+	{
+		if (!(stack.getItem() instanceof DWeaponSwordBase)) {
+			return;
+		}
+		
+		DWNBTUtil.SetInt(stack, DWNBTDef.WEAPON_MODE, mode);
 	}
 	
 	//---------------------------------------------------------

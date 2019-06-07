@@ -37,7 +37,7 @@ item.blood_sword.hidden=A Bloody Sword
 item.blood_sword.shared_desc=[Blood Burst] Let out your own blood to increase damage.
 item.blood_sword.sky_desc=Drain 5 Heart, deal 100 damage.[Str X, Regen II]. 
 item.blood_sword.earth_desc=Drain %s Heart, deal %s damage.[Regen I].
-item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.\
+item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.
 
 item.blood_sword.manual_title=Bloodburst
 item.blood_sword.manual_author=Taoism DeepLake
@@ -119,9 +119,41 @@ item.snow_sword.normal_desc=Increase damage in cold places.
 
 item.snow_sword.manual_title=Forged in Snow
 item.snow_sword.manual_author=Taoism DeepLake
-item.snow_sword.manual_page_count=4
+item.snow_sword.manual_page_count=5
 item.snow_sword.manual_page_1=Can you catch a snowflake with your sword? I have heard of monks who can catch a blizzard.
 item.snow_sword.manual_page_2=This Snow Sword, or Forged in Snow, is a condensed blizzard. It's cold, and due to its nature, it works really well in cold places.
 item.snow_sword.manual_page_3=Since it's Forged in Snow and forged with snow, you need only snow blocks to repair it. What's more, it catches the blizzard to replenish itself. 
 item.snow_sword.manual_page_4=Snowballs are crtical to blazes. Snow swords, however, if forged poorly, will only melt in the hot temperature of nether. Best forged ones cut in hot deserts just like snowballs on blazes.
 item.snow_sword.manual_page_5=Snowmans leave a snow trail when moving but only in cold places. Maybe when you become a snowman, so will you.
+//---------------
+item.power_triangle.name=Triangle of Power
+item.power_triangle.name.attack=Triangle of Attack
+item.power_triangle.name.defense=Triangle of Defense
+item.power_triangle.name.speed=Triangle of Speed
+item.power_triangle.hidden.attack=Red Triangle
+item.power_triangle.hidden.defense=Green Triangle
+item.power_triangle.hidden.speed=Bluw Triangle
+
+item.power_triangle.shared_desc=[Trinity Phases]Hold RMB to switch between Attack, Defense and Speed.
+
+item.power_triangle.sky_desc.attack=[ATK][Works when carried] Grants strength buff. Works as a weapon.
+item.power_triangle.earth_desc.attack=[ATK]Grants strength buff. Works as a weapon.
+item.power_triangle.normal_desc.attack=[ATK]Grants strength buff. Works as a weapon.
+
+item.power_triangle.sky_desc.defense=[DEF][Works when carried] Grants strong protection of all kinds, but slows mining.
+item.power_triangle.earth_desc.defense=[DEF]Grants protection. Wears down while holding.
+item.power_triangle.normal_desc.defense=[DEF]Grants minor protection, slows down moving. Wears down while holding.
+
+item.power_triangle.sky_desc.speed=[SPD][Works when carried] Grants strong moving buff, but cause weakness.
+item.power_triangle.earth_desc.speed=[SPD]Grants moving buff, but cause weakness. Wears down while holding.
+item.power_triangle.normal_desc.speed=[SPD]Grants minor moving buff, but cause weakness. Wears down while holding.
+
+
+item.power_triangle.manual_title=Triangle of Power
+item.power_triangle.manual_author=Taoism DeepLake
+item.power_triangle.manual_page_count=5
+item.power_triangle.manual_page_1=Hold RMB to switch between Attack, Defense and Speed Mode. Pearls reduces mode cooldown and attack mode damage.
+item.power_triangle.manual_page_2=...
+item.power_triangle.manual_page_3=...
+item.power_triangle.manual_page_4=...
+item.power_triangle.manual_page_5=...

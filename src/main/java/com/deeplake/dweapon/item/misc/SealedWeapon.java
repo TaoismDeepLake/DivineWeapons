@@ -19,6 +19,8 @@ enum WeaponIndex{
 	BLOOD_INDEX,
 	DEATH_INDEX,
 	SPACE_AF_INDEX,
+	BUILDER_INDEX,
+	SNOW_INDEX,
 	LAST,
 }
 
@@ -53,6 +55,8 @@ public class SealedWeapon extends ItemBase {
 		factor[WeaponIndex.BLOOD_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.DEATH_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.SPACE_AF_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.BUILDER_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.SNOW_INDEX.ordinal()] = 10;
 		
 		int factorSum = 0;
 		
@@ -89,6 +93,12 @@ public class SealedWeapon extends ItemBase {
 			break;
 		case SPACE_AF_INDEX:
 			result = new ItemStack(ModItems.SPACE_SWORD);
+			break;
+		case BUILDER_INDEX:
+			result = new ItemStack(ModItems.SAGE_BUILDER);
+			break;
+		case SNOW_INDEX:
+			result = new ItemStack(ModItems.SNOW_SWORD);
 			break;
 		default:
 			result = new ItemStack(Items.IRON_SWORD);
