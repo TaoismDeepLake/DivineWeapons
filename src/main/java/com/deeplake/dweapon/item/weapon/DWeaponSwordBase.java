@@ -207,14 +207,14 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 			int i = 1;
 			for (i = 1; i <= pageCount; i++)
 			{
-				bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine(I18n.format(name + DWNBTDef.MANUAL_PAGE_KEY + i)));
+				bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine(name + DWNBTDef.MANUAL_PAGE_KEY + i));
 			}
 			book.setTagInfo("author", new NBTTagString(I18n.format(name + DWNBTDef.MANUAL_AUTHOR)));
 			book.setTagInfo("title", new NBTTagString(I18n.format(name + DWNBTDef.MANUAL_TITLE)));
 		}
 		else
 		{
-			bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine(I18n.format("item.shared.missing_manual_content")));
+			bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine("item.shared.missing_manual_content"));
 			book.setTagInfo("author", new NBTTagString(I18n.format("item.shared.missing_manual_author")));
 			book.setTagInfo("title", new NBTTagString(I18n.format("item.shared.missing_manual_title")));
 		}

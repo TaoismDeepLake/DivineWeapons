@@ -40,11 +40,22 @@ item.blood_sword.earth_desc=Drain %s Heart, deal %s damage.[Regen I].
 item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.\
 
 item.blood_sword.manual_title=Bloodburst
-item.blood_sword.manual_author=Divine WeaponSmith
-item.blood_sword.manual_page_count=3
-item.blood_sword.manual_page_1=A manual will be given in the future version.
-item.blood_sword.manual_page_2=It will explain the lore and the tale of it.
-item.blood_sword.manual_page_3=Hopefully it will be very Interesting.
+item.blood_sword.manual_author=Taoism DeepLake
+item.blood_sword.manual_page_count=5
+item.blood_sword.manual_page_1=\"Killing a thousand enemies, yet lost eight-hundred men.\" You feel hurt, yet victory is the only word now - if you don't pass out at the loss of blood.
+item.blood_sword.manual_page_2=Bloodburst drains your blood whenever its blade lands on enemies, dealing extra damage meanwhile. Rumors say it can be repaired with blood, but it's not true.
+item.blood_sword.manual_page_3=If you don't strike with your full strength, the base damage will go down, but blood burst damage remains the same. 
+item.blood_sword.manual_page_4=It's a good idea to bring some medicine with you to replenish the loss of your blood, though true bloodlords can drain health from their enemies. It's also a good idea to build a stronger body, if possible.
+item.blood_sword.manual_page_5=I have given this gift to many warriors. They either let the power take over their mind and their life, or sealed it because of the curse. Perhaps you are the right person to use it?
+//demonstration of percentages and quotation marks
+item.blood_sword.manual_page_6=Debug says, "Is this ok?" No.
+item.blood_sword.manual_page_7=Debug says, \"Is this ok?\" Yes, it is
+item.blood_sword.manual_page_8=Debug says, \\"Is this ok?\\" No. 
+item.blood_sword.manual_page_9=Debug says, \\\"Is this ok?\\\" No.
+item.blood_sword.manual_page_10=Debug says, Is this 100%? No.
+item.blood_sword.manual_page_11=Debug says, Is this 100%%? Yes, it is
+item.blood_sword.manual_page_12=Debug says, Is this 100\%? No.
+item.blood_sword.manual_page_13=Debug says, Is this 100\\%? No.
 
 //-------------
 item.death_sword.name=Death Within
@@ -55,6 +66,13 @@ item.death_sword.sky_desc=Kill target at once. NOTE: Has %.0f%% chance to SUICID
 item.death_sword.earth_desc=Kill target with (1+%s)/(targetHP) + %.0f%% chance.
 item.death_sword.normal_desc=Kill target with (1+%s)/(targetHP) chance.
 
+item.death_sword.manual_title=Death Within
+item.death_sword.manual_author=Taoism DeepLake
+item.death_sword.manual_page_count=4
+item.death_sword.manual_page_1=Sometimes you die. Death is a valid conception, no matter how strong.
+item.death_sword.manual_page_2=Pawns can be slain easily, but consider a monster with 25535 health, what can your enchanted diamond sword do with it? Have you faced monsters with infinite health? I do. 
+item.death_sword.manual_page_3=A sudden death for them is the solution, sudden death by INFINITE damage dealt. This is too powerful to be abused, so I bind it to the victims' fate. Stronger ones have a stronger fate to put out.  
+item.death_sword.manual_page_4=With its full power released, it will kill targets at 100%% rate, but with a curse on it to kill its wielder at chance, so no tyrants can destroy the whole world with it, unless they... 
 //-------------
 item.space_affinity_sword.name=Space Flunctuation
 item.space_affinity_sword.hidden=Some Unstable Sword
@@ -64,6 +82,16 @@ item.space_affinity_sword.sky_desc=Damage is Max(x%%16, y%%16, z%%16, %s)
 item.space_affinity_sword.earth_desc=Damage is Max(x%%16, y%%16, z%%16, %s), Hold RMB to teleport to spawn
 item.space_affinity_sword.normal_desc=Damage is Max(x%%128, y%%128, z%%128, 16), Hold RMB to teleport to spawn
 
+item.space_affinity_sword.manual_title=Space Flunctuation
+item.space_affinity_sword.manual_author=Taoism DeepLake
+item.space_affinity_sword.manual_page_count=7
+item.space_affinity_sword.manual_page_1=This is also called the Space Affinity Sword.
+item.space_affinity_sword.manual_page_2=I traveled many worlds, met many fools before coming across this little girl. Not very beautiful, not strong, nor swift, but clever and sensible. So I make another attempt.
+item.space_affinity_sword.manual_page_3=She has never heard of Cartesian coordinates, but when I explain the xyz thing, she gets the basic point. She considered it interesting but purly imaginative, and asked how I come up such a complicated thing. 
+item.space_affinity_sword.manual_page_4=I taught her to look in the eye of F3. After a few attempts, she managed and surprised at the flood of information she had been blind to. I also taught her to turn off this sight to prevent mind overloading. 
+item.space_affinity_sword.manual_page_5=She also managed to understand basic arithmetic. Finally found a worthy one, I take out my gift. A blade that deals damage based on the coordinates. Max(x%%16, y%%16, z%%16, pearl_count).
+item.space_affinity_sword.manual_page_6=I told her the formula so she can max out the damage when needed and make harmless touches when practicing with others. \"Now try focusing your mind on it.\" I said and she did so. 
+item.space_affinity_sword.manual_page_7=\"Now relax your mind.\" I smiled as she vanished. The sword teleported her home. Now she will find her "position" with her stronger and faster mates. She will one day develops her skill to Max(x%%128, y%%128, z%%128, 16).
 //-------------
 item.sage_builder.name=Fu Yue Shovel
 item.sage_builder.hidden=Random Building Tool
@@ -73,6 +101,13 @@ item.sage_builder.sky_desc=Places concrete.[WIP:coloring and transforming to swo
 item.sage_builder.earth_desc=Places blocks.
 item.sage_builder.normal_desc=RMB Place dirt.
 
+item.sage_builder.manual_title=Fu Yue Shovel
+item.sage_builder.manual_author=Taoism DeepLake
+item.sage_builder.manual_page_count=4
+item.sage_builder.manual_page_1=The King Wu-Ding got a decaying dynasty when he throned. One night, the King had a dream. A hermit named Fu Yue, who said \"I'm a prisoner named Fu Yue. If anyone finds me, he will know that I'm no mere prisoner.\"
+item.sage_builder.manual_page_2=The King called painters to draw figures from the dream and searched the country. A prisoner named Yue was found. It was said he was a sage at first, but poverty made him live in prisons and make a living as a construction worker.
+item.sage_builder.manual_page_3=The King talked with him and considered him as the sage in the dream. The sage helped the King to build a prosperous dynasty. 
+item.sage_builder.manual_page_4=Fu Yue Shovel is just inspired by the story. You can build with it. Some construction today, some dynasty in the future.
 //-------------
 item.snow_sword.name=Forged in Snow
 item.snow_sword.hidden=A Cold Sword
@@ -81,3 +116,12 @@ item.snow_sword.shared_desc=[Snow Covered] Doubles the damage and self-repair wh
 item.snow_sword.sky_desc=Holding it grants anti-fire buff, walking leaves a trail of snow.
 item.snow_sword.earth_desc=Increase damage in hot AND cold places.
 item.snow_sword.normal_desc=Increase damage in cold places.
+
+item.snow_sword.manual_title=Forged in Snow
+item.snow_sword.manual_author=Taoism DeepLake
+item.snow_sword.manual_page_count=4
+item.snow_sword.manual_page_1=Can you catch a snowflake with your sword? I have heard of monks who can catch a blizzard.
+item.snow_sword.manual_page_2=This Snow Sword, or Forged in Snow, is a condensed blizzard. It's cold, and due to its nature, it works really well in cold places.
+item.snow_sword.manual_page_3=Since it's Forged in Snow and forged with snow, you need only snow blocks to repair it. What's more, it catches the blizzard to replenish itself. 
+item.snow_sword.manual_page_4=Snowballs are crtical to blazes. Snow swords, however, if forged poorly, will only melt in the hot temperature of nether. Best forged ones cut in hot deserts just like snowballs on blazes.
+item.snow_sword.manual_page_5=Snowmans leave a snow trail when moving but only in cold places. Maybe when you become a snowman, so will you.
