@@ -2,6 +2,7 @@ package com.deeplake.dweapon.blocks;
 
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModBlocks;
+import com.deeplake.dweapon.init.ModCreativeTab;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.IHasModel;
 
@@ -18,7 +19,7 @@ public class BlockBase extends Block implements IHasModel
 		super(material);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		setCreativeTab(ModCreativeTab.DW_MAIN);;
 		
 		ModBlocks.BLOCKS.add(this);
 		//if (ModItems.ITEMS.contains(o))
