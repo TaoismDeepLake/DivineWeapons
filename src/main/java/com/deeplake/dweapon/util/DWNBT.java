@@ -2,6 +2,7 @@ package com.deeplake.dweapon.util;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 
@@ -66,5 +67,10 @@ public class DWNBT {
 	public static NBTTagString bookPageFromLine(String str)
 	{
 		return new NBTTagString("[\"\",{\"text\":\"" + str + "\"}]");
+	}
+	
+	public static NBTTagString bookPageFromUnlocalizedLine(String key)
+	{
+		return bookPageFromLine(I18n.format(key));
 	}
 }

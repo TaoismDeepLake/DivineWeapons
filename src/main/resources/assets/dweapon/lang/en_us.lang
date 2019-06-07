@@ -24,6 +24,10 @@ item.shared.earth_desc=Earth Weapon
 item.shared.pearl_desc=Pearl:%s
 item.shared.true_name_reveal=True Name reveal!
 
+item.shared.missing_manual_content=(Written in strange symbols, unreadable)
+item.shared.missing_manual_title=????
+item.shared.missing_manual_author=????
+
 item.sealed_weapon.name=Weapon Coming into Shape
 
 //-------------
@@ -34,6 +38,13 @@ item.blood_sword.shared_desc=[Blood Burst] Let out your own blood to increase da
 item.blood_sword.sky_desc=Drain 5 Heart, deal 100 damage.[Str X, Regen II]. 
 item.blood_sword.earth_desc=Drain %s Heart, deal %s damage.[Regen I].
 item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.\
+
+item.blood_sword.manual_title=Bloodburst
+item.blood_sword.manual_author=Divine WeaponSmith
+item.blood_sword.manual_page_count=3
+item.blood_sword.manual_page_1=A manual will be given in the future version.
+item.blood_sword.manual_page_2=It will explain the lore and the tale of it.
+item.blood_sword.manual_page_3=Hopefully it will be very Interesting.
 
 //-------------
 item.death_sword.name=Death Within

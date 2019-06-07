@@ -18,6 +18,10 @@ public class DWNBTDef {
 	public static final String TOOLTIP_HIDDEN = ".hidden";
 	
 	public static final String TRUENAME_TO_REVEAL = ".true_name_reveal";
+	public static final String MANUAL_PAGE_COUNT = ".manual_page_count";
+	public static final String MANUAL_PAGE_KEY = ".manual_page_";
+	public static final String MANUAL_AUTHOR = ".manual_author";
+	public static final String MANUAL_TITLE = ".manual_title";
 	
 	//player
 	public static final String STARTER_BOOK_GIVEN = "¡£starter_book_given";

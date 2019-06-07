@@ -188,21 +188,42 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		// /give @p written_book{pages:["[\"\",{\"text\":\"123 45\"}]","[\"\",{\"text\":\"678 90\"}]"],title:CustomBook,author:Player}
 		
 		NBTTagList bookPages = new NBTTagList();
-		//NBTTagCompound aPage = new NBTTagCompound();
-		//aPage.setString("text", "This is set by way A");
-		//aPage.setTag(key, value);
-		bookPages.appendTag(DWNBT.bookPageFromLine("The real name revealed. "+ I18n.format(getUnlocalizedName() + ".name")));
-		bookPages.appendTag(DWNBT.bookPageFromLine("A manual will be given in the future version."));
-		bookPages.appendTag(DWNBT.bookPageFromLine("It will explain the lore and the tale of it."));
-		bookPages.appendTag(DWNBT.bookPageFromLine("Hopefully it will be very Interesting."));
+		String name = getUnlocalizedName();
 		
-		//DWeapons.LogWarning("[EEEEEE]" + (bookPages.getStringTagAt(1).toString()));
+		String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
+		
+		int pageCount = 0;
+		boolean hasManual = false;
+		try {
+			pageCount = Integer.parseInt(pageCountString);
+			hasManual = true;
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			pageCount = 0;
+		}
+		
+		if (hasManual)
+		{
+			int i = 1;
+			for (i = 1; i <= pageCount; i++)
+			{
+				bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine(I18n.format(name + DWNBTDef.MANUAL_PAGE_KEY + i)));
+			}
+			book.setTagInfo("author", new NBTTagString(I18n.format(name + DWNBTDef.MANUAL_AUTHOR)));
+			book.setTagInfo("title", new NBTTagString(I18n.format(name + DWNBTDef.MANUAL_TITLE)));
+		}
+		else
+		{
+			bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine(I18n.format("item.shared.missing_manual_content")));
+			book.setTagInfo("author", new NBTTagString(I18n.format("item.shared.missing_manual_author")));
+			book.setTagInfo("title", new NBTTagString(I18n.format("item.shared.missing_manual_title")));
+		}
+		
 		
         book.setTagInfo("pages", bookPages);
-		book.setTagInfo("author", new NBTTagString("Divine Weaponsmith"));
-		book.setTagInfo("title", new NBTTagString("Test Manual"));
 		
-		//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
+		
+		DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 		
 		return book;
 	}
