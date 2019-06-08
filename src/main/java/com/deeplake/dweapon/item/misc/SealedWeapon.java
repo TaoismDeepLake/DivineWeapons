@@ -3,14 +3,20 @@ package com.deeplake.dweapon.item.misc;
 
 import java.util.Random;
 
+import javax.annotation.Nonnull;
+
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.ItemBase;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -37,21 +43,89 @@ public class SealedWeapon extends ItemBase {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-		//ItemStack item = player.getItemStackFromSlot(slotIn)
-		if (!worldIn.isRemote) {
-			ItemStack itemstack = player.getHeldItem(hand);
+	@Nonnull
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+		player.setActiveHand(hand);
+		ItemStack stack = player.getHeldItem(hand);
+		
+		//playerIn.setActiveHand(handIn);
+        //return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		if (!world.isRemote) {
+			//EntityPlayer player = (EntityPlayer)living;
+
+				stack.shrink(1);
+				
+				player.addItemStackToInventory(GetRandomWeapon());
+				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
+				player.addExperience(10);
 			
-			itemstack.shrink(1);
-			
-			player.addItemStackToInventory(GetRandomWeapon());
-			player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
-			player.addExperience(10);
 		}
 		
-        return EnumActionResult.SUCCESS;
+		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
+	}
+	
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        return EnumActionResult.PASS;
     }
+
+	
+//	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+//    {
+////		//ItemStack item = player.getItemStackFromSlot(slotIn)
+////		if (!worldIn.isRemote) {
+////			ItemStack itemstack = player.getHeldItem(hand);
+////			
+////			itemstack.shrink(1);
+////			
+////			player.addItemStackToInventory(GetRandomWeapon());
+////			player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
+////			player.addExperience(10);
+////		}
+//		
+//        return EnumActionResult.SUCCESS;
+//    }
+	
+	/**
+     * How long it takes to use or consume an item
+     */
+	@Override
+    public int getMaxItemUseDuration(ItemStack stack)
+    {
+        return 20;
+    }
+	
+	//Animation
+		@Nonnull
+		@Override
+		public EnumAction getItemUseAction(ItemStack stack) {
+
+			return EnumAction.BOW;
+			
+		}
+	
+	/**
+     * Called when the player stops using an Item (stops holding the right mouse button).
+     */
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase living, int time) {
+		//change mode
+//		if (!world.isRemote) {
+//			EntityPlayer player = (EntityPlayer)living;
+//
+//				stack.shrink(1);
+//				
+//				player.addItemStackToInventory(GetRandomWeapon());
+//				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
+//				player.addExperience(10);
+//
+//			
+//	        return ;
+//			
+//		}
+//		return;
+	}
 	
 	public ItemStack GetRandomWeapon()
 	{
