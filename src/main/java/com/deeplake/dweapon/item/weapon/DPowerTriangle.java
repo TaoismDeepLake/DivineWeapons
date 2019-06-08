@@ -223,7 +223,7 @@ public class DPowerTriangle extends DWeaponSwordBase {
 	
 	private void AddTickBuff(EntityPlayer entityIn, Potion effect, int level)
 	{
-		entityIn.addPotionEffect(new PotionEffect(effect, 1, 0));
+		entityIn.addPotionEffect(new PotionEffect(effect, 25, level));
 	}
 	
 	private void WearOut(EntityPlayer entityIn, ItemStack stack)
@@ -238,13 +238,17 @@ public class DPowerTriangle extends DWeaponSwordBase {
 		
 	}
 	
+	final int buffRenewPeriod = 20;
+	
 	@Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
 		//DWeapons.LogWarning("onUpdate");
 		//DWeapons.LogWarning(String.valueOf(worldIn.isRemote));
-		
+		if (worldIn.isRemote) {
+			return;
+		}
 
 		if (entityIn instanceof EntityPlayerMP)
 		{
@@ -252,70 +256,106 @@ public class DPowerTriangle extends DWeaponSwordBase {
 			
 			if (IsSky(stack) || isSelected)//sky items works even when not selected
 			{
+				long tick = worldIn.getTotalWorldTime();
+				
 				int mode = GetWeaponMode(stack);
 				if (mode == DEFENSE_MODE)
 				{
 					if (IsSky(stack))
 					{
-						AddTickBuff(playerMP, MobEffects.FIRE_RESISTANCE, 0);
-						AddTickBuff(playerMP, MobEffects.RESISTANCE, 2);
-						AddTickBuff(playerMP, MobEffects.REGENERATION, 1);
-						AddTickBuff(playerMP, MobEffects.HEALTH_BOOST, 1);
+						//adding a 1 or 2 tick regen won't work, even in sky version.
+						//the buff is there but won't regen health.
+						//considering adding a buff for visual and manually healing by moding tick count.
 						
-						AddTickBuff(playerMP, MobEffects.MINING_FATIGUE, 1);
+						//vanilla health need tick count per level - 50, 25, 12, 6, 3, 1
+						
+						//and health boost added per tick also works strange. It clears out extra health every tick, causing a damage effect.
+						//When you renew the health boost buff, it simply resets. Not what you can do this way.
+						
+						if (tick % buffRenewPeriod == 0)
+						{
+							AddTickBuff(playerMP, MobEffects.FIRE_RESISTANCE, 0);
+							AddTickBuff(playerMP, MobEffects.RESISTANCE, 2);
+							//AddTickBuff(playerMP, MobEffects.REGENERATION, 1);
+							//AddTickBuff(playerMP, MobEffects.HEALTH_BOOST, 1);
+							
+							AddTickBuff(playerMP, MobEffects.MINING_FATIGUE, 1);
+						}
+						
+						if (tick % 12 == 0)
+						{
+							playerMP.heal(1);
+						}
 						
 					}else if (IsEarth(stack))
 					{
-						AddTickBuff(playerMP, MobEffects.HEALTH_BOOST, 0);
-						AddTickBuff(playerMP, MobEffects.RESISTANCE, 1);
-						AddTickBuff(playerMP, MobEffects.REGENERATION, 0);
+						if (tick % buffRenewPeriod == 0) {
+							//AddTickBuff(playerMP, MobEffects.HEALTH_BOOST, 0);
+							AddTickBuff(playerMP, MobEffects.RESISTANCE, 1);
+						}
+						//AddTickBuff(playerMP, MobEffects.REGENERATION, 0);
+						
+						if (tick % 25 == 0)
+						{
+							playerMP.heal(1);
+						}
 					}else//man
 					{
-						AddTickBuff(playerMP, MobEffects.RESISTANCE, 0);
-						AddTickBuff(playerMP, MobEffects.REGENERATION, 0);
+						if (tick % buffRenewPeriod == 0) {
+							AddTickBuff(playerMP, MobEffects.RESISTANCE, 0);
+						//AddTickBuff(playerMP, MobEffects.REGENERATION, 0);
 						
-						AddTickBuff(playerMP, MobEffects.SLOWNESS, 0);
+							AddTickBuff(playerMP, MobEffects.SLOWNESS, 0);
+						}
+						
+						if (tick % 50 == 0)
+						{
+							playerMP.heal(1);
+						}
 					}
 					
 					WearOut(playerMP, stack);
 				}
 				else if (mode == SPEED_MODE)
 				{
-					if (IsSky(stack))
-					{
-						AddTickBuff(playerMP, MobEffects.HASTE, 1);
-						AddTickBuff(playerMP, MobEffects.JUMP_BOOST, 1);
-						AddTickBuff(playerMP, MobEffects.SPEED, 2);
-						
-						AddTickBuff(playerMP, MobEffects.WEAKNESS, 0);
-					}else if (IsEarth(stack))
-					{
-						AddTickBuff(playerMP, MobEffects.JUMP_BOOST, 0);
-						AddTickBuff(playerMP, MobEffects.SPEED, 1);
-						
-						AddTickBuff(playerMP, MobEffects.WEAKNESS, 0);
-					}else//man
-					{
-						AddTickBuff(playerMP, MobEffects.SPEED, 0);
-						
-						AddTickBuff(playerMP, MobEffects.WEAKNESS, 0);
+					if (tick % buffRenewPeriod == 0) {
+						if (IsSky(stack))
+						{
+							AddTickBuff(playerMP, MobEffects.HASTE, 1);
+							AddTickBuff(playerMP, MobEffects.JUMP_BOOST, 1);
+							AddTickBuff(playerMP, MobEffects.SPEED, 2);
+							
+							AddTickBuff(playerMP, MobEffects.WEAKNESS, 0);
+						}else if (IsEarth(stack))
+						{
+							AddTickBuff(playerMP, MobEffects.JUMP_BOOST, 0);
+							AddTickBuff(playerMP, MobEffects.SPEED, 1);
+							
+							AddTickBuff(playerMP, MobEffects.WEAKNESS, 0);
+						}else//man
+						{
+							AddTickBuff(playerMP, MobEffects.SPEED, 0);
+							
+							AddTickBuff(playerMP, MobEffects.WEAKNESS, 0);
+						}
 					}
-					
 					WearOut(playerMP, stack);
 				}
 				else if (mode == ATTACK_MODE)
 				{
-					if (IsSky(stack))
-					{
-						AddTickBuff(playerMP, MobEffects.STRENGTH, 2);
-					}else if (IsEarth(stack))
-					{
-						AddTickBuff(playerMP, MobEffects.STRENGTH, 1);
-					}else//man
-					{
-						//AddTickBuff(playerMP, MobEffects.MINING_FATIGUE, 0);
-						
-						AddTickBuff(playerMP, MobEffects.STRENGTH, 0);
+					if (tick % buffRenewPeriod == 0) {
+						if (IsSky(stack))
+						{
+							AddTickBuff(playerMP, MobEffects.STRENGTH, 2);
+						}else if (IsEarth(stack))
+						{
+							AddTickBuff(playerMP, MobEffects.STRENGTH, 1);
+						}else//man
+						{
+							//AddTickBuff(playerMP, MobEffects.MINING_FATIGUE, 0);
+							
+							AddTickBuff(playerMP, MobEffects.STRENGTH, 0);
+						}
 					}
 				}
 			}

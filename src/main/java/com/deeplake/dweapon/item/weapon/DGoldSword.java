@@ -141,17 +141,20 @@ public class DGoldSword extends DWeaponSwordBase {
     	String shared = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SHARED);
 		tooltip.add(shared);
     	
+		
+		int percentage = (int)(chanceBase + GetPearlCount(stack) * 100);
+		
     	if (IsSky(stack)) 
     	{
     		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY);
     		tooltip.add(skyDesc);
     	}else if (IsEarth(stack))
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH);
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH, percentage);
     		tooltip.add(earthDesc);
     	}else
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL);
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL, percentage);
     		tooltip.add(earthDesc);
     	}
     }

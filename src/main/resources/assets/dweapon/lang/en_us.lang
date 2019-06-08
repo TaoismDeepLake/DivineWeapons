@@ -151,7 +151,7 @@ item.power_triangle.normal_desc.speed=[SPD]Grants minor moving buff, but cause w
 
 item.power_triangle.manual_title=Triangle of Power
 item.power_triangle.manual_author=Taoism DeepLake
-item.power_triangle.manual_page_count=8
+item.power_triangle.manual_page_count=9
 item.power_triangle.manual_page_1=Hold RMB to switch between Attack, Defense and Speed Mode. Pearls reduces mode cooldown and attack mode damage.
 item.power_triangle.manual_page_2=I once met a little triangle, or a little boy, called Tico. In his world, geometric creatures are common.
 item.power_triangle.manual_page_3=He had a interesting ability, which allowed him to transmute his health to mana, mana to aura, aura to health. He can not recover health and mana directly, but can do so with aura. 
@@ -161,10 +161,11 @@ item.power_triangle.manual_page_5=I made something more straight forward: a pend
 item.power_triangle.manual_page_6=When it functions as a sword, it costs durabilty on hit. When it works as a field-generator, it evaporates to provide the energy needed. Turn it to attack mode to prevent this waste, or just don't hold it.
 item.power_triangle.manual_page_7=I wished it can boost all three aspects, but such a container won't hold such strong divine power. I broke many prototypes to learn that. All I can do is to carry three and rapidly switch them between hands.
 item.power_triangle.manual_page_8=Then the idea hit me - what if I carry three of this at the same time? I tried a few time, and finally succeeded after many tries. It no longer need to be held to function, and the divine power eliminated the evaporation.
+item.power_triangle.manual_page_9=Oh, it do regenerates health in defense mode. You don't feel any regeneration buff because the regen buff in this world simply won't work on this mechanic, so I make it regen in another way.
 
 //---------------
 item.gold_sword.name=Infinite Gold
-item.gold_sword.hidden=Golden Blade
+item.gold_sword.hidden=Golden Stick
 
 item.gold_sword.shared_desc=[Tithe]Gets wealth on strike. 
 item.gold_sword.sky_desc=Gives gold blocks.
@@ -173,9 +174,13 @@ item.gold_sword.normal_desc=Gives a gold nugget at %s%% chance.
 
 item.gold_sword.manual_title=Infinite Gold
 item.gold_sword.manual_author=Taoism DeepLake
-item.gold_sword.manual_page_count=5
+item.gold_sword.manual_page_count=9
 item.gold_sword.manual_page_1=You may have heard of the story of a greedy king who likes gold.
-item.gold_sword.manual_page_2=That king was loves gold and always want more. So a divine visited him, asked if he want everything he touch turns into gold. The king happily accepted the offer.
-item.gold_sword.manual_page_3=However it did not turn well, at all. When he tried to drink, wine froze in the cup as gold. Food, no better. He even turned his daughter to gold.
+item.gold_sword.manual_page_2=That king loved gold and always wanted more. So a divine visited him, asked if he want everything he touch turns into gold. The king happily accepted the offer.
+item.gold_sword.manual_page_3=It did not turn well, at all. When he tried to drink, wine froze in the cup as gold. Food, no better. He even turned his daughter to gold.
 item.gold_sword.manual_page_4=This is just a absurd story claiming greed is not good. However, if you can get gold when you want and control this power, why not?
-item.gold_sword.manual_page_5=At first you get nuggets, then ingots, then blocks. So much of them gold you can build a castle with them. Just keep in mind your inventory is limited, and they are heavy.
+item.gold_sword.manual_page_5=At first you get nuggets, then ingots, then blocks. So much of gold that you can build a castle with them. Just keep in mind your inventory is limited, and they are heavy.
+item.gold_sword.manual_page_6=I thought this will be fine until I saw a fool cutting his wife for the nuggets. Of course, given enough patience, the gold will be more than enough for medicine or magic to heal the wounds.
+item.gold_sword.manual_page_7=However the fool's greed grew and patience dwindled. Therefore I visited him, asked if he wanted the gold to come faster. Of course he agreed. I took my prototype and enhanced its power.
+item.gold_sword.manual_page_8=He grabbed the sword as soon as I finished - and swung it at me. It landed. Meanwhile, a giant block of gold dropped out of nowhere and crushed his head. Pure gold contaminated by his foulness.
+item.gold_sword.manual_page_9=I took my work back and laughed painfully. Charm protected me from physical damage, but it killed me to learn not to give my power and trust away to random poor, even they cried for help.  And I will try form other than sword. 
