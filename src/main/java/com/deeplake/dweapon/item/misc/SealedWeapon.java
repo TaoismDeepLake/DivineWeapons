@@ -5,15 +5,19 @@ import java.util.Random;
 
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.ItemBase;
+import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.sound.SoundSetupEvent;
 
 enum WeaponIndex{
 	BLOOD_INDEX,
@@ -21,6 +25,8 @@ enum WeaponIndex{
 	SPACE_AF_INDEX,
 	BUILDER_INDEX,
 	SNOW_INDEX,
+	POWER_TRIANGLE_INDEX,
+	GOLD_INDEX,
 	LAST,
 }
 
@@ -40,6 +46,8 @@ public class SealedWeapon extends ItemBase {
 			itemstack.shrink(1);
 			
 			player.addItemStackToInventory(GetRandomWeapon());
+			player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
+			player.addExperience(10);
 		}
 		
         return EnumActionResult.SUCCESS;
@@ -57,6 +65,8 @@ public class SealedWeapon extends ItemBase {
 		factor[WeaponIndex.SPACE_AF_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.BUILDER_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.SNOW_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.POWER_TRIANGLE_INDEX.ordinal()] = 9;
+		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 6;
 		
 		int factorSum = 0;
 		
@@ -100,10 +110,22 @@ public class SealedWeapon extends ItemBase {
 		case SNOW_INDEX:
 			result = new ItemStack(ModItems.SNOW_SWORD);
 			break;
+		case POWER_TRIANGLE_INDEX:
+			result = new ItemStack(ModItems.POWER_TRIANGLE);
+			break;
+		case GOLD_INDEX:
+			result = new ItemStack(ModItems.GOLD_SWORD);
+			break;
 		default:
 			result = new ItemStack(Items.IRON_SWORD);
 			break;
 		}
+		
+		 random = rand.nextInt(10);
+		 if (random == 0)
+		 {
+			 DWeaponSwordBase.SetPearlCount(result, 1);
+		 }
 		
 		return result;
 	}
