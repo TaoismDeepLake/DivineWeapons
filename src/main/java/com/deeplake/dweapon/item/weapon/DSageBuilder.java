@@ -119,7 +119,7 @@ public class DSageBuilder extends DWeaponSwordBase {
     {
     	//BlockPos target = pos.offset(facing);
     	BlockPos target = pos.up();
-    	DWeapons.LogWarning(String.format("Target = (%s, %s, %s)", target.getX(), target.getY(), target.getZ()) );
+    	//DWeapons.LogWarning(String.format("Target = (%s, %s, %s)", target.getX(), target.getY(), target.getZ()) );
     	
     	IBlockState topBlock = worldIn.getBlockState(target);
     	

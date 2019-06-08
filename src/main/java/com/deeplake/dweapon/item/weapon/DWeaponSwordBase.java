@@ -248,7 +248,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
         book.setTagInfo("pages", bookPages);
 		
 		
-		DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
+		//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 		
 		return book;
 	}
@@ -352,6 +352,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     
     public void TrueNameReveal(ItemStack stack, World worldIn, EntityPlayer player)
     {
+    	//If you call this when its true name already revealed, it will just give the book. no experience.
     	if (!worldIn.isRemote) {
     		
     		if (IsNameHidden(stack))

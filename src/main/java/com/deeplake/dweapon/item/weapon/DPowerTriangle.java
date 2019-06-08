@@ -54,7 +54,7 @@ public class DPowerTriangle extends DWeaponSwordBase {
 	}
 
 	public static final int changeNeedTick = 40;//2 sec
-	public static final int pearlReduceNeedTick = 5;//2 sec
+	public static final int pearlReduceNeedTick = 6;
 	
 	public static final float baseDamageAttackMode = 5;//2 hearts
 	public static final float pearlDamageAttackMode = 1;//0.5 hearts
@@ -102,7 +102,10 @@ public class DPowerTriangle extends DWeaponSwordBase {
 		
 		success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
 		
-		stack.damageItem(1, player);
+		if (success)
+		{
+			stack.damageItem(1, player);
+		}
 		
 		return success;
 	}
@@ -110,11 +113,11 @@ public class DPowerTriangle extends DWeaponSwordBase {
 	/**
      * Called when a Block is right-clicked with this Item
      */
-	@Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        return EnumActionResult.PASS;
-    }
+//	@Override
+//    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+//    {
+//        return EnumActionResult.PASS;
+//    }
 	
 	@Override
 	public void clientUseTick(ItemStack stack, EntityLivingBase living, int count) {
@@ -184,6 +187,9 @@ public class DPowerTriangle extends DWeaponSwordBase {
 		player.setActiveHand(hand);
 		ItemStack stack = player.getHeldItem(hand);
 		
+		//playerIn.setActiveHand(handIn);
+        //return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		
 		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 	}
 	
@@ -208,7 +214,7 @@ public class DPowerTriangle extends DWeaponSwordBase {
 					SetWeaponMode(stack, mode + 1);
 				}
 				
-				DWeapons.LogWarning("Weapon mode is:" + GetWeaponMode(stack));
+				//DWeapons.LogWarning("Weapon mode is:" + GetWeaponMode(stack));
 			}
 			
 		}

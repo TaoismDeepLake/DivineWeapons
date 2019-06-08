@@ -50,11 +50,13 @@ public class NameRevealByBook extends IForgeRegistryEntry.Impl<IRecipe> implemen
 					DWeaponSwordBase sword = (DWeaponSwordBase)stack.getItem();
 					foundSword = true;
 					
-					if (!sword.IsNameHidden(stack))
-					{
-						//cannot reveal true-name again
-						return false;
-					}
+					//Now you can do this multiple times to get the newest manual.
+					//Or the other-language ones.
+//					if (!sword.IsNameHidden(stack))
+//					{
+//						//cannot reveal true-name again
+//						return false;
+//					}
 					
 				}
 				else if (stack.getItem().getUnlocalizedName(stack).equals(bookName))
@@ -70,7 +72,7 @@ public class NameRevealByBook extends IForgeRegistryEntry.Impl<IRecipe> implemen
 				else
 				{
 					//DWeapons.logger.warn("Find useless components:[{}], instanceof", stack.getItem().getUnlocalizedName());
-					return false; //Found an upgrader or other.
+					return false; 
 				}
 			}
 		}
