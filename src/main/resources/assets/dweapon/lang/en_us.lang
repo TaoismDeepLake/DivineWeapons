@@ -98,7 +98,7 @@ item.sage_builder.hidden=Random Building Tool
 
 item.sage_builder.shared_desc=[Between Bricks] RMB to place blocks, pearl = durabilty enchantement.
 item.sage_builder.sky_desc=Places concrete.[WIP:coloring and transforming to sword]
-item.sage_builder.earth_desc=Places blocks.
+item.sage_builder.earth_desc=Places bricks.
 item.sage_builder.normal_desc=RMB Place dirt.
 
 item.sage_builder.manual_title=Fu Yue Shovel
@@ -177,7 +177,7 @@ item.gold_sword.manual_author=Taoism DeepLake
 item.gold_sword.manual_page_count=9
 item.gold_sword.manual_page_1=You may have heard of the story of a greedy king who likes gold.
 item.gold_sword.manual_page_2=That king loved gold and always wanted more. So a divine visited him, asked if he want everything he touch turns into gold. The king happily accepted the offer.
-item.gold_sword.manual_page_3=It did not turn well, at all. When he tried to drink, wine froze in the cup as gold. Food, no better. He even turned his daughter to gold.
+item.gold_sword.manual_page_3=It did not turn well at all. When he tried to drink, wine froze in the cup as gold. Food, no better. He even turned his daughter to gold.
 item.gold_sword.manual_page_4=This is just a absurd story claiming greed is not good. However, if you can get gold when you want and control this power, why not?
 item.gold_sword.manual_page_5=At first you get nuggets, then ingots, then blocks. So much of gold that you can build a castle with them. Just keep in mind your inventory is limited, and they are heavy.
 item.gold_sword.manual_page_6=I thought this will be fine until I saw a fool cutting his wife for the nuggets. Of course, given enough patience, the gold will be more than enough for medicine or magic to heal the wounds.

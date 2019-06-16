@@ -1,0 +1,188 @@
+itemGroup.DWeaponMainTab=神兵
+
+//Blocks
+tile.divine_ore.name=神铁矿
+
+
+
+item.sealed_sword.name=未拆封神兵
+
+item.weapon_pearl.name=神铁珠
+item.divine_ingot.name=神铁锭
+item.sky_charm.name=天之符
+item.earth_charm.name=地之符
+
+postfix.pearl_count.name= %s珠
+postfix.is_earth.name=·地
+postfix.is_sky.name=·天
+
+item.dweapon_name_format=%s %s%s
+
+item.shared.hidden_desc=????
+item.shared.sky_desc=天之兵
+item.shared.earth_desc=地之兵
+item.shared.pearl_desc=宝珠数：%s
+item.shared.true_name_reveal=真名判明!
+
+item.shared.missing_manual_content=(天书，不可读)
+item.shared.missing_manual_title=????
+item.shared.missing_manual_author=????
+
+item.sealed_weapon.name=未拆封神兵
+
+//-------------
+item.blood_sword.name=血候刃
+item.blood_sword.hidden=血红剑
+
+item.blood_sword.shared_desc=[血脉放出] 放出自己的血以提升伤害
+item.blood_sword.sky_desc=损失自己5颗心，造成100伤害。[力量 X, 生命回复 II]
+item.blood_sword.earth_desc=损失 %s 颗心，造成 %s 伤害。[Regen I]
+item.blood_sword.normal_desc=损失 %s 颗心，造成 %s 伤害。
+
+item.blood_sword.manual_title=血候刃
+item.blood_sword.manual_author=道家深湖
+item.blood_sword.manual_page_count=5
+item.blood_sword.manual_page_1=\"杀敌一千，自损八百。\" 你感觉一身伤痛，但得胜而归 - 如果你不因失血过多而晕倒的话。
+item.blood_sword.manual_page_2=每当血侯刃见血的时候，他就会抽一些使用者的血并转化成额外伤害。传说称该剑吸收使用者的血自我修复，空穴来风。
+item.blood_sword.manual_page_3=如果你不全力劈砍的话，基础伤害会下降，但抽血造成的额外伤害并不会受影响。
+item.blood_sword.manual_page_4=带些药品弥补失血是个好主意，虽然真正的血侯可以直接从敌手处吸血。如果你能的话，强身健体。
+item.blood_sword.manual_page_5=我曾经把它赐予多位战士。他们要么让这武器的威力冲昏头脑而夺去自己最后一滴血，要么就觉得是妖邪之物而封存不用。也许你是其真命之主。
+//demonstration of percentages and quotation marks
+item.blood_sword.manual_page_6=Debug says, "Is this ok?" No.
+item.blood_sword.manual_page_7=Debug says, \"Is this ok?\" Yes, it is
+item.blood_sword.manual_page_8=Debug says, \\"Is this ok?\\" No. 
+item.blood_sword.manual_page_9=Debug says, \\\"Is this ok?\\\" No.
+item.blood_sword.manual_page_10=Debug says, Is this 100%? No.
+item.blood_sword.manual_page_11=Debug says, Is this 100%%? Yes, it is
+item.blood_sword.manual_page_12=Debug says, Is this 100\%? No.
+item.blood_sword.manual_page_13=Debug says, Is this 100\\%? No.
+
+//-------------
+item.death_sword.name=断命剑
+item.death_sword.hidden=黑剑
+
+item.death_sword.shared_desc=[死神叩门] 概率即死目标。
+item.death_sword.sky_desc=立刻夺命。 注: 有 %.0f%% 概率天谴自裁。
+item.death_sword.earth_desc=以 (1+%s)/(目标生命值) + %.0f%% 的概率即死目标.
+item.death_sword.normal_desc=以 (1+%s)/(目标生命值) 的概率即死目标.
+
+item.death_sword.manual_title=断命剑
+item.death_sword.manual_author=Taoism DeepLake
+item.death_sword.manual_page_count=4
+item.death_sword.manual_page_1=人固有一死。不管强大或弱小，终难逃一死。
+item.death_sword.manual_page_2=小怪当然好解决。不过考虑一个有25535生命的怪，你的附魔钻石剑又有何作为呢？还有，你是否见过无限血的怪？我见过。
+item.death_sword.manual_page_3=他们需要猝死，一下造成无限点伤害。这种强大的力量不可滥用。于是我让命硬的生物对这种秒杀法术有一定抗性。  
+item.death_sword.manual_page_4=当此武器炉火纯青的时候，它会100%击杀目标。不过，此时其上诅咒有一定概率同时杀死使用者，这样就没有哪位暴君能以此杀遍整个世界了，除非…… 
+//-------------
+item.space_affinity_sword.name=空间涨落
+item.space_affinity_sword.hidden=不稳定的剑
+
+item.space_affinity_sword.shared_desc=[傅里叶共鸣] 伤害和坐标有关
+item.space_affinity_sword.sky_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)
+item.space_affinity_sword.earth_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)， 长按右键传送回出生点
+item.space_affinity_sword.normal_desc=伤害是 Max(x%%128, y%%128, z%%128, 16)， 长按右键传送回出生点
+
+item.space_affinity_sword.manual_title=空间涨落
+item.space_affinity_sword.manual_author=道家深湖
+item.space_affinity_sword.manual_page_count=7
+item.space_affinity_sword.manual_page_1=也称空间共鸣剑
+item.space_affinity_sword.manual_page_2=我游历数个世界，见过诸多蠢人，最后见到这位小姑娘。不算聪明、不算强壮、不算敏捷，但聪慧达理。
+item.space_affinity_sword.manual_page_3=她没有听说过笛卡尔坐标，不过我解释了这个全是XYZ的东西时，她大概懂了。她觉得这很有意思，却是子虚乌有，并问我如何想出这么复杂的东西。 
+item.space_affinity_sword.manual_page_4=我教她开F3之眼。几经尝试后她做到了，震惊地发现她曾经错过了如此惊涛骇浪般向她涌来的信息。为了防止她被信息压垮，我教她了闭天眼的方法。 
+item.space_affinity_sword.manual_page_5=我也教会了她基础算术。终于遇到一个配得上它的人了，我取出那把宝剑。宝剑的威力与坐标有关，公式是Max(x%%16, y%%16, z%%16, 宝珠数)。
+item.space_affinity_sword.manual_page_6=我教给她公式。掌握这把剑的诀窍后，她就能在关键时刻使出全力，又在和别人练习的时候不致弄伤对手。“现在，紧握宝剑，试着聚精会神。” 她照着我说的做了。
+item.space_affinity_sword.manual_page_7=“好，放松。”她消失了，我露出了欣慰的笑容。那把剑把她传送回家了。现在她应该能在她更强壮或更敏捷的同伴间找准“位置”了吧。也终有一天，她能把这把剑发挥出 Max(x%%128, y%%128, z%%128, 16)的威力。
+//-------------
+item.sage_builder.name=傅说铲
+item.sage_builder.hidden=一把建筑工具
+
+item.sage_builder.shared_desc=[版筑之间] 右键放置方块，宝珠相当于耐久附魔。
+item.sage_builder.sky_desc=放置混凝土。
+item.sage_builder.earth_desc=放置砖块。
+item.sage_builder.normal_desc=右键放置泥土。
+
+item.sage_builder.manual_title=傅说铲
+item.sage_builder.manual_author=道家深湖
+item.sage_builder.manual_page_count=5
+item.sage_builder.manual_page_1=商王武丁即位时，国力已倾颓。一晚，他梦到有一个隐士跟他讲道，“我姓傅名说。如果有人找到我的话，他就知道我不只是个囚徒了。”
+item.sage_builder.manual_page_2=武丁醒来后思索，“傅”即辅佐，“说”（古同“悦”）是百姓欢悦，这便是能辅佐我的贤人啊。于是他召来画师，绘出梦中人的样子，并在全国找寻。他真的在北边找到了一个叫“说”的人，据说本来是个贤者，后来因贫困而卖身，同囚犯筑城。
+item.sage_builder.manual_page_3=武丁与其交谈后，认定他就是梦中所见的圣贤，赐姓“傅”，并借他之力重振国家。 
+item.sage_builder.manual_page_4=舜发于畎亩之中，傅说举于版筑之间，胶鬲举于鱼盐之中，管夷吾举于士，孙叔敖举于海，百里奚举于市。故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。
+item.sage_builder.manual_page_5=这把工具的潜能还在挖掘之中。
+//-------------
+item.snow_sword.name=雪中铸
+item.snow_sword.hidden=冷冰冰的剑
+
+item.snow_sword.shared_desc=[覆雪] 下雪时伤害翻倍，并且自动修复。可以用雪块修补。
+item.snow_sword.sky_desc=手持时获得抗火保护，行走时留下雪迹。
+item.snow_sword.earth_desc=冰冷和炎热的地区伤害增加。
+item.snow_sword.normal_desc=伤害随寒冷程度增加。
+
+item.snow_sword.manual_title=凝雪錾花剑
+item.snow_sword.manual_author=道家深湖
+item.snow_sword.manual_page_count=5
+item.snow_sword.manual_page_1=你是否能以剑接住雪花？我见过一位能接住整场雪的道士。
+item.snow_sword.manual_page_2=凝雪錾花剑，也称雪之剑，就是以飞雪凝聚而成。既然是用雪铸成，自然是在寒冷的地方更能发挥威力。
+item.snow_sword.manual_page_3=它在雪中铸成，以雪凝成，只需要雪块便可修复磨损。更神的是，它会吸收空中的飞雪修复自己。
+item.snow_sword.manual_page_4=雪球对烈焰人有奇效，但如果雪剑制作不精，只会在下界的酷暑中消融。精铸的雪剑才能在炎热的沙漠中像雪球砸烈焰人般削铁如泥。
+item.snow_sword.manual_page_5=在不算炎热的地区，雪傀儡行走时会留下雪迹。如果你成了雪人，你也能。
+//---------------
+item.power_triangle.name=能量三角
+item.power_triangle.name.attack=攻相三角
+item.power_triangle.name.defense=守相三角
+item.power_triangle.name.speed=动相三角
+item.power_triangle.hidden.attack=红三角
+item.power_triangle.hidden.defense=绿三角
+item.power_triangle.hidden.speed=蓝三角
+
+item.power_triangle.shared_desc=[三相]长按右键以切换攻击、防御、速度模式。
+
+item.power_triangle.sky_desc.attack=[攻击][携带即生效]提供力量强化，可当武器用。
+item.power_triangle.earth_desc.attack=[攻击]可当武器用。
+item.power_triangle.normal_desc.attack=[攻击]可当武器用。
+
+item.power_triangle.sky_desc.defense=[防御][携带即生效] 提供各种保护加成，但减慢采掘。
+item.power_triangle.earth_desc.defense=[防御]提供保护，手持时蒸发。
+item.power_triangle.normal_desc.defense=[防御]提供保护，减慢移速，手持时蒸发。
+
+item.power_triangle.sky_desc.speed=[速度][携带即生效] 提供强力速度加成，但削弱力量。
+item.power_triangle.earth_desc.speed=[速度]提供速度加成，但削弱力量。手持时蒸发。
+item.power_triangle.normal_desc.speed=[速度]提供微弱速度加成，但削弱力量。手持时蒸发。
+
+
+item.power_triangle.manual_title=能量三角
+item.power_triangle.manual_author=道家深湖
+item.power_triangle.manual_page_count=10
+item.power_triangle.manual_page_1=长按右键以在攻击、防御、速度模式间切换。宝珠可以减少切换模式所需的时间，并增加攻击模式的伤害。
+item.power_triangle.manual_page_2=我曾经遇到过一个小三角，一个叫提可的小孩。在他的世界里，生物都呈几何形状
+item.power_triangle.manual_page_3=他具有一个很有趣的能力：把他的生命转化为能量，能量转化为灵气，灵气转化为生命。他不像我们受伤时可以自己愈合，但他的灵气可以持续恢复。 
+item.power_triangle.manual_page_4=于是，他受伤的时候，就会把他满满的灵气转换为生命。满血复活！之后再转换几次，他就能元气满满。简单说来，他的不同状态轮回恢复。
+item.power_triangle.manual_page_5=所以我就要制作一个能把经验、饥饿度和生命值轮换的小玩意吗？才不呢。
+item.power_triangle.manual_page_6=我制作了更直接的东西：一项可以轮流强化攻击、防御或速度的垂饰，但只有在手持时才好用。打造了这样一件复杂的东西后，我稍事休息。 
+item.power_triangle.manual_page_7=当它变成剑（攻击模式）的时候，击中就消耗耐久度。当它作为力场产生器的时候，仅仅是手持就会使得它开始蒸发，并消耗耐久。如果不想浪费的话，还是把它变回武器为妙。或者，把它收起来也能避免蒸发。
+item.power_triangle.manual_page_8=要是它能同时强化这三个方面该多好！但是这样一件小容器无法承载这么强的能量，我也是搞炸了好几个试验品才得知的。我最多也就能做三件，然后在手间杂耍般交换。
+item.power_triangle.manual_page_9=然后我意识到：干脆同时拿着三件，一件提供一种能力呗？我试了几次，终于做出来这样一批精品。不需要手持就能生效，并且神力使得它不会在生效的时候蒸发。
+item.power_triangle.manual_page_10=哦，它在防御模式的时候确实能治愈伤口，只是你感觉不到。这个世界的生命恢复机制与这件饰品不相容，所以我就让他直接治愈伤口了。
+
+//---------------
+item.gold_sword.name=点金杖
+item.gold_sword.hidden=黄金棍
+
+item.gold_sword.shared_desc=[税收] 攻击时获得财富 
+item.gold_sword.sky_desc=产出金块
+item.gold_sword.earth_desc=有 %s%% 概率获得金锭
+item.gold_sword.normal_desc=有 %s%% 概率获得金粒
+
+item.gold_sword.manual_title=点金杖
+item.gold_sword.manual_author=道家深湖
+item.gold_sword.manual_page_count=10
+item.gold_sword.manual_page_1=你可能听过国王和点金术的故事。
+item.gold_sword.manual_page_2=有个贪心的国王喜欢金子，并且贪得无厌。有个神仙找他，问道：“我让你碰到什么，什么就变成金子好不好啊？”国王欣然同意。
+item.gold_sword.manual_page_3=结果非常糟糕。他口渴欲饮，只见杯中没酒凝结成金块；他饥饿欲食，只见盘中肉排变为金块。他抱起女儿，只见公主变为金铸雕像。
+item.gold_sword.manual_page_4=这只是个劝人不要贪婪的故事而已。要是你能点金，并控制好这股力量，何乐而不为呢？
+item.gold_sword.manual_page_5=先是金粒，再是金条，最后金块。金子越来越多，多到能用来盖房子。只是留心，太多金子拿不动，它很沉。
+item.gold_sword.manual_page_6=我在见到那个傻瓜用我的点金刀割他妻子之前一直都没觉得这有什么问题。如果他耐心一些，金粒足够为他妻子疗伤，还有富余。然而，他的耐心弱的可怜，贪婪却与日剧增。
+item.gold_sword.manual_page_7=我便造访他，问道，想不想让金子的产出变快点？他当然同意了。我接过那把已经沾污了的短剑，注入了更强的咒术，说道，完成了。
+item.gold_sword.manual_page_8=他立刻抢过来，照着我就砍。在他砍中我的一瞬间，一个巨大的金块凭空冒了出来，砸死了他。
+item.gold_sword.manual_page_9=我哈哈大笑，捡走了我的作品然后离开了。我身上的保护咒使得我受的伤微乎其微，但我的心灵受到的伤害无法弥补。
+item.gold_sword.manual_page_10=我再也不会随便给穷困者施舍我的神力了，哪怕他求我也不会。只有配的上的人，才会获得我的帮助。
