@@ -97,18 +97,41 @@ item.sage_builder.name=傅说铲
 item.sage_builder.hidden=一把建筑工具
 
 item.sage_builder.shared_desc=[版筑之间] 右键放置方块，宝珠相当于耐久附魔。
-item.sage_builder.sky_desc=放置混凝土。
-item.sage_builder.earth_desc=放置砖块。
+item.sage_builder.sky_desc=放置混凝土。长按1s切换颜色，进一步长按变为武丁剑。
+item.sage_builder.sky_desc.sword=长按右键变回傅说铲。
+
+item.sage_builder.earth_desc=放置砖块。长按变为武丁剑。
+item.sage_builder.earth_desc.sword=长按右键变回傅说铲。
+
 item.sage_builder.normal_desc=右键放置泥土。
+
+item.sage_builder.name.sword=武丁剑
+item.sage_builder.name.black=傅说铲[黑]
+item.sage_builder.name.blue=傅说铲[蓝]
+item.sage_builder.name.brown=傅说铲[棕]
+item.sage_builder.name.cyan=傅说铲[青]
+item.sage_builder.name.gray=傅说铲[灰]
+item.sage_builder.name.green=傅说铲[绿]
+item.sage_builder.name.lightBlue=傅说铲[淡蓝]
+item.sage_builder.name.lime=傅说铲[黄绿]
+item.sage_builder.name.magenta=傅说铲[品红]
+item.sage_builder.name.orange=傅说铲[橙]
+item.sage_builder.name.pink=傅说铲[粉红]
+item.sage_builder.name.purple=傅说铲[紫]
+item.sage_builder.name.red=傅说铲[红]
+item.sage_builder.name.silver=傅说铲[淡灰]
+item.sage_builder.name.white=傅说铲[白]
+item.sage_builder.name.yellow=傅说铲[黄]
 
 item.sage_builder.manual_title=傅说铲
 item.sage_builder.manual_author=道家深湖
 item.sage_builder.manual_page_count=5
 item.sage_builder.manual_page_1=商王武丁即位时，国力已倾颓。一晚，他梦到有一个隐士跟他讲道，“我姓傅名说。如果有人找到我的话，他就知道我不只是个囚徒了。”
-item.sage_builder.manual_page_2=武丁醒来后思索，“傅”即辅佐，“说”（古同“悦”）是百姓欢悦，这便是能辅佐我的贤人啊。于是他召来画师，绘出梦中人的样子，并在全国找寻。他真的在北边找到了一个叫“说”的人，据说本来是个贤者，后来因贫困而卖身，同囚犯筑城。
+item.sage_builder.manual_page_2=武丁醒来后思索，“傅”即辅佐，“说”（古同“悦”）是百姓欢悦，这便是能辅佐我的贤人啊。于是他召来画师，绘出梦中人的样子，并在全国找寻。他真的在北边找到了一个叫“说”的人，据说本来是个贤者，后来因贫困而卖身，同囚犯一起筑城。
 item.sage_builder.manual_page_3=武丁与其交谈后，认定他就是梦中所见的圣贤，赐姓“傅”，并借他之力重振国家。 
 item.sage_builder.manual_page_4=舜发于畎亩之中，傅说举于版筑之间，胶鬲举于鱼盐之中，管夷吾举于士，孙叔敖举于海，百里奚举于市。故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。
-item.sage_builder.manual_page_5=这把工具的潜能还在挖掘之中。
+item.sage_builder.manual_page_5=当它寻得真正主人之时，将会自如地在武丁之剑和傅说铲之剑变换。我觉得这把武器还有改进空间。
+
 //-------------
 item.snow_sword.name=雪中铸
 item.snow_sword.hidden=冷冰冰的剑

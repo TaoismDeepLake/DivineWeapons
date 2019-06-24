@@ -96,18 +96,44 @@ item.space_affinity_sword.manual_page_7=\"Now relax your mind.\" I smiled as she
 item.sage_builder.name=Fu Yue Shovel
 item.sage_builder.hidden=Random Building Tool
 
+item.sage_builder.name.sword=Wu Ding Sword
+item.sage_builder.name.black=Fu Yue Shovel[Black]
+item.sage_builder.name.blue=Fu Yue Shovel[Blue]
+item.sage_builder.name.brown=Fu Yue Shovel[Brown]
+item.sage_builder.name.cyan=Fu Yue Shovel[Cyan]
+item.sage_builder.name.gray=Fu Yue Shovel[Gray]
+item.sage_builder.name.green=Fu Yue Shovel[Green]
+item.sage_builder.name.lightBlue=Fu Yue Shovel[LightBlue]
+item.sage_builder.name.lime=Fu Yue Shovel[Lime]
+item.sage_builder.name.magenta=Fu Yue Shovel[Magenta]
+item.sage_builder.name.orange=Fu Yue Shovel[Orange]
+item.sage_builder.name.pink=Fu Yue Shovel[Pink]
+item.sage_builder.name.purple=Fu Yue Shovel[Purple]
+item.sage_builder.name.red=Fu Yue Shovel[Red]
+item.sage_builder.name.silver=Fu Yue Shovel[Silver]
+item.sage_builder.name.white=Fu Yue Shovel[White]
+item.sage_builder.name.yellow=Fu Yue Shovel[Yellow]
+
+
 item.sage_builder.shared_desc=[Between Bricks] RMB to place blocks, pearl = durabilty enchantement.
-item.sage_builder.sky_desc=Places concrete.[WIP:coloring and transforming to sword]
+
+item.sage_builder.sky_desc=Places concrete. RMB to change color. Hold RMB to change to sword.
+item.sage_builder.sky_desc.sword=Hold RMB to change to shovel.
+
 item.sage_builder.earth_desc=Places bricks.
+item.sage_builder.earth_desc.sword= Hold RMB to change to shovel.
+
 item.sage_builder.normal_desc=RMB Place dirt.
 
 item.sage_builder.manual_title=Fu Yue Shovel
 item.sage_builder.manual_author=Taoism DeepLake
-item.sage_builder.manual_page_count=4
-item.sage_builder.manual_page_1=The King Wu-Ding got a decaying dynasty when he throned. One night, the King had a dream. A hermit named Fu Yue, who said \"I'm a prisoner named Fu Yue. If anyone finds me, he will know that I'm no mere prisoner.\"
+item.sage_builder.manual_page_count=5
+item.sage_builder.manual_page_1=The King Wu Ding got a decaying dynasty when he throned. One night, the King had a dream. A hermit named Fu Yue, who said \"I'm a prisoner named Fu Yue. If anyone finds me, he will know that I'm no mere prisoner.\"
 item.sage_builder.manual_page_2=The King called painters to draw figures from the dream and searched the country. A prisoner named Yue was found. It was said he was a sage at first, but poverty made him live in prisons and make a living as a construction worker.
 item.sage_builder.manual_page_3=The King talked with him and considered him as the sage in the dream. The sage helped the King to build a prosperous dynasty. 
 item.sage_builder.manual_page_4=Fu Yue Shovel is just inspired by the story. You can build with it. Some construction today, some dynasty in the future.
+item.sage_builder.manual_page_5=When this building tool find its true master, it can transform into a sword, which stands as Wu Ding.
+
 //-------------
 item.snow_sword.name=Forged in Snow
 item.snow_sword.hidden=A Cold Sword
@@ -151,17 +177,17 @@ item.power_triangle.normal_desc.speed=[SPD]Grants minor moving buff, but cause w
 
 item.power_triangle.manual_title=Triangle of Power
 item.power_triangle.manual_author=Taoism DeepLake
-item.power_triangle.manual_page_count=9
+item.power_triangle.manual_page_count=10
 item.power_triangle.manual_page_1=Hold RMB to switch between Attack, Defense and Speed Mode. Pearls reduces mode cooldown and attack mode damage.
 item.power_triangle.manual_page_2=I once met a little triangle, or a little boy, called Tico. In his world, geometric creatures are common.
 item.power_triangle.manual_page_3=He had a interesting ability, which allowed him to transmute his health to mana, mana to aura, aura to health. He can not recover health and mana directly, but can do so with aura. 
 item.power_triangle.manual_page_4=Therefore, when he is hurt, he transmutes his aura to health, and he is good as new. With a few transmutation, he will be at full status. In other words, status regnerates in turn.
 item.power_triangle.manual_page_5=So I will create a pendant to transmute experience, hunger and health likewise? No. 
-item.power_triangle.manual_page_5=I made something more straight forward: a pendant that can boost attack, defense and speed at choice, but only works in hand. I need a rest after making such a complicated whatnot. 
-item.power_triangle.manual_page_6=When it functions as a sword, it costs durabilty on hit. When it works as a field-generator, it evaporates to provide the energy needed. Turn it to attack mode to prevent this waste, or just don't hold it.
-item.power_triangle.manual_page_7=I wished it can boost all three aspects, but such a container won't hold such strong divine power. I broke many prototypes to learn that. All I can do is to carry three and rapidly switch them between hands.
-item.power_triangle.manual_page_8=Then the idea hit me - what if I carry three of this at the same time? I tried a few time, and finally succeeded after many tries. It no longer need to be held to function, and the divine power eliminated the evaporation.
-item.power_triangle.manual_page_9=Oh, it do regenerates health in defense mode. You don't feel any regeneration buff because the regen buff in this world simply won't work on this mechanic, so I make it regen in another way.
+item.power_triangle.manual_page_6=I made something more straight forward: a pendant that can boost attack, defense and speed at choice, but only works in hand. I need a rest after making such a complicated whatnot. 
+item.power_triangle.manual_page_7=When it functions as a sword, it costs durabilty on hit. When it works as a field-generator, it evaporates to provide the energy needed. Turn it to attack mode to prevent this waste, or just don't hold it.
+item.power_triangle.manual_page_8=I wished it can boost all three aspects, but such a container won't hold such strong divine power. I broke many prototypes to learn that. All I can do is to carry three and rapidly switch them between hands.
+item.power_triangle.manual_page_9=Then the idea hit me - what if I carry three of this at the same time? I tried a few methods, and finally succeeded after many tries. It no longer need to be held to function, and the divine power eliminated the evaporation.
+item.power_triangle.manual_page_10=Oh, it do regenerates health in defense mode. You don't feel any regeneration buff because the regen buff in this world simply won't work on this mechanic, so I make it regen in another way.
 
 //---------------
 item.gold_sword.name=Infinite Gold
