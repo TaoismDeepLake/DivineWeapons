@@ -139,7 +139,7 @@ item.snow_sword.name=Forged in Snow
 item.snow_sword.hidden=A Cold Sword
 
 item.snow_sword.shared_desc=[Snow Covered] Doubles the damage and self-repair when snowing. Can be repaired by snow blocks.
-item.snow_sword.sky_desc=Holding it grants anti-fire buff, walking leaves a trail of snow.
+item.snow_sword.sky_desc=Holding it grants anti-fire buff, walking leaves a trail of snow. Can summon blizzard in cold places.
 item.snow_sword.earth_desc=Increase damage in hot AND cold places.
 item.snow_sword.normal_desc=Increase damage in cold places.
 
@@ -149,7 +149,7 @@ item.snow_sword.manual_page_count=5
 item.snow_sword.manual_page_1=Can you catch a snowflake with your sword? I have heard of monks who can catch a blizzard.
 item.snow_sword.manual_page_2=This Snow Sword, or Forged in Snow, is a condensed blizzard. It's cold, and due to its nature, it works really well in cold places.
 item.snow_sword.manual_page_3=Since it's Forged in Snow and forged with snow, you need only snow blocks to repair it. What's more, it catches the blizzard to replenish itself. 
-item.snow_sword.manual_page_4=Snowballs are crtical to blazes. Snow swords, however, if forged poorly, will only melt in the hot temperature of nether. Best forged ones cut in hot deserts just like snowballs on blazes.
+item.snow_sword.manual_page_4=Snowballs are crtical to blazes. Snow swords, however, if forged poorly, will only melt in the hot temperature of nether. Best forged ones cut in hot deserts just like snowballs on blazes, and summons snowstorms in cold places. 
 item.snow_sword.manual_page_5=Snowmans leave a snow trail when moving but only in cold places. Maybe when you become a snowman, so will you.
 //---------------
 item.power_triangle.name=Triangle of Power

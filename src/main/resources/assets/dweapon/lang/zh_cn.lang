@@ -137,17 +137,17 @@ item.snow_sword.name=雪中铸
 item.snow_sword.hidden=冷冰冰的剑
 
 item.snow_sword.shared_desc=[覆雪] 下雪时伤害翻倍，并且自动修复。可以用雪块修补。
-item.snow_sword.sky_desc=手持时获得抗火保护，行走时留下雪迹。
+item.snow_sword.sky_desc=手持时获得抗火保护，行走时留下雪迹，寒冷地区可以强令降雪。
 item.snow_sword.earth_desc=冰冷和炎热的地区伤害增加。
 item.snow_sword.normal_desc=伤害随寒冷程度增加。
 
 item.snow_sword.manual_title=凝雪錾花剑
 item.snow_sword.manual_author=道家深湖
 item.snow_sword.manual_page_count=5
-item.snow_sword.manual_page_1=你是否能以剑接住雪花？我见过一位能接住整场雪的道士。
+item.snow_sword.manual_page_1=你是否能以剑接住雪花？我见过一位能挡住整场雪的道士。
 item.snow_sword.manual_page_2=凝雪錾花剑，也称雪之剑，就是以飞雪凝聚而成。既然是用雪铸成，自然是在寒冷的地方更能发挥威力。
-item.snow_sword.manual_page_3=它在雪中铸成，以雪凝成，只需要雪块便可修复磨损。更神的是，它会吸收空中的飞雪修复自己。
-item.snow_sword.manual_page_4=雪球对烈焰人有奇效，但如果雪剑制作不精，只会在下界的酷暑中消融。精铸的雪剑才能在炎热的沙漠中像雪球砸烈焰人般削铁如泥。
+item.snow_sword.manual_page_3=它在雪中铸成，以雪凝成，只需要雪块便可修复磨损。更神的是，它会吸收空中的飞雪修复自己。z\
+item.snow_sword.manual_page_4=雪球对烈焰人有奇效，但如果雪剑制作不精，只会在下界的酷暑中消融。精铸的雪剑才能在炎热的沙漠中像雪球砸烈焰人般削铁如泥。最好的雪剑甚至可以在寒冷的区域召唤风雪。
 item.snow_sword.manual_page_5=在不算炎热的地区，雪傀儡行走时会留下雪迹。如果你成了雪人，你也能。
 //---------------
 item.power_triangle.name=能量三角
