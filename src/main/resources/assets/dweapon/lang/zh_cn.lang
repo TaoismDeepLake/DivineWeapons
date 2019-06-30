@@ -34,7 +34,7 @@ item.sealed_weapon.name=未拆封神兵
 item.blood_sword.name=血候刃
 item.blood_sword.hidden=血红剑
 
-item.blood_sword.shared_desc=[血脉放出] 放出自己的血以提升伤害
+item.blood_sword.shared_desc=[血脉放出] 放出自己的血以提升伤害，可以抽自己的血修复
 item.blood_sword.sky_desc=损失自己5颗心，造成100伤害。[力量 X, 生命回复 II]
 item.blood_sword.earth_desc=损失 %s 颗心，造成 %s 伤害。[Regen I]
 item.blood_sword.normal_desc=损失 %s 颗心，造成 %s 伤害。
@@ -43,7 +43,7 @@ item.blood_sword.manual_title=血候刃
 item.blood_sword.manual_author=道家深湖
 item.blood_sword.manual_page_count=5
 item.blood_sword.manual_page_1=\"杀敌一千，自损八百。\" 你感觉一身伤痛，但得胜而归 - 如果你不因失血过多而晕倒的话。
-item.blood_sword.manual_page_2=每当血侯刃见血的时候，他就会抽一些使用者的血并转化成额外伤害。传说称该剑吸收使用者的血自我修复，空穴来风。
+item.blood_sword.manual_page_2=每当血侯刃见血的时候，他就会抽一些使用者的血并转化成额外伤害。传说称该剑吸收使用者的血自我修复，我便也遵循了如此设计。
 item.blood_sword.manual_page_3=如果你不全力劈砍的话，基础伤害会下降，但抽血造成的额外伤害并不会受影响。
 item.blood_sword.manual_page_4=带些药品弥补失血是个好主意，虽然真正的血侯可以直接从敌手处吸血。如果你能的话，强身健体。
 item.blood_sword.manual_page_5=我曾经把它赐予多位战士。他们要么让这武器的威力冲昏头脑而夺去自己最后一滴血，要么就觉得是妖邪之物而封存不用。也许你是其真命之主。

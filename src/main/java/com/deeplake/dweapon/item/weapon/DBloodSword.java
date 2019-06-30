@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,14 +16,24 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -177,4 +188,83 @@ public class DBloodSword extends DWeaponSwordBase {
     		tooltip.add(earthDesc);
     	}
     }
+	
+	/**
+     * Called when a Block is right-clicked with this Item
+     */
+	@Override
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+		
+        return EnumActionResult.PASS;
+    }
+	
+	
+	
+	@Override
+	public void clientUseTick(ItemStack stack, EntityLivingBase living, int count) {
+
+		
+	}
+	
+	/**
+     * How long it takes to use or consume an item
+     */
+	@Override
+    public int getMaxItemUseDuration(ItemStack stack)
+    {
+        return 72000;
+    }
+	
+	//Animation
+	@Nonnull
+	@Override
+	public EnumAction getItemUseAction(ItemStack stack) {
+		if (stack.isItemDamaged())
+		{
+			return EnumAction.BOW;
+		}
+		else
+		{
+			return EnumAction.NONE;
+		}
+	}
+	
+	@Nonnull
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+		player.setActiveHand(hand);
+		ItemStack stack = player.getHeldItem(hand);
+		
+		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
+	}
+	
+	public static final float healthPerRepair = 2f;
+	public static final int durabilityPerRepair = 100;
+	
+	/**
+     * Called when the player stops using an Item (stops holding the right mouse button).
+     */
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase living, int time) {
+		//DWeapons.LogWarning("onPlayerStoppedUsing");
+		if (stack.isItemDamaged())
+		{
+			if (!world.isRemote) {
+				
+				float preHP = living.getHealth();
+				
+				living.setHealth(preHP - healthPerRepair);//drain self
+				int curDamage = stack.getItemDamage();
+				
+				stack.setItemDamage(Math.max(curDamage - durabilityPerRepair, 0));
+			}
+			else
+			{
+				living.playSound(SoundEvents.ENTITY_PLAYER_HURT, 1f, 2f);
+			}
+		}
+		
+		return;
+	}
 }

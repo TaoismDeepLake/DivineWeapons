@@ -34,7 +34,7 @@ item.sealed_weapon.name=Weapon Coming into Shape
 item.blood_sword.name=Bloodburst
 item.blood_sword.hidden=A Bloody Sword
 
-item.blood_sword.shared_desc=[Blood Burst] Let out your own blood to increase damage.
+item.blood_sword.shared_desc=[Blood Burst] Let out your own blood to increase damage. Can be repaired with your own blood
 item.blood_sword.sky_desc=Drain 5 Heart, deal 100 damage.[Str X, Regen II]. 
 item.blood_sword.earth_desc=Drain %s Heart, deal %s damage.[Regen I].
 item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.
@@ -43,7 +43,7 @@ item.blood_sword.manual_title=Bloodburst
 item.blood_sword.manual_author=Taoism DeepLake
 item.blood_sword.manual_page_count=5
 item.blood_sword.manual_page_1=\"Killing a thousand enemies, yet lost eight-hundred men.\" You feel hurt, yet victory is the only word now - if you don't pass out at the loss of blood.
-item.blood_sword.manual_page_2=Bloodburst drains your blood whenever its blade lands on enemies, dealing extra damage meanwhile. Rumors say it can be repaired with blood, but it's not true.
+item.blood_sword.manual_page_2=Bloodburst drains your blood whenever its blade lands on enemies, dealing extra damage meanwhile. Rumors say it can be repaired with blood, it's TRUE.
 item.blood_sword.manual_page_3=If you don't strike with your full strength, the base damage will go down, but blood burst damage remains the same. 
 item.blood_sword.manual_page_4=It's a good idea to bring some medicine with you to replenish the loss of your blood, though true bloodlords can drain health from their enemies. It's also a good idea to build a stronger body, if possible.
 item.blood_sword.manual_page_5=I have given this gift to many warriors. They either let the power take over their mind and their life, or sealed it because of the curse. Perhaps you are the right person to use it?
