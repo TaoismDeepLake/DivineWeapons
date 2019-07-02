@@ -104,8 +104,11 @@ public class DBloodSword extends DWeaponSwordBase {
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
 
 		float preHP = player.getHealth();
-		
-		player.setHealth(preHP - getHurt(stack));//drain self
+		if (!(player).capabilities.isCreativeMode) {
+			//since in creative mode you can't see your health bar,
+			//kiling you by draining makes no sense(yeah this code can kill creative players)
+			player.setHealth(preHP - getHurt(stack));//drain self
+		}
 		float damage = getActualDamage(stack, ratio);
 		
 		boolean success = false;
