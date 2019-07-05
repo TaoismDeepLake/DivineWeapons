@@ -443,6 +443,12 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     		return;
     	}
     	
+    	if (IsManualReady(stack))
+		{
+			String pearlDesc = I18n.format("item.shared.print_manual");
+    		tooltip.add(pearlDesc);
+		}
+    	
     	//tooltip.clear();
     	if (GetPearlCount(stack) > 0)
     	{

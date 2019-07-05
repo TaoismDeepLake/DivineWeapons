@@ -23,6 +23,7 @@ item.shared.sky_desc=天之兵
 item.shared.earth_desc=地之兵
 item.shared.pearl_desc=宝珠数：%s
 item.shared.true_name_reveal=真名判明!
+item.shared.print_manual=>>印制手册<<
 
 item.shared.missing_manual_content=(天书，不可读)
 item.shared.missing_manual_title=????

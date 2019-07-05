@@ -22,7 +22,8 @@ item.shared.hidden_desc=????
 item.shared.sky_desc=Sky Weapon
 item.shared.earth_desc=Earth Weapon
 item.shared.pearl_desc=Pearl:%s
-item.shared.true_name_reveal=True Name reveal!
+item.shared.true_name_reveal=True Name Reveal!
+item.shared.print_manual=>>Print Manual<<
 
 item.shared.missing_manual_content=(Written in strange symbols, unreadable)
 item.shared.missing_manual_title=????
