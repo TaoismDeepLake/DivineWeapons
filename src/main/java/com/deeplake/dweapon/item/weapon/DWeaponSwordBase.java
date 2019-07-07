@@ -20,6 +20,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.IItemPropertyGetter;
@@ -48,7 +49,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModCreativeTab.DW_MAIN);
+		setCreativeTab(ModCreativeTab.DW_WEAPON);
 		
 		this.addPropertyOverride(new ResourceLocation(DWNBTDef.WEAPON_MODE), new IItemPropertyGetter()
         {
@@ -105,7 +106,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	
 	public static void SetPearlCount(ItemStack stack, int count)
 	{
-		if (!(stack.getItem() instanceof DWeaponSwordBase)) {
+		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
 			return;
 		}
 		
@@ -116,7 +117,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	
 	public static int GetPearlMax(ItemStack stack)
 	{
-		if (!(stack.getItem() instanceof DWeaponSwordBase)) {
+		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
 			return 0;
 		}
 		return 5;//Most Weapons can socket 5 pearls
@@ -124,7 +125,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	
 	public int GetPearlEmptySpace(ItemStack stack)
 	{
-		if (!(stack.getItem() instanceof DWeaponSwordBase)) {
+		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
 			return 0;
 		}
 		if (IsSky(stack)) {
@@ -151,11 +152,35 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	
 	public static void SetWeaponMode(ItemStack stack, int mode)
 	{
-		if (!(stack.getItem() instanceof DWeaponSwordBase)) {
+		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
 			return;
 		}
 		
 		DWNBTUtil.SetInt(stack, DWNBTDef.WEAPON_MODE, mode);
+	}
+	
+	public static boolean IsHeirloom(ItemStack stack)
+	{
+		return DWNBTUtil.GetBoolean(stack, DWNBTDef.IS_HEIRLOOM);
+	}
+	
+	public static boolean SetHeirloom(ItemStack stack, boolean val)
+	{
+		return DWNBTUtil.SetBoolean(stack, DWNBTDef.IS_HEIRLOOM, val);
+	}
+	
+	public static String GetOwner(ItemStack stack)
+	{
+		return DWNBTUtil.GetString(stack, DWNBTDef.OWNER, "");
+	}
+	
+	public static void SetOwner(ItemStack stack, String owner)
+	{
+		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
+			return;
+		}
+		
+		DWNBTUtil.SetString(stack, DWNBTDef.OWNER, owner);
 	}
 	
 	//---------------------------------------------------------
@@ -344,8 +369,18 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     	{
     		if (IsManualReady(stack))
     		{
+    			//gives the manual and erase the "give-manual" state
     			EntityPlayer player = (EntityPlayer) entityIn;
     			TrueNameReveal(stack, worldIn, player);
+    		}
+    		if (IsSky(stack) && GetPearlCount(stack) > 0 )
+    		{
+    			//gives back pearls as sky weapons ignore pearls
+    			int pCount = GetPearlCount(stack);
+    			ItemStack pearls = new ItemStack(ModItems.WEAPON_PEARL);
+    			pearls.setCount(pCount);
+    			((EntityPlayer)entityIn).addItemStackToInventory(pearls);
+    			SetPearlCount(stack, 0);
     		}
     	}
     }
@@ -361,16 +396,24 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     			player.addExperience(100);
     		}
     		
-    		if (IsNameHidden(stack) || IsManualReady(stack))
+    		if (IsManualReady(stack))
     		{
-    			//unlocking by using goes former
-    			//unlocking by book craft goes latter
-    			//maybe some fix can make this logic clearer
-    			
     			player.addItemStackToInventory(CreateManual());
     			SetManualReady(stack, false);
     		}
     		//achievement TODO		
+    	}
+    }
+    
+    public void TrueNameRevealByUsing(ItemStack stack, World worldIn, EntityPlayer player)
+    {
+    	//Some weapons will self-reveal along using. This won't give duplicate books.
+    	if (!worldIn.isRemote) {
+    		
+    		if (IsNameHidden(stack))
+    		{
+    			TrueNameReveal(stack, worldIn, player);
+    		}	
     	}
     }
     
@@ -427,6 +470,13 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
+    	if (IsHeirloom(stack))
+    	{
+    		String ownerName = GetOwner(stack);
+    		String ownerDesc = String.format(I18n.format("item.shared.heirloom_desc", ownerName)) ;
+    		tooltip.add(ownerDesc);
+    	}
+    	
     	if (IsNameHidden(stack)) 
     	{
     		//strMain = I18n.format("");

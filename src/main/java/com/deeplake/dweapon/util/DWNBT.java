@@ -3,6 +3,7 @@ package com.deeplake.dweapon.util;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 
@@ -66,11 +67,38 @@ public class DWNBT {
 	
 	public static NBTTagString bookPageFromLine(String str)
 	{
+		//str.replace("{PlayerName}", replacement)
+		
 		return new NBTTagString("[\"\",{\"text\":\"" + str + "\"}]");
+	}
+	
+	public static NBTTagString bookPageFromLineAndUrl(String str, String url)
+	{
+		String textStr = "\"text\":\"" + str + "\"";
+		String styleStr = "\"color\": \"dark_blue\",\"underlined\": true";
+		String linkStr = "\"clickEvent\": { \"action\": \"open_url\",  \"value\": \""+ url +"\"}";
+		return new NBTTagString("[{" + textStr + "," + styleStr + "," + linkStr +
+		"}]");
 	}
 	
 	public static NBTTagString bookPageFromUnlocalizedLine(String key)
 	{
 		return bookPageFromLine(I18n.format(key));
+	}
+	
+	public static NBTTagString bookPageFromUnlocalizedLine(String key, String url)
+	{
+		return bookPageFromLineAndUrl(I18n.format(key), url);
+	}
+	
+	public static NBTTagString bookPageFromUnlocalizedLine(String key, EntityPlayer player)
+	{
+		String playerName = "Friend";
+		if (player != null) {
+			playerName = player.getDisplayNameString();
+		}
+
+		String result = I18n.format(key).replace("{PlayerName}", playerName);
+		return bookPageFromLine(result);
 	}
 }

@@ -19,7 +19,7 @@ public class BlockBase extends Block implements IHasModel
 		super(material);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModCreativeTab.DW_MAIN);;
+		setCreativeTab(ModCreativeTab.DW_MISC);;
 		
 		ModBlocks.BLOCKS.add(this);
 		//if (ModItems.ITEMS.contains(o))

@@ -123,6 +123,28 @@ public class DWNBTUtil {
 		return GetInt(stack, key, 0);
 	}
 	
+	//String
+	public static String GetString(ItemStack stack, String key, String defaultVal)
+	{
+		if (StackHasKey(stack, key))
+		{
+			NBTTagCompound nbt = getNBT(stack);
+			return nbt.getString(key);
+		}		
+		else
+		{
+			return defaultVal;
+		}
+	}
+	
+	public static boolean SetString(ItemStack stack, String key, String value)
+	{
+		NBTTagCompound nbt = getNBT(stack);
+		nbt.setString(key, value);
+		return true;
+	}
+
+	
 	//entity
 	@Nullable
 	public static boolean EntityHasKey(Entity entity, String key)

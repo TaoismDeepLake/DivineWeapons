@@ -9,11 +9,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements IHasModel {
+	public ItemBase() {
+		
+	}
+	
 	public ItemBase(String name)
 	{
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModCreativeTab.DW_MAIN);
+		setCreativeTab(ModCreativeTab.DW_MISC);
 		
 		ModItems.ITEMS.add(this);
 	}

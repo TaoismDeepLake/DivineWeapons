@@ -1,14 +1,18 @@
 
 package com.deeplake.dweapon.item.misc;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.ItemBase;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -24,6 +28,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.SoundSetupEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 enum WeaponIndex{
 	BLOOD_INDEX,
@@ -38,9 +44,14 @@ enum WeaponIndex{
 
 public class SealedWeapon extends ItemBase {
 
+	public SealedWeapon() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	public SealedWeapon(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Nonnull
@@ -56,7 +67,11 @@ public class SealedWeapon extends ItemBase {
 
 				stack.shrink(1);
 				
-				player.addItemStackToInventory(GetRandomWeapon());
+				ItemStack resultStack = GetRandomWeapon();
+				DWeaponSwordBase.SetHeirloom(resultStack, false);
+				DWeaponSwordBase.SetOwner(resultStack, player.getDisplayNameString());
+				
+				player.addItemStackToInventory(resultStack);
 				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
 				player.addExperience(10);
 			
@@ -93,7 +108,7 @@ public class SealedWeapon extends ItemBase {
 	@Override
     public int getMaxItemUseDuration(ItemStack stack)
     {
-        return 20;
+        return 72000;
     }
 	
 	//Animation
@@ -204,4 +219,11 @@ public class SealedWeapon extends ItemBase {
 		return result;
 	}
 
+	 @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+		 String pearlDesc = I18n.format("item.shared.right_click_open");
+		 tooltip.add(pearlDesc);
+    
+    }
 }

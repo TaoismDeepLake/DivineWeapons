@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.deeplake.dweapon.item.ItemBase;
+import com.deeplake.dweapon.item.misc.Heirloom;
 import com.deeplake.dweapon.item.misc.SealedWeapon;
 import com.deeplake.dweapon.item.weapon.DBloodSword;
 import com.deeplake.dweapon.item.weapon.DDeathSword;
@@ -61,7 +62,7 @@ public class ModItems {
 	public static final ItemBase EARTH_CHARM = new ItemBase("earth_charm");
 	
 	public static final SealedWeapon SEALED_WEAPON = new SealedWeapon("sealed_weapon");
-	
+	public static final Heirloom HEIRLOOM = new Heirloom("heirloom");
 	
 	
 	public static final DBloodSword BLOOD_SWORD = new DBloodSword("blood_sword", TOOL_MATERIAL_DIVINE);
