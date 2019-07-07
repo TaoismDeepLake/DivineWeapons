@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.ItemBase;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
@@ -26,10 +27,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.SoundSetupEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 enum WeaponIndex{
 	BLOOD_INDEX,
@@ -64,7 +67,12 @@ public class SealedWeapon extends ItemBase {
         //return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		if (!world.isRemote) {
 			//EntityPlayer player = (EntityPlayer)living;
-
+			
+				//TODO : Add a message.
+				//String msg = "";
+			
+				//FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendMessage(new TextComponentString(msg));	
+			
 				stack.shrink(1);
 				
 				ItemStack resultStack = GetRandomWeapon();
@@ -216,6 +224,8 @@ public class SealedWeapon extends ItemBase {
 			 DWeaponSwordBase.SetPearlCount(result, 1);
 		 }
 		
+		 DWeapons.LogWarning("Given weapon:" + result.getDisplayName());
+		 
 		return result;
 	}
 
