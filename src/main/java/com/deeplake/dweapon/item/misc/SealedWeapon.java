@@ -33,6 +33,7 @@ import net.minecraftforge.client.event.sound.SoundSetupEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import com.deeplake.dweapon.DWeapons;;
 
 enum WeaponIndex{
 	BLOOD_INDEX,
@@ -73,7 +74,7 @@ public class SealedWeapon extends ItemBase {
 			
 				//FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendMessage(new TextComponentString(msg));	
 			
-				stack.shrink(1);
+				
 				
 				ItemStack resultStack = GetRandomWeapon();
 				DWeaponSwordBase.SetHeirloom(resultStack, false);
@@ -82,6 +83,11 @@ public class SealedWeapon extends ItemBase {
 				player.addItemStackToInventory(resultStack);
 				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
 				player.addExperience(10);
+				
+				//	Must do shrink AFTER addItemStackToInventory,
+				//or it would make the addItemStackToInventory fail if the new thing were to be in the new place.
+				//	Try do this when helding one sealed weapon in slot 1, and something else in slot 2.  
+				stack.shrink(1);
 			
 		}
 		
@@ -216,6 +222,12 @@ public class SealedWeapon extends ItemBase {
 		default:
 			result = new ItemStack(Items.IRON_SWORD);
 			break;
+		}
+		
+		DWeapons.LogWarning(result.getDisplayName());
+		//DWeapons¡£LogWarning(result.getDisplayName());
+		if (result.isEmpty()){
+			DWeapons.LogWarning("EMPTY!!!");
 		}
 		
 		 random = rand.nextInt(10);

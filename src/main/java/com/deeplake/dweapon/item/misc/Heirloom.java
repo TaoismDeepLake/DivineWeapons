@@ -51,7 +51,7 @@ public class Heirloom extends SealedWeapon {
 		if (!world.isRemote) {
 			//EntityPlayer player = (EntityPlayer)living;
 
-				stack.shrink(1);
+				
 				
 				ItemStack resultStack = GetRandomWeapon();
 				DWeaponSwordBase.SetHeirloom(resultStack, true);
@@ -69,8 +69,8 @@ public class Heirloom extends SealedWeapon {
 				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
 				player.addExperience(10);
 				
-				//stack.
-			
+				stack.shrink(1);
+				
 		}
 		
 		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
