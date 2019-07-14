@@ -45,7 +45,7 @@ public class DGoldSword extends DWeaponSwordBase {
 	public float getAttackDamage()
     {
 		//useless
-		NBTTagString s = new NBTTagString();
+		//NBTTagString s = new NBTTagString();
 		return baseDamageAttackMode;
 		
     }

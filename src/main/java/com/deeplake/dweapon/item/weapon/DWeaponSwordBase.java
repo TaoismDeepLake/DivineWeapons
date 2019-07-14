@@ -1,6 +1,7 @@
 package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,16 +13,25 @@ import com.deeplake.dweapon.util.DWNBT;
 import com.deeplake.dweapon.util.IHasModel;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -32,6 +42,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 //import net.minecraft.util.text.translation.I18n;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.world.World;
@@ -183,6 +194,27 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		DWNBTUtil.SetString(stack, DWNBTDef.OWNER, owner);
 	}
 	
+	public static void ForceHideVanillaAttr(ItemStack stack)
+	{
+		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
+			return;
+		}
+		//See ItemStack.getToolTip:
+		//32 - addInformation
+		//1 - enchantment
+		//2 - attributes
+		//4 - unbreakable
+		//8 - can destroy
+		//16- can place on
+		//...
+		// if (!multimap.isEmpty() && (i1 & 2) == 0)
+		//...
+		
+		int curFlags = DWNBTUtil.GetInt(stack, "HideFlags");
+		if ((curFlags & 2) == 0) {
+			DWNBTUtil.SetInt(stack,"HideFlags", curFlags | 2);
+		}
+	}
 	//---------------------------------------------------------
 	
 	
@@ -464,12 +496,83 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     	super.onPlayerStoppedUsing(stack, worldIn, entityLiving, timeLeft);
     }
 
+    String translateToLocalFormatted(String key, Object... format)
+    {
+    	return net.minecraft.util.text.translation.I18n.translateToLocalFormatted(key, format);
+    }
+    	
+    //translateToLocal
+    String translateToLocal(String key)
+    {
+    	return net.minecraft.util.text.translation.I18n.translateToLocal(key);
+    }
+    
+    
     /**
      * allows items to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
+    	//Trys to force override the ItemStack.getTooltip failed,
+        //because the damage attr are added after getTooltip.
+    	//This is the way I found to hide the damage descrption.
+    	ForceHideVanillaAttr(stack);
+    	
+    	//An attempt to force override the name in ItemStack.getTooltip
+    	//Abandoned because not much point
+//    	List<String> list = tooltip;
+//    	list.clear();
+//        String s = stack.getDisplayName();
+//
+//        if (stack.hasDisplayName())
+//        {
+//            s = TextFormatting.ITALIC + s;
+//        }
+//
+//        s = s + TextFormatting.RESET;
+//
+//        if (flagIn.isAdvanced())
+//        {
+//            String s1 = "";
+//
+//            if (!s.isEmpty())
+//            {
+//                s = s + " (";
+//                s1 = ")";
+//            }
+//
+//            int i = Item.getIdFromItem(stack.getItem());
+//
+//            if (this.getHasSubtypes())
+//            {
+//                s = s + String.format("#%04d/%d%s", i, stack.getItemDamage(), s1);
+//            }
+//            else
+//            {
+//                s = s + String.format("#%04d%s", i, s1);
+//            }
+//        }
+//        else if (!stack.hasDisplayName() && stack.getItem() == Items.FILLED_MAP)
+//        {
+//            s = s + " #" + stack.getItemDamage();
+//        }
+//
+//        list.add(s);
+//        int i1 = 0;
+//
+//        if (stack.hasTagCompound() && stack.getTagCompound().hasKey("HideFlags", 99))
+//        {
+//            i1 = stack.getTagCompound().getInteger("HideFlags");
+//        }
+        //cannot override this because playerIn is not passed here
+//        if ((i1 & 32) == 0)//also, overriding this will cause stack overflow. This is where getToolTip will be called
+//        {
+//        	stack.getItem().addInformation(this, playerIn == null ? null : playerIn.world, list, advanced);
+//        }
+      //-----------------------
+    	//Custom
+    	
     	if (IsHeirloom(stack))
     	{
     		String ownerName = GetOwner(stack);
@@ -515,8 +618,10 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     		String earthDesc = I18n.format("item.shared.earth_desc");
     		tooltip.add(earthDesc);
     	}
+
     }
 
+    
 
     /**
      * Returns true if this item has an enchantment glint. By default, this returns
