@@ -8,6 +8,7 @@ import com.deeplake.dweapon.item.misc.Heirloom;
 import com.deeplake.dweapon.item.misc.SealedWeapon;
 import com.deeplake.dweapon.item.weapon.DBloodSword;
 import com.deeplake.dweapon.item.weapon.DDeathSword;
+import com.deeplake.dweapon.item.weapon.DFutureSword;
 import com.deeplake.dweapon.item.weapon.DGoldSword;
 import com.deeplake.dweapon.item.weapon.DPowerTriangle;
 import com.deeplake.dweapon.item.weapon.DSageBuilder;
@@ -73,6 +74,8 @@ public class ModItems {
 	
 	public static final DPowerTriangle POWER_TRIANGLE = new DPowerTriangle("power_triangle", TOOL_MATERIAL_DIVINE);
 	public static final DGoldSword GOLD_SWORD = new DGoldSword("gold_sword", TOOL_MATERIAL_DIVINE);
+	
+	public static final DFutureSword FURTUE_SWORD = new DFutureSword("future_sword", TOOL_MATERIAL_DIVINE);
 	//public static final Item ANGEL_STATUE = new ItemBase("angel_statue");
 	
 	//public static final ItemSword COPPER_SWORD = new ToolSword("copper_sword", MATERIAL_COPPER);

@@ -238,3 +238,20 @@ item.gold_sword.manual_page_7=我便造访他，问道，想不想让金子的�
 item.gold_sword.manual_page_8=他立刻抢过来，照着我就砍。在他砍中我的一瞬间，一个巨大的金块凭空冒了出来，砸死了他。
 item.gold_sword.manual_page_9=我哈哈大笑，捡走了我的作品然后离开了。我身上的保护咒使得我受的伤微乎其微，但我的心灵受到的伤害无法弥补。
 item.gold_sword.manual_page_10=我再也不会随便给穷困者施舍我的神力了，哪怕他求我也不会。只有配的上的人，才会获得我的帮助。
+
+//---------------
+item.future_sword.name=明日之剑
+item.future_sword.hidden=概念之剑
+
+item.future_sword.shared_desc=[????]对具有某名称的生物造成额外伤害。用纸来改变选定名称。 
+item.future_sword.sky_desc=对%s造成10倍伤害
+item.future_sword.earth_desc=对%s造成5倍伤害
+item.future_sword.normal_desc=对%s造成2倍伤害
+
+item.future_sword.manual_title=明日之剑
+item.future_sword.manual_author=道家深湖
+item.future_sword.manual_page_count=4
+item.future_sword.manual_page_1=  这把剑的能力随着时间变化，它预兆着未来里某把武器的到来。
+item.future_sword.manual_page_2=  就目前的能力来看，它可以下达裁决。在铁砧上重命名纸张来制作“裁决”，把裁决合成到剑上就可以让剑记住这个名字，如“僵尸”。此剑会对具有该名称的生物造成额外伤害。
+item.future_sword.manual_page_3=  在别人的世界（服务器）游戏里，你可能需要用世界主人的语言来命名。
+item.future_sword.manual_page_4=  基础伤害是（5+宝珠数）；地级伤害翻倍，天级则是10倍。攻击指定名字的生物时，伤害倍率再乘2（人）、5（地）、10（天） 

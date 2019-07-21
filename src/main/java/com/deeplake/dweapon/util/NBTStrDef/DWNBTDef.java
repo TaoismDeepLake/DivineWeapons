@@ -9,6 +9,8 @@ public class DWNBTDef {
 	public static final String IS_MANUAL_READY = "manual_ready";
 	public static final String OWNER = "owner";
 	public static final String IS_HEIRLOOM = "heirloom_of";
+	public static final String HATE = "hate";
+	
 	
 	public static final String BASE_DATA = "d_weapon_data";
 	

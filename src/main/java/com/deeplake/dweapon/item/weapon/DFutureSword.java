@@ -8,7 +8,9 @@ import javax.annotation.Nullable;
 
 import org.apache.logging.log4j.LogManager;
 
+import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
+import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,6 +19,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.potion.PotionEffect;
@@ -35,6 +38,23 @@ public class DFutureSword extends DWeaponSwordBase {
 		
 	}
 	
+	public static void SetHate(ItemStack stack, String name) {
+		DWNBTUtil.SetString(stack, DWNBTDef.HATE, name);
+	}
+	
+	public static String GetHate(ItemStack stack)
+	{
+		String hater = DWNBTUtil.GetString(stack, DWNBTDef.HATE, "-");
+		
+		return hater;
+	}
+	
+	public static boolean IsHate(ItemStack stack, String name) {
+		String hater = GetHate(stack);
+		
+		return hater.equalsIgnoreCase(name);
+	}
+	
 	@Override
 	public float getAttackDamage()
     {
@@ -46,20 +66,33 @@ public class DFutureSword extends DWeaponSwordBase {
 	
 	public float getActualDamage(ItemStack stack, float ratio)
 	{
-		float damage = 1;
+		float damage = 5 * ratio + GetPearlCount(stack);
 		if (IsSky(stack))
 		{
-			damage *= 1;
+			damage *= 5;
 		} 
 		else if (IsEarth(stack))
 		{
-			damage *= 1;
+			damage *= 2;
 		}
 		
 		return damage;
 	}
 	
-	
+	public float getDamageMultiplier(ItemStack stack)
+	{
+		float damage = 2;
+		if (IsSky(stack))
+		{
+			damage = 10;
+		} 
+		else if (IsEarth(stack))
+		{
+			damage = 5;
+		}
+		
+		return damage;
+	}
 
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
@@ -67,6 +100,13 @@ public class DFutureSword extends DWeaponSwordBase {
 		float preHP = player.getHealth();
 		
 		float damage = getActualDamage(stack, ratio);
+		
+		String targetName = target.getName();
+		DWeapons.LogWarning(targetName);
+		if (IsHate(stack, targetName)) {
+			DWeapons.LogWarning("Hate you!");
+			damage *= getDamageMultiplier(stack);
+		}
 		
 		boolean success = false;
 		if (player instanceof EntityPlayer) {
@@ -99,15 +139,15 @@ public class DFutureSword extends DWeaponSwordBase {
     	
     	if (IsSky(stack)) 
     	{
-    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY);
+    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY,GetHate(stack));
     		tooltip.add(skyDesc);
     	}else if (IsEarth(stack))
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH);
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH,GetHate(stack));
     		tooltip.add(earthDesc);
     	}else
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL);
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL,GetHate(stack));
     		tooltip.add(earthDesc);
     	}
     }
