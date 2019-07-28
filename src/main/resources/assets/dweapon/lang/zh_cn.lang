@@ -107,9 +107,9 @@ item.space_affinity_sword.name=空间涨落
 item.space_affinity_sword.hidden=不稳定的剑
 
 item.space_affinity_sword.shared_desc=[傅里叶共鸣] 伤害和坐标有关
-item.space_affinity_sword.sky_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)
+item.space_affinity_sword.sky_desc=伤害是 Max(x%%128, y%%128, z%%128, 16)， 长按右键传送回出生点
 item.space_affinity_sword.earth_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)， 长按右键传送回出生点
-item.space_affinity_sword.normal_desc=伤害是 Max(x%%128, y%%128, z%%128, 16)， 长按右键传送回出生点
+item.space_affinity_sword.normal_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)
 
 item.space_affinity_sword.manual_title=空间涨落
 item.space_affinity_sword.manual_author=道家深湖

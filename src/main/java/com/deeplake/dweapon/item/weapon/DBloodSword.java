@@ -66,10 +66,8 @@ public class DBloodSword extends DWeaponSwordBase {
 	@Override
 	public float getAttackDamage()
     {
-		//useless
-		NBTTagString s = new NBTTagString();
+		//not of much use, since we have custom damage system
 		return base_damage;
-		
     }
 	
 	public float getActualDamage(ItemStack stack, float ratio)
@@ -79,13 +77,13 @@ public class DBloodSword extends DWeaponSwordBase {
 		}
 		else
 		{
-			return getBloodBurst(stack) + plainAtk(stack) * ratio;
+			return getBloodBurst(stack) + base_damage * ratio;
 		}
 	}
 	
 	public float getBloodBurst(ItemStack stack)
 	{
-		return base_damage + GetPearlCount(stack) * damage_per_pearl;
+		return (GetPearlCount(stack) + 1) * damage_per_pearl ;
 	}
 	
 	public float getHurt(ItemStack stack)

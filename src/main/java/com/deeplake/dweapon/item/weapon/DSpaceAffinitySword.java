@@ -51,7 +51,7 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 		if (IsSky(stack)) {
 			return 16;
 		}
-		return GetPearlCount(stack);
+		return GetPearlCount(stack) + 1;
 	}
 	
 	@Override
@@ -221,15 +221,15 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
     	
     	if (IsSky(stack)) 
     	{
-    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY, GetPearlCount(stack));
+    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY);
     		tooltip.add(skyDesc);
     	}else if (IsEarth(stack))
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH, GetPearlCount(stack));
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH, minDamage(stack));
     		tooltip.add(earthDesc);
     	}else
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL);
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL, minDamage(stack));
     		tooltip.add(earthDesc);
     	}
     }

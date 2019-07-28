@@ -40,6 +40,7 @@ public class DGoldSword extends DWeaponSwordBase {
 	public static final float earthDamageModifier = 1.5f;
 	public static final float skyDamageModifier = 4f;
 	
+	public static final float pearlRateModifier = 0.10f;//5%
 	
 	@Override
 	public float getAttackDamage()
@@ -84,9 +85,14 @@ public class DGoldSword extends DWeaponSwordBase {
 	static final float chancePerPearl = 0.05f;
 	static final float chanceBase = 0.25f;
 	
+	public float Chance(ItemStack stack)
+	{
+		return chanceBase + GetPearlCount(stack) * pearlRateModifier;
+	}
+	
 	public boolean TryChance(ItemStack sourceWeapon)
 	{
-		float chance = chanceBase + GetPearlCount(sourceWeapon);
+		float chance = chanceBase + GetPearlCount(sourceWeapon) * pearlRateModifier;
 		Random rand = new Random();
 		
 		if (IsSky(sourceWeapon))
@@ -142,7 +148,7 @@ public class DGoldSword extends DWeaponSwordBase {
 		tooltip.add(shared);
     	
 		
-		int percentage = (int)(chanceBase + GetPearlCount(stack) * 100);
+		int percentage = (int)(Chance(stack) * 100);
 		
     	if (IsSky(stack)) 
     	{

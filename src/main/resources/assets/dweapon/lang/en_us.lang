@@ -112,9 +112,9 @@ item.space_affinity_sword.name=Space Flunctuation
 item.space_affinity_sword.hidden=Some Unstable Sword
 
 item.space_affinity_sword.shared_desc=[Fourier Affinity] Damage is related to coordinates
-item.space_affinity_sword.sky_desc=Damage is Max(x%%16, y%%16, z%%16, %s)
-item.space_affinity_sword.earth_desc=Damage is Max(x%%16, y%%16, z%%16, %s), Hold RMB to teleport to spawn
-item.space_affinity_sword.normal_desc=Damage is Max(x%%128, y%%128, z%%128, 16), Hold RMB to teleport to spawn
+item.space_affinity_sword.sky_desc=Damage is Max(x%%128, y%%128, z%%128, 16), Hold RMB to teleport to spawn point
+item.space_affinity_sword.earth_desc=Damage is Max(x%%16, y%%16, z%%16, %s), Hold RMB to teleport to spawn point
+item.space_affinity_sword.normal_desc=Damage is Max(x%%16, y%%16, z%%16, %s)
 
 item.space_affinity_sword.manual_title=Space Flunctuation
 item.space_affinity_sword.manual_author=Taoism DeepLake
