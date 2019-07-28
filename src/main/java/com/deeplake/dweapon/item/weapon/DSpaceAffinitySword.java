@@ -232,5 +232,18 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
     		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL, minDamage(stack));
     		tooltip.add(earthDesc);
     	}
+    	addDamageInformation(stack, worldIn, tooltip, flagIn);
+    }
+	
+	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+		if (IsSky(stack)) {
+			return 70f;
+		}
+		else
+		{
+			return 7.5f + (float)GetPearlCount(stack) / 2;
+		}
+
     }
 }

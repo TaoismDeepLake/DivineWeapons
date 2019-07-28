@@ -87,6 +87,10 @@ public class DSnowSword extends DWeaponSwordBase {
 		
 		int pearlCount = GetPearlCount(stack);
 		
+		if (IsSky(stack)){
+			pearlCount = GetPearlMax(stack);
+		}
+		
 		if (t > t_base) 
 		{
 			if (IsEarth(stack) || IsSky(stack))
@@ -377,5 +381,25 @@ public class DSnowSword extends DWeaponSwordBase {
     		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL);
     		tooltip.add(earthDesc);
     	}
+    	addDamageInformation(stack, worldIn, tooltip, flagIn);
+    }
+	
+	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+		int pearlCount = GetPearlCount(stack);
+		
+		if (IsSky(stack)){
+			pearlCount = GetPearlMax(stack);
+		}
+		
+		if (IsSky(stack)||IsEarth(stack)) {
+			return base_damage * (1 + (0.5f) * ( 1 + pearl_damage_factor * pearlCount));
+		}
+		else
+		{
+			
+			return base_damage * (1 + (0.1f) * ( 1 + pearl_damage_factor * pearlCount));
+		}
+
     }
 }

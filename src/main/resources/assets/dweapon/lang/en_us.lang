@@ -72,6 +72,7 @@ item.blood_sword.shared_desc=[Blood Burst] Let out your own blood to increase da
 item.blood_sword.sky_desc=Drain 5 Heart, deal 100 damage.[Str X, Regen II]. 
 item.blood_sword.earth_desc=Drain %s Heart, deal %s damage.[Regen I].
 item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.
+item.blood_sword.damage_desc=Attack Damage : %s
 
 item.blood_sword.manual_title=Bloodburst
 item.blood_sword.manual_author=Taoism DeepLake
@@ -99,6 +100,7 @@ item.death_sword.shared_desc=[Death Visit] Chance to kill at once.
 item.death_sword.sky_desc=Kill target at once. NOTE: Has %.0f%% chance to SUICIDE.
 item.death_sword.earth_desc=Kill target with (1+%s)/(targetHP) + %.0f%% chance.
 item.death_sword.normal_desc=Kill target with (1+%s)/(targetHP) chance.
+item.death_sword.damage_desc=Base Damage : %s
 
 item.death_sword.manual_title=Death Within
 item.death_sword.manual_author=Taoism DeepLake
@@ -115,6 +117,7 @@ item.space_affinity_sword.shared_desc=[Fourier Affinity] Damage is related to co
 item.space_affinity_sword.sky_desc=Damage is Max(x%%128, y%%128, z%%128, 16), Hold RMB to teleport to spawn point
 item.space_affinity_sword.earth_desc=Damage is Max(x%%16, y%%16, z%%16, %s), Hold RMB to teleport to spawn point
 item.space_affinity_sword.normal_desc=Damage is Max(x%%16, y%%16, z%%16, %s)
+item.space_affinity_sword.damage_desc=Average Damage : %s
 
 item.space_affinity_sword.manual_title=Space Flunctuation
 item.space_affinity_sword.manual_author=Taoism DeepLake
@@ -158,6 +161,7 @@ item.sage_builder.earth_desc=Places bricks.
 item.sage_builder.earth_desc.sword= Hold RMB to change to shovel.
 
 item.sage_builder.normal_desc=RMB Place dirt.
+item.sage_builder.damage_desc=Attack Damage : %s
 
 item.sage_builder.manual_title=Fu Yue Shovel
 item.sage_builder.manual_author=Taoism DeepLake
@@ -176,6 +180,7 @@ item.snow_sword.shared_desc=[Snow Covered] Doubles the damage and self-repair wh
 item.snow_sword.sky_desc=Holding it grants anti-fire buff, walking leaves a trail of snow. Can summon blizzard in cold places.
 item.snow_sword.earth_desc=Increase damage in hot AND cold places.
 item.snow_sword.normal_desc=Increase damage in cold places.
+item.snow_sword.damage_desc=Average Damage : %s
 
 item.snow_sword.manual_title=Forged in Snow
 item.snow_sword.manual_author=Taoism DeepLake
@@ -208,6 +213,7 @@ item.power_triangle.sky_desc.speed=[SPD][Works when carried] Grants strong movin
 item.power_triangle.earth_desc.speed=[SPD]Grants moving buff, but cause weakness. Wears down while holding.
 item.power_triangle.normal_desc.speed=[SPD]Grants minor moving buff, but cause weakness. Wears down while holding.
 
+item.power_triangle.damage_desc=Attack Damage : %s
 
 item.power_triangle.manual_title=Triangle of Power
 item.power_triangle.manual_author=Taoism DeepLake
@@ -232,6 +238,8 @@ item.gold_sword.sky_desc=Gives gold blocks.
 item.gold_sword.earth_desc=Gives a gold ingot at %s%% chance.
 item.gold_sword.normal_desc=Gives a gold nugget at %s%% chance.
 
+item.gold_sword.damage_desc=Attack Damage : %s
+
 item.gold_sword.manual_title=Infinite Gold
 item.gold_sword.manual_author=Taoism DeepLake
 item.gold_sword.manual_page_count=9
@@ -253,6 +261,8 @@ item.future_sword.shared_desc=[????]Deals extra damage to creatures with a speci
 item.future_sword.sky_desc=10x damage to %s. 
 item.future_sword.earth_desc=5x damage to %s.
 item.future_sword.normal_desc=2x damage to %s.
+
+item.future_sword.damage_desc=Base Damage : %s
 
 item.future_sword.manual_title=Sword from Future
 item.future_sword.manual_author=Taoism DeepLake

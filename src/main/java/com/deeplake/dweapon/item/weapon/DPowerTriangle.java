@@ -406,6 +406,13 @@ public class DPowerTriangle extends DWeaponSwordBase {
     		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL+modeStr);
     		tooltip.add(earthDesc);
     	}
+    	addDamageInformation(stack, worldIn, tooltip, flagIn);
+    }
+	
+	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+		return getAttackDamage(stack);
+
     }
 	
 	public String getItemStackDisplayName(ItemStack stack)

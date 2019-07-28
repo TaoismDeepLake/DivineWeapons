@@ -94,6 +94,7 @@ item.death_sword.shared_desc=[死神叩门] 概率即死目标。
 item.death_sword.sky_desc=立刻夺命。 注: 有 %.0f%% 概率天谴自裁。
 item.death_sword.earth_desc=以 (1+%s)/(目标生命值) + %.0f%% 的概率即死目标.
 item.death_sword.normal_desc=以 (1+%s)/(目标生命值) 的概率即死目标.
+item.death_sword.damage_desc=基础伤害：%s
 
 item.death_sword.manual_title=断命剑
 item.death_sword.manual_author=Taoism DeepLake
@@ -110,6 +111,7 @@ item.space_affinity_sword.shared_desc=[傅里叶共鸣] 伤害和坐标有关
 item.space_affinity_sword.sky_desc=伤害是 Max(x%%128, y%%128, z%%128, 16)， 长按右键传送回出生点
 item.space_affinity_sword.earth_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)， 长按右键传送回出生点
 item.space_affinity_sword.normal_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)
+item.space_affinity_sword.damage_desc=平均伤害：%s
 
 item.space_affinity_sword.manual_title=空间涨落
 item.space_affinity_sword.manual_author=道家深湖
@@ -133,6 +135,8 @@ item.sage_builder.earth_desc=放置砖块。长按变为武丁剑。
 item.sage_builder.earth_desc.sword=长按右键变回傅说铲。
 
 item.sage_builder.normal_desc=右键放置泥土。
+
+item.sage_builder.damage_desc=平均伤害：%s
 
 item.sage_builder.name.sword=武丁剑
 item.sage_builder.name.black=傅说铲[黑]
@@ -169,6 +173,7 @@ item.snow_sword.shared_desc=[覆雪] 下雪时伤害翻倍，并且自动修复�
 item.snow_sword.sky_desc=手持时获得抗火保护，行走时留下雪迹，寒冷地区可以强令降雪。
 item.snow_sword.earth_desc=冰冷和炎热的地区伤害增加。
 item.snow_sword.normal_desc=伤害随寒冷程度增加。
+item.snow_sword.damage_desc=平均伤害：%s
 
 item.snow_sword.manual_title=凝雪錾花剑
 item.snow_sword.manual_author=道家深湖
@@ -201,6 +206,7 @@ item.power_triangle.sky_desc.speed=[速度][携带即生效] 提供强力速度�
 item.power_triangle.earth_desc.speed=[速度]提供速度加成，但削弱力量。手持时蒸发。
 item.power_triangle.normal_desc.speed=[速度]提供微弱速度加成，但削弱力量。手持时蒸发。
 
+item.power_triangle.damage_desc=攻击伤害：%s
 
 item.power_triangle.manual_title=能量三角
 item.power_triangle.manual_author=道家深湖
@@ -225,6 +231,8 @@ item.gold_sword.sky_desc=产出金块
 item.gold_sword.earth_desc=有 %s%% 概率获得金锭
 item.gold_sword.normal_desc=有 %s%% 概率获得金粒
 
+item.gold_sword.damage_desc=攻击伤害：%s
+
 item.gold_sword.manual_title=点金杖
 item.gold_sword.manual_author=道家深湖
 item.gold_sword.manual_page_count=10
@@ -247,6 +255,7 @@ item.future_sword.shared_desc=[????]对具有某名称的生物造成额外伤�
 item.future_sword.sky_desc=对%s造成10倍伤害
 item.future_sword.earth_desc=对%s造成5倍伤害
 item.future_sword.normal_desc=对%s造成2倍伤害
+item.future_sword.damage_desc=基础伤害：%s
 
 item.future_sword.manual_title=明日之剑
 item.future_sword.manual_author=道家深湖

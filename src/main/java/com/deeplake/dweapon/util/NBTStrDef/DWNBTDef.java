@@ -22,6 +22,7 @@ public class DWNBTDef {
 	public static final String TOOLTIP_NORMAL = ".normal_desc";
 	public static final String TOOLTIP_SHARED = ".shared_desc";
 	public static final String TOOLTIP_HIDDEN = ".hidden";
+	public static final String TOOLTIP_DAMAGE = ".damage_desc";
 	
 	public static final String TRUENAME_TO_REVEAL = ".true_name_reveal";
 	public static final String MANUAL_PAGE_COUNT = ".manual_page_count";

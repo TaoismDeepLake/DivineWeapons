@@ -621,6 +621,20 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 
     }
 
+    public boolean isNeedDamageDesc = true;
+    @SideOnly(Side.CLIENT)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+    	return 7.0f;
+    }
+    @SideOnly(Side.CLIENT)
+    public void addDamageInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    	if (isNeedDamageDesc) {
+	    	String dmgDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_DAMAGE, GetReferenceDamage(stack, worldIn, tooltip, flagIn));
+			tooltip.add(dmgDesc);
+    	}
+    }
+    
     
 
     /**

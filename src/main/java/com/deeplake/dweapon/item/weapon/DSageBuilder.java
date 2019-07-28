@@ -54,17 +54,9 @@ public class DSageBuilder extends DWeaponSwordBase {
 	}
 
 	float base_damage = 4;
-	float sky_damage = 7;
+	float sky_damage = 10;
 	
 	float sky_damage_sword = 25;
-
-	
-	@Override
-	public float getAttackDamage()
-    {
-		//useless
-		return base_damage;
-    }
 	
 	public float getActualDamage(ItemStack stack, float ratio)
 	{
@@ -79,7 +71,7 @@ public class DSageBuilder extends DWeaponSwordBase {
 		}
 		else
 		{
-			return plainAtk(stack) * ratio;
+			return (base_damage + GetPearlCount(stack)) * ratio;
 		}
 	}
 
@@ -292,6 +284,13 @@ public class DSageBuilder extends DWeaponSwordBase {
     		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL);
     		tooltip.add(earthDesc);
     	}
+    	addDamageInformation(stack, worldIn, tooltip, flagIn);
+    }
+	
+	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+		return getActualDamage(stack, 1);
+
     }
 	
 	public static final int changeNeedTick = 60;//3 sec

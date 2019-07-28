@@ -55,15 +55,6 @@ public class DFutureSword extends DWeaponSwordBase {
 		return hater.equalsIgnoreCase(name);
 	}
 	
-	@Override
-	public float getAttackDamage()
-    {
-		//useless
-		NBTTagString s = new NBTTagString();
-		return 1;
-		
-    }
-	
 	public float getActualDamage(ItemStack stack, float ratio)
 	{
 		float damage = 5 * ratio + GetPearlCount(stack);
@@ -104,7 +95,7 @@ public class DFutureSword extends DWeaponSwordBase {
 		String targetName = target.getName();
 		DWeapons.LogWarning(targetName);
 		if (IsHate(stack, targetName)) {
-			DWeapons.LogWarning("Hate you!");
+			//DWeapons.LogWarning("Hate you!");
 			damage *= getDamageMultiplier(stack);
 		}
 		
@@ -150,5 +141,12 @@ public class DFutureSword extends DWeaponSwordBase {
     		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL,GetHate(stack));
     		tooltip.add(earthDesc);
     	}
+    	addDamageInformation(stack, worldIn, tooltip, flagIn);
+    }
+	
+	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+		return getActualDamage(stack, 1);
+
     }
 }
