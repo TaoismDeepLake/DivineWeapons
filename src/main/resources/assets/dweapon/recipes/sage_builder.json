@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        " B ",
+        "B#B",
+        " I "
+    ],
+    
+    "key":
+    {
+        "B":
+        {
+            "item": "minecraft:brick_block"
+        },
+        "#":
+        {
+            "item": "minecraft:iron_sword"
+        },
+        "I":
+        {
+            "item": "dweapon:weapon_handle"
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "dweapon:sage_builder",
+        "count": 1
+    }
+}

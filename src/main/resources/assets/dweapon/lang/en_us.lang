@@ -6,8 +6,8 @@ itemGroup.DWeaponWeaponTab=Divine Weapons
 tile.divine_ore.name=Divine Ore
 
 
+item.weapon_handle.name=Weapon Handle
 
-//item.sealed_sword.name=Coated Weapon
 item.sealed_weapon.name=Weapon Coming into Shape
 item.heirloom.name=Heirloom
 

@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        " B ",
+        " # ",
+        " I "
+    ],
+    
+    "key":
+    {
+        "B":
+        {
+            "item": "minecraft:gold_block"
+        },
+        "#":
+        {
+            "item": "minecraft:gold_ingot"
+        },
+        "I":
+        {
+            "item": "dweapon:weapon_handle"
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "gold_sword",
+        "count": 1
+    }
+}

@@ -1,12 +1,13 @@
 itemGroup.DWeaponMainTab=神兵
 itemGroup.DWeaponMiscTab=神兵杂物
 itemGroup.DWeaponWeaponTab=神兵
+
 //Blocks
 tile.divine_ore.name=神铁矿
 
 
+item.weapon_handle.nam=神兵骨架
 
-//item.sealed_sword.name=未拆封神兵
 item.sealed_weapon.name=未拆封神兵
 item.heirloom.name=传家宝
 

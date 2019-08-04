@@ -76,6 +76,8 @@ public class ModItems {
 	public static final DGoldSword GOLD_SWORD = new DGoldSword("gold_sword", TOOL_MATERIAL_DIVINE);
 	
 	public static final DFutureSword FURTUE_SWORD = new DFutureSword("future_sword", TOOL_MATERIAL_DIVINE);
+	
+	public static final Item WEAPON_HANDLE = new ItemBase("weapon_handle");
 	//public static final Item ANGEL_STATUE = new ItemBase("angel_statue");
 	
 	//public static final ItemSword COPPER_SWORD = new ToolSword("copper_sword", MATERIAL_COPPER);

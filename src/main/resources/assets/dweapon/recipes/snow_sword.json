@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        " S ",
+        " S ",
+        " I "
+    ],
+    
+    "key":
+    {
+        "S":
+        {
+            "item": "minecraft:snow"
+        },
+        "I":
+        {
+            "item": "dweapon:weapon_handle"
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "dweapon:snow_sword",
+        "count": 1
+    }
+}
