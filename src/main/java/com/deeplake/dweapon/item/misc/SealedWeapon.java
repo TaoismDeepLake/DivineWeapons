@@ -43,6 +43,7 @@ enum WeaponIndex{
 	SNOW_INDEX,
 	POWER_TRIANGLE_INDEX,
 	GOLD_INDEX,
+	TRUENAME_INDEX,
 	LAST,
 }
 
@@ -170,6 +171,7 @@ public class SealedWeapon extends ItemBase {
 		factor[WeaponIndex.SNOW_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.POWER_TRIANGLE_INDEX.ordinal()] = 9;
 		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 6;
+		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
 		
 		int factorSum = 0;
 		
@@ -218,6 +220,9 @@ public class SealedWeapon extends ItemBase {
 			break;
 		case GOLD_INDEX:
 			result = new ItemStack(ModItems.GOLD_SWORD);
+			break;
+		case TRUENAME_INDEX:
+			result = new ItemStack(ModItems.TRUE_NAME_SWORD);
 			break;
 		default:
 			result = new ItemStack(Items.IRON_SWORD);
