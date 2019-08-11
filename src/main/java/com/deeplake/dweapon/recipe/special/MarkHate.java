@@ -41,7 +41,7 @@ public class MarkHate extends IForgeRegistryEntry.Impl<IRecipe> implements IReci
 		for(int i = 0; i < var1.getSizeInventory(); i++) {
 			ItemStack stack = var1.getStackInSlot(i);
 			if(!stack.isEmpty()) {
-				if(stack.getItem() instanceof DTrueNameSword ||stack.getItem() instanceof DFutureSword)
+				if(stack.getItem() instanceof DTrueNameSword)
 				{
 					if (foundSword) {
 						//DWeapons.logger.warn("Found more than 1 sword");

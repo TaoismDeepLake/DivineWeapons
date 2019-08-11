@@ -29,6 +29,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -46,6 +47,8 @@ import net.minecraft.util.text.TextFormatting;
 //import net.minecraft.util.text.translation.I18n;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -659,5 +662,38 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		boolean base = super.getIsRepairable(stack, repairMaterial);
     	
 		return !isEnchantedBook && isDivineIngot;
+	}
+    
+    ///Weather related
+    public float GetTemperatureHere(EntityPlayerMP playerMP)
+	{
+		BlockPos pos = playerMP.getPosition();
+		World world = playerMP.getEntityWorld();
+		Biome biome = world.getBiomeForCoordsBody(pos);
+		return biome.getTemperature(pos);
+	}
+	
+	public boolean CanSnowHere(EntityPlayerMP playerMP)
+	{
+		return (GetTemperatureHere(playerMP) < 0.15f);
+	}
+	
+	public boolean CanRainHere(EntityPlayerMP playerMP)
+	{
+		return (GetTemperatureHere(playerMP) > 0.15f) && (GetTemperatureHere(playerMP) < 0.95f);
+	}
+	
+	public boolean IsSnowingHere(EntityPlayerMP playerMP)
+	{
+		WorldInfo worldInfo = playerMP.mcServer.worlds[0].getWorldInfo();
+		boolean raining = worldInfo.isRaining();
+		return CanSnowHere(playerMP) && raining;
+	}
+	
+	public boolean IsRainingHere(EntityPlayerMP playerMP)
+	{
+		WorldInfo worldInfo = playerMP.mcServer.worlds[0].getWorldInfo();
+		boolean raining = worldInfo.isRaining();
+		return !CanSnowHere(playerMP) && raining;
 	}
 }

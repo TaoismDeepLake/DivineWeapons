@@ -176,7 +176,7 @@ public class DSnowSword extends DWeaponSwordBase {
 	                {
 	                	playerMP.world.setBlockState(blockpos, Blocks.SNOW_LAYER.getDefaultState());
 	                }
-	            }
+	            } 
 			}
 			
 			
@@ -289,25 +289,7 @@ public class DSnowSword extends DWeaponSwordBase {
 		
 	}
 	
-	public float GetTemperatureHere(EntityPlayerMP playerMP)
-	{
-		BlockPos pos = playerMP.getPosition();
-		World world = playerMP.getEntityWorld();
-		Biome biome = world.getBiomeForCoordsBody(pos);
-		return biome.getTemperature(pos);
-	}
 	
-	public boolean CanSnowHere(EntityPlayerMP playerMP)
-	{
-		return (GetTemperatureHere(playerMP) < 0.15f);
-	}
-	
-	public boolean IsSnowingHere(EntityPlayerMP playerMP)
-	{
-		WorldInfo worldInfo = playerMP.mcServer.worlds[0].getWorldInfo();
-		boolean raining = worldInfo.isRaining();
-		return CanSnowHere(playerMP) && raining;
-	}
 	
 	@Nonnull
 	@Override

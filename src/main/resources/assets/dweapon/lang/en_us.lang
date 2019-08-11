@@ -277,16 +277,15 @@ item.future_sword.name=Sword from Future
 item.future_sword.hidden=Conceptional Sword
 
 item.future_sword.shared_desc=[????]Deals extra damage to creatures with a specific name. Use paper to change the name. 
-item.future_sword.sky_desc=10x damage to %s. 
-item.future_sword.earth_desc=5x damage to %s.
-item.future_sword.normal_desc=2x damage to %s.
+item.future_sword.sky_desc=... 
+item.future_sword.earth_desc=...
+item.future_sword.normal_desc=...
 
 item.future_sword.damage_desc=Base Damage : %s
 
 item.future_sword.manual_title=Sword from Future
 item.future_sword.manual_author=Taoism DeepLake
-item.future_sword.manual_page_count=4
+item.future_sword.manual_page_count=2
 item.future_sword.manual_page_1=  This sword's power changes from time to time. It heralds a weapon coming in the future.
-item.future_sword.manual_page_2=  Currently, you can rename a paper at an anvil to make a "judgement". Combine the judgement to the sword, and the sword will remember the name. It will deal extra damage to creatures with that name. Try "Zombie" first.
-item.future_sword.manual_page_3=  Note that in servers you may need to name the mob in the server's lang.
-item.future_sword.manual_page_4=  Base damage is (5 + pearl). Earth rank deal 2x damage, Sky rank deal 5x damage. Name-match damage multiplier is 2,5,10 for man-made, earth, and sky. 
+item.future_sword.manual_page_2=  Currently, its about water.
+
