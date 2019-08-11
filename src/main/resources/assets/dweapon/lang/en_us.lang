@@ -254,6 +254,25 @@ item.gold_sword.manual_page_8=He grabbed the sword as soon as I finished - and s
 item.gold_sword.manual_page_9=I took my work back and laughed painfully. Charm protected me from physical damage, but it killed me to learn not to give my power and trust away to random poor, even they cried for help.  And I will try form other than sword. 
 
 //---------------
+item.true_name_sword.name=Sword with A Name
+item.true_name_sword.hidden=Name Nemesis
+
+item.true_name_sword.shared_desc=[NAmesis]Deals extra damage to creatures with a specific name. Use renamed paper to change the name. 
+item.true_name_sword.sky_desc=10x damage to %s. 
+item.true_name_sword.earth_desc=5x damage to %s.
+item.true_name_sword.normal_desc=2x damage to %s.
+
+item.true_name_sword.damage_desc=Base Damage : %s
+
+item.true_name_sword.manual_title=Name Nemesis
+item.true_name_sword.manual_author=Taoism DeepLake
+item.true_name_sword.manual_page_count=4
+item.true_name_sword.manual_page_1=  \"A terrible mistake. Names are powerful seals.\"\n\n--Geralt of Rivia
+item.true_name_sword.manual_page_2=  First you rename a paper at an anvil to make a "judgement". Combine the judgement to the sword, and the sword will remember the name. It will deal extra damage to creatures with that name. Try "Zombie" first.
+item.true_name_sword.manual_page_3=  Note that in servers you may need to name the mob in the server's language.
+item.true_name_sword.manual_page_4=  Base damage is (5 + pearl). Earth rank deal 2x damage, Sky rank deal 5x damage. Name-match damage multiplier is 2,5,10 for man-made, earth, and sky. 
+
+//---------------
 item.future_sword.name=Sword from Future
 item.future_sword.hidden=Conceptional Sword
 
