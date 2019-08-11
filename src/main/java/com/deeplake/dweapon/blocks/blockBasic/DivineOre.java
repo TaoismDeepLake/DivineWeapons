@@ -1,7 +1,8 @@
-package com.deeplake.dweapon.blocks;
+package com.deeplake.dweapon.blocks.blockBasic;
 
 import java.util.Random;
 
+import com.deeplake.dweapon.blocks.BlockBase;
 import com.deeplake.dweapon.init.ModItems;
 
 import net.minecraft.block.SoundType;
