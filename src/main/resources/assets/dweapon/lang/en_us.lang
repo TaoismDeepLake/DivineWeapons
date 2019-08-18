@@ -4,15 +4,16 @@ itemGroup.DWeaponWeaponTab=Divine Weapons
 
 //Blocks
 tile.divine_ore.name=Divine Ore
-
+tile.pure_ore.name=Pure Ore
 
 item.weapon_handle.name=Weapon Handle
 
 item.sealed_weapon.name=Weapon Coming into Shape
 item.heirloom.name=Heirloom
 
-item.weapon_pearl.name=Divine Pearl
+item.weapon_pearl.name=Pure Pearl
 item.divine_ingot.name=Divine Ingot
+item.pure_ingot.name=Pure Ingot
 item.sky_charm.name=Charm of Sky
 item.earth_charm.name=Charm of Earth
 
@@ -46,22 +47,22 @@ starter.manual_page_1=Greetings, {PlayerName}. \n  I am world artisan Taoism Dee
 
 starter.manual_page_2=Dig down.\nSmelt it.\nCraft it into a sword.\nOpen the package.\nBooks for identifying.\nPearls for enhancement.\nCharms for rank up.\nWith a Sky Weapon, you will see power.
 
-starter.manual_page_3=  Dig down into where you would usually find diamond ores, and with luck, you will see some glowing colorful ores. Don't use TNT to blow it, although I don't have a good reason. \n
+starter.manual_page_3=  Where you would find iron ore, there are Pure Ore nearby. Where you would find diamond ore, There are colorful bright Divine Ore nearby. \n
 
-starter.manual_page_4=  Bring diamond pickaxe to mine them, and just smelt them like iron ores. The beautiful ingots you get are Divine Ingots, which comes to shape at its own will. As \"beautiful\" is an objective word, you make found it not so pretty, it's ok.
+starter.manual_page_4=  Iron pickaxe for Pure and diamond for Divine. Just smelt them like iron ores. The beautiful ingots you get are Divine Ingots, which comes to shape at its own will. As \"beautiful\" is an objective word, you make found it not so pretty, it's ok.
 
 starter.manual_page_5=  Two ingots plus a wood stick are enough let the spell work, just craft it as if creating any other sword.
 starter.manual_page_6=  You will get the blade coming into shape, consider it a package. Touch it with your right hand (right click) to see what the ingots decides to become. There are many possible results.
 
 starter.manual_page_7=  The weapons you get doesn't recognize you, and vice versa. Give them a book, and they will introduce themselves to you. If you lost that book, or just enjoy listening to your weapon, you can do it multiple times. They will not get bored of self-introductions.
 
-starter.manual_page_8=  The Divine Ingots are quite flexible, and you can smelt it again. What you get are Divine Pearls. Each weapon can socket up to 5 pearls. The pearls boosts the weapon.
+starter.manual_page_8=  The Pure Ingots are quite flexible, and you can smelt it again. What you get are Pure Pearls. Most weapon can socket up to 5 pearls. The pearls boosts the weapon in different ways.
 
-starter.manual_page_9=   I I\n    A\n   I I\n  The ingots like anvils. Build 4 ingots into an anvil's corner, you will get an Earth Charm, which are more powerful than 4 pearls.\n  Put the charm onto the divine weapon you craft, and see how the weapon grows stronger. It's more than an \"Earth\" mark in their name. 
+starter.manual_page_9=   I I\n    A\n   I I\n  The ingots like anvils. Build 4 ingots into an anvil's corner, you will get an Earth Charm.\n  Put the charm onto the divine weapon you craft, and see how the weapon grows stronger. It's more than an \"Earth\" mark in their name. 
 
 starter.manual_page_10=   GDG\n   DCD\n   GDG\n  Earth weapons are capable of entering their final form - Sky Weapon. Behold your weapon's true power.\n  Earth Charms can absorb 4 gold block plus 4 diamond block to grow into Sky Charms. Remember, only weapons enhanced into Earth Level can endure Sky power. 
 
-starter.manual_page_11=  You can let any divine ingot write this book by crafting them together.\n  Last but not the least, a spell of blessing is enclosed.
+starter.manual_page_11=  You can let any Pure or Divine ingot write this book by crafting them together.\n  Last but not the least, a spell of blessing is enclosed.
 starter.manual_page_12=Future shifts, Divine watchs
 
 //-------------

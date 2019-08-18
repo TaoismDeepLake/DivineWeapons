@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "  I",
+        "  I",
+        "  S"
+    ],
+    
+    "key":
+    {
+        "I":
+        {
+            "item": "dweapon:divine_ingot"
+        },
+        "S":
+        {
+            "item": "minecraft:stick"
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "dweapon:sealed_weapon",
+        "count": 1
+    }
+}

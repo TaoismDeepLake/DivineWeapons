@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "P P",
+        " G ",
+        "P P"
+    ],
+    
+    "key":
+    {
+        "P":
+        {
+            "item": "dweapon:pure_ingot"
+        },
+        "G":
+        {
+            "item": "minecraft:gold_ingot"
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "dweapon:divine_ingot",
+        "count": 2
+    }
+}

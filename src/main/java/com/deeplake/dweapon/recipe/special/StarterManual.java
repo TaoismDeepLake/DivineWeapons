@@ -21,7 +21,12 @@ public class StarterManual extends IForgeRegistryEntry.Impl<IRecipe> implements 
 
 	private String bookName = Items.BOOK.getUnlocalizedName();
 	private String ingotName = ModItems.DIVINE_INGOT.getUnlocalizedName();
-	
+	private String ingotName2 = ModItems.PURE_INGOT.getUnlocalizedName();
+
+	private boolean IsIngot(String str){
+		return str.equals(ingotName2) ||  str.equals(ingotName);
+	}
+
 	
 	@Override
 	public boolean isDynamic() {
@@ -40,7 +45,7 @@ public class StarterManual extends IForgeRegistryEntry.Impl<IRecipe> implements 
 		for(int i = 0; i < var1.getSizeInventory(); i++) {
 			ItemStack stack = var1.getStackInSlot(i);
 			if(!stack.isEmpty()) {
-				if(stack.getItem().getUnlocalizedName(stack).equals(ingotName))
+				if(IsIngot(stack.getItem().getUnlocalizedName(stack)))
 				{
 					if (foundSword) {
 						//DWeapons.logger.warn("Found more than 1 sword");

@@ -28,7 +28,7 @@ public class ModBlocks {
 	//public static final Block BUFF_BLOCK_1 = new BuffBlock("buff_block_1", Material.IRON);
 	
 	public static final DivineOre DIVINE_ORE = new DivineOre("divine_ore", Material.ROCK);
-	public static final PureOre PURE_ORE = new PureOre("divine_ore", Material.ROCK);
+	public static final PureOre PURE_ORE = new PureOre("pure_ore", Material.ROCK);
 	//public static final BlockEarthMender EARTH_MENDER = new BlockEarthMender("earth_mender_basic", Material.ROCK);
 	
 
