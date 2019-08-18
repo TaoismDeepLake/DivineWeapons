@@ -15,7 +15,6 @@ public class DivineOre extends BlockBase {
 
 	public DivineOre(String name, Material material) {
 		super(name, material);
-		// TODO Auto-generated constructor stub
 		
 		setSoundType(SoundType.METAL);
 		setHardness(5.0F);
@@ -31,8 +30,6 @@ public class DivineOre extends BlockBase {
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return super.getItemDropped(state, rand, fortune);
-		//return Items.ACACIA_BOAT
-		//return ModItems.ANGEL_STATUE;
 	}
 	
 	@Override
