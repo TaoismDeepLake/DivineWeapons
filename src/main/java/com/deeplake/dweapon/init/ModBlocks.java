@@ -6,6 +6,7 @@ import java.util.List;
 import com.deeplake.dweapon.blocks.blockBasic.BlockEarthMender;
 import com.deeplake.dweapon.blocks.blockBasic.DivineOre;
 
+import com.deeplake.dweapon.blocks.blockBasic.PureOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -27,6 +28,7 @@ public class ModBlocks {
 	//public static final Block BUFF_BLOCK_1 = new BuffBlock("buff_block_1", Material.IRON);
 	
 	public static final DivineOre DIVINE_ORE = new DivineOre("divine_ore", Material.ROCK);
+	public static final PureOre PURE_ORE = new PureOre("divine_ore", Material.ROCK);
 	//public static final BlockEarthMender EARTH_MENDER = new BlockEarthMender("earth_mender_basic", Material.ROCK);
 	
 

@@ -25,18 +25,21 @@ public class ModRecipes {
 	public static void Init() {
 		//Only smelting recipes
 		//only need to add here
-		GameRegistry.addSmelting(ModItems.DIVINE_INGOT,
+		GameRegistry.addSmelting(ModItems.PURE_INGOT,
 				new ItemStack(ModItems.WEAPON_PEARL),  
 				0.1f);
 	
 		GameRegistry.addSmelting(ModItems.WEAPON_PEARL,
-				new ItemStack(ModItems.DIVINE_INGOT),  
+				new ItemStack(ModItems.PURE_INGOT),
 				0.1f);
 		
 		GameRegistry.addSmelting(ModBlocks.DIVINE_ORE,
 				new ItemStack(ModItems.DIVINE_INGOT),  
+				6f);
+
+		GameRegistry.addSmelting(ModBlocks.PURE_ORE,
+				new ItemStack(ModItems.PURE_INGOT),
 				3f);
-		
 		
 	}
 	

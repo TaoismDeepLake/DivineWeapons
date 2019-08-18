@@ -209,14 +209,12 @@ public class DSageBuilder extends DWeaponSwordBase {
     	int entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(target, target.add(1, 1, 1))).size();
     	boolean noEntities = entities == 0;
     	
-		if (
-				(topBlock.getBlock() == Blocks.AIR 
-				|| (topBlock.getBlock().isReplaceable(worldIn, target)))
+		if ((topBlock.getBlock() == Blocks.AIR 	|| (topBlock.getBlock().isReplaceable(worldIn, target)))
 			&& noEntities)
 		{
 			if (!worldIn.isRemote) 
 	    	{
-	    		worldIn.setBlockState(pos.up(), getBlockToPlace(stack));
+	    		worldIn.setBlockState(target, getBlockToPlace(stack));
 	    		
 	    		Random rand = new Random();
 	    		if (!IsSky(stack) || rand.nextInt(GetPearlCount(stack) + 1) == 0)

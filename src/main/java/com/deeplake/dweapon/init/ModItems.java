@@ -59,6 +59,7 @@ public class ModItems {
 	
 	public static final ItemBase WEAPON_PEARL = new ItemBase("weapon_pearl");
 	public static final ItemBase DIVINE_INGOT = new ItemBase("divine_ingot");
+	public static final ItemBase PURE_INGOT = new ItemBase("pure_ingot");
 	//public static final ItemBase DIVINE_ANVIL = new ItemBase("divine_anvil");
 	public static final ItemBase SKY_CHARM = new ItemBase("sky_charm");
 	public static final ItemBase EARTH_CHARM = new ItemBase("earth_charm");
@@ -80,9 +81,6 @@ public class ModItems {
 	public static final DFutureSword FURTUE_SWORD = new DFutureSword("future_sword", TOOL_MATERIAL_DIVINE);
 	
 	public static final Item WEAPON_HANDLE = new ItemBase("weapon_handle");
-	//public static final Item ANGEL_STATUE = new ItemBase("angel_statue");
-	
-	//public static final ItemSword COPPER_SWORD = new ToolSword("copper_sword", MATERIAL_COPPER);
 	
 	//public static final Item COPPER_HELMET = new ArmorBase("copper_helmet", ARMOR_MATERIAL_COPPER, 1, EntityEquipmentSlot.HEAD);
 	
