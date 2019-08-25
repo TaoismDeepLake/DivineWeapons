@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "GDG",
+        "D D",
+        "GDG"
+    ],
+    
+    "key":
+    {
+        "D":
+        {
+            "item": "dweapon:divine_ingot"
+        },
+        "G":
+        {
+            "item": "minecraft:gold_ingot"
+        }
+        
+    },
+    
+    "result":
+    {
+        "item": "dweapon:disarm_ring",
+        "count": 1
+    }
+}

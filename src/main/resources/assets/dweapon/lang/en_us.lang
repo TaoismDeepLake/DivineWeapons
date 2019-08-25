@@ -47,23 +47,23 @@ starter.manual_page_1=Greetings, {PlayerName}. \n  I am world artisan Taoism Dee
 
 starter.manual_page_2=Dig down.\nSmelt it.\nCraft it into a sword.\nOpen the package.\nBooks for identifying.\nPearls for enhancement.\nCharms for rank up.\nWith a Sky Weapon, you will see power.
 
-starter.manual_page_3=  Where you would find iron ore, there are Pure Ore nearby. Where you would find diamond ore, There are colorful bright Divine Ore nearby. \n
+starter.manual_page_3=  Where you would find iron ore, there is Pure Ore nearby. Where you would find diamond ore, There are colorful bright Divine Ore nearby. \n
 
-starter.manual_page_4=  Iron pickaxe for Pure and diamond for Divine. Just smelt them like iron ores. The beautiful ingots you get are Divine Ingots, which comes to shape at its own will. As \"beautiful\" is an objective word, you make found it not so pretty, it's ok.
+starter.manual_page_4=  Take an iron pickaxe for Pure and diamond for Divine. Just melt them like iron ores. The beautiful ingots you get are Divine Ingots, which comes to shape at its own will. As \"beautiful\" is an objective word, you make found it not so pretty, it's ok.
 
-starter.manual_page_5=  Two ingots plus a wood stick are enough let the spell work, just craft it as if creating any other sword.
-starter.manual_page_6=  You will get the blade coming into shape, consider it a package. Touch it with your right hand (right click) to see what the ingots decides to become. There are many possible results.
+starter.manual_page_5=  Two ingots plus a wood stick are enough to let the spell work, just craft it as if creating any other sword.
+starter.manual_page_6=  You will get the blade coming into shape, consider it a package. Touch it with your right hand (right-click) to see what the ingots decide to become. There are many possible results.
 
-starter.manual_page_7=  The weapons you get doesn't recognize you, and vice versa. Give them a book, and they will introduce themselves to you. If you lost that book, or just enjoy listening to your weapon, you can do it multiple times. They will not get bored of self-introductions.
+starter.manual_page_7=  The weapons you get doesn't recognize you, and vice versa. Give them a book, and they will introduce themselves to you. If you lost that book, or just enjoy listening to your weapon, you can do it multiple times. They will not get bored with self-introductions.
 
-starter.manual_page_8=  The Pure Ingots are quite flexible, and you can smelt it again. What you get are Pure Pearls. Most weapon can socket up to 5 pearls. The pearls boosts the weapon in different ways.
+starter.manual_page_8=  The Pure Ingots are quite flexible, and you can smelt it again. What you get are Pure Pearls. Most weapons can socket up to 5 pearls. The pearls boost the weapon in different ways.
 
 starter.manual_page_9=   I I\n    A\n   I I\n  The ingots like anvils. Build 4 ingots into an anvil's corner, you will get an Earth Charm.\n  Put the charm onto the divine weapon you craft, and see how the weapon grows stronger. It's more than an \"Earth\" mark in their name. 
 
-starter.manual_page_10=   GDG\n   DCD\n   GDG\n  Earth weapons are capable of entering their final form - Sky Weapon. Behold your weapon's true power.\n  Earth Charms can absorb 4 gold block plus 4 diamond block to grow into Sky Charms. Remember, only weapons enhanced into Earth Level can endure Sky power. 
+starter.manual_page_10=   GDG\n   DCD\n   GDG\n  Earth weapons are capable of entering their final form - Sky Weapon. Behold your weapon's true power.\n  Earth Charms can absorb 4 gold blocks plus 4 diamond blocks to grow into Sky Charms. Remember, only weapons enhanced into Earth Level can endure Sky's power. 
 
-starter.manual_page_11=  You can let any Pure or Divine ingot write this book by crafting them together.\n  Last but not the least, a spell of blessing is enclosed.
-starter.manual_page_12=Future shifts, Divine watchs
+starter.manual_page_11=  You can let any Pure or Divine ingot write this book by crafting them together.\n  Last but not least, a spell of blessing is enclosed.
+starter.manual_page_12=Future shifts, Divine watches
 
 //-------------
 item.blood_sword.name=Bloodburst
@@ -109,9 +109,9 @@ item.death_sword.manual_page_count=4
 item.death_sword.manual_page_1=Sometimes you die. Death is a valid conception, no matter how strong.
 item.death_sword.manual_page_2=Pawns can be slain easily, but consider a monster with 25535 health, what can your enchanted diamond sword do with it? Have you faced monsters with infinite health? I do. 
 item.death_sword.manual_page_3=A sudden death for them is the solution, sudden death by INFINITE damage dealt. This is too powerful to be abused, so I bind it to the victims' fate. Stronger ones have a stronger fate to put out.  
-item.death_sword.manual_page_4=With its full power released, it will kill targets at 100%% rate, but with a curse on it to kill its wielder at chance, so no tyrants can destroy the whole world with it, unless they... 
+item.death_sword.manual_page_4=With its full power released, it will kill targets at 100%% rate, but with a curse on it to kill its wielder at the chance, so no tyrants can destroy the whole world with it unless they... 
 //-------------
-item.space_affinity_sword.name=Space Flunctuation
+item.space_affinity_sword.name=Space Fluctuation
 item.space_affinity_sword.hidden=Some Unstable Sword
 
 item.space_affinity_sword.shared_desc=[Fourier Affinity] Damage is related to coordinates
@@ -120,13 +120,13 @@ item.space_affinity_sword.earth_desc=Damage is Max(x%%16, y%%16, z%%16, %s), Hol
 item.space_affinity_sword.normal_desc=Damage is Max(x%%16, y%%16, z%%16, %s)
 item.space_affinity_sword.damage_desc=Average Damage : %s
 
-item.space_affinity_sword.manual_title=Space Flunctuation
+item.space_affinity_sword.manual_title=Space Fluctuation
 item.space_affinity_sword.manual_author=Taoism DeepLake
 item.space_affinity_sword.manual_page_count=7
 item.space_affinity_sword.manual_page_1=This is also called the Space Affinity Sword.
 item.space_affinity_sword.manual_page_2=I traveled many worlds, met many fools before coming across this little girl. Not very beautiful, not strong, nor swift, but clever and sensible. So I make another attempt.
-item.space_affinity_sword.manual_page_3=She has never heard of Cartesian coordinates, but when I explain the xyz thing, she gets the basic point. She considered it interesting but purly imaginative, and asked how I come up such a complicated thing. 
-item.space_affinity_sword.manual_page_4=I taught her to look in the eye of F3. After a few attempts, she managed and surprised at the flood of information she had been blind to. I also taught her to turn off this sight to prevent mind overloading. 
+item.space_affinity_sword.manual_page_3=She has never heard of Cartesian coordinates, but when I explain the XYZ thing, she gets the basic point. She considered it interesting but purely imaginative, and asked how I come up with such a complicated thing. 
+item.space_affinity_sword.manual_page_4=I taught her to look in the eye of F3. After a few attempts, she managed and surprised at the flood of information she had been blind to. I also taught her to turn off this sight to prevent the mind from overloading. 
 item.space_affinity_sword.manual_page_5=She also managed to understand basic arithmetic. Finally found a worthy one, I take out my gift. A blade that deals damage based on the coordinates. Max(x%%16, y%%16, z%%16, pearl_count).
 item.space_affinity_sword.manual_page_6=I told her the formula so she can max out the damage when needed and make harmless touches when practicing with others. \"Now try focusing your mind on it.\" I said and she did so. 
 item.space_affinity_sword.manual_page_7=\"Now relax your mind.\" I smiled as she vanished. The sword teleported her home. Now she will find her "position" with her stronger and faster mates. She will one day develops her skill to Max(x%%128, y%%128, z%%128, 16).
@@ -171,7 +171,7 @@ item.sage_builder.manual_page_1=The King Wu Ding got a decaying dynasty when he 
 item.sage_builder.manual_page_2=The King called painters to draw figures from the dream and searched the country. A prisoner named Yue was found. It was said he was a sage at first, but poverty made him live in prisons and make a living as a construction worker.
 item.sage_builder.manual_page_3=The King talked with him and considered him as the sage in the dream. The sage helped the King to build a prosperous dynasty. 
 item.sage_builder.manual_page_4=Fu Yue Shovel is just inspired by the story. You can build with it. Some construction today, some dynasty in the future.
-item.sage_builder.manual_page_5=When this building tool find its true master, it can transform into a sword, which stands as Wu Ding.
+item.sage_builder.manual_page_5=When this building tool finds its true master, it can transform into a sword, which stands as Wu Ding.
 
 //-------------
 item.snow_sword.name=Forged in Snow
@@ -187,9 +187,9 @@ item.snow_sword.manual_title=Forged in Snow
 item.snow_sword.manual_author=Taoism DeepLake
 item.snow_sword.manual_page_count=5
 item.snow_sword.manual_page_1=Can you catch a snowflake with your sword? I have heard of monks who can catch a blizzard.
-item.snow_sword.manual_page_2=This Snow Sword, or Forged in Snow, is a condensed blizzard. It's cold, and due to its nature, it works really well in cold places.
+item.snow_sword.manual_page_2=This Snow Sword, or Forged in Snow, is a condensed blizzard. It's cold, and due to its nature, it works well in cold places.
 item.snow_sword.manual_page_3=Since it's Forged in Snow and forged with snow, you need only snow blocks to repair it. What's more, it catches the blizzard to replenish itself. 
-item.snow_sword.manual_page_4=Snowballs are crtical to blazes. Snow swords, however, if forged poorly, will only melt in the hot temperature of nether. Best forged ones cut in hot deserts just like snowballs on blazes, and summons snowstorms in cold places. 
+item.snow_sword.manual_page_4=Snowballs are critical to blazes. Snow swords, however, if forged poorly, will only melt in the hot temperature of nether. Best forged ones cut in hot deserts just like snowballs on blazes, and summons snowstorms in cold places. 
 item.snow_sword.manual_page_5=Snowmans leave a snow trail when moving but only in cold places. Maybe when you become a snowman, so will you.
 //---------------
 item.power_triangle.name=Triangle of Power
@@ -219,16 +219,16 @@ item.power_triangle.damage_desc=Attack Damage : %s
 item.power_triangle.manual_title=Triangle of Power
 item.power_triangle.manual_author=Taoism DeepLake
 item.power_triangle.manual_page_count=10
-item.power_triangle.manual_page_1=Hold RMB to switch between Attack, Defense and Speed Mode. Pearls reduces mode cooldown and attack mode damage.
-item.power_triangle.manual_page_2=I once met a little triangle, or a little boy, called Tico. In his world, geometric creatures are common.
-item.power_triangle.manual_page_3=He had a interesting ability, which allowed him to transmute his health to mana, mana to aura, aura to health. He can not recover health and mana directly, but can do so with aura. 
-item.power_triangle.manual_page_4=Therefore, when he is hurt, he transmutes his aura to health, and he is good as new. With a few transmutation, he will be at full status. In other words, status regnerates in turn.
-item.power_triangle.manual_page_5=So I will create a pendant to transmute experience, hunger and health likewise? No. 
-item.power_triangle.manual_page_6=I made something more straight forward: a pendant that can boost attack, defense and speed at choice, but only works in hand. I need a rest after making such a complicated whatnot. 
-item.power_triangle.manual_page_7=When it functions as a sword, it costs durabilty on hit. When it works as a field-generator, it evaporates to provide the energy needed. Turn it to attack mode to prevent this waste, or just don't hold it.
+item.power_triangle.manual_page_1=Hold RMB to switch between Attack, Defense and Speed Mode. Pearls reduce mode cooldown and attack mode damage.
+item.power_triangle.manual_page_2=I once met a little triangle, or a little boy called Tico. In his world, geometric creatures are common.
+item.power_triangle.manual_page_3=He had an interesting ability, which allowed him to transmute his health to mana, mana to his aura, aura to health. He can not recover health and mana directly but can do so with aura. 
+item.power_triangle.manual_page_4=Therefore, when he is hurt, he transmutes his aura to health, and he is good as new. With a few transmutations, he will be at full status. In other words, status regenerates in turn.
+item.power_triangle.manual_page_5=So I will create a pendant to transmute experience, hunger, and health likewise? No. 
+item.power_triangle.manual_page_6=I made something more straight forward: a pendant that can boost attack, defense and speed at choice, but only works in hand. I need a rest after making such complicated whatnot. 
+item.power_triangle.manual_page_7=When it functions as a sword, it costs durability on hit. When it works as a field-generator, it evaporates to provide the energy needed. Turn it to attack mode to prevent this waste, or just don't hold it.
 item.power_triangle.manual_page_8=I wished it can boost all three aspects, but such a container won't hold such strong divine power. I broke many prototypes to learn that. All I can do is to carry three and rapidly switch them between hands.
-item.power_triangle.manual_page_9=Then the idea hit me - what if I carry three of this at the same time? I tried a few methods, and finally succeeded after many tries. It no longer need to be held to function, and the divine power eliminated the evaporation.
-item.power_triangle.manual_page_10=Oh, it do regenerates health in defense mode. You don't feel any regeneration buff because the regen buff in this world simply won't work on this mechanic, so I make it regen in another way.
+item.power_triangle.manual_page_9=Then the idea hit me - what if I carry three of this at the same time? I tried a few methods and finally succeeded after many tries. It no longer needs to be held to function, and the divine power eliminated the evaporation.
+item.power_triangle.manual_page_10=Oh, it does regenerate health in defense mode. You don't feel any regeneration buff because the regen buff in this world simply won't work on this mechanic, so I make it regen in another way.
 
 //---------------
 item.gold_sword.name=Infinite Gold
@@ -245,20 +245,20 @@ item.gold_sword.manual_title=Infinite Gold
 item.gold_sword.manual_author=Taoism DeepLake
 item.gold_sword.manual_page_count=9
 item.gold_sword.manual_page_1=You may have heard of the story of a greedy king who likes gold.
-item.gold_sword.manual_page_2=That king loved gold and always wanted more. So a divine visited him, asked if he want everything he touch turns into gold. The king happily accepted the offer.
+item.gold_sword.manual_page_2=That the king loved gold and always wanted more. So a divine visited him, asked if he wants everything he touches turns into gold. The king happily accepted the offer.
 item.gold_sword.manual_page_3=It did not turn well at all. When he tried to drink, wine froze in the cup as gold. Food, no better. He even turned his daughter to gold.
-item.gold_sword.manual_page_4=This is just a absurd story claiming greed is not good. However, if you can get gold when you want and control this power, why not?
-item.gold_sword.manual_page_5=At first you get nuggets, then ingots, then blocks. So much of gold that you can build a castle with them. Just keep in mind your inventory is limited, and they are heavy.
+item.gold_sword.manual_page_4=This is just an absurd story claiming greed is not good. However, if you can get gold when you want and control this power, why not?
+item.gold_sword.manual_page_5=At first, you get nuggets, then ingots, block. So much of gold that you can build a castle with them. Just keep in mind your inventory is limited, and they are heavy.
 item.gold_sword.manual_page_6=I thought this will be fine until I saw a fool cutting his wife for the nuggets. Of course, given enough patience, the gold will be more than enough for medicine or magic to heal the wounds.
-item.gold_sword.manual_page_7=However the fool's greed grew and patience dwindled. Therefore I visited him, asked if he wanted the gold to come faster. Of course he agreed. I took my prototype and enhanced its power.
+item.gold_sword.manual_page_7=However the fool's greed grew and patience dwindled. Therefore I visited him, asked if he wanted the gold to come faster. Of course, he agreed. I took my prototype and enhanced its power.
 item.gold_sword.manual_page_8=He grabbed the sword as soon as I finished - and swung it at me. It landed. Meanwhile, a giant block of gold dropped out of nowhere and crushed his head. Pure gold contaminated by his foulness.
-item.gold_sword.manual_page_9=I took my work back and laughed painfully. Charm protected me from physical damage, but it killed me to learn not to give my power and trust away to random poor, even they cried for help.  And I will try form other than sword. 
+item.gold_sword.manual_page_9=I took my work back and laughed painfully. Charm protected me from physical damage, but it killed me to learn not to give my power and trust away to random poor, even they cried for help.  And I will try form other than the sword. 
 
 //---------------
-item.true_name_sword.name=Sword with A Name
-item.true_name_sword.hidden=Name Nemesis
+item.true_name_sword.name=Name Nemesis
+item.true_name_sword.hidden=Sword with A Name
 
-item.true_name_sword.shared_desc=[NAmesis]Deals extra damage to creatures with a specific name. Use renamed paper to change the name. 
+item.true_name_sword.shared_desc=[Name-sis]Deals extra damage to creatures with a specific name. Use renamed paper to change the name. 
 item.true_name_sword.sky_desc=10x damage to %s. 
 item.true_name_sword.earth_desc=5x damage to %s.
 item.true_name_sword.normal_desc=2x damage to %s.
@@ -303,8 +303,8 @@ item.disarm_ring.damage_desc=Base Damage : %s
 item.disarm_ring.manual_title=Lao-Tze Ring
 item.disarm_ring.manual_author=Taoism DeepLake
 item.disarm_ring.manual_page_count=5
-item.disarm_ring.manual_page_1=  This item is inspired by Journey to The West, a traditional Chinese novel. In Chapter 51, it depicts a minotaur with a magical ring which caused great trouble to the main character. 
-item.disarm_ring.manual_page_2=  The ring can take away all kinds of weapons from opponent, including wand, spear, stick and even magical sand. The ring originally belong to Lao-Tze.
-item.disarm_ring.manual_page_3=  I made a similar weapon. The prototype can disarms the target on hit. Right clicking can do it, too. To be exact, disarming means make the target drop item in main hand. Hold RMB can deflect arrows. 
-item.disarm_ring.manual_page_4=  When reinforced to earth level, the weapon will be drawn directly into your pocket, so opponent can't pick it up again.
-item.disarm_ring.manual_page_5=  When reinforced to sky level, arrows will be safely sucked into your pocket. Hold RMB will disarm all nearby non-player creature, and items in both hand will be taken.
+item.disarm_ring.manual_page_1=  This item is inspired by Journey to The West, a traditional Chinese novel. In Chapter 51, it depicts a minotaur with a magical ring that caused great trouble to the main character. 
+item.disarm_ring.manual_page_2=  The ring can take away all kinds of weapons from opponents, including wand, spear, stick and even magical sand. The ring originally belongs to Lao-Tze.
+item.disarm_ring.manual_page_3=  I made a similar weapon. The prototype can disarm the target on hit. Right-clicking can do it, too. To be exact, disarming means make the target drop item in the main hand. Hold RMB can deflect arrows. 
+item.disarm_ring.manual_page_4=  When reinforced to earth level, the weapon will be drawn directly into your pocket, so the opponent can't pick it up again.
+item.disarm_ring.manual_page_5=  When reinforced to sky level, arrows will be safely tucked into your pocket. Hold RMB will disarm all nearby non-player creatures, and items in both hands will be taken.

@@ -44,6 +44,7 @@ enum WeaponIndex{
 	POWER_TRIANGLE_INDEX,
 	GOLD_INDEX,
 	TRUENAME_INDEX,
+	DISARMER_INDEX,
 	LAST,
 }
 
@@ -156,25 +157,30 @@ public class SealedWeapon extends ItemBase {
 //		}
 //		return;
 	}
-	
+
+	protected int[] GetFactorGroup()
+	{
+		int count = WeaponIndex.LAST.ordinal();
+		int[] factor = new int[count];
+		factor[WeaponIndex.BLOOD_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.DEATH_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.SPACE_AF_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.BUILDER_INDEX.ordinal()] = 6;
+		factor[WeaponIndex.SNOW_INDEX.ordinal()] = 6;
+		factor[WeaponIndex.POWER_TRIANGLE_INDEX.ordinal()] = 6;
+		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 6;
+		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = 10;
+		return  factor;
+	}
+
 	public ItemStack GetRandomWeapon()
 	{
 		ItemStack result;
 		
 		int count = WeaponIndex.LAST.ordinal();
-		int[] factor = new int[count];
-		
-		factor[WeaponIndex.BLOOD_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.DEATH_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.SPACE_AF_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.BUILDER_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.SNOW_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.POWER_TRIANGLE_INDEX.ordinal()] = 9;
-		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 6;
-		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
-		
+		int[] factor = GetFactorGroup();
 		int factorSum = 0;
-		
 		for (int i = 0; i < count; i++)
 		{
 			factorSum += factor[i];
@@ -223,6 +229,9 @@ public class SealedWeapon extends ItemBase {
 			break;
 		case TRUENAME_INDEX:
 			result = new ItemStack(ModItems.TRUE_NAME_SWORD);
+			break;
+		case DISARMER_INDEX:
+			result = new ItemStack(ModItems.DISARM_RING);
 			break;
 		default:
 			result = new ItemStack(Items.IRON_SWORD);

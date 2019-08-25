@@ -41,7 +41,23 @@ public class Heirloom extends SealedWeapon {
 		ModItems.ITEMS.add(this);
 		//This item will not be obtainable from the creation inventory.
 	}
-	
+
+	protected int[] GetFactorGroup()
+	{
+		int count = WeaponIndex.LAST.ordinal();
+		int[] factor = new int[count];
+		factor[WeaponIndex.BLOOD_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.DEATH_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.SPACE_AF_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.BUILDER_INDEX.ordinal()] = 3;
+		factor[WeaponIndex.SNOW_INDEX.ordinal()] = 3;
+		factor[WeaponIndex.POWER_TRIANGLE_INDEX.ordinal()] = 3;
+		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 3;
+		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = 10;
+		return  factor;
+	}
+
 	@Nonnull
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {

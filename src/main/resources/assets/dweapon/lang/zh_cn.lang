@@ -47,9 +47,9 @@ starter.manual_page_2=下去挖矿。\n烧炼之。\n合成为剑。\n拆封。\
 
 starter.manual_page_3=在铁深度可见白色洁铁矿，以铁镐挖之；\n在钻石的深度可见五彩光亮的神铁矿，以钻石镐挖之。\n然后，像铁一样熔炼它们。所得产物非常漂亮。\n你说并不漂亮？好吧，随你，不关键。
 
-starter.manual_page_4=两神铁锭、一木棍就能开始干活了，跟合成别的剑一样。所得的是即将成型的神兵，你可以理解为一个包裹。你应该已经有一件了，就是那个传家宝。右手抚摸（右键）它，它就会成型，成型的结果有很多种。在生存模式下进行，创造模式下它不怎么有成型的意愿。
+starter.manual_page_4=两神铁锭、一木棍就能开始干活了，跟合成别的剑一样。所得的是即将成型的神兵，你可以理解为一个包裹。你应该已经有一件了，就是那个传家宝。右手抚摸（右键）它，它就会成型，成型的结果有很多种。在生存模式下进行，创造模式下它不太愿意成型。
 
-starter.manual_page_5=你和这兵器萍水相逢。给他们本书，他们便会做自我介绍。如果你把写有说明书搞丢了，或者就单纯是喜欢听神兵自我介绍，可以重新合成。神兵会不厌其烦地自我介绍。
+starter.manual_page_5=你和这兵器萍水相逢。给他们本书，他们便会做自我介绍。如果你把写有说明书的搞丢了，或者就单纯是喜欢听神兵自我介绍，可以重新合成。神兵会不厌其烦地自我介绍。
 starter.manual_page_6=洁铁锭很可塑，你可以把锭再烧成珠。大多数兵器都可以镶嵌最多五个洁铁珠以强化。天级兵器不需要神铁珠，地级升天时会自动归还其上的所有洁铁珠。
 
 starter.manual_page_7=铁  铁\n  砧\n铁  铁\n    神铁锭和铁砧相性优良。把铁砧四角镶嵌神铁锭，你就得到一个地之护符。把护符镶嵌进你的神兵，试试它变成啥样了？地神兵可不只是名字里多个“地”字。
@@ -74,10 +74,10 @@ item.blood_sword.manual_title=血候刃
 item.blood_sword.manual_author=道家深湖
 item.blood_sword.manual_page_count=5
 item.blood_sword.manual_page_1=\"杀敌一千，自损八百。\" 你感觉一身伤痛，但得胜而归 - 如果你不因失血过多而晕倒的话。
-item.blood_sword.manual_page_2=每当血侯刃见血的时候，他就会抽一些使用者的血并转化成额外伤害。传说称该剑吸收使用者的血自我修复，我便也遵循了如此设计。
+item.blood_sword.manual_page_2=每当血侯刃见血的时候，他就会抽一些使用者的血并转化成额外伤害。传说该剑会吸取使用者的精血修复自己的创伤，是一柄嗜血魔剑，如果你想驾驭这柄剑，最好努力提升自己的体质，否则你最好不要过于依赖它。
 item.blood_sword.manual_page_3=如果你不全力劈砍的话，基础伤害会下降，但抽血造成的额外伤害并不会受影响。
-item.blood_sword.manual_page_4=带些药品弥补失血是个好主意，虽然真正的血侯可以直接从敌手处吸血。如果你能的话，强身健体。
-item.blood_sword.manual_page_5=我曾经把它赐予多位战士。他们要么让这武器的威力冲昏头脑而夺去自己最后一滴血，要么就觉得是妖邪之物而封存不用。也许你是其真命之主。
+item.blood_sword.manual_page_4=带些药品弥补失血是个好主意，虽然真正的血侯可以直接从敌手处吸血。它会吸收主人的血，也会吸收敌人的血，所有的血液，都来者不拒。
+item.blood_sword.manual_page_5=我曾经把它赐予多位战士。他们要么让这柄魔剑彻底驾驭自己，直到流光最后一滴血，要么因恐惧避而不用，变成懦夫，也许你才是它的真命之主，谁知道呢？
 //demonstration of percentages and quotation marks
 item.blood_sword.manual_page_6=Debug says, "Is this ok?" No.
 item.blood_sword.manual_page_7=Debug says, \"Is this ok?\" Yes, it is
@@ -262,9 +262,9 @@ item.true_name_sword.damage_desc=基础伤害：%s
 item.true_name_sword.manual_title=真铭已刻
 item.true_name_sword.manual_author=道家深湖
 item.true_name_sword.manual_page_count=4
-item.true_name_sword.manual_page_1=  \"一个大错误。名字是很强力的封印。\"\n——利维亚的杰洛特
+item.true_name_sword.manual_page_1=  名字中蕴含着你所不知道的魔力，就像是金角银角的葫芦，又或者是克苏鲁的呼唤。当这柄剑铭记某个名字时，它就死定了。
 item.true_name_sword.manual_page_2=  它可以根据对方的名字下达判决。在铁砧上重命名纸张来制作“裁决”，把裁决合成到剑上就可以让剑记住这个名字，如“僵尸”。此剑会对具有该名称的生物造成额外伤害。
-item.true_name_sword.manual_page_3=  在别人的世界（服务器）游戏里，你可能需要用世界主人的语言来命名。使用资源包在本地把所有生物改名“僵尸”当然没有任何作用。
+item.true_name_sword.manual_page_3=  当然，当世界的造物主（在其他玩家的服务器时）并不是你时，你得需要用此世界主人的语言来命名。什么？你不会他的语言，那就没办法了，就算你把本地资源包里的所有生物都改名为“僵尸”，也毫无用处。
 item.true_name_sword.manual_page_4=  基础伤害是（5+宝珠数）；地级伤害翻倍，天级则是10倍。攻击指定名字的生物时，伤害倍率再乘2（人）、5（地）、10（天） 
 
 
@@ -282,7 +282,7 @@ item.future_sword.manual_title=明日之剑
 item.future_sword.manual_author=道家深湖
 item.future_sword.manual_page_count=2
 item.future_sword.manual_page_1=  这把剑的能力随着时间变化，它预兆着未来里某把武器的到来。
-item.future_sword.manual_page_2=  就目前的能力来看，它和水有关
+item.future_sword.manual_page_2=  就目前来看，它或许能带来一场海啸，或者只是清清泉水，不管怎么说，它似乎跟水有关。
 
 //---------------
 item.disarm_ring.name=金刚琢
