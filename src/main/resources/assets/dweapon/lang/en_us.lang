@@ -290,3 +290,21 @@ item.future_sword.manual_page_count=2
 item.future_sword.manual_page_1=  This sword's power changes from time to time. It heralds a weapon coming in the future.
 item.future_sword.manual_page_2=  Currently, its about water.
 
+//
+item.disarm_ring.name=Lao-Tze Ring
+item.disarm_ring.hidden=Disarmer
+
+item.disarm_ring.shared_desc=[Disarm]Disarms Target.
+item.disarm_ring.sky_desc=Draws item from both hand of the target. Hold to take nearby arrows.
+item.disarm_ring.earth_desc=Draws item in the mainhand from target. Hold to shield away arrows.
+item.disarm_ring.normal_desc=Disarms the target with %.1f%% chance. Hold to shield away arrows.
+item.disarm_ring.damage_desc=Base Damage : %s
+
+item.disarm_ring.manual_title=Lao-Tze Ring
+item.disarm_ring.manual_author=Taoism DeepLake
+item.disarm_ring.manual_page_count=5
+item.disarm_ring.manual_page_1=  This item is inspired by Journey to The West, a traditional Chinese novel. In Chapter 51, it depicts a minotaur with a magical ring which caused great trouble to the main character. 
+item.disarm_ring.manual_page_2=  The ring can take away all kinds of weapons from opponent, including wand, spear, stick and even magical sand. The ring originally belong to Lao-Tze.
+item.disarm_ring.manual_page_3=  I made a similar weapon. The prototype can disarms the target on hit. Right clicking can do it, too. To be exact, disarming means make the target drop item in main hand. Hold RMB can deflect arrows. 
+item.disarm_ring.manual_page_4=  When reinforced to earth level, the weapon will be drawn directly into your pocket, so opponent can't pick it up again.
+item.disarm_ring.manual_page_5=  When reinforced to sky level, arrows will be safely sucked into your pocket. Hold RMB will disarm all nearby non-player creature, and items in both hand will be taken.

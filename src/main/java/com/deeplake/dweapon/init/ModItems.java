@@ -6,15 +6,7 @@ import java.util.List;
 import com.deeplake.dweapon.item.ItemBase;
 import com.deeplake.dweapon.item.misc.Heirloom;
 import com.deeplake.dweapon.item.misc.SealedWeapon;
-import com.deeplake.dweapon.item.weapon.DBloodSword;
-import com.deeplake.dweapon.item.weapon.DDeathSword;
-import com.deeplake.dweapon.item.weapon.DFutureSword;
-import com.deeplake.dweapon.item.weapon.DTrueNameSword;
-import com.deeplake.dweapon.item.weapon.DGoldSword;
-import com.deeplake.dweapon.item.weapon.DPowerTriangle;
-import com.deeplake.dweapon.item.weapon.DSageBuilder;
-import com.deeplake.dweapon.item.weapon.DSnowSword;
-import com.deeplake.dweapon.item.weapon.DSpaceAffinitySword;
+import com.deeplake.dweapon.item.weapon.*;
 import com.deeplake.dweapon.util.Reference;
 
 import net.minecraft.init.MobEffects;
@@ -79,7 +71,8 @@ public class ModItems {
 	
 	public static final DTrueNameSword TRUE_NAME_SWORD = new DTrueNameSword("true_name_sword", TOOL_MATERIAL_DIVINE);
 	public static final DFutureSword FURTUE_SWORD = new DFutureSword("future_sword", TOOL_MATERIAL_DIVINE);
-	
+	public static final DDisarmRing DISARM_RING = new DDisarmRing("disarm_ring", TOOL_MATERIAL_DIVINE);
+
 	public static final Item WEAPON_HANDLE = new ItemBase("weapon_handle");
 	
 	//public static final Item COPPER_HELMET = new ArmorBase("copper_helmet", ARMOR_MATERIAL_COPPER, 1, EntityEquipmentSlot.HEAD);

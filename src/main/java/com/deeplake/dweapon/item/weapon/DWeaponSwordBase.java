@@ -221,7 +221,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	//---------------------------------------------------------
 	
 	
-	//Delegates
+	/* Only Server side */
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio)
 	{
 		return false;
@@ -283,7 +283,6 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 			pageCount = Integer.parseInt(pageCountString);
 			hasManual = true;
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			pageCount = 0;
 		}
 		
@@ -659,7 +658,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     	
     	boolean isEnchantedBook = repairMaterial.getItem() == Items.ENCHANTED_BOOK;
 		boolean isDivineIngot = OreDictionary.itemMatches(repairMaterial, new ItemStack(ModItems.DIVINE_INGOT), false);  
-		boolean base = super.getIsRepairable(stack, repairMaterial);
+		//boolean base = super.getIsRepairable(stack, repairMaterial);
     	
 		return !isEnchantedBook && isDivineIngot;
 	}

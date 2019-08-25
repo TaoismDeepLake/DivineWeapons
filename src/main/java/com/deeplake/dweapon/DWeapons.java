@@ -52,6 +52,14 @@ public class DWeapons
     		logger.warn(str);
     	}
     }
+
+    public static void Log(String str)
+    {
+        if (SHOW_WARN)
+        {
+            logger.info(str);
+        }
+    }
 //    @EventHandler
 //    public void init(FMLInitializationEvent event)
 //    {
