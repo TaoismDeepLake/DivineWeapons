@@ -42,8 +42,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEnhanceable{
 
-	//public DWNBT myNBT;
-	
 	public DWeaponSwordBase(String name, ToolMaterial material)
 	{
 		super(material);
@@ -62,12 +60,6 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
         });
 		
 		ModItems.ITEMS.add(this);
-	}
-	
-	//GetAttr
-	public float plainAtk(ItemStack stack)
-	{
-		return getAttackDamage() + 4.0F;
 	}
 	
 	public static boolean IsSky(ItemStack stack)

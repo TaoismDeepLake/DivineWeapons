@@ -104,7 +104,7 @@ public class DBloodSword extends DWeaponSwordBase {
 		boolean isRemote = player.world.isRemote;
 
 		float preHP = player.getHealth();
-		if (!(player).capabilities.isCreativeMode && !isRemote) {
+		if (!player.capabilities.isCreativeMode && !isRemote) {
 			//since in creative mode you can't see your health bar,
 			//kiling you by draining makes no sense(yeah this code can kill creative players)
 			player.setHealth(preHP - getHurt(stack));//drain self
@@ -132,8 +132,6 @@ public class DBloodSword extends DWeaponSwordBase {
 				{
 					TrueNameReveal(stack, player.getEntityWorld(), player);
 				}
-
-				CreateParticle(stack, player, 1);
 			}
 		}
 		else{
@@ -196,13 +194,10 @@ public class DBloodSword extends DWeaponSwordBase {
      */
 	@Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-		
+	{
         return EnumActionResult.PASS;
     }
-	
-	
-	
+
 	@Override
 	public void clientUseTick(ItemStack stack, EntityLivingBase living, int count) {
 

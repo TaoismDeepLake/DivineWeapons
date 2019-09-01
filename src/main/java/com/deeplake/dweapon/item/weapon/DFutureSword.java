@@ -99,35 +99,32 @@ public class DFutureSword extends DWeaponSwordBase {
     {
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
 
-		if (entityIn instanceof EntityPlayerMP)
+		if (entityIn instanceof EntityPlayer)
 		{
-			EntityPlayerMP playerMP = (EntityPlayerMP)(entityIn); 
+			EntityPlayer player = (EntityPlayer)(entityIn);
 			
 			//creating snow
 			
 			if (IsSky(stack) && isSelected)
-			{//same as snow golem
-				int i = 0;
-	            int j = 0;
-	            int k = 0;
-				
-				//playerMP.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0)); 
-				playerMP.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, skyBuffTick, 0));
-			}
-			
-			if (isSelected && playerMP.isBurning())
 			{
-				playerMP.extinguish();
+				//player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0));
+				player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, skyBuffTick, 0));
+			}
+			
+			if (isSelected && player.isBurning())
+			{
+				stack.damageItem(1, (EntityLivingBase) entityIn);
+				player.extinguish();
 			}
 			
 			
-			if (CanRainHere(playerMP)) {
-				boolean isRaining = IsRainingHere(playerMP);
+			if (CanRainHere(player)) {
+				boolean isRaining = IsRainingHere(player);
 				if (isRaining) {
 					if (stack.isItemDamaged())
 					{//auto fix
 						int curDamage = stack.getItemDamage();
-						int fixAmount = 1 + playerMP.getRNG().nextInt(1 + GetPearlCount(stack));
+						int fixAmount = 1 + player.getRNG().nextInt(1 + GetPearlCount(stack));
 						
 						stack.setItemDamage(Math.max(curDamage - fixAmount, 0));
 					}

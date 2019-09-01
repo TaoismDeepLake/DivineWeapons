@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.DWeapons;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
@@ -107,6 +108,59 @@ public class DDeathSword extends DWeaponSwordBase {
 		
 		return success;
 	}
+
+	//Mode Switch, WIP
+	final static int MAX_MODE = 5;
+	final static int tickPerStage = 40;
+	@Override
+	public void serverUseTick(ItemStack stack, EntityLivingBase living, int count) {
+
+		int mode = GetWeaponMode(stack);
+		int curUseTickCount = getMaxItemUseDuration(stack) - count;
+		if (curUseTickCount % tickPerStage == 0)
+		{
+//			for (int i = 0; i < 20; i++)
+//			{
+//				CreateParticle(stack, living, -3d);
+//			}
+			if (mode < MAX_MODE) {
+				SetWeaponMode(stack, mode + 1);
+				DWeapons.LogWarning("Mode ++");
+			}
+		}
+	}
+
+//	@Override
+//	public void clientUseTick(ItemStack stack, EntityLivingBase living, int count) {
+////		//Particle;
+//		//DWeapons.LogWarning(String.format("onUsingTick %s",count));
+//
+//		if (getMaxItemUseDuration(stack) - count >= GetChangeNeedTick(stack))
+//		{
+//			for (int i = 0; i < 20; i++)
+//			{
+//				CreateParticle(stack, living, -3d);
+//			}
+//		}
+//		else
+//		{
+//			//CreateParticle(stack, living, -0.5d);
+//		}
+//	}
+	/**
+	 * Called when the player stops using an Item (stops holding the right mouse button).
+	 */
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase living, int time) {
+		//change mode
+		if (!world.isRemote) {
+
+
+		}
+		return;
+	}
+
+	//-----------
 	
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
