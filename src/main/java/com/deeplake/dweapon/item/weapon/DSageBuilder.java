@@ -82,16 +82,8 @@ public class DSageBuilder extends DWeaponSwordBase {
 			return false;
 		}
 		float damage = getActualDamage(stack, ratio);
-		
-		boolean success = false;
-		if (player instanceof EntityPlayer) {
-			success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
-		}
-		else
-		{
-			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
-		}
-		
+		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
+
 		stack.damageItem(1, player);
 		
 		return success;
@@ -205,12 +197,12 @@ public class DSageBuilder extends DWeaponSwordBase {
     	//BlockPos target = pos.up();
     	//DWeapons.LogWarning(String.format("Target = (%s, %s, %s)", target.getX(), target.getY(), target.getZ()) );
     	
-    	IBlockState topBlock = worldIn.getBlockState(target);
+    	IBlockState targetBlock = worldIn.getBlockState(target);
     	
     	int entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(target, target.add(1, 1, 1))).size();
     	boolean noEntities = entities == 0;
     	
-		if ((topBlock.getBlock() == Blocks.AIR 	|| (topBlock.getBlock().isReplaceable(worldIn, target)))
+		if ((targetBlock.getBlock() == Blocks.AIR 	|| (targetBlock.getBlock().isReplaceable(worldIn, target)))
 			&& noEntities)
 		{
 			if (!worldIn.isRemote) 
