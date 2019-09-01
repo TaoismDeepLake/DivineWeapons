@@ -95,13 +95,11 @@ public class DPowerTriangle extends DWeaponSwordBase {
 	
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
-			
-		boolean success = false;
-
+		if (player.world.isRemote) {
+			return false;
+		}
 		float damage = getAttackDamage(stack);
-		
-		success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
-		
+		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
 		if (success)
 		{
 			stack.damageItem(1, player);

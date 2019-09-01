@@ -109,20 +109,12 @@ public class DGoldSword extends DWeaponSwordBase {
 
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
-
-		float preHP = player.getHealth();
+		if (player.world.isRemote) {
+			return false;
+		}
 		
 		float damage = getActualDamage(stack, ratio);
-		
-		boolean success = false;
-		if (player instanceof EntityPlayer) {
-			success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
-		}
-		else
-		{
-			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
-		}
-		
+		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
 		if (success)
 		{
 			stack.damageItem(1, player);

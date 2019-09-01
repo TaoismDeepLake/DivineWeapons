@@ -1,7 +1,6 @@
 package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
-import java.util.Map.Entry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -13,26 +12,15 @@ import com.deeplake.dweapon.util.DWNBT;
 import com.deeplake.dweapon.util.IHasModel;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -43,7 +31,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 //import net.minecraft.util.text.translation.I18n;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.world.World;
@@ -229,8 +216,8 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	
 	@Override
 	public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer player, final Entity target) {
-		if (player.world.isRemote)
-			return true;
+		//if (player.world.isRemote)
+			//return true;
 		
 		//if (player.getCooledAttackStrength(0.0f) > 0.8f) {
 			return AttackDelegate(stack, player, target, player.getCooledAttackStrength(0.0f));
@@ -664,35 +651,35 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	}
     
     ///Weather related
-    public float GetTemperatureHere(EntityPlayerMP playerMP)
+    public float GetTemperatureHere(EntityPlayer player)
 	{
-		BlockPos pos = playerMP.getPosition();
-		World world = playerMP.getEntityWorld();
+		BlockPos pos = player.getPosition();
+		World world = player.getEntityWorld();
 		Biome biome = world.getBiomeForCoordsBody(pos);
 		return biome.getTemperature(pos);
 	}
 	
-	public boolean CanSnowHere(EntityPlayerMP playerMP)
+	public boolean CanSnowHere(EntityPlayer player)
 	{
-		return (GetTemperatureHere(playerMP) < 0.15f);
+		return (GetTemperatureHere(player) < 0.15f);
 	}
 	
-	public boolean CanRainHere(EntityPlayerMP playerMP)
+	public boolean CanRainHere(EntityPlayer player)
 	{
-		return (GetTemperatureHere(playerMP) > 0.15f) && (GetTemperatureHere(playerMP) < 0.95f);
+		return (GetTemperatureHere(player) > 0.15f) && (GetTemperatureHere(player) < 0.95f);
 	}
 	
-	public boolean IsSnowingHere(EntityPlayerMP playerMP)
+	public boolean IsSnowingHere(EntityPlayer player)
 	{
-		WorldInfo worldInfo = playerMP.mcServer.worlds[0].getWorldInfo();
+		WorldInfo worldInfo = player.world.getWorldInfo();
 		boolean raining = worldInfo.isRaining();
-		return CanSnowHere(playerMP) && raining;
+		return CanSnowHere(player) && raining;
 	}
 	
-	public boolean IsRainingHere(EntityPlayerMP playerMP)
+	public boolean IsRainingHere(EntityPlayer player)
 	{
-		WorldInfo worldInfo = playerMP.mcServer.worlds[0].getWorldInfo();
+		WorldInfo worldInfo = player.world.getWorldInfo();
 		boolean raining = worldInfo.isRaining();
-		return !CanSnowHere(playerMP) && raining;
+		return !CanSnowHere(player) && raining;
 	}
 }

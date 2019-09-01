@@ -6,7 +6,9 @@ import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.vecmath.Vector3d;
 
+import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.DWeapons;
@@ -113,37 +115,33 @@ public class DSnowSword extends DWeaponSwordBase {
 	
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
-
-		boolean isSnowing = IsSnowingHere((EntityPlayerMP) player);
-		
-		float t = GetTemperatureHere((EntityPlayerMP) player);
-		
+		boolean isSnowing = IsSnowingHere(player);
+		float t = GetTemperatureHere(player);
 		float damage = getActualDamage(stack, ratio, t, isSnowing);
-		
-		boolean success = false;
-		if (player instanceof EntityPlayer) {
-			success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
+		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
+
+		if (player.world.isRemote) {
+			CreateOnHitExplosion(player, target, damage);
 		}
-		else
-		{
-			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
+		else {
+			stack.damageItem(1, player);
+			if (IsNameHidden(stack) && (isSnowing)) {
+				TrueNameReveal(stack, player.getEntityWorld(), player);
+			}
 		}
-		
-//		if (IsSky(stack))
-//		{
-//			player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0));
-//		}
-		
-		stack.damageItem(1, player);
-		
-		if (IsNameHidden(stack) && (isSnowing))
-		{
-			TrueNameReveal(stack, player.getEntityWorld(), player);
-		}
-		
 		return success;
 	}
-	
+
+	private static int maxSnowFlake = 20;
+	private void CreateOnHitExplosion(final EntityPlayer player, final Entity target, final float damage){
+		int snowFlakeCount = Math.min ((int)damage, maxSnowFlake);
+		float flySpeed =  Math.min (damage / 3f, 0.3f);
+		//DWeapons.LogWarning(String.format("snowflak count = %s, flySpeed = %s", snowFlakeCount, flySpeed));
+		for (int i = 1; i <= snowFlakeCount; i++){
+			CreateParticleExplosion(target,0.3f, player.getLookVec(),  flySpeed);
+		}
+	}
+
 	@Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {
@@ -154,7 +152,6 @@ public class DSnowSword extends DWeaponSwordBase {
 			EntityPlayerMP playerMP = (EntityPlayerMP)(entityIn); 
 			
 			//creating snow
-			
 			if (IsSky(stack) && isSelected)
 			{//same as snow golem
 				int i = 0;
@@ -178,8 +175,7 @@ public class DSnowSword extends DWeaponSwordBase {
 	                }
 	            } 
 			}
-			
-			
+
 			if (CanSnowHere(playerMP)) {
 				boolean isSnowing = IsSnowingHere(playerMP);
 				if (isSnowing) {
@@ -201,24 +197,14 @@ public class DSnowSword extends DWeaponSwordBase {
 			{
 				SetWeaponMode(stack, NORMAL_MODE);
 			}
-			
-			
 		}
 		
 		if (worldIn.isRemote && isSelected)
 		{
-			//DWeapons.LogWarning("create particle");
-			//wont work in second hand!
-			
 			CreateParticle(stack,(EntityLivingBase) entityIn, 0.1f);
-//			CreateParticle(stack,(EntityLivingBase) entityIn, -2);
-//			CreateParticle(stack,(EntityLivingBase) entityIn, -3);
-//			CreateParticle(stack,(EntityLivingBase) entityIn, -4);
-//			CreateParticle(stack,(EntityLivingBase) entityIn, -5);
-//			CreateParticle(stack,(EntityLivingBase) entityIn, 0);
 		}
     }
-	
+
 	/**
      * Called when a Block is right-clicked with this Item
      */
@@ -258,6 +244,25 @@ public class DSnowSword extends DWeaponSwordBase {
 		living.world.spawnParticle(EnumParticleTypes.SNOW_SHOVEL,
 				x,y,z,vx,vy,vz);
 	}
+
+	private void CreateParticleExplosion(Entity living, double vRandom, Vec3d baseDir, float baseSpeed) {
+		Vec3d flyDir = baseDir.addVector(0,1f,0).normalize();
+
+		Random rand = new Random();
+		double r = 1d;
+		double x = living.posX + (rand.nextDouble() - 0.5d) * r;
+		double y = living.posY + rand.nextDouble() * living.height;
+		double z = living.posZ + (rand.nextDouble() - 0.5d) * r;
+
+		double vx = (rand.nextDouble() - 0.5d) * vRandom + flyDir.x * baseSpeed;
+		double vy = (rand.nextDouble() - 0.5d) * vRandom + flyDir.y * baseSpeed;
+		double vz = (rand.nextDouble() - 0.5d) * vRandom + flyDir.z * baseSpeed;
+
+		//DWeapons.LogWarning(String.format("pos = (%.2f, %.2f, %.2f), v = (%.2f, %.2f, %.2f),",x,y,z,vx,vy,vz));
+		living.world.spawnParticle(EnumParticleTypes.SNOW_SHOVEL,
+				x,y,z,vx,vy,vz);
+	}
+
 	
 	/**
      * How long it takes to use or consume an item
@@ -277,15 +282,11 @@ public class DSnowSword extends DWeaponSwordBase {
 		{
 			return EnumAction.BOW;
 		}
-		else
-		{
+		else {
 			return EnumAction.NONE;
 		}
-		
 	}
-	
-	
-	
+
 	@Nonnull
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
@@ -374,7 +375,6 @@ public class DSnowSword extends DWeaponSwordBase {
 		}
 		else
 		{
-			
 			return base_damage * (1 + (0.1f) * ( 1 + pearl_damage_factor * pearlCount));
 		}
 

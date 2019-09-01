@@ -125,7 +125,11 @@ public class DDisarmRing extends DWeaponSwordBase {
 
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
-		
+
+		if (player.world.isRemote) {
+			return false;
+		}
+
 		float damage = getActualDamage(stack, ratio);
 		
 		boolean success = false;
@@ -163,10 +167,9 @@ public class DDisarmRing extends DWeaponSwordBase {
 	@Override
 	public void serverUseTick(ItemStack stack, EntityLivingBase living, int count)
 	{
-
 		if (IsSky(stack))
 		{
-			//Todo: ranged disarm, needs to know how to do not axis aligned bounding box
+			//Todo: ranged disarm, needs to know how to do not-axis-aligned bounding box
 			disarmNearbyLiving(stack, living);
 		}else
 		{

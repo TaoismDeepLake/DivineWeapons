@@ -63,6 +63,9 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 	
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
+		if (player.world.isRemote) {
+			return false;
+		}
 
 		Vec3d pos = player.getPositionVector();
 		
@@ -102,9 +105,6 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 	
 	@Override
 	public void clientUseTick(ItemStack stack, EntityLivingBase living, int count) {
-//		//Particle;
-		//DWeapons.LogWarning(String.format("onUsingTick %s",count));
-
 		if (getMaxItemUseDuration(stack) - count >=  backTick) 
 		{
 			for (int i = 0; i < 20; i++)
@@ -112,11 +112,6 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 				CreateParticle(stack, living, -3d);
 			}
 		}
-		else
-		{
-			//CreateParticle(stack, living, -0.5d);
-		}
-				
 	}
 	
 	private void CreateParticle(ItemStack stack, EntityLivingBase living, double vm) {

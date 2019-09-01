@@ -101,8 +101,10 @@ public class DBloodSword extends DWeaponSwordBase {
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
 
+		boolean isRemote = player.world.isRemote;
+
 		float preHP = player.getHealth();
-		if (!(player).capabilities.isCreativeMode) {
+		if (!(player).capabilities.isCreativeMode && !isRemote) {
 			//since in creative mode you can't see your health bar,
 			//kiling you by draining makes no sense(yeah this code can kill creative players)
 			player.setHealth(preHP - getHurt(stack));//drain self
@@ -110,41 +112,40 @@ public class DBloodSword extends DWeaponSwordBase {
 		float damage = getActualDamage(stack, ratio);
 		
 		boolean success = false;
-		if (player instanceof EntityPlayer) {
-			success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
+		if (!isRemote) {
+			success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
+			if (success)
+			{
+				if (IsSky(stack))
+				{
+					player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, skyBuffTick, skyRegenLevel - 1));
+					player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, skyBuffTick, skyStrengthLevel - 1));
+				}
+				else if (IsEarth(stack))
+				{
+					player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, (pearl_count + 1) * buff_tick_per_pearl, 0));
+				}
+
+				stack.damageItem(1, player);
+
+				if (IsNameHidden(stack) && (player.getHealth() / player.getMaxHealth() <= 0.6f))
+				{
+					TrueNameReveal(stack, player.getEntityWorld(), player);
+				}
+
+				CreateParticle(stack, player, 1);
+			}
 		}
-		else
-		{
-			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
-		}
-		
-		if (success)
-		{
+		else{
 			if (IsSky(stack))
 			{
-				player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, skyBuffTick, skyRegenLevel - 1));
-				player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, skyBuffTick, skyStrengthLevel - 1));
-			
 				for (int i = 1; i <= 9; i++)
-				{	
+				{
 					CreateParticle(stack, player, 1);
 				}
 			}
-			else if (IsEarth(stack))
-			{
-				player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, (pearl_count + 1) * buff_tick_per_pearl, 0));
-			}
-			
-			stack.damageItem(1, player);
-			
-			if (IsNameHidden(stack) && (player.getHealth() / player.getMaxHealth() <= 0.6f))
-			{
-				TrueNameReveal(stack, player.getEntityWorld(), player);
-			}
-			
-			CreateParticle(stack, player, 1);
 		}
-			
+
 		return success;
 	}
 	

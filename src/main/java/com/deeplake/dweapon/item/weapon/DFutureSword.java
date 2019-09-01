@@ -177,27 +177,18 @@ public class DFutureSword extends DWeaponSwordBase {
 	
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
+		if (player.world.isRemote) {
+			return false;
+		}
 
-		float preHP = player.getHealth();
-		
 		float damage = getActualDamage(stack, ratio);
-		
-		String targetName = target.getName();
 		
 		if (target.isBurning())
 		{
 			target.extinguish();
 		}
 		
-		boolean success = false;
-		if (player instanceof EntityPlayer) {
-			success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
-		}
-		else
-		{
-			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
-		}
-		
+		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
 		if (success)
 		{
 			stack.damageItem(1, player);
@@ -231,9 +222,7 @@ public class DFutureSword extends DWeaponSwordBase {
 		}
 		
 	}
-	
-	
-	
+
 	@Nonnull
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {

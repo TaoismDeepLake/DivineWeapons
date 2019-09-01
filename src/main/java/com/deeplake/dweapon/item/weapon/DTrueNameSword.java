@@ -87,27 +87,21 @@ public class DTrueNameSword extends DWeaponSwordBase {
 
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
-
-		float preHP = player.getHealth();
-		
 		float damage = getActualDamage(stack, ratio);
 		
 		String targetName = target.getName();
-		DWeapons.LogWarning(targetName);
+		if (player.world.isRemote && IsHate(stack, targetName)) {
+			for (int i = 1; i <= 10; i++) {
+				CreateParticle(stack, target, 1f);
+			}
+			return false;
+		}
+
 		if (IsHate(stack, targetName)) {
-			//DWeapons.LogWarning("Hate you!");
 			damage *= getDamageMultiplier(stack);
 		}
 		
-		boolean success = false;
-		if (player instanceof EntityPlayer) {
-			success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
-		}
-		else
-		{
-			success = target.attackEntityFrom(DamageSource.causeMobDamage(player), damage);
-		}
-		
+		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
 		if (success)
 		{
 			stack.damageItem(1, player);
@@ -115,7 +109,22 @@ public class DTrueNameSword extends DWeaponSwordBase {
 			
 		return success;
 	}
-	
+
+	private void CreateParticle(ItemStack stack, Entity living, double vm) {
+		Random rand = new Random();
+		double r = 1d;
+		double x = living.posX + (rand.nextDouble() - 0.5d) * r;
+		double y = living.posY + rand.nextDouble() * living.height;
+		double z = living.posZ + (rand.nextDouble() - 0.5d) * r;
+
+		double vx = 0d;
+		double vy = rand.nextDouble() * vm + 1d;
+		double vz = 0d;
+
+		living.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC,
+				x,y,z,vx,vy,vz);
+	}
+
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {

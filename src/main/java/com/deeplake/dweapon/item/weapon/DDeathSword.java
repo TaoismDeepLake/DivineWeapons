@@ -75,6 +75,10 @@ public class DDeathSword extends DWeaponSwordBase {
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
 
+		if (player.world.isRemote) {
+			return false;
+		}
+
 		float damage = getActualDamage(stack);
 		
 		if (target instanceof EntityLivingBase && ratio > 0.3) {
@@ -97,7 +101,7 @@ public class DDeathSword extends DWeaponSwordBase {
 		}
 		
 		boolean success = false;
-		success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
+		success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
 	
 		stack.damageItem(1, player);
 		
