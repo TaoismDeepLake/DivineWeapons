@@ -40,9 +40,6 @@ public class DWeapons
 	public static void Init(FMLInitializationEvent event)
 	{
 		ModRecipes.Init();
-		//DWeapons.logger.warn("Init A");
-		
-		DWeapons.LogWarning("Init DWeapons");
 	}
     
     public static void LogWarning(String str)
@@ -60,12 +57,4 @@ public class DWeapons
             logger.info(str);
         }
     }
-//    @EventHandler
-//    public void init(FMLInitializationEvent event)
-//    {
-//    	ModRecipes.Init();
-//    	DWeapons.logger.warn("Init B");
-//        // some example code
-//        //logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-//    }
 }

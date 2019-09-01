@@ -16,11 +16,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
-
 	private String pearlName = ModItems.WEAPON_PEARL.getUnlocalizedName();
-	
-	
-	
+
 	@Override
 	public boolean isDynamic() {
 		return true;
@@ -32,20 +29,15 @@ public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IR
 		int maxPearlAccepted = 999;//before finding the weapon, we dont know whats the max pearl accepted
 		boolean foundSword = false;
 
-//		DWeapons.logger.warn("Entered judging");
-		
-		
 		for(int i = 0; i < var1.getSizeInventory(); i++) {
 			ItemStack stack = var1.getStackInSlot(i);
 			if(!stack.isEmpty()) {
 				if(stack.getItem() instanceof DWeaponSwordBase)
 				{
 					if (foundSword) {
-						//DWeapons.logger.warn("Found more than 1 sword");
 						return false;//only one sword at a time
 					}
-					
-					//DWeapons.logger.warn("Found sword");
+
 					DWeaponSwordBase sword = (DWeaponSwordBase)stack.getItem();
 					foundSword = true;
 					maxPearlAccepted = sword.GetPearlEmptySpace(stack);
@@ -53,7 +45,6 @@ public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IR
 				else if (stack.getItem().getUnlocalizedName(stack).equals(pearlName))
 				{//found a pearl
 					foundPearl++;
-					//DWeapons.logger.warn("found a pearl, foundPearl:[{}]", foundPearl);
 					if (foundPearl > maxPearlAccepted && foundSword) {
 						//DWeapons.logger.warn("Too many pearls");
 						return false;//such sword cannot have so many pearls.
@@ -69,12 +60,9 @@ public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IR
 		}
 		
 		if (foundPearl > maxPearlAccepted) {
-			//DWeapons.logger.warn("Too many pearls II");
 			return false;//such sword cannot have so many pearls, or no sword found at all
 		}
-		
-		//DWeapons.logger.warn("pearl:[{}]", pearlName);
-		//DWeapons.logger.warn("Found pearl:[{}], foundSword:[{}]", foundPearl, foundSword);
+
 		return foundPearl > 0 && foundSword;
 	}
 
@@ -83,9 +71,6 @@ public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IR
 	public ItemStack getCraftingResult(@Nonnull InventoryCrafting var1) {
 		int foundPearl = 0;
 		int curPearl = 0;
-		boolean foundSword = false;
-		
-		//DWeapons.logger.warn("Entered result getting");
 		
 		ItemStack sword = ItemStack.EMPTY;
 
@@ -96,18 +81,15 @@ public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IR
 				{
 					sword = stack;
 					curPearl = DWeaponSwordBase.GetPearlCount(stack);
-					//DWeapons.logger.warn("Result found sword");
 				}
 				else if(stack.getItem().getUnlocalizedName(stack).equals(pearlName))
 				{
 					foundPearl++;
-					//DWeapons.logger.warn("found a pearl, foundPearl:[{}]", foundPearl);
 				}
 			}
 		}
 
 		if(sword.isEmpty() || foundPearl == 0) {
-			//DWeapons.logger.warn("No sword or pearl");
 			return ItemStack.EMPTY;
 		}
 

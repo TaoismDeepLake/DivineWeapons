@@ -36,11 +36,7 @@ public class StarterManual extends IForgeRegistryEntry.Impl<IRecipe> implements 
 	@Override
 	public boolean matches(@Nonnull InventoryCrafting var1, @Nonnull World var2) {
 		boolean foundBook = false;
-		
 		boolean foundSword = false;
-
-		//DWeapons.logger.warn("Entered judging");
-		
 		
 		for(int i = 0; i < var1.getSizeInventory(); i++) {
 			ItemStack stack = var1.getStackInSlot(i);
@@ -48,40 +44,23 @@ public class StarterManual extends IForgeRegistryEntry.Impl<IRecipe> implements 
 				if(IsIngot(stack.getItem().getUnlocalizedName(stack)))
 				{
 					if (foundSword) {
-						//DWeapons.logger.warn("Found more than 1 sword");
 						return false;//only one sword at a time
 					}
-					
 					foundSword = true;
-					
-					//Now you can do this multiple times to get the newest manual.
-					//Or the other-language ones.
-//					if (!sword.IsNameHidden(stack))
-//					{
-//						//cannot reveal true-name again
-//						return false;
-//					}
-					
 				}
 				else if (stack.getItem().getUnlocalizedName(stack).equals(bookName))
 				{//found a pearl
 					if (foundBook) {
-						//DWeapons.logger.warn("Found more than 1 blank book");
 						return false;//only one book at a time
 					}
-					
-					//DWeapons.logger.warn("Found book");
 					foundBook = true;
 				}
 				else
 				{
-					//DWeapons.logger.warn("Find useless components:[{}], instanceof", stack.getItem().getUnlocalizedName());
 					return false; 
 				}
 			}
 		}
-		
-
 		return foundBook && foundSword;
 	}
 
