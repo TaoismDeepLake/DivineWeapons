@@ -103,7 +103,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 			return;
 		}
 		
-		if (count > 0 && count <= GetPearlMax(stack)) {
+		if (count <= GetPearlMax(stack)) {
 			DWNBTUtil.SetInt(stack, DWNBTDef.PEARL_COUNT, count);
 		}
 	}
