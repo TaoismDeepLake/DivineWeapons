@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -17,7 +18,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -199,7 +202,7 @@ public class DDisarmRing extends DWeaponSwordBase {
 
 					if (targetBlock.getBlock() == Blocks.WATER || targetBlock.getBlock() == Blocks.FLOWING_WATER ||
 							targetBlock.getBlock() == Blocks.LAVA || targetBlock.getBlock() == Blocks.FLOWING_LAVA ||
-							targetBlock.getBlock() == Blocks.MAGMA)
+							targetBlock.getBlock() == Blocks.MAGMA || targetBlock.getBlock() == Blocks.FIRE )
 					{
 						worldIn.setBlockState(target, Blocks.AIR.getDefaultState());
 					}
@@ -287,12 +290,47 @@ public class DDisarmRing extends DWeaponSwordBase {
 		return ItemStack.EMPTY;
 	}
 
+	void SimulatePickUp(EntityItem itemEntity, EntityPlayer player)
+	{
+		ItemStack itemstack = itemEntity.getItem();
+		Item item = itemstack.getItem();
+		int i = itemstack.getCount();
+
+		int hook = net.minecraftforge.event.ForgeEventFactory.onItemPickup(itemEntity, player);
+		if (hook < 0) return;
+		ItemStack clone = itemstack.copy();
+
+		if ((hook == 1 || i <= 0 || player.inventory.addItemStackToInventory(itemstack) || clone.getCount() > itemEntity.getItem().getCount()))
+		{
+			clone.setCount(clone.getCount() - itemEntity.getItem().getCount());
+			net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerItemPickupEvent(player, itemEntity, clone);
+
+			if (itemstack.isEmpty())
+			{
+				player.onItemPickup(itemEntity, i);
+				itemEntity.setDead();
+				itemstack.setCount(i);
+			}
+
+			player.addStat(StatList.getObjectsPickedUpStats(item), i);
+		}
+	}
+	
 	private void HandleProjectile(ItemStack stack, Entity projectile, EntityPlayer player)
 	{
 		if (projectile.isDead || player.world.isRemote)
 		{
 			return;
 		}
+		if (projectile instanceof EntityItem){
+			EntityItem itemEntity = (EntityItem)projectile;
+			ItemStack itemStack = itemEntity.getItem();
+			if (itemStack.isEmpty() == false)
+			{
+				SimulatePickUp(itemEntity, player);
+			}
+		}
+		
 		boolean isDirect = IsSky(stack);
 		if (projectile instanceof IProjectile ||
 				projectile instanceof EntityFireball ||
