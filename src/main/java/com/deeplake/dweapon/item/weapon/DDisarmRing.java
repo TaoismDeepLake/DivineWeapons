@@ -1,21 +1,26 @@
 package com.deeplake.dweapon.item.weapon;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntityShulkerBullet;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -171,11 +176,38 @@ public class DDisarmRing extends DWeaponSwordBase {
 		{
 			//Todo: ranged disarm, needs to know how to do not-axis-aligned bounding box
 			disarmNearbyLiving(stack, living);
+			RemoveWaterAndFire(stack, living);
 		}else
 		{
 			//sky level do this in tick.
 			disarmProjectiles(stack, living);
 		}
+	}
+
+	void RemoveWaterAndFire(ItemStack stack, EntityLivingBase living)
+	{
+		BlockPos origin = living.getPosition();
+		BlockPos target = origin;
+		int range = 2;
+		World worldIn = living.world;
+
+		for (int x = -range; x <= range; x++){
+			for (int y = -range; y <= range; y++){
+				for (int z = -range; z <= range; z++){
+					target = origin.add(x,y,z);
+					IBlockState targetBlock = worldIn.getBlockState(target);
+
+					if (targetBlock.getBlock() == Blocks.WATER || targetBlock.getBlock() == Blocks.FLOWING_WATER ||
+							targetBlock.getBlock() == Blocks.LAVA || targetBlock.getBlock() == Blocks.FLOWING_LAVA ||
+							targetBlock.getBlock() == Blocks.MAGMA)
+					{
+						worldIn.setBlockState(target, Blocks.AIR.getDefaultState());
+					}
+				}
+			}
+		}
+
+
 	}
 
 //	private static final Predicate<Entity> WEAPON_WIELDER = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
@@ -248,8 +280,11 @@ public class DDisarmRing extends DWeaponSwordBase {
 		} else if (projectile instanceof EntityFireball)
 		{
 			return new ItemStack(Items.FIRE_CHARGE);
+		}else if  (projectile instanceof EntityTNTPrimed) {
+			return new ItemStack(Blocks.TNT.getItemDropped(Blocks.TNT.getDefaultState(), null, 0));
 		}
-		return null;
+
+		return ItemStack.EMPTY;
 	}
 
 	private void HandleProjectile(ItemStack stack, Entity projectile, EntityPlayer player)
@@ -259,9 +294,16 @@ public class DDisarmRing extends DWeaponSwordBase {
 			return;
 		}
 		boolean isDirect = IsSky(stack);
-		if (projectile instanceof IProjectile|| projectile instanceof EntityFireball) {
+		if (projectile instanceof IProjectile ||
+				projectile instanceof EntityFireball ||
+				projectile instanceof EntityTNTPrimed ||
+				projectile instanceof EntityShulkerBullet) {
 			ItemStack result = GetCorrespondingStack(projectile);
 			if (result != null) {
+				if (projectile instanceof EntityTNTPrimed) {
+					((EntityTNTPrimed) projectile).setFuse(88);
+				}
+
 				if (isDirect) {
 					player.addItemStackToInventory(result);
 				} else {
@@ -270,7 +312,7 @@ public class DDisarmRing extends DWeaponSwordBase {
 			}
 			projectile.setDead();
 		}
-		//todo: should handle falling block, shulker bullet, TNT and such.
+		//todo: should handle falling block, and such.
 	}
 
 	private void disarmNearbyLiving(ItemStack stack, EntityLivingBase caster)
