@@ -1,14 +1,9 @@
 package com.deeplake.dweapon.recipe.special;
 
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
 import javax.annotation.Nonnull;
 
-import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
-import com.deeplake.dweapon.init.ModStarterEvents;
-import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
+import com.deeplake.dweapon.init.events.ModStarterEvents;
 
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;

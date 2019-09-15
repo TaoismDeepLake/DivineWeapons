@@ -1,6 +1,7 @@
-package com.deeplake.dweapon.init;
+package com.deeplake.dweapon.init.events;
 
 import com.deeplake.dweapon.DWeapons;
+import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.misc.Heirloom;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 import com.deeplake.dweapon.util.DWNBT;
@@ -89,16 +90,9 @@ public class ModStarterEvents {
 				book.setTagInfo("author", new NBTTagString(I18n.format("item.shared.missing_manual_author")));
 				book.setTagInfo("title", new NBTTagString(I18n.format("item.shared.missing_manual_title")));
 			}
-			
-			
+
 	        book.setTagInfo("pages", bookPages);
-			
-			
 			//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
-			
 			return book;
   	}
-	
-	  
-	
 }

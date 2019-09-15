@@ -155,11 +155,11 @@ item.sage_builder.name.yellow=Fu Yue Shovel[Yellow]
 
 item.sage_builder.shared_desc=[Between Bricks] RMB to place blocks, pearl = durabilty enchantement.
 
-item.sage_builder.sky_desc=Places concrete. RMB to change color. Hold RMB to change to sword.
-item.sage_builder.sky_desc.sword=Hold RMB to change to shovel.
+item.sage_builder.sky_desc=Places concrete. RMB to change color. Hold RMB to take sword form.
+item.sage_builder.sky_desc.sword=Hold RMB to take shovel form.
 
-item.sage_builder.earth_desc=Places bricks.
-item.sage_builder.earth_desc.sword= Hold RMB to change to shovel.
+item.sage_builder.earth_desc=Places bricks. Hold RMB to take sword form.
+item.sage_builder.earth_desc.sword=Hold RMB to take shovel form.
 
 item.sage_builder.normal_desc=RMB Place dirt.
 item.sage_builder.damage_desc=Attack Damage : %s

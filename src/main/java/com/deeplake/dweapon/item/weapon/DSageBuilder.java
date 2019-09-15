@@ -56,14 +56,19 @@ public class DSageBuilder extends DWeaponSwordBase {
 	float base_damage = 4;
 	float sky_damage = 10;
 	
-	float sky_damage_sword = 25;
+	float sky_damage_sword = 40;
+	float earth_damage_sword = 25;
 	
 	public float getActualDamage(ItemStack stack, float ratio)
 	{
 		int mode = GetWeaponMode(stack);
 		if (mode == SWORD_MODE)
 		{
-			return sky_damage_sword;
+			if (IsSky(stack)) {
+				return sky_damage_sword * ratio;
+			}else {
+				return earth_damage_sword * ratio;
+			}
 		}
 			
 		if (IsSky(stack)) {
@@ -254,22 +259,22 @@ public class DSageBuilder extends DWeaponSwordBase {
     	
     	if (IsSky(stack)) 
     	{
-    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY);
-    		if (mode == SWORD_MODE)
-    		{
-    			skyDesc = skyDesc + "." + SWORD_STR;
-    		}
-    		
+    		String key = getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY;
+			if (mode == SWORD_MODE)
+			{
+				key = key + "." + SWORD_STR;
+			}
+    		String skyDesc = I18n.format(key);
     		tooltip.add(skyDesc);
     	}else if (IsEarth(stack))
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH);
-    		if (mode == SWORD_MODE)
-    		{
-    			earthDesc = earthDesc + "." + SWORD_STR;
-    		}
-    		
-    		tooltip.add(earthDesc);
+			String key = getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH;
+			if (mode == SWORD_MODE)
+			{
+				key = key + "." + SWORD_STR;
+			}
+			String skyDesc = I18n.format(key);
+    		tooltip.add(skyDesc);
     	}else
     	{
     		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL);
@@ -281,7 +286,6 @@ public class DSageBuilder extends DWeaponSwordBase {
 	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		return getActualDamage(stack, 1);
-
     }
 	
 	public static final int changeNeedTick = 60;//3 sec
