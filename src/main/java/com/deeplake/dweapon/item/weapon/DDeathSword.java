@@ -6,6 +6,17 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 
 import com.deeplake.dweapon.DWeapons;
+import com.deeplake.dweapon.util.Reference;
+import net.minecraft.init.PotionTypes;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
@@ -25,6 +36,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DDeathSword extends DWeaponSwordBase {
 	// /give @p dweapon:death_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0, name_hidden:false}
 	public DDeathSword(String name, ToolMaterial material) {
@@ -41,7 +53,39 @@ public class DDeathSword extends DWeaponSwordBase {
 	float earth_Chance_bonus = 0.01f;
 	
 	float sky_suicide_rate = 0.2f;
-	
+
+	private static float range = 5f;
+	//LivingDeathEvent
+	@SubscribeEvent
+	public static void onCreatureDie(LivingDeathEvent evt) {
+		World world = evt.getEntity().getEntityWorld();
+		EntityLivingBase dieOne = evt.getEntityLiving();
+		Vec3d pos = evt.getEntity().getPositionEyes(0);
+		if (!world.isRemote) {
+			ItemStack stackDie = dieOne.getHeldItemMainhand();
+			if (stackDie.getItem() instanceof DDeathSword && (IsEarth(stackDie) || IsSky(stackDie))) {
+				stackDie.damageItem(256, dieOne);
+				dieOne.setHealth(dieOne.getMaxHealth() / 4);
+				world.playSound(null, dieOne.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL, SoundCategory.PLAYERS, 1f,2f);
+				evt.setCanceled(true);
+				//resist death
+			}
+
+
+			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range,-range,-range), pos.addVector(range,range,range)));
+			for (EntityLivingBase living:list ) {
+				ItemStack stack = living.getHeldItemMainhand();
+				if (stack.getItem() instanceof DDeathSword && (IsEarth(stack) || IsSky(stack))) {
+					living.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 60, 0));
+					world.playSound(null, living.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.PLAYERS, 1f,2f);
+				}
+			}
+		}
+		else {
+
+		}
+	}
+
 	@Override
 	public float getAttackDamage()
     {
