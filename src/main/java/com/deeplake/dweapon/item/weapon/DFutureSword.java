@@ -102,8 +102,8 @@ public class DFutureSword extends DWeaponSwordBase {
 			//gives buff
 			if ((IsSky(stack) || IsEarth(stack)) && isSelected)
 			{
-				playerMP.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, skyBuffTick, 0));
 				if (playerMP.isWet()) {
+					playerMP.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, skyBuffTick, 0));
 					if (IsSky(stack)) {
 						playerMP.addPotionEffect(new PotionEffect(MobEffects.SPEED, skyBuffTick, 2));
 					} else if (IsEarth(stack)) {
@@ -113,10 +113,14 @@ public class DFutureSword extends DWeaponSwordBase {
 
 				//washes away debuff
 				Collection<PotionEffect> activePotionEffects = playerMP.getActivePotionEffects();
-
-				for (PotionEffect buff:activePotionEffects) {
+				for (int i = 0; i < activePotionEffects.size(); i++) {
+					PotionEffect buff = (PotionEffect)activePotionEffects.toArray()[i];
 					if (buff.getPotion().isBadEffect()){
-						playerMP.removeActivePotionEffect(buff.getPotion());
+						playerMP.removePotionEffect(buff.getPotion());
+					}
+					else
+					{
+
 					}
 				}
 			}

@@ -34,6 +34,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+//TODO: Consider using ProjectileImpactEvent
+
 public class DDisarmRing extends DWeaponSwordBase {
 	public DDisarmRing(String name, ToolMaterial material) {
 		super(name, material);

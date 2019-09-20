@@ -7,6 +7,16 @@ import java.util.logging.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.util.Reference;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
@@ -24,13 +34,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
@@ -38,6 +41,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DBloodSword extends DWeaponSwordBase {
 	// /give @p dweapon:blood_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
 	public DBloodSword(String name, ToolMaterial material) {
@@ -62,7 +66,31 @@ public class DBloodSword extends DWeaponSwordBase {
 	int skyStrengthLevel = 10;
 	int skyRegenLevel = 2;
 	int skyBuffTick = 600;//0:30
-	
+
+	private static float regen = 1f;
+	private static float range = 5f;
+	@SubscribeEvent
+	public static void onCreatureHurt(LivingHurtEvent evt) {
+		if (evt.getAmount() >= regen) {
+			World world = evt.getEntity().getEntityWorld();
+			Vec3d pos = evt.getEntity().getPositionEyes(0);
+			if (!world.isRemote) {
+				List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range,-range,-range), pos.addVector(range,range,range)));
+				for (EntityLivingBase living:list ) {
+					ItemStack stack = living.getHeldItemMainhand();
+					if (stack.getItem() instanceof DBloodSword && (IsEarth(stack) || IsSky(stack))) {
+						living.heal(regen);
+						world.playSound(null, living.getPosition(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.PLAYERS, 1f,2f);
+					}
+				}
+			}
+			else
+			{
+
+			}
+		}
+	}
+
 	@Override
 	public float getAttackDamage()
     {
