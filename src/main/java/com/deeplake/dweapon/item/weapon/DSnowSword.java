@@ -190,7 +190,12 @@ public class DSnowSword extends DWeaponSwordBase {
 				}
 				else
 				{
-					SetWeaponMode(stack, CAN_SNOW_MODE);
+					if (IsSky(stack)) {
+						SetWeaponMode(stack, CAN_SNOW_MODE);
+					}else {
+						SetWeaponMode(stack, NORMAL_MODE);
+					}
+
 				}
 			}
 			else

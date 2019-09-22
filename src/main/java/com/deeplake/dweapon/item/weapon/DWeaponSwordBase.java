@@ -636,7 +636,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairMaterial) {
     	
     	boolean isEnchantedBook = repairMaterial.getItem() == Items.ENCHANTED_BOOK;
-		boolean isDivineIngot = OreDictionary.itemMatches(repairMaterial, new ItemStack(ModItems.DIVINE_INGOT), false);  
+		boolean isDivineIngot = OreDictionary.itemMatches(repairMaterial, new ItemStack(ModItems.PURE_INGOT), false);
 		//boolean base = super.getIsRepairable(stack, repairMaterial);
     	
 		return !isEnchantedBook && isDivineIngot;

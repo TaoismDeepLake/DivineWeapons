@@ -20,7 +20,7 @@ public class DWeapons
 {
     public static final String MODID = "dweapon";
     public static final String NAME = "Divine Weapon";
-    public static final String VERSION = "0.2.7";
+    public static final String VERSION = "0.2.8";
 
     public static Logger logger;
     

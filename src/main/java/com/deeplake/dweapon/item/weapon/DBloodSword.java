@@ -67,7 +67,7 @@ public class DBloodSword extends DWeaponSwordBase {
 	int skyRegenLevel = 2;
 	int skyBuffTick = 600;//0:30
 
-	private static float regen = 1f;
+	private static float regen = 0.5f;
 	private static float range = 5f;
 	@SubscribeEvent
 	public static void onCreatureHurt(LivingHurtEvent evt) {

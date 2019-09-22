@@ -52,7 +52,7 @@ starter.manual_page_4=两神铁锭、一木棍就能开始干活了，跟合成�
 starter.manual_page_5=你和这兵器萍水相逢。给他们本书，他们便会做自我介绍。如果你把写有说明书的搞丢了，或者就单纯是喜欢听神兵自我介绍，可以重新合成。神兵会不厌其烦地自我介绍。
 starter.manual_page_6=洁铁锭很可塑，你可以把锭再烧成珠。大多数兵器都可以镶嵌最多五个洁铁珠以强化。天级兵器不需要神铁珠，地级升天时会自动归还其上的所有洁铁珠。
 
-starter.manual_page_7=铁  铁\n  砧\n铁  铁\n    神铁锭和铁砧相性优良。把铁砧四角镶嵌神铁锭，你就得到一个地之护符。把护符镶嵌进你的神兵，试试它变成啥样了？地神兵可不只是名字里多个“地”字。
+starter.manual_page_7=铁  铁\n  砧\n铁  铁\n    神铁锭和铁砧相性优良。把铁砧四角镶嵌神铁锭，你就得到一个地之护符。在铁砧上把护符镶嵌进你的神兵，看看它变成啥样了？地神兵可不只是名字里多个“地”字。
 
 starter.manual_page_8=金钻金\n钻符钻\n金钻金\n    地神兵可以强化到最终形态：天神兵。见证它们的神力吧。地护符加上四个金块，四个钻石块可以做成天符。记得只有已经接受过地级强化的神兵才能承受天级强化。
 
@@ -306,4 +306,25 @@ item.disarm_ring.manual_page_6=  《西游》里，金刚镯可以套走投掷�
 item.disarm_ring.manual_page_7=  我的设计是击中目标的时候，让对方主手的物品脱手，但其实这并不够。我跟如月的一次演练中，打掉了她的剑，但她马上又捡起来了，反手就是一剑。这给我以不小的打击。
 item.disarm_ring.manual_page_8=  于是我几经尝试，使用了天之符强化，最终做出来了实用的天级金刚镯。我手持它的时候，它会自动把周围的箭矢和火焰弹吸过来，放进我包里。如月见到的时候惊呆了。另一方面，如果我集中精力发动它，周围所有人的双手所持物品都会进我口袋。
 item.disarm_ring.manual_page_9=  但是如月提醒了我一件事。假如我需要和她并肩作战，那么这神兵也会把她的武器吸走。于是我又做了些小的修改，让它范围吸的时候，不吸具有强大灵性的我们（玩家）。但是，我保留了单个抢走别人物品的能力。如果拿它对着某个人吸，或者拿它打人，不论打到的是谁，都得把武器双手奉上。
-item.disarm_ring.manual_page_10=  我还试着让它套走水火、沙子，但有点难，下次吧。
+item.disarm_ring.manual_page_10=  它已经能吸掉周围的水火，但是还不能吸走沙子。我希望持有者最终不会被活埋。
+
+//
+item.water_sword.name=天泣
+item.water_sword.hidden=水刀
+
+item.water_sword.shared_desc=[如鱼得水]湿润时更锋利，可以水桶维修。
+item.water_sword.sky_desc=湿润时速度III、水下呼吸。可召唤降雨。自动清除不利效果。
+item.water_sword.earth_desc=湿润时速度I、水下呼吸。扑灭身上火焰。
+item.water_sword.normal_desc=扑灭身上火焰。
+item.water_sword.damage_desc=基础伤害：%s
+
+item.water_sword.manual_title=天泪
+item.water_sword.manual_author=道家深湖
+item.water_sword.manual_page_count=7
+item.water_sword.manual_page_1=  水之剑。  
+item.water_sword.manual_page_2=  这把武器的概念来自于手游《阴阳师》里的雨女。雨女本是一个等待丈夫归来的渔妇，但执念令她化作妖怪。 
+item.water_sword.manual_page_3=  她具有降雨和净化之力，并且会对敌人减速。不过，对于这个世界似乎不太合适。 
+item.water_sword.manual_page_4=  既然它是泪滴，就自然能用水（桶）修复。在湿润的时候，它更能保持锋芒，伤害更高。作为水，它会自动帮持有者灭掉身上的火，但也会给被砍的人灭火。
+item.water_sword.manual_page_5=  强化到地级时，它能让持有者更适应水。水下呼吸和速度效果肯定会非常有用。
+item.water_sword.manual_page_6=  强化到天级时，它能与天上的云共鸣，制造降雨，但在沙漠等炎热的地方无效。此外，它还会自动清除持有者身上所有的减益效果，包括凋零、缓慢等。
+item.water_sword.manual_page_7=  虽然它能灭火，但它在岩浆里效果不佳，因为岩浆主要是以持续的高热造成伤害，而非火焰本身。
