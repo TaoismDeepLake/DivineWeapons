@@ -2,6 +2,16 @@ itemGroup.DWeaponMainTab=神兵
 itemGroup.DWeaponMiscTab=神兵杂物
 itemGroup.DWeaponWeaponTab=神兵
 
+//Buffs
+dweapon.potion.deadly=致死
+//unused
+dweapon.potion.deadly.4=致死 V
+dweapon.potion.deadly.5=致死 V
+dweapon.potion.deadly.6=致死 VI
+dweapon.potion.deadly.7=致死 VII
+dweapon.potion.deadly.8=九死一生 
+dweapon.potion.deadly.9=一击必杀
+
 //Blocks
 tile.divine_ore.name=神铁矿
 tile.pure_ore.name=洁铁矿
@@ -89,22 +99,23 @@ item.blood_sword.manual_page_12=Debug says, Is this 100\%? No.
 item.blood_sword.manual_page_13=Debug says, Is this 100\\%? No.
 
 //-------------
-item.death_sword.name=断命剑
+item.death_sword.name=勾魂剑
 item.death_sword.hidden=黑剑
 
-item.death_sword.shared_desc=[死神叩门] 概率即死目标。
-item.death_sword.sky_desc=立刻夺命。 注: 有 %.0f%% 概率天谴自裁。
-item.death_sword.earth_desc=以 (1+%s)/(目标生命值) + %.0f%% 的概率即死目标.
-item.death_sword.normal_desc=以 (1+%s)/(目标生命值) 的概率即死目标.
+item.death_sword.shared_desc=[生死轮回] 从附近的死亡中汲取力量。
+item.death_sword.sky_desc=治疗2心，%0.1fs致死buff，最多10层。免死
+item.death_sword.earth_desc=治疗1心，%0.1fs致死buff，最多3层。免死
+item.death_sword.normal_desc=治疗0.5心，%0.1fs致死buff，最多1层。
 item.death_sword.damage_desc=基础伤害：%s
 
-item.death_sword.manual_title=断命剑
+item.death_sword.manual_title=勾魂剑
 item.death_sword.manual_author=Taoism DeepLake
-item.death_sword.manual_page_count=4
-item.death_sword.manual_page_1=人固有一死。不管强大或弱小，终难逃一死。
+item.death_sword.manual_page_count=5
+item.death_sword.manual_page_1=勾魂剑也称断命剑。\n人固有一死。不管强大或弱小，终难逃一死。
 item.death_sword.manual_page_2=小怪当然好解决。不过考虑一个有25535生命的怪，你的附魔钻石剑又有何作为呢？还有，你是否见过无限血的怪？我见过。
-item.death_sword.manual_page_3=他们需要猝死，一下造成无限点伤害。这种强大的力量不可滥用。于是我让命硬的生物对这种秒杀法术有一定抗性。  
-item.death_sword.manual_page_4=当此武器炉火纯青的时候，它会100%%击杀目标。不过，此时其上诅咒有一定概率同时杀死使用者，这样就没有哪位暴君能以此杀遍整个世界了，除非…… 
+item.death_sword.manual_page_3=每当附近生物死去时，持剑者会吸收其灵魂，恢复0.5/1/2心的生命，并获得一层致死buff。每层致死buff给予此剑具有10%的秒杀能力，以及1点额外伤害。 
+item.death_sword.manual_page_4=如果持剑者此时已经有了致死buff，则时间会刷新，并且buff会加一层，但不超过1/3/10层（有些版本的MC里buff超过IV时不能正常显示）。宝珠可以加大基础伤害，并延长buff。
+item.death_sword.manual_page_5=天、地级的此剑可以让拥有者蔑视死亡。当持剑者死去时，剑将消耗1/4耐久以复活持有者，并清除身上的所有效果。
 //-------------
 item.space_affinity_sword.name=空间涨落
 item.space_affinity_sword.hidden=不稳定的剑

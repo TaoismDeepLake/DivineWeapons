@@ -4,7 +4,13 @@ itemGroup.DWeaponWeaponTab=Divine Weapons
 
 //Buffs
 dweapon.potion.deadly=Deadly
-
+//unused
+dweapon.potion.deadly.4=Deadly V
+dweapon.potion.deadly.5=Deadly V
+dweapon.potion.deadly.6=Deadly VI
+dweapon.potion.deadly.7=Deadly VII
+dweapon.potion.deadly.8=Deadly IX
+dweapon.potion.deadly.9=Death Bringer
 
 //Blocks
 tile.divine_ore.name=Divine Ore
@@ -102,20 +108,21 @@ item.blood_sword.manual_page_13=Debug says, Is this 100\\%? No.
 item.death_sword.name=Death Within
 item.death_sword.hidden=A Dark Sword
 
-item.death_sword.shared_desc=[Death Visit] Chance to kill at once.
-item.death_sword.sky_desc=Kill target at once. NOTE: Has %.0f%% chance to SUICIDE.
-item.death_sword.earth_desc=Kill target with (1+%s)/(targetHP) + %.0f%% chance. Resists Death.
-item.death_sword.normal_desc=Kill target with (1+%s)/(targetHP) chance. Resists Death.
+item.death_sword.shared_desc=[Samsara] Draw power from nearby death.
+item.death_sword.sky_desc=Heals 4 HP, Deadly(%0.1fs) max Lv.10. Resists Death.
+item.death_sword.earth_desc=Heals 2 HP, Deadly(%0.1fs) max Lv.3 . Resists Death.
+item.death_sword.normal_desc=Heals 1 HP, applies Deadly(%0.1fs).
 item.death_sword.damage_desc=Base Damage : %s
 
 item.death_sword.manual_title=Death Within
 item.death_sword.manual_author=Taoism DeepLake
-item.death_sword.manual_page_count=5
+item.death_sword.manual_page_count=6
 item.death_sword.manual_page_1=Sometimes you die. Death is a valid conception, no matter how strong.
 item.death_sword.manual_page_2=Pawns can be slain easily, but consider a monster with 25535 health, what can your enchanted diamond sword do with it? Have you faced monsters with infinite health? I do. 
-item.death_sword.manual_page_3=A sudden death for them is the solution, sudden death by INFINITE damage dealt. This is too powerful to be abused, so I bind it to the victims' fate. Stronger ones have a stronger fate to put out.  
-item.death_sword.manual_page_4=With its full power released, it will kill targets at 100%% rate, but with a curse on it to kill its wielder at the chance, so no tyrants can destroy the whole world with it unless they... 
-item.death_sword.manual_page_5=Unless they can unleash the true power. The death sword can resist death at earth and sky level. When the wielder is about to die, it will spend 1/4 durability to revive its master at 1/4 health. 
+item.death_sword.manual_page_3=Whenever a nearby creature dies, the wielder heals 1/2/4 HP and receives \"Deadly\" buff. This weapon gets 10% immediate kill chance and 1 damage for each Deadly level.
+item.death_sword.manual_page_4=If the owner already have Deadly buff, it will increase the buff level by 1, but not beyond max level(1/3/10 for human/earth/sky). Pearls increase base damage and the buff duration.
+item.death_sword.manual_page_5=The death sword can defy death at earth and sky level. When the wielder is about to die, it will spend 1/4 durability to revive its master at 1/4 health and remove all buff/debuffs. 
+item.death_sword.manual_page_6=Any nearby death grants deadly buff. Try sacrificing chicken to it.
 //-------------
 item.space_affinity_sword.name=Space Fluctuation
 item.space_affinity_sword.hidden=Some Unstable Sword

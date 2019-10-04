@@ -47,16 +47,60 @@ public class DDeathSword extends DWeaponSwordBase {
 		
 	}
 
-	float base_damage = 4;
+	private float base_damage = 4;
+	private float base_damage_sky = 15;
 	float base_killFactor = 1f;
 	
-	float damage_per_pearl = 1; 
+	private float damage_per_pearl = 1;
 	float killFactor_per_pearl = 1f;
 	
-	float earth_Chance_bonus = 0.01f;
+	private float earth_Chance_bonus = 0.01f;
 	
-	float sky_suicide_rate = 0.2f;
+	private float sky_suicide_rate = 0.2f;
 
+	private static int deadly_buff_ticks_per_pearl = 20;
+	public static int getDeadlyBuffTicks(ItemStack stack) {
+		if (IsSky(stack)) {
+			return 200;//10sec
+		}else if (IsEarth(stack)){
+			return 150 + GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
+		}else {
+			return 100 + GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
+		}
+	}
+
+	public static int getDeadlyBuffMaxLevel(ItemStack stack) {
+		if (IsSky(stack)) {
+			return 10;
+		}else if (IsEarth(stack)){
+			return 3;
+		}else {
+			return 1;
+		}
+	}
+
+	public static float getDeathHealAmount(ItemStack stack) {
+		if (IsSky(stack)) {
+			return 4f;
+		}else if (IsEarth(stack)){
+			return 2f;
+		}else {
+			return 1f;
+		}
+	}
+
+	//0 is no buff
+	private static int GetDeadlyBuffLevel(EntityLivingBase living){
+		PotionEffect curBuff = living.getActivePotionEffect(DEADLY);
+		if (curBuff == null) {
+			return 0;
+		} else {
+			int buffLevel = curBuff.getAmplifier();
+			return buffLevel + 1;
+		}
+	}
+
+	private static int deadly_buff_full_divider = 10;
 	private static float range = 5f;
 	//LivingDeathEvent
 	@SubscribeEvent
@@ -65,26 +109,38 @@ public class DDeathSword extends DWeaponSwordBase {
 		EntityLivingBase dieOne = evt.getEntityLiving();
 		Vec3d pos = evt.getEntity().getPositionEyes(0);
 		if (!world.isRemote) {
+			//wielder resist death
 			ItemStack stackDie = dieOne.getHeldItemMainhand();
 			if (stackDie.getItem() instanceof DDeathSword && (IsEarth(stackDie) || IsSky(stackDie))) {
 				stackDie.damageItem(256, dieOne);
 				dieOne.setHealth(dieOne.getMaxHealth() / 4);
-				world.playSound(null, dieOne.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL, SoundCategory.PLAYERS, 1f,2f);
+				dieOne.clearActivePotions();
+				world.playSound(null, dieOne.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL, SoundCategory.PLAYERS, 1f, 2f);
 				evt.setCanceled(true);
-				//resist death
+				return;
 			}
 
-			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range,-range,-range), pos.addVector(range,range,range)));
-			for (EntityLivingBase living:list ) {
+			//wielder draws power from nearby deaths
+			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
+			for (EntityLivingBase living : list) {
 				ItemStack stack = living.getHeldItemMainhand();
-				if (stack.getItem() instanceof DDeathSword && (IsEarth(stack) || IsSky(stack))) {
-					living.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 60, 0));
-					world.playSound(null, living.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.PLAYERS, 1f,2f);
+				if (stack.getItem() instanceof DDeathSword) {
+					int buffLevel = GetDeadlyBuffLevel(living);
+					DWeapons.Log(String.format("deadly level = %s", buffLevel));
+					//gives deadly buff
+					if (buffLevel >= getDeadlyBuffMaxLevel(stack)) {
+						buffLevel = getDeadlyBuffMaxLevel(stack) - 1;
+					}
+
+					living.addPotionEffect(new PotionEffect(DEADLY, getDeadlyBuffTicks(stack), buffLevel));
+					//play sound
+					world.playSound(null, living.getPosition(), SoundEvents.ENTITY_GHAST_SCREAM, SoundCategory.PLAYERS, 1f, buffLevel * 0.2f);
+					//heal
+					living.heal(getDeathHealAmount(stack));
 				}
 			}
-		}
-		else {
-
+		} else {
+			//currently do nothing
 		}
 	}
 
@@ -97,28 +153,31 @@ public class DDeathSword extends DWeaponSwordBase {
 	
 	public float getActualDamage(ItemStack stack)
 	{
-		return base_damage + damage_per_pearl * GetPearlCount(stack);
-	}
-	
-	public float getKillRate(ItemStack stack, EntityLivingBase target)
-	{
-		float targetHealth = Math.max(target.getHealth(), 1f);
-		
-		if (IsSky(stack))
-		{
-			return 1;
-		}
-		else if (IsEarth(stack))
-		{
-			return earth_Chance_bonus + 1 / targetHealth;
-		}
-		else
-		{
-			return  1 / targetHealth;
+		if (IsSky(stack)){
+			return base_damage_sky;
+		}else {
+			return base_damage + damage_per_pearl * GetPearlCount(stack);
 		}
 	}
 	
-	
+//	public float getKillRate(ItemStack stack, EntityLivingBase target)
+//	{
+//		float targetHealth = Math.max(target.getHealth(), 1f);
+//
+//		if (IsSky(stack))
+//		{
+//			return 1;
+//		}
+//		else if (IsEarth(stack))
+//		{
+//			return earth_Chance_bonus + 1 / targetHealth;
+//		}
+//		else
+//		{
+//			return  1 / targetHealth;
+//		}
+//	}
+
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
 
@@ -127,34 +186,43 @@ public class DDeathSword extends DWeaponSwordBase {
 		}
 
 		float damage = getActualDamage(stack);
-		
+		int buffLevel = GetDeadlyBuffLevel(player);
+		damage += buffLevel;
+
 		if (target instanceof EntityLivingBase && ratio > 0.3) {
-			if (Math.random() < getKillRate(stack, (EntityLivingBase) target))
-			{
-				if (IsNameHidden(stack))
-				{
-					TrueNameReveal(stack, player.getEntityWorld(), player);
+			if (buffLevel > 0) {
+				float killRate = (float) buffLevel / deadly_buff_full_divider;
+				if (Math.random() < killRate) {
+					if (IsNameHidden(stack))
+					{
+						TrueNameReveal(stack, player.getEntityWorld(), player);
+					}
+					damage = Float.MAX_VALUE;
+					player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.PLAYERS, 1f, 2f);
 				}
-				damage = Float.MAX_VALUE;
 			}
+//			if (Math.random() < getKillRate(stack, (EntityLivingBase) target))
+//			{
+//				if (IsNameHidden(stack))
+//				{
+//					TrueNameReveal(stack, player.getEntityWorld(), player);
+//				}
+//				damage = Float.MAX_VALUE;
+//			}
 			
-			if (IsSky(stack))
-			{
-				if (Math.random() < sky_suicide_rate)
-				{
-					player.setHealth(0);
-				}
-			}
+//			if (IsSky(stack))
+//			{
+//				if (Math.random() < sky_suicide_rate)
+//				{
+//					player.setHealth(0);
+//				}
+//			}
 		}
 		
 		boolean success = false;
 		success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
 	
 		stack.damageItem(1, player);
-		if (success) {
-			DWeapons.LogWarning("Applying effect");
-			player.addPotionEffect(new PotionEffect(DEADLY, 200, 10));
-		}
 
 		return success;
 	}
@@ -226,15 +294,15 @@ public class DDeathSword extends DWeaponSwordBase {
     	
     	if (IsSky(stack)) 
     	{
-    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY, sky_suicide_rate * 100);
+    		String skyDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_SKY, getDeadlyBuffTicks(stack) / 20f);
     		tooltip.add(skyDesc);
     	}else if (IsEarth(stack))
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH, GetPearlCount(stack), earth_Chance_bonus * 100);
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_EARTH, getDeadlyBuffTicks(stack) / 20f);
     		tooltip.add(earthDesc);
     	}else
     	{
-    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL, GetPearlCount(stack));
+    		String earthDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_NORMAL, getDeadlyBuffTicks(stack) / 20f);
     		tooltip.add(earthDesc);
     	}
     

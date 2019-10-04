@@ -23,6 +23,12 @@ public class BasePotion extends Potion {
         iconIndex = icon;
     }
 
+    //see InventoryEffectRenderer.drawActivePotionEffects, buff modifier > 3  won't display level.
+//    public String getName()
+//    {
+//        return this.getName() + "." + this.getmo;
+//    }
+
     @SideOnly(Side.CLIENT)
     private void render(int x, int y, float alpha) {
         Minecraft.getMinecraft().renderEngine.bindTexture(resource);
