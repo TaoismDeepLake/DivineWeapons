@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 
 import com.deeplake.dweapon.DWeapons;
+import com.deeplake.dweapon.init.ModPotions;
 import com.deeplake.dweapon.util.Reference;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
@@ -35,6 +36,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import static com.deeplake.dweapon.init.ModPotions.DEADLY;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DDeathSword extends DWeaponSwordBase {
@@ -70,7 +73,6 @@ public class DDeathSword extends DWeaponSwordBase {
 				evt.setCanceled(true);
 				//resist death
 			}
-
 
 			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range,-range,-range), pos.addVector(range,range,range)));
 			for (EntityLivingBase living:list ) {
@@ -149,7 +151,11 @@ public class DDeathSword extends DWeaponSwordBase {
 		success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
 	
 		stack.damageItem(1, player);
-		
+		if (success) {
+			DWeapons.LogWarning("Applying effect");
+			player.addPotionEffect(new PotionEffect(DEADLY, 200, 10));
+		}
+
 		return success;
 	}
 

@@ -2,6 +2,10 @@ itemGroup.DWeaponMainTab=DivineWeapon
 itemGroup.DWeaponMiscTab=DWeapon Misc
 itemGroup.DWeaponWeaponTab=Divine Weapons
 
+//Buffs
+dweapon.potion.deadly=Deadly
+
+
 //Blocks
 tile.divine_ore.name=Divine Ore
 tile.pure_ore.name=Pure Ore
