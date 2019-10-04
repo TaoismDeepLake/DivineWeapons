@@ -113,7 +113,7 @@ item.death_sword.manual_author=Taoism DeepLake
 item.death_sword.manual_page_count=5
 item.death_sword.manual_page_1=勾魂剑也称断命剑。\n人固有一死。不管强大或弱小，终难逃一死。
 item.death_sword.manual_page_2=小怪当然好解决。不过考虑一个有25535生命的怪，你的附魔钻石剑又有何作为呢？还有，你是否见过无限血的怪？我见过。
-item.death_sword.manual_page_3=每当附近生物死去时，持剑者会吸收其灵魂，恢复0.5/1/2心的生命，并获得一层致死buff。每层致死buff给予此剑具有10%的秒杀能力，以及1点额外伤害。 
+item.death_sword.manual_page_3=每当附近生物死去时，持剑者会吸收其灵魂，恢复0.5/1/2心的生命，并获得一层致死buff。每层致死buff给予此剑具有10%%的秒杀能力，以及1点额外伤害。 
 item.death_sword.manual_page_4=如果持剑者此时已经有了致死buff，则时间会刷新，并且buff会加一层，但不超过1/3/10层（有些版本的MC里buff超过IV时不能正常显示）。宝珠可以加大基础伤害，并延长buff。
 item.death_sword.manual_page_5=天、地级的此剑可以让拥有者蔑视死亡。当持剑者死去时，剑将消耗1/4耐久以复活持有者，并清除身上的所有效果。
 //-------------
