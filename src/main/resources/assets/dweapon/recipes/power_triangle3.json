@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " B ",
+        " H ",
+        "G R"
+    ],
+    "key": {
+        "R": {
+            "item": "minecraft:stained_glass",
+            "data": 14
+        },
+        "B": {
+            "item": "minecraft:stained_glass",
+            "data": 11
+        },
+        "G": {
+            "item": "minecraft:stained_glass",
+            "data": 13
+            
+        },
+        "H": {
+            "item": "dweapon:weapon_handle"
+        }
+    },
+    "result": {
+        "item": "dweapon:power_triangle",
+        "count": 1
+    }
+}
