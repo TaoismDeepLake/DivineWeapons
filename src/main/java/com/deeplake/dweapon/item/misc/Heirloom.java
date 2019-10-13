@@ -55,6 +55,7 @@ public class Heirloom extends SealedWeapon {
 		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 3;
 		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.WATER_INDEX.ordinal()] = 10;
 		return  factor;
 	}
 
@@ -66,26 +67,23 @@ public class Heirloom extends SealedWeapon {
 		
 		if (!world.isRemote) {
 			//EntityPlayer player = (EntityPlayer)living;
+			ItemStack resultStack = GetRandomWeapon();
+			DWeaponSwordBase.SetHeirloom(resultStack, true);
 
-				
-				
-				ItemStack resultStack = GetRandomWeapon();
-				DWeaponSwordBase.SetHeirloom(resultStack, true);
-				
-				String ownerName = player.getDisplayNameString();
-				String preOwner = DWeaponSwordBase.GetOwner(stack);
-				if (preOwner != "")
-				{   //  even if you get someone else's heirloom, it's still theirs.
-					ownerName = preOwner;
-				}
-				
-				DWeaponSwordBase.SetOwner(resultStack, ownerName);
-				
-				player.addItemStackToInventory(resultStack);
-				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
-				player.addExperience(10);
-				
-				stack.shrink(1);
+			String ownerName = player.getDisplayNameString();
+			String preOwner = DWeaponSwordBase.GetOwner(stack);
+			if (preOwner != "")
+			{   //  even if you get someone else's heirloom, it's still theirs.
+				ownerName = preOwner;
+			}
+
+			DWeaponSwordBase.SetOwner(resultStack, ownerName);
+
+			player.addItemStackToInventory(resultStack);
+			player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
+			player.addExperience(10);
+
+			stack.shrink(1);
 				
 		}
 		

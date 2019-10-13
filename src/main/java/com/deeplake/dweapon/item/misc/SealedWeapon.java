@@ -45,6 +45,7 @@ enum WeaponIndex{
 	GOLD_INDEX,
 	TRUENAME_INDEX,
 	DISARMER_INDEX,
+	WATER_INDEX,
 	LAST,
 }
 
@@ -74,10 +75,7 @@ public class SealedWeapon extends ItemBase {
 				//TODO : Add a message.
 				//String msg = "";
 			
-				//FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendMessage(new TextComponentString(msg));	
-			
-				
-				
+				//FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendMessage(new TextComponentString(msg));
 				ItemStack resultStack = GetRandomWeapon();
 				DWeaponSwordBase.SetHeirloom(resultStack, false);
 				DWeaponSwordBase.SetOwner(resultStack, player.getDisplayNameString());
@@ -171,6 +169,7 @@ public class SealedWeapon extends ItemBase {
 		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 6;
 		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.WATER_INDEX.ordinal()] = 10;
 		return  factor;
 	}
 
@@ -232,6 +231,9 @@ public class SealedWeapon extends ItemBase {
 			break;
 		case DISARMER_INDEX:
 			result = new ItemStack(ModItems.DISARM_RING);
+			break;
+		case WATER_INDEX:
+			result = new ItemStack(ModItems.WATER_SWORD);
 			break;
 		default:
 			result = new ItemStack(Items.IRON_SWORD);
