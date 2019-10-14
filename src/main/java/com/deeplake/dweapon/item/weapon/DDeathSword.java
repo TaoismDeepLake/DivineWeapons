@@ -63,9 +63,9 @@ public class DDeathSword extends DWeaponSwordBase {
 		if (IsSky(stack)) {
 			return 200;//10sec
 		}else if (IsEarth(stack)){
-			return 150 + GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
-		}else {
 			return 100 + GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
+		}else {
+			return 60 + GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
 		}
 	}
 
@@ -126,7 +126,7 @@ public class DDeathSword extends DWeaponSwordBase {
 				ItemStack stack = living.getHeldItemMainhand();
 				if (stack.getItem() instanceof DDeathSword) {
 					int buffLevel = GetDeadlyBuffLevel(living);
-					DWeapons.Log(String.format("deadly level = %s", buffLevel));
+					//DWeapons.Log(String.format("deadly level = %s", buffLevel));
 					//gives deadly buff
 					if (buffLevel >= getDeadlyBuffMaxLevel(stack)) {
 						buffLevel = getDeadlyBuffMaxLevel(stack) - 1;
@@ -180,27 +180,28 @@ public class DDeathSword extends DWeaponSwordBase {
 
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
-
 		if (player.world.isRemote) {
 			return false;
 		}
 
-		float damage = getActualDamage(stack);
+		float damage = getActualDamage(stack) * ratio;
 		int buffLevel = GetDeadlyBuffLevel(player);
 		damage += buffLevel;
 
-		if (target instanceof EntityLivingBase && ratio > 0.3) {
-			if (buffLevel > 0) {
-				float killRate = (float) buffLevel / deadly_buff_full_divider;
-				if (Math.random() < killRate) {
-					if (IsNameHidden(stack))
-					{
-						TrueNameReveal(stack, player.getEntityWorld(), player);
+		boolean success = false;
+		success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
+		if (success) {
+			if (target instanceof EntityLivingBase && ratio > 0.3) {
+				if (buffLevel > 0) {
+					float killRate = (float) buffLevel / deadly_buff_full_divider;
+					if (Math.random() < killRate) {
+						if (IsNameHidden(stack)) {
+							TrueNameReveal(stack, player.getEntityWorld(), player);
+						}
+						damage = Float.MAX_VALUE;
+						player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.PLAYERS, 1f, 2f);
 					}
-					damage = Float.MAX_VALUE;
-					player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.PLAYERS, 1f, 2f);
 				}
-			}
 //			if (Math.random() < getKillRate(stack, (EntityLivingBase) target))
 //			{
 //				if (IsNameHidden(stack))
@@ -209,7 +210,7 @@ public class DDeathSword extends DWeaponSwordBase {
 //				}
 //				damage = Float.MAX_VALUE;
 //			}
-			
+
 //			if (IsSky(stack))
 //			{
 //				if (Math.random() < sky_suicide_rate)
@@ -217,13 +218,9 @@ public class DDeathSword extends DWeaponSwordBase {
 //					player.setHealth(0);
 //				}
 //			}
+			}
+			stack.damageItem(1, player);
 		}
-		
-		boolean success = false;
-		success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
-	
-		stack.damageItem(1, player);
-
 		return success;
 	}
 
