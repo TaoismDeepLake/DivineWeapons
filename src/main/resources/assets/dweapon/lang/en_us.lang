@@ -50,6 +50,7 @@ item.shared.right_click_open=Right click to unseal
 
 
 //Starter Manual
+dweapon:default_player_name=Friend
 starter.manual_title=Your First Divine Weapon
 starter.manual_author=Taoism DeepLake
 starter.manual_page_count=12

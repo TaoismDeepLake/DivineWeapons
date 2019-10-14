@@ -93,7 +93,7 @@ public class DWNBT {
 	
 	public static NBTTagString bookPageFromUnlocalizedLine(String key, EntityPlayer player)
 	{
-		String playerName = "Friend";
+		String playerName = I18n.format(DWNBTDef.DEFAULT_PLAYER_NAME);
 		if (player != null) {
 			playerName = player.getDisplayNameString();
 		}

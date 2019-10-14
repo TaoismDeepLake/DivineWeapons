@@ -48,6 +48,7 @@ item.shared.missing_manual_author=????
 item.shared.right_click_open=右键拆封
 
 //Starter Manual
+dweapon:default_player_name=朋友
 starter.manual_title=神兵初见
 starter.manual_author=道家深湖
 starter.manual_page_count=11

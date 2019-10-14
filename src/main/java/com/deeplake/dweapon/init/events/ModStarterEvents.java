@@ -68,7 +68,6 @@ public class ModStarterEvents {
 				pageCount = Integer.parseInt(pageCountString);
 				hasManual = true;
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
 				pageCount = 0;
 			}
 			
