@@ -55,14 +55,18 @@ public class DSnowSword extends DWeaponSwordBase {
 	}
 
 	static final float base_damage = 5f;
-	
+	static final float base_damage_earth = 10f;
+	static final float base_damage_sky = 20f;
+
 	static final float pearl_damage_factor = 0.2f;
 	static final float t_base = 1.0f;//temperature_base
-	static final float t_max = 2.0f;//hotest temperature
+	//static final float t_max = 2.0f;//hotest temperature
 	
 	static final float snowing_multiplier = 2.0f;//damage rate when snowing
 	
 	static final int skyBuffTick = 100;
+
+	public static final int snowTime = 1200;
 	
 	private static int weatherSummonTick = 100;
 	public static final int NORMAL_MODE = 0;
@@ -85,14 +89,20 @@ public class DSnowSword extends DWeaponSwordBase {
 	
 	public float getActualDamage(ItemStack stack, float ratio, float t, boolean isSnowing)
 	{	
-		float result = isSnowing ? base_damage * snowing_multiplier : base_damage;
-		
+		float result = IsSky(stack) ? base_damage_sky :
+				(IsEarth(stack) ? base_damage_earth :
+						base_damage) ;
+		result *= ratio;
+
 		int pearlCount = GetPearlCount(stack);
-		
 		if (IsSky(stack)){
 			pearlCount = GetPearlMax(stack);
 		}
-		
+		else
+		{
+			result += pearlCount;
+		}
+
 		if (t > t_base) 
 		{
 			if (IsEarth(stack) || IsSky(stack))
@@ -108,9 +118,12 @@ public class DSnowSword extends DWeaponSwordBase {
 		{
 			result *= 1 + (t_base - t) * ( 1 + pearl_damage_factor * pearlCount);
 		}
-			
-		return result;
 
+		if (isSnowing) {
+			result *= snowing_multiplier;
+		}
+
+		return result;
 	}
 	
 	@Override
@@ -301,7 +314,7 @@ public class DSnowSword extends DWeaponSwordBase {
 		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 	}
 	
-	public static final int snowTime = 1200;
+
 	
 	/**
      * Called when the player stops using an Item (stops holding the right mouse button).
@@ -369,19 +382,19 @@ public class DSnowSword extends DWeaponSwordBase {
 	
 	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-		int pearlCount = GetPearlCount(stack);
-		
-		if (IsSky(stack)){
-			pearlCount = GetPearlMax(stack);
-		}
-		
-		if (IsSky(stack)||IsEarth(stack)) {
-			return base_damage * (1 + (0.5f) * ( 1 + pearl_damage_factor * pearlCount));
-		}
-		else
-		{
-			return base_damage * (1 + (0.1f) * ( 1 + pearl_damage_factor * pearlCount));
-		}
-
+//		int pearlCount = GetPearlCount(stack);
+//
+//		if (IsSky(stack)){
+//			pearlCount = GetPearlMax(stack);
+//		}
+//
+//		if (IsSky(stack)||IsEarth(stack)) {
+//			return base_damage  * (1 + (0.5f) * ( 1 + pearl_damage_factor * pearlCount));
+//		}
+//		else
+//		{
+//			return base_damage * (1 + (0.1f) * ( 1 + pearl_damage_factor * pearlCount));
+//		}
+		return getActualDamage(stack, 1, 0.9f, false);
     }
 }
