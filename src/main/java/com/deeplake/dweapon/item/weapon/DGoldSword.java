@@ -40,7 +40,7 @@ public class DGoldSword extends DWeaponSwordBase {
 	public static final float earthDamageModifier = 1.5f;
 	public static final float skyDamageModifier = 4f;
 	
-	public static final float pearlRateModifier = 0.10f;//5%
+
 	
 	@Override
 	public float getAttackDamage()
@@ -53,10 +53,10 @@ public class DGoldSword extends DWeaponSwordBase {
 	
 	public float getActualDamage(ItemStack stack, float ratio)
 	{
-		float damage = baseDamageAttackMode + pearlDamageAttackMode * GetPearlCount(stack);
+		float damage = ratio * (baseDamageAttackMode + pearlDamageAttackMode * GetPearlCount(stack));
 		if (IsSky(stack))
 		{
-			damage *= baseDamageAttackMode * skyDamageModifier;
+			damage *= skyDamageModifier;
 		} 
 		else if (IsEarth(stack))
 		{
@@ -81,8 +81,8 @@ public class DGoldSword extends DWeaponSwordBase {
 		
 		//return ItemStack.EMPTY;
 	}
-	
-	static final float chancePerPearl = 0.05f;
+
+	public static final float pearlRateModifier = 0.10f;//10%
 	static final float chanceBase = 0.25f;
 	
 	public float Chance(ItemStack stack)
