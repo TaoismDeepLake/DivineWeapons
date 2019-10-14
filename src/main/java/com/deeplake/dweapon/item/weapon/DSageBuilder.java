@@ -50,7 +50,6 @@ public class DSageBuilder extends DWeaponSwordBase {
 	// /give @p dweapon:blood_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
 	public DSageBuilder(String name, ToolMaterial material) {
 		super(name, material);
-		
 	}
 
 	float base_damage = 4;
@@ -127,9 +126,6 @@ public class DSageBuilder extends DWeaponSwordBase {
 		player.setActiveHand(hand);
 		ItemStack stack = player.getHeldItem(hand);
 		
-		//playerIn.setActiveHand(handIn);
-        //return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-		
 		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 	}
 	
@@ -172,16 +168,19 @@ public class DSageBuilder extends DWeaponSwordBase {
 
 		if (getMaxItemUseDuration(stack) - count >= changeNeedTick)
 		{
-			for (int i = 0; i < 20; i++)
-			{
-				CreateParticle(stack, living, -3d);
+			if (IsEarth(stack) || IsSky(stack)) {
+				for (int i = 0; i < 20; i++) {
+					CreateParticle(stack, living, -3d);
+				}
 			}
 		}
 		else if (getMaxItemUseDuration(stack) - count >= changeColorNeedTick)
 		{
-			int mode = GetWeaponMode(stack);
-			if (mode != SWORD_MODE) {
-				CreateParticle2(stack, living, -0.5d);
+			if (IsSky(stack)){
+				int mode = GetWeaponMode(stack);
+				if (mode != SWORD_MODE) {
+					CreateParticle2(stack, living, -0.5d);
+				}
 			}
 		}		
 	}
