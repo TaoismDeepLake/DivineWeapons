@@ -75,7 +75,7 @@ public class DSageBuilder extends DWeaponSwordBase {
 		}
 		else
 		{
-			return (base_damage + GetPearlCount(stack)) * ratio;
+			return (base_damage * ratio + GetPearlCount(stack));
 		}
 	}
 

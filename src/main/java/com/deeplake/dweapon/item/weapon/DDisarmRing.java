@@ -55,7 +55,7 @@ public class DDisarmRing extends DWeaponSwordBase {
 	
 	public float getActualDamage(ItemStack stack, float ratio)
 	{
-		float damage = baseDamage + pearlDamage * GetPearlCount(stack);
+		float damage = baseDamage * ratio + pearlDamage * GetPearlCount(stack);
 		if (IsSky(stack))
 		{
 			damage *= skyDamageModifier;

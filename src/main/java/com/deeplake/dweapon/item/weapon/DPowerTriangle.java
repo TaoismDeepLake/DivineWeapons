@@ -70,11 +70,11 @@ public class DPowerTriangle extends DWeaponSwordBase {
 	
 	public static final int WEAR_DURATION = 100;
 	
-	public float getAttackDamage(final ItemStack stack)
+	public float getAttackDamage(final ItemStack stack, float ratio)
     {
 		if (GetWeaponMode(stack) == ATTACK_MODE)
 		{
-			float damage = baseDamageAttackMode + pearlDamageAttackMode * GetPearlCount(stack);
+			float damage = baseDamageAttackMode * ratio + pearlDamageAttackMode * GetPearlCount(stack);
 			if (IsSky(stack))
 			{
 				damage *= skyDamageModifier;
@@ -98,7 +98,7 @@ public class DPowerTriangle extends DWeaponSwordBase {
 		if (player.world.isRemote) {
 			return false;
 		}
-		float damage = getAttackDamage(stack);
+		float damage = getAttackDamage(stack, ratio);
 		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
 		if (success)
 		{
@@ -409,7 +409,7 @@ public class DPowerTriangle extends DWeaponSwordBase {
 	
 	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-		return getAttackDamage(stack);
+		return getAttackDamage(stack, 1f);
 
     }
 	

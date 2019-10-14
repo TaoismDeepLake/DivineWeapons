@@ -53,7 +53,7 @@ public class DGoldSword extends DWeaponSwordBase {
 	
 	public float getActualDamage(ItemStack stack, float ratio)
 	{
-		float damage = ratio * (baseDamageAttackMode + pearlDamageAttackMode * GetPearlCount(stack));
+		float damage = ratio * baseDamageAttackMode + pearlDamageAttackMode * GetPearlCount(stack);
 		if (IsSky(stack))
 		{
 			damage *= skyDamageModifier;

@@ -45,16 +45,15 @@ public class DWaterSword extends DWeaponSwordBase {
 	static final float t_base = 1.0f;//temperature_base
 	static final float t_max = 2.0f;//hotest temperature
 
-	static final float wet_multiplier = 2.0f;//damage rate when wet
-	static final float sky_base_damage = 25.0f;
-	static final int skyBuffTick = 10;
+	private static final float wet_multiplier = 2.0f;//damage rate when wet
+	private static final float sky_base_damage = 25.0f;
+	private static final int skyBuffTick = 10;
 
 	private static int weatherSummonTick = 100;
 	public static final int NORMAL_MODE = 0;
 	public static final int CAN_RAIN_MODE = 1;
 	public static final int RAINING_MODE = 2;
 
-	int buff_tick_per_pearl = 60;
 	@Override
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairMaterial) {
 		boolean isWaterRelated = repairMaterial.getItem() == Items.WATER_BUCKET;
@@ -70,7 +69,7 @@ public class DWaterSword extends DWeaponSwordBase {
 
 	public float getActualDamage(ItemStack stack, float ratio, boolean isWet)
 	{
-		float damage = baseDamageAttackMode + pearlDamage * GetPearlCount(stack);
+		float damage = baseDamageAttackMode * ratio + pearlDamage * GetPearlCount(stack);
 		if (IsSky(stack))
 		{
 			damage = sky_base_damage;
@@ -79,6 +78,7 @@ public class DWaterSword extends DWeaponSwordBase {
 		{
 			damage *= earthDamageModifier;
 		}
+
 		if (isWet) {
 			damage *= wet_multiplier;
 		}
@@ -270,7 +270,7 @@ public class DWaterSword extends DWeaponSwordBase {
 		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 	}
 
-	public static final int rainTime = 1200;
+	private static final int rainTime = 1200;
 
 	/**
 	 * Called when the player stops using an Item (stops holding the right mouse button).

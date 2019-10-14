@@ -151,12 +151,12 @@ public class DDeathSword extends DWeaponSwordBase {
 		return base_damage;
     }
 	
-	public float getActualDamage(ItemStack stack)
+	public float getActualDamage(ItemStack stack, float ratio)
 	{
 		if (IsSky(stack)){
-			return base_damage_sky;
+			return base_damage_sky * ratio;
 		}else {
-			return base_damage + damage_per_pearl * GetPearlCount(stack);
+			return base_damage * ratio + damage_per_pearl * GetPearlCount(stack);
 		}
 	}
 	
@@ -184,7 +184,7 @@ public class DDeathSword extends DWeaponSwordBase {
 			return false;
 		}
 
-		float damage = getActualDamage(stack) * ratio;
+		float damage = getActualDamage(stack, ratio);
 		int buffLevel = GetDeadlyBuffLevel(player);
 		damage += buffLevel;
 
@@ -308,7 +308,7 @@ public class DDeathSword extends DWeaponSwordBase {
 	
 	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		return getActualDamage(stack);
+		return getActualDamage(stack, 1f);
 	}
 
 }

@@ -46,7 +46,6 @@ public class DBloodSword extends DWeaponSwordBase {
 	// /give @p dweapon:blood_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
 	public DBloodSword(String name, ToolMaterial material) {
 		super(name, material);
-		
 	}
 
 	float base_damage = 4;
