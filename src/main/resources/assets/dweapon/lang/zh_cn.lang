@@ -50,14 +50,14 @@ item.shared.right_click_open=右键拆封
 //Starter Manual
 starter.manual_title=神兵初见
 starter.manual_author=道家深湖
-starter.manual_page_count=10
+starter.manual_page_count=11
 starter.manual_page_1={PlayerName}:\n    大家好，我是练习时长两天半的Modder……\n    咳咳，我是塑世师道家深湖，阁下世界的访客。我等塑世师，也称为Mod制作者，所做之事就是给各个世界带来改变。你的世界可能已经有了不少我们做的调整了。\n我在此呈上我们的礼物：神兵。
 
 starter.manual_page_2=下去挖矿。\n烧炼之。\n合成为剑。\n拆封。\n以书鉴真名，\n以珠强魔力，\n以符提档次。\n天神兵，便是力量的化身。
 
 starter.manual_page_3=在铁深度可见白色洁铁矿，以铁镐挖之；\n在钻石的深度可见五彩光亮的神铁矿，以钻石镐挖之。\n然后，像铁一样熔炼它们。所得产物非常漂亮。\n你说并不漂亮？好吧，随你，不关键。
 
-starter.manual_page_4= / /\n / \n/ /\n把五根木棍如上合成，就能做好神兵骨架。神兵骨架是制作神兵的基础物品，就像原版里的木棍。两神铁锭、一神兵骨架就能开始干活了，跟合成别的剑一样。
+starter.manual_page_4=  / /\n   / \n  / /\n  把五根木棍如上合成，就能做好神兵骨架。神兵骨架是制作神兵的基础物品，就像原版里的木棍。两神铁锭、一神兵骨架就能开始干活了，跟合成别的剑一样。
 
 starter.manual_page_5=所得的是即将成型的神兵，你可以理解为一个包裹。你应该已经有一件了，就是那个传家宝。右手抚摸（右键）它，它就会成型，成型的结果有很多种。建议在生存模式下进行，创造模式下它不太愿意成型。
 
