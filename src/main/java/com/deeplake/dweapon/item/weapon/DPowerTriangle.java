@@ -59,7 +59,7 @@ public class DPowerTriangle extends DWeaponSwordBase {
 	public static final float baseDamageAttackMode = 5;//2 hearts
 	public static final float pearlDamageAttackMode = 1;//0.5 hearts
 	
-	public static final float baseDamageOtherMode = 1;//2 sec
+	public static final float baseDamageOtherMode = 1;//0.5 hearts
 	
 	public static final float earthDamageModifier = 1.5f;
 	public static final float skyDamageModifier = 3f;

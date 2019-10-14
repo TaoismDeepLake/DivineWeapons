@@ -46,7 +46,7 @@ public class DWaterSword extends DWeaponSwordBase {
 	static final float t_max = 2.0f;//hotest temperature
 
 	static final float wet_multiplier = 2.0f;//damage rate when wet
-	static final float sky_base_damage = 25.0f;//damage rate when wet
+	static final float sky_base_damage = 25.0f;
 	static final int skyBuffTick = 10;
 
 	private static int weatherSummonTick = 100;
@@ -296,7 +296,7 @@ public class DWaterSword extends DWeaponSwordBase {
 			}
 			else
 			{
-				if (mode == NORMAL_MODE) {//cannot snow here
+				if (mode == NORMAL_MODE) {//cannot rain here
 					living.playSound(SoundEvents.ENTITY_BLAZE_BURN, 0.6f, 1);
 				} else
 				{
