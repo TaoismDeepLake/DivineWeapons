@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "PPP",
+        "P P",
+        "PPP"
+    ],
+    
+    "key":
+    {
+        "P":
+        {
+            "item": "dweapon:weapon_pearl"
+        }
+    },
+    
+    "result":
+    {
+        "item": "dweapon:monk_beads",
+        "count": 1
+    }
+}

@@ -1,14 +1,13 @@
 package com.deeplake.dweapon.potion;
 
-import com.deeplake.dweapon.util.Reference;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
-public class PotionDeadly extends BasePotion {
+public class PotionZenHeart extends BasePotion {
 
-    public PotionDeadly(boolean isBadEffectIn, int liquidColorIn, String name, int icon) {
+
+    public PotionZenHeart(boolean isBadEffectIn, int liquidColorIn, String name, int icon) {
         super(isBadEffectIn, liquidColorIn, name, icon);
     }
 

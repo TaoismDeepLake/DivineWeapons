@@ -56,6 +56,7 @@ public class Heirloom extends SealedWeapon {
 		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.WATER_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.BEADS_INDEX.ordinal()] = 3;
 		return  factor;
 	}
 

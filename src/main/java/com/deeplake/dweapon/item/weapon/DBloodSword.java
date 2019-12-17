@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.Reference;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.crafting.IRecipe;
@@ -77,7 +78,8 @@ public class DBloodSword extends DWeaponSwordBase {
 				List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range,-range,-range), pos.addVector(range,range,range)));
 				for (EntityLivingBase living:list ) {
 					ItemStack stack = living.getHeldItemMainhand();
-					if (stack.getItem() instanceof DBloodSword && (IsEarth(stack) || IsSky(stack))) {
+
+					if (stack.getItem() instanceof DBloodSword && (ModItems.BLOOD_SWORD.IsEarth(stack) || ModItems.BLOOD_SWORD.IsSky(stack))) {
 						living.heal(regen);
 						world.playSound(null, living.getPosition(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.PLAYERS, 1f,2f);
 					}

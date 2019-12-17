@@ -49,10 +49,10 @@ public class ModRecipes {
 		r.register(new PearlSocket().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_socket_pearl")));
 		
 		//IForgeRegistry<IRecipe> r_eh = evt.getRegistry();
-		r.register(new EarthEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_earth_enhance")));
+		//r.register(new EarthEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_earth_enhance")));
 		
 		//IForgeRegistry<IRecipe> r_sky = evt.getRegistry();
-		r.register(new SkyEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_sky_enhance")));
+		//r.register(new SkyEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_sky_enhance")));
 		
 		//IForgeRegistry<IRecipe> r_book = evt.getRegistry();
 		r.register(new NameRevealByBook().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_name_reveal_by_book")));

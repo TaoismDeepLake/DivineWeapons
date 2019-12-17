@@ -7,6 +7,15 @@ import java.util.logging.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.util.Reference;
+import net.minecraft.init.PotionTypes;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.event.entity.living.EnderTeleportEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.DWeapons;
@@ -22,12 +31,6 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -35,6 +38,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static com.deeplake.dweapon.init.ModPotions.DEADLY;
+
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DSpaceAffinitySword extends DWeaponSwordBase {
 
 	public DSpaceAffinitySword(String name, ToolMaterial material) {
@@ -59,7 +65,46 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
     {
         return super.getAttackDamage();
     }
-	
+
+    static final int debuffLevel = 0;
+	static final int slowTime = 60;//3s
+	private static float range = 5f;
+
+	@SubscribeEvent
+	public static void onCreatureTeleport(EnderTeleportEvent evt) {
+		World world = evt.getEntity().getEntityWorld();
+		EntityLivingBase teleportee = evt.getEntityLiving();
+		Vec3d pos = evt.getEntity().getPositionEyes(0);
+		Vec3d pos2 = new Vec3d(evt.getTargetX(), evt.getTargetY(), evt.getTargetZ());
+		if (!world.isRemote) {
+			//wielder stops nearby end-power teleporting and damage teleporters.
+			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
+			for (EntityLivingBase living : list) {
+				ItemStack stack = living.getHeldItemMainhand();
+				if (stack.getItem() instanceof DSpaceAffinitySword) {
+					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
+					//play sound
+					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
+					evt.setCanceled(true);
+					return;
+				}
+			}
+
+			list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos2.addVector(-range, -range, -range), pos2.addVector(range, range, range)));
+			for (EntityLivingBase living : list) {
+				ItemStack stack = living.getHeldItemMainhand();
+				if (stack.getItem() instanceof DSpaceAffinitySword) {
+					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
+					//play sound
+					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
+					evt.setCanceled(true);
+					return;
+				}
+			}
+		} else {
+			//currently do nothing
+		}
+	}
 	
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {

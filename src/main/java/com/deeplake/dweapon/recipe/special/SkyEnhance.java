@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
+import com.deeplake.dweapon.item.weapon.DMonkBeads;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
 import net.minecraft.inventory.InventoryCrafting;
@@ -73,7 +74,9 @@ public class SkyEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements IRe
 		for(int i = 0; i < var1.getSizeInventory(); i++) {
 			ItemStack stack = var1.getStackInSlot(i);
 			if(!stack.isEmpty()) {
-				if(stack.getItem() instanceof DWeaponSwordBase)
+				if(stack.getItem() instanceof DMonkBeads) {
+					sword = stack;
+				} else if(stack.getItem() instanceof DWeaponSwordBase)
 				{
 					sword = stack;
 				}
@@ -85,7 +88,12 @@ public class SkyEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements IRe
 		}
 
 		ItemStack swordResult = sword.copy();
-		DWeaponSwordBase.SetSky(swordResult);
+		if(swordResult.getItem() instanceof DMonkBeads) {
+			((DMonkBeads)(swordResult.getItem())).SetSky(swordResult);
+		} else if(swordResult.getItem() instanceof DWeaponSwordBase)
+		{
+			((DWeaponSwordBase)(swordResult.getItem())).SetSky(swordResult);
+		}
 
 		return swordResult;
 	}

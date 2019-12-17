@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
+import com.deeplake.dweapon.item.weapon.DMonkBeads;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
 import net.minecraft.inventory.InventoryCrafting;
@@ -82,7 +83,13 @@ public class EarthEnhance extends IForgeRegistryEntry.Impl<IRecipe> implements I
 		}
 
 		ItemStack swordResult = sword.copy();
-		DWeaponSwordBase.SetEarth(swordResult);
+		if(swordResult.getItem() instanceof DMonkBeads) {
+			((DMonkBeads)swordResult.getItem()).SetEarth(swordResult);
+		} else if(swordResult.getItem() instanceof DWeaponSwordBase)
+		{
+			((DWeaponSwordBase)(swordResult.getItem())).SetEarth(swordResult);
+		}
+
 
 		return swordResult;
 	}

@@ -38,6 +38,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static com.deeplake.dweapon.init.ModPotions.DEADLY;
+import static com.deeplake.dweapon.init.ModPotions.ZEN_HEART;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DDeathSword extends DWeaponSwordBase {
@@ -60,19 +61,19 @@ public class DDeathSword extends DWeaponSwordBase {
 
 	private static int deadly_buff_ticks_per_pearl = 20;
 	public static int getDeadlyBuffTicks(ItemStack stack) {
-		if (IsSky(stack)) {
+		if (((DWeaponSwordBase)stack.getItem()).IsSky(stack)) {
 			return 200;//10sec
-		}else if (IsEarth(stack)){
-			return 100 + GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
+		}else if (((DWeaponSwordBase)stack.getItem()).IsEarth(stack)){
+			return 100 + ((DWeaponSwordBase)stack.getItem()).GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
 		}else {
-			return 60 + GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
+			return 60 + ((DWeaponSwordBase)stack.getItem()).GetPearlCount(stack) * deadly_buff_ticks_per_pearl;
 		}
 	}
 
 	public static int getDeadlyBuffMaxLevel(ItemStack stack) {
-		if (IsSky(stack)) {
+		if (((DWeaponSwordBase)stack.getItem()).IsSky(stack)) {
 			return 10;
-		}else if (IsEarth(stack)){
+		}else if (((DWeaponSwordBase)stack.getItem()).IsEarth(stack)){
 			return 3;
 		}else {
 			return 1;
@@ -80,9 +81,9 @@ public class DDeathSword extends DWeaponSwordBase {
 	}
 
 	public static float getDeathHealAmount(ItemStack stack) {
-		if (IsSky(stack)) {
+		if (((DWeaponSwordBase)stack.getItem()).IsSky(stack)) {
 			return 4f;
-		}else if (IsEarth(stack)){
+		}else if (((DWeaponSwordBase)stack.getItem()).IsEarth(stack)){
 			return 2f;
 		}else {
 			return 1f;
@@ -111,7 +112,7 @@ public class DDeathSword extends DWeaponSwordBase {
 		if (!world.isRemote) {
 			//wielder resist death
 			ItemStack stackDie = dieOne.getHeldItemMainhand();
-			if (stackDie.getItem() instanceof DDeathSword && (IsEarth(stackDie) || IsSky(stackDie))) {
+			if (stackDie.getItem() instanceof DDeathSword && (((DWeaponSwordBase)stackDie.getItem()).IsEarth(stackDie) || ((DWeaponSwordBase)stackDie.getItem()).IsSky(stackDie))) {
 				stackDie.damageItem(256, dieOne);
 				dieOne.setHealth(dieOne.getMaxHealth() / 4);
 				dieOne.clearActivePotions();
@@ -192,16 +193,20 @@ public class DDeathSword extends DWeaponSwordBase {
 		success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
 		if (success) {
 			if (target instanceof EntityLivingBase && ratio > 0.3) {
-				if (buffLevel > 0) {
-					float killRate = (float) buffLevel / deadly_buff_full_divider;
-					if (Math.random() < killRate) {
-						if (IsNameHidden(stack)) {
-							TrueNameReveal(stack, player.getEntityWorld(), player);
+				PotionEffect zenBuff = ((EntityLivingBase)target).getActivePotionEffect(ZEN_HEART);
+				if (zenBuff == null) {
+					if (buffLevel > 0) {
+						float killRate = (float) buffLevel / deadly_buff_full_divider;
+						if (Math.random() < killRate) {
+							if (IsNameHidden(stack)) {
+								TrueNameReveal(stack, player.getEntityWorld(), player);
+							}
+							damage = Float.MAX_VALUE;
+							player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.PLAYERS, 1f, 2f);
 						}
-						damage = Float.MAX_VALUE;
-						player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.PLAYERS, 1f, 2f);
 					}
 				}
+
 //			if (Math.random() < getKillRate(stack, (EntityLivingBase) target))
 //			{
 //				if (IsNameHidden(stack))

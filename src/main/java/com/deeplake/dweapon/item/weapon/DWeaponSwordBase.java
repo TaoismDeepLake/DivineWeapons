@@ -42,6 +42,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEnhanceable{
 
+
+
 	public DWeaponSwordBase(String name, ToolMaterial material)
 	{
 		super(material);
@@ -61,13 +63,15 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		
 		ModItems.ITEMS.add(this);
 	}
-	
-	public static boolean IsSky(ItemStack stack)
+
+	public static boolean RefundPearlsAtSky = true;
+
+	public boolean IsSky(ItemStack stack)
 	{
 		return DWNBTUtil.GetBoolean(stack, DWNBTDef.IS_SKY);
 	}
 	
-	public static void SetSky(ItemStack stack)
+	public void SetSky(ItemStack stack)
 	{
 		DWNBTUtil.SetBoolean(stack, DWNBTDef.IS_SKY, true);
 	}
@@ -82,22 +86,22 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		DWNBTUtil.SetBoolean(stack, DWNBTDef.IS_NAME_HIDDEN, isHidden);
 	}
 	
-	public static boolean IsEarth(ItemStack stack)
+	public boolean IsEarth(ItemStack stack)
 	{
 		return DWNBTUtil.GetBoolean(stack, DWNBTDef.IS_EARTH);
 	}
 	
-	public static void SetEarth(ItemStack stack)
+	public void SetEarth(ItemStack stack)
 	{
 		DWNBTUtil.SetBoolean(stack, DWNBTDef.IS_EARTH, true);
 	}
 	
-	public static int GetPearlCount(ItemStack stack)
+	public int GetPearlCount(ItemStack stack)
 	{
 		return DWNBTUtil.GetInt(stack, DWNBTDef.PEARL_COUNT);
 	}
 	
-	public static void SetPearlCount(ItemStack stack, int count)
+	public void SetPearlCount(ItemStack stack, int count)
 	{
 		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
 			return;
@@ -107,13 +111,29 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 			DWNBTUtil.SetInt(stack, DWNBTDef.PEARL_COUNT, count);
 		}
 	}
-	
-	public static int GetPearlMax(ItemStack stack)
+
+	public void AddPearlCount(ItemStack stack, int count)
+	{
+		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
+			return;
+		}
+
+		int anticipatedCount = count + GetPearlCount(stack);
+		if (anticipatedCount <= GetPearlMax(stack)) {
+			DWNBTUtil.SetInt(stack, DWNBTDef.PEARL_COUNT, anticipatedCount);
+		}
+		else {
+			DWNBTUtil.SetInt(stack, DWNBTDef.PEARL_COUNT, GetPearlMax(stack));
+		}
+	}
+
+	public int maxPearlCount = 5;
+	public int GetPearlMax(ItemStack stack)
 	{
 		if (!(stack.getItem() instanceof IDWeaponEnhanceable)) {
 			return 0;
 		}
-		return 5;//Most Weapons can socket 5 pearls
+		return maxPearlCount;//Most Weapons can socket 5 pearls
 	}
 	
 	public int GetPearlEmptySpace(ItemStack stack)
@@ -386,7 +406,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     			EntityPlayer player = (EntityPlayer) entityIn;
     			TrueNameReveal(stack, worldIn, player);
     		}
-    		if (IsSky(stack) && GetPearlCount(stack) > 0 )
+    		if (RefundPearlsAtSky && IsSky(stack) && GetPearlCount(stack) > 0 )
     		{
     			//gives back pearls as sky weapons ignore pearls
     			int pCount = GetPearlCount(stack);

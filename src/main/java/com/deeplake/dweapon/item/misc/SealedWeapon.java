@@ -46,6 +46,7 @@ enum WeaponIndex{
 	TRUENAME_INDEX,
 	DISARMER_INDEX,
 	WATER_INDEX,
+	BEADS_INDEX,
 	LAST,
 }
 
@@ -170,6 +171,7 @@ public class SealedWeapon extends ItemBase {
 		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = 10;
 		factor[WeaponIndex.WATER_INDEX.ordinal()] = 10;
+		factor[WeaponIndex.BEADS_INDEX.ordinal()] = 6;
 		return  factor;
 	}
 
@@ -235,6 +237,9 @@ public class SealedWeapon extends ItemBase {
 		case WATER_INDEX:
 			result = new ItemStack(ModItems.WATER_SWORD);
 			break;
+		case BEADS_INDEX:
+			result = new ItemStack(ModItems.MONK_BEADS);
+			break;
 		default:
 			result = new ItemStack(Items.IRON_SWORD);
 			break;
@@ -249,7 +254,7 @@ public class SealedWeapon extends ItemBase {
 		 random = rand.nextInt(10);
 		 if (random == 0)
 		 {
-			 DWeaponSwordBase.SetPearlCount(result, 1);
+			 ((DWeaponSwordBase)(result.getItem())).SetPearlCount(result, 1);
 		 }
 		
 		 DWeapons.LogWarning("Given weapon:" + result.getDisplayName());

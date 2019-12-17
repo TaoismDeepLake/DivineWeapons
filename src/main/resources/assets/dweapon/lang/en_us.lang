@@ -4,6 +4,7 @@ itemGroup.DWeaponWeaponTab=Divine Weapons
 
 //Buffs
 dweapon.potion.deadly=Deadly
+dweapon.potion.zen_heart=Countless Virtue
 //unused
 dweapon.potion.deadly.4=Deadly V
 dweapon.potion.deadly.5=Deadly V
@@ -69,7 +70,7 @@ starter.manual_page_7=  The weapons you get doesn't recognize you, and vice vers
 
 starter.manual_page_8=  The Pure Ingots are quite flexible, and you can smelt it again. What you get are Pure Pearls. Most weapons can socket up to 5 pearls. The pearls boost the weapon in different ways.
 
-starter.manual_page_9=   I I\n    A\n   I I\n  The ingots like anvils. Build 4 ingots into an anvil's corner, you will get an Earth Charm.\n  Anvil the charm onto the divine weapon you craft, and see how the weapon grows stronger. It's more than an \"Earth\" mark in their name. 
+starter.manual_page_9=   I I\n    A\n   I I\n  The ingots like anvils. Build 4 ingots into an anvil's corner, you will get an Earth Charm.\n  >>Anvil<< the charm onto the divine weapon you craft, and see how the weapon grows stronger. It's more than an \"Earth\" mark in their name. 
 
 starter.manual_page_10=   GDG\n   DCD\n   GDG\n  Earth weapons are capable of entering their final form - Sky Weapon. Behold your weapon's true power.\n  Earth Charms can absorb 4 gold blocks plus 4 diamond blocks to grow into Sky Charms. Remember, only weapons on Earth Level can endure Sky's power. 
 
@@ -128,7 +129,7 @@ item.death_sword.manual_page_6=Any nearby death grants deadly buff. Try sacrific
 item.space_affinity_sword.name=Space Fluctuation
 item.space_affinity_sword.hidden=Some Unstable Sword
 
-item.space_affinity_sword.shared_desc=[Fourier Affinity] Damage is related to coordinates
+item.space_affinity_sword.shared_desc=[Fourier Affinity] Damage is related to coordinates. Disables nearby Ender teleportation.
 item.space_affinity_sword.sky_desc=Damage is Max(x%%128, y%%128, z%%128, 16), Hold RMB to teleport to spawn point
 item.space_affinity_sword.earth_desc=Damage is Max(x%%16, y%%16, z%%16, %s), Hold RMB to teleport to spawn point
 item.space_affinity_sword.normal_desc=Damage is Max(x%%16, y%%16, z%%16, %s)
@@ -343,3 +344,27 @@ item.water_sword.manual_page_4=  Since it's a teardrop, it can be repaired with 
 item.water_sword.manual_page_5=  When reinforced to earth level, it will make its owner fits water better. Water breathing will help.
 item.water_sword.manual_page_6=  When reinforced to sky level, it can call raindrops from the sky, but only at places where can rain (not hot like a desert). It will also cleanse all debuffs.
 item.water_sword.manual_page_7=  Although it puts out fire on wielder, it can't help much in lava, which hurts because of the sustaining heat, not the flame.
+
+//
+item.monk_beads.name=Zen Beads
+item.monk_beads.hidden=Beads
+
+item.monk_beads.shared_desc=[Zen]Reduces damage from undead sources. Right click to pray.
+item.monk_beads.sky_desc=Immune to debuffs and damage form undead sources.
+item.monk_beads.earth_desc=Immune to debuffs. Undead damage is reduced by %s and 50% will be absorbed.
+item.monk_beads.normal_desc=Undead damage is reduced by %s.
+item.monk_beads.damage_desc=Base Damage : %s
+
+item.monk_beads.manual_title=Zen Beads
+item.monk_beads.manual_author=Taoism DeepLake
+item.monk_beads.manual_page_count=10
+item.monk_beads.manual_page_1=  The beads of monks. \n[Note that this weapon has DIFFERENT UPGRADE MECHANISM] 
+item.monk_beads.manual_page_2=  In different religions, beads have different meanings. In Buddhism, they resembles 108 different disturbing and trouble. Another explanation for the number is that there are 108 Buddhas.
+item.monk_beads.manual_page_3=  Some use them for counting, some just wear them. As a weapon artisan, you may well use them as a weapon.
+item.monk_beads.manual_page_4=  [Cleanse]The beads carry pure power, use them on a creature can cleanse that being. It mainly works to clean debuffs on teammates and convert zombie villagers. Cleansing accumulates virtue.  
+item.monk_beads.manual_page_5=  [Prayer]Count the beads while praying. It cleanses a debuff from you and have chance to give you experience.
+item.monk_beads.manual_page_6=  [Virtue]The virtue protects you from sins - undead related damage. Each 5 pearl will reduce 1 point undead damage. Active when handheld.
+item.monk_beads.manual_page_7=  To upgrade this weapon, simply accumulate the beads. You can stack at most 108 beads. It will be earth-level at 36 beads and sky-level at 108 beads.
+item.monk_beads.manual_page_8=  At earth level, [Virtue] will give another 50% undead damage prevention. [Zen Heart] will make you immune to debuffs when handheld.
+item.monk_beads.manual_page_9=  At sky level, Your unmatched [Virtue] will make you immune to undead damage. [Virtue] and [Zen Heart] works in inventory, no need to hold the beads in your hand.
+item.monk_beads.manual_page_10=  To be continued...

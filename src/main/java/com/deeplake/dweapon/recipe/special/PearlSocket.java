@@ -9,6 +9,7 @@ import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
+import com.deeplake.dweapon.item.weapon.IDWeaponEnhanceable;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -80,7 +81,7 @@ public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IR
 				if(stack.getItem() instanceof DWeaponSwordBase)
 				{
 					sword = stack;
-					curPearl = DWeaponSwordBase.GetPearlCount(stack);
+					curPearl = ((DWeaponSwordBase)(stack.getItem())).GetPearlCount(stack);
 				}
 				else if(stack.getItem().getUnlocalizedName(stack).equals(pearlName))
 				{
@@ -94,7 +95,7 @@ public class PearlSocket extends IForgeRegistryEntry.Impl<IRecipe> implements IR
 		}
 
 		ItemStack swordResult = sword.copy();
-		DWeaponSwordBase.SetPearlCount(swordResult, foundPearl + curPearl);
+		((DWeaponSwordBase)(swordResult.getItem())).SetPearlCount(swordResult, foundPearl + curPearl);
 
 		return swordResult;
 	}

@@ -37,8 +37,7 @@ public class ModStarterEvents {
 		  
 	      boolean isBookGiven = DWNBTUtil.GetBoolean(event.player, TAG_PLAYER_HAS_BOOK, false);
 	      
-	      DWeapons.LogWarning(String.format("TAG_PLAYER_HAS_BOOK = %s", isBookGiven));
-	      
+	      //DWeapons.LogWarning(String.format("TAG_PLAYER_HAS_BOOK = %s", isBookGiven));
 	      if(!isBookGiven) {
 	    	  ItemStack heirloom = new ItemStack(ModItems.HEIRLOOM);
 	    	  DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());

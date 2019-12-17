@@ -1,21 +1,12 @@
 package com.deeplake.dweapon.init.events;
 
-import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
-import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 import com.deeplake.dweapon.item.weapon.IDWeaponEnhanceable;
-import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 import com.deeplake.dweapon.util.Reference;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Cancelable;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-
-import javax.annotation.Nonnull;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModCraftingEvents {
@@ -58,11 +49,11 @@ public class ModCraftingEvents {
 
     @SubscribeEvent
     public static void onAnvilUpdate(AnvilUpdateEvent event) {
-        checkEarthEnhance(event);
+        checkLevelEnhance(event);
     }
     private static String earthName = ModItems.EARTH_CHARM.getUnlocalizedName();
     private static String skyName = ModItems.SKY_CHARM.getUnlocalizedName();
-    public static void checkEarthEnhance(AnvilUpdateEvent event)
+    public static void checkLevelEnhance(AnvilUpdateEvent event)
     {
         //DWeapons.LogWarning(String.format("Name is null? = %s", event.getName().isEmpty()));
         if (event.getLeft() != ItemStack.EMPTY && event.getRight() != ItemStack.EMPTY ) {
@@ -70,14 +61,14 @@ public class ModCraftingEvents {
 
             if (left.getItem() instanceof IDWeaponEnhanceable){
                 IDWeaponEnhanceable leftType = (IDWeaponEnhanceable) left.getItem();
-                if (IDWeaponEnhanceable.IsSky(left)){
+                if (leftType.IsSky(left)){
                     //No modify can be done to sky weapons
                     //They can only be fixed
                     return;
-                } else if (IDWeaponEnhanceable.IsEarth(left)) {
+                } else if (leftType.IsEarth(left)) {
                     if (event.getRight().getItem().getUnlocalizedName().equals(skyName)){
                         ItemStack swordResult = left.copy();
-                        IDWeaponEnhanceable.SetSky(swordResult);
+                        leftType.SetSky(swordResult);
 
                         event.setMaterialCost(1);
                         event.setCost(30);
@@ -86,7 +77,7 @@ public class ModCraftingEvents {
                 } else {//man-made-level
                     if (event.getRight().getItem().getUnlocalizedName().equals(earthName)){
                         ItemStack swordResult = left.copy();
-                        IDWeaponEnhanceable.SetEarth(swordResult);
+                        leftType.SetEarth(swordResult);
 
                         event.setMaterialCost(1);
                         event.setCost(8);

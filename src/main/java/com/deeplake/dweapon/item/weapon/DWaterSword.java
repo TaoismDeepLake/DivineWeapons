@@ -1,5 +1,6 @@
 package com.deeplake.dweapon.item.weapon;
 
+import com.deeplake.dweapon.util.DWEntityUtil;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -105,18 +106,7 @@ public class DWaterSword extends DWeaponSwordBase {
 					}
 				}
 
-				//washes away debuff
-				Collection<PotionEffect> activePotionEffects = playerMP.getActivePotionEffects();
-				for (int i = 0; i < activePotionEffects.size(); i++) {
-					PotionEffect buff = (PotionEffect)activePotionEffects.toArray()[i];
-					if (buff.getPotion().isBadEffect()){
-						playerMP.removePotionEffect(buff.getPotion());
-					}
-					else
-					{
-
-					}
-				}
+				DWEntityUtil.TryRemoveDebuff(playerMP);
 			}
 
 			//put out fire
