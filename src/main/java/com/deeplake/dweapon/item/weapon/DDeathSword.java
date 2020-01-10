@@ -310,8 +310,9 @@ public class DDeathSword extends DWeaponSwordBase {
     
 		addDamageInformation(stack, worldIn, tooltip, flagIn);
 	}
-	
-	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+
+@SideOnly(Side.CLIENT)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		return getActualDamage(stack, 1f);
 	}
