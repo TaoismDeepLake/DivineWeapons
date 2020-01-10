@@ -122,24 +122,24 @@ public class DDeathSword extends DWeaponSwordBase {
 			}
 
 			//wielder draws power from nearby deaths
-			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
-			for (EntityLivingBase living : list) {
-				ItemStack stack = living.getHeldItemMainhand();
-				if (stack.getItem() instanceof DDeathSword) {
-					int buffLevel = GetDeadlyBuffLevel(living);
-					//DWeapons.Log(String.format("deadly level = %s", buffLevel));
-					//gives deadly buff
-					if (buffLevel >= getDeadlyBuffMaxLevel(stack)) {
-						buffLevel = getDeadlyBuffMaxLevel(stack) - 1;
-					}
-
-					living.addPotionEffect(new PotionEffect(DEADLY, getDeadlyBuffTicks(stack), buffLevel));
-					//play sound
-					world.playSound(null, living.getPosition(), SoundEvents.ENTITY_GHAST_SCREAM, SoundCategory.PLAYERS, 1f, buffLevel * 0.2f);
-					//heal
-					living.heal(getDeathHealAmount(stack));
-				}
-			}
+//			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
+//			for (EntityLivingBase living : list) {
+//				ItemStack stack = living.getHeldItemMainhand();
+//				if (stack.getItem() instanceof DDeathSword) {
+//					int buffLevel = GetDeadlyBuffLevel(living);
+//					//DWeapons.Log(String.format("deadly level = %s", buffLevel));
+//					//gives deadly buff
+//					if (buffLevel >= getDeadlyBuffMaxLevel(stack)) {
+//						buffLevel = getDeadlyBuffMaxLevel(stack) - 1;
+//					}
+//
+//					living.addPotionEffect(new PotionEffect(DEADLY, getDeadlyBuffTicks(stack), buffLevel));
+//					//play sound
+//					world.playSound(null, living.getPosition(), SoundEvents.ENTITY_GHAST_SCREAM, SoundCategory.PLAYERS, 1f, buffLevel * 0.2f);
+//					//heal
+//					living.heal(getDeathHealAmount(stack));
+//				}
+//			}
 		} else {
 			//currently do nothing
 		}
@@ -310,8 +310,9 @@ public class DDeathSword extends DWeaponSwordBase {
     
 		addDamageInformation(stack, worldIn, tooltip, flagIn);
 	}
-	
-	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+
+@SideOnly(Side.CLIENT)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		return getActualDamage(stack, 1f);
 	}

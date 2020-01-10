@@ -282,7 +282,8 @@ public class DSageBuilder extends DWeaponSwordBase {
     	addDamageInformation(stack, worldIn, tooltip, flagIn);
     }
 	
-	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	@SideOnly(Side.CLIENT)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		return getActualDamage(stack, 1);
     }
@@ -366,7 +367,8 @@ public class DSageBuilder extends DWeaponSwordBase {
 		return EnumAction.NONE;
 		
 	}
-	
+
+	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack)
     {
 		int mode = GetWeaponMode(stack);

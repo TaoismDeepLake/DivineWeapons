@@ -407,12 +407,14 @@ public class DPowerTriangle extends DWeaponSwordBase {
     	addDamageInformation(stack, worldIn, tooltip, flagIn);
     }
 	
-	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	@SideOnly(Side.CLIENT)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		return getAttackDamage(stack, 1f);
 
     }
-	
+
+	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack)
     {
 		int mode = GetWeaponMode(stack);

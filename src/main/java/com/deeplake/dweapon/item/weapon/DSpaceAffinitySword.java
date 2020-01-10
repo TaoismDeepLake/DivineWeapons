@@ -78,29 +78,29 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 		Vec3d pos2 = new Vec3d(evt.getTargetX(), evt.getTargetY(), evt.getTargetZ());
 		if (!world.isRemote) {
 			//wielder stops nearby end-power teleporting and damage teleporters.
-			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
-			for (EntityLivingBase living : list) {
-				ItemStack stack = living.getHeldItemMainhand();
-				if (stack.getItem() instanceof DSpaceAffinitySword) {
-					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
-					//play sound
-					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
-					evt.setCanceled(true);
-					return;
-				}
-			}
-
-			list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos2.addVector(-range, -range, -range), pos2.addVector(range, range, range)));
-			for (EntityLivingBase living : list) {
-				ItemStack stack = living.getHeldItemMainhand();
-				if (stack.getItem() instanceof DSpaceAffinitySword) {
-					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
-					//play sound
-					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
-					evt.setCanceled(true);
-					return;
-				}
-			}
+//			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
+//			for (EntityLivingBase living : list) {
+//				ItemStack stack = living.getHeldItemMainhand();
+//				if (stack.getItem() instanceof DSpaceAffinitySword) {
+//					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
+//					//play sound
+//					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
+//					evt.setCanceled(true);
+//					return;
+//				}
+//			}
+//
+//			list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos2.addVector(-range, -range, -range), pos2.addVector(range, range, range)));
+//			for (EntityLivingBase living : list) {
+//				ItemStack stack = living.getHeldItemMainhand();
+//				if (stack.getItem() instanceof DSpaceAffinitySword) {
+//					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
+//					//play sound
+//					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
+//					evt.setCanceled(true);
+//					return;
+//				}
+//			}
 		} else {
 			//currently do nothing
 		}
@@ -274,8 +274,9 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
     	}
     	addDamageInformation(stack, worldIn, tooltip, flagIn);
     }
-	
-	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+
+	@SideOnly(Side.CLIENT)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		if (IsSky(stack)) {
 			return 70f;

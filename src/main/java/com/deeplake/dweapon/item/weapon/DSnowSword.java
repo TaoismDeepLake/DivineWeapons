@@ -380,7 +380,8 @@ public class DSnowSword extends DWeaponSwordBase {
     	addDamageInformation(stack, worldIn, tooltip, flagIn);
     }
 	
-	public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	@SideOnly(Side.CLIENT)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 //		int pearlCount = GetPearlCount(stack);
 //

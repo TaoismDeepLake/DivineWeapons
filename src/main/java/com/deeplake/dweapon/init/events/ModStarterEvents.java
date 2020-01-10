@@ -22,6 +22,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModStarterEvents {
@@ -41,14 +43,16 @@ public class ModStarterEvents {
 	      if(!isBookGiven) {
 	    	  ItemStack heirloom = new ItemStack(ModItems.HEIRLOOM);
 	    	  DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());
-	    	  
-	    	  event.player.addItemStackToInventory(heirloom);
-	    	  event.player.addItemStackToInventory(CreateManual(player));
-	    	  DWNBTUtil.SetBoolean(event.player, TAG_PLAYER_HAS_BOOK, true);
-	    	  DWeapons.LogWarning(String.format("Given starter items to player %s", player.getDisplayNameString()));
+
+	    	  DWeapons.LogWarning("Temp skip give manual, because of a bug");
+	    	  //event.player.addItemStackToInventory(heirloom);
+	    	  //event.player.addItemStackToInventory(CreateManual(player));
+	    	  //DWNBTUtil.SetBoolean(event.player, TAG_PLAYER_HAS_BOOK, true);
+	    	  //DWeapons.LogWarning(String.format("Given starter items to player %s", player.getDisplayNameString()));
 	      }
 	  }
-	      
+
+	  @SideOnly(Side.CLIENT)
 	  public static ItemStack CreateManual(EntityPlayer player) {
 		  ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
 			

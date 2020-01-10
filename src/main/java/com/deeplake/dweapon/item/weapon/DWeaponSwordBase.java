@@ -449,7 +449,8 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     		}	
     	}
     }
-    
+
+    @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack)
     {
     	String strMain ="";
@@ -623,7 +624,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     }
 
     public boolean isNeedDamageDesc = true;
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
     public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
     	return 7.0f;
