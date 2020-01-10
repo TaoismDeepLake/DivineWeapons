@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        //https://files.minecraftforge.net/maven/net/minecraftforge/gradle/ForgeGradle/2.3-SNAPSHOT/ForgeGradle-2.3-20190910.005614-43.jar
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
