@@ -4,6 +4,7 @@ import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.item.weapon.DMonkBeads;
 import com.deeplake.dweapon.potion.BasePotion;
 import com.deeplake.dweapon.potion.PotionDeadly;
+import com.deeplake.dweapon.potion.PotionSpaceAffinity;
 import com.deeplake.dweapon.potion.PotionZenHeart;
 import com.deeplake.dweapon.util.Reference;
 import net.minecraft.entity.Entity;
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
 public class ModPotions {
     public static Potion DEADLY;
     public static Potion ZEN_HEART;
+    public static Potion SPACE_AFF;
 
     @Nullable
     private static Potion getRegisteredMobEffect(String id)
@@ -47,11 +49,13 @@ public class ModPotions {
     public static void registerPotions(RegistryEvent.Register<Potion> evt)
     {
         DWeapons.Log("registering potion");
-        DEADLY = new PotionDeadly(true, 0x333333, "deadly", 0);
-        ZEN_HEART = new PotionZenHeart(true, 0xcccc00, "zen_heart", 1);
+        DEADLY = new PotionDeadly(false, 0x333333, "deadly", 0);
+        ZEN_HEART = new PotionZenHeart(false, 0xcccc00, "zen_heart", 1);
+        SPACE_AFF = new PotionSpaceAffinity(false, 0x0000cc, "space_aff_1", 1);
 
         evt.getRegistry().register(DEADLY);
         evt.getRegistry().register(ZEN_HEART);
+        evt.getRegistry().register(SPACE_AFF);
 
         //REGISTRY.register(1, new ResourceLocation("speed"), (new Potion(false, 8171462))
         // .setPotionName("effect.moveSpeed")
@@ -85,6 +89,13 @@ public class ModPotions {
         World world = evt.getEntity().getEntityWorld();
         EntityLivingBase hurtOne = evt.getEntityLiving();
         if (!world.isRemote) {
+            //Handle Space aff
+            if (hurtOne.getActivePotionEffect(SPACE_AFF) != null){
+                evt.setCanceled(true);
+                return;
+            }
+
+            //Handle virtue and undead
             Entity trueSource = evt.getOriginalAttacker();
             if (trueSource instanceof EntityLivingBase){
                 EntityLivingBase sourceCreature = (EntityLivingBase)trueSource;
@@ -92,8 +103,7 @@ public class ModPotions {
                 {
                     PotionEffect curBuff = hurtOne.getActivePotionEffect(ZEN_HEART);
                     if (curBuff != null) {
-
-                        PotionEffect sourceBuff = hurtOne.getActivePotionEffect(ZEN_HEART);
+                        PotionEffect sourceBuff = sourceCreature.getActivePotionEffect(ZEN_HEART);
                         if (sourceBuff == null) {//prevent dead loop
                             sourceCreature.knockBack(hurtOne, evt.getStrength(), -evt.getRatioX(), -evt.getRatioZ());
                         }
