@@ -247,6 +247,10 @@ public class DMonkBeads extends DWeaponSwordBase implements IHasModel, IDWeaponE
 	 * Returns true if the item can be used on the given entity, e.g. shears on sheep.
 	 */
 	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand) {
+		if (playerIn.world.isRemote) {
+			return false;
+		}
+
 		if (target instanceof EntityLiving) {
 			Cleanse(target, playerIn);
 			return true;
