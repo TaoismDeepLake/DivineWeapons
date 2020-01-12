@@ -263,16 +263,25 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 	{
 		
 	}
-	//----------------------------------------------------------------
+	//---------------------------------------------------------------
 	public ItemStack CreateManual() {
+		//TODO: req I18n. Not on server
 		ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
-		
+
+
 		// https://minecraftjson.com/
 		
 		// /give @p written_book{pages:["[\"\",{\"text\":\"123 45\"}]","[\"\",{\"text\":\"678 90\"}]"],title:CustomBook,author:Player}
 		
 		NBTTagList bookPages = new NBTTagList();
 		String name = getUnlocalizedName();
+
+		if (DWeapons.proxy.isServer())
+		{
+			bookPages.appendTag(DWNBT.bookPageFromLine("Sorry. Temprorarily disabled"));
+			book.setTagInfo("pages", bookPages);
+			return book;
+		}
 		
 		String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
 		

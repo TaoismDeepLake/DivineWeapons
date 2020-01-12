@@ -13,7 +13,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class ModInjectLoot {
 
 		private static final List<String> TABLES = ImmutableList.of(
-				"gaia_guardian", "gaia_guardian_2",
 				"inject/abandoned_mineshaft", "inject/desert_pyramid",
 				"inject/jungle_temple", "inject/simple_dungeon",
 				"inject/spawn_bonus_chest", "inject/stronghold_corridor",
