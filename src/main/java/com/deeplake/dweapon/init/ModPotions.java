@@ -2,10 +2,7 @@ package com.deeplake.dweapon.init;
 
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.item.weapon.DMonkBeads;
-import com.deeplake.dweapon.potion.BasePotion;
-import com.deeplake.dweapon.potion.PotionDeadly;
-import com.deeplake.dweapon.potion.PotionSpaceAffinity;
-import com.deeplake.dweapon.potion.PotionZenHeart;
+import com.deeplake.dweapon.potion.*;
 import com.deeplake.dweapon.util.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,6 +26,8 @@ public class ModPotions {
     public static Potion DEADLY;
     public static Potion ZEN_HEART;
     public static Potion SPACE_AFF;
+    public static Potion SNOW_MED;
+    public static Potion SNOW_PROTECT;
 
     @Nullable
     private static Potion getRegisteredMobEffect(String id)
@@ -51,11 +50,16 @@ public class ModPotions {
         DWeapons.Log("registering potion");
         DEADLY = new PotionDeadly(false, 0x333333, "deadly", 0);
         ZEN_HEART = new PotionZenHeart(false, 0xcccc00, "zen_heart", 1);
-        SPACE_AFF = new PotionSpaceAffinity(false, 0x0000cc, "space_aff_1", 1);
+        SPACE_AFF = new PotionSpaceAffinity(false, 0x0000cc, "space_aff_1", 2);
+
+        SNOW_MED = new PotionSnowMeditation(false, 0xeeeeff, "snow_meditation", 3);
+        SNOW_PROTECT = new PotionSnowProtection(false, 0xffffff, "snow_protection", 4);
 
         evt.getRegistry().register(DEADLY);
         evt.getRegistry().register(ZEN_HEART);
         evt.getRegistry().register(SPACE_AFF);
+        evt.getRegistry().register(SNOW_MED);
+        evt.getRegistry().register(SNOW_PROTECT);
 
         //REGISTRY.register(1, new ResourceLocation("speed"), (new Potion(false, 8171462))
         // .setPotionName("effect.moveSpeed")
@@ -67,20 +71,31 @@ public class ModPotions {
     public static void onCreatureHurt(LivingHurtEvent evt) {
         World world = evt.getEntity().getEntityWorld();
         EntityLivingBase hurtOne = evt.getEntityLiving();
-        if (!world.isRemote) {
-            Entity trueSource = evt.getSource().getTrueSource();
-            if (trueSource instanceof EntityLivingBase){
-                EntityLivingBase sourceCreature = (EntityLivingBase)trueSource;
-                if (sourceCreature.isEntityUndead())
-                {
-                    PotionEffect curBuff = hurtOne.getActivePotionEffect(ZEN_HEART);
-                    if (curBuff != null) {
+
+        //Zen heart
+        Entity trueSource = evt.getSource().getTrueSource();
+        if (trueSource instanceof EntityLivingBase){
+            EntityLivingBase sourceCreature = (EntityLivingBase)trueSource;
+            if (sourceCreature.isEntityUndead())
+            {
+                PotionEffect curBuff = hurtOne.getActivePotionEffect(ZEN_HEART);
+                if (curBuff != null) {
+                    if (!world.isRemote) {
                         evt.setCanceled(true);
+                    } else {
+                        //TODO:create some particle effect
                     }
                 }
             }
-        } else {
-            //TODO:create some particle effect
+        }
+
+        PotionEffect curBuff = hurtOne.getActivePotionEffect(SNOW_PROTECT);
+        if (curBuff != null) {
+            if (!world.isRemote) {
+                //TODO:lower damage
+            } else {
+                //TODO:create some particle effect
+            }
         }
     }
 

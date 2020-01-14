@@ -5,6 +5,10 @@ itemGroup.DWeaponWeaponTab=Divine Weapons
 //Buffs
 dweapon.potion.deadly=Deadly
 dweapon.potion.zen_heart=Countless Virtue
+dweapon.potion.space_aff_1=Space Affinity
+dweapon.potion.snow_meditation=Snow Meditation
+dweapon.potion.snow_protection=Boon of Blizzard
+
 //unused
 dweapon.potion.deadly.4=Deadly V
 dweapon.potion.deadly.5=Deadly V
@@ -40,7 +44,7 @@ item.shared.sky_desc=Sky Weapon
 item.shared.earth_desc=Earth Weapon
 item.shared.pearl_desc=Pearl:%s
 item.shared.true_name_reveal=True Name Reveal!
-item.shared.print_manual=>>Print Manual<<
+item.shared.print_manual=Prints Manual!
 
 item.shared.missing_manual_content=(Written in strange symbols, unreadable)
 item.shared.missing_manual_title=????
@@ -55,13 +59,13 @@ dweapon:default_player_name=Friend
 starter.manual_title=Your First Divine Weapon
 starter.manual_author=Taoism DeepLake
 starter.manual_page_count=12
-starter.manual_page_1=Greetings, {PlayerName}. \n  I am world artisan Taoism DeepLake, and I have visited your wonderful world.\n  We world artisans, also known as modders, bring modifications to worlds. Your world is probably filled with all kinds of modifications now.\n  I hereby present you my gift - the Divine Weapons.
+starter.manual_page_1=Greetings, {PlayerName}. \n  I am world artisan Taoism DeepLake, and I have visited your wonderful world.\n  We world artisans, also known as modders, bring modifications to worlds. Anyway, your world is probably filled with all kinds of modifications already.\n  I hereby present you my gift - the Divine Weapons.
 
 starter.manual_page_2=Dig down.\nSmelt it.\nCraft it into a sword.\nOpen the package.\nBooks for identifying.\nPearls for enhancement.\nCharms for rank up.\nWith a Sky Weapon, you will see power.
 
 starter.manual_page_3=  Where you would find iron ore, there is Pure Ore nearby. Where you would find diamond ore, There are colorful bright Divine Ore nearby. \n
 
-starter.manual_page_4=  Take an iron pickaxe for Pure and diamond for Divine. Just melt them like iron ores. The beautiful ingots you get are Divine Ingots, which comes to shape at its own will. As \"beautiful\" is an objective word, you make found it not so pretty, it's ok.
+starter.manual_page_4=  Take an iron pickaxe for Pure and diamond for Divine. Just melt those new ores like iron ores. The beautiful ingots you get are Divine Ingots, which comes to shape at its own will. As \"beautiful\" is an objective word, you make found it not so pretty, it's ok.
 
 starter.manual_page_5=S S\n S \nS S\n  Get Five wood sticks and craft them as above, you will get a weapon handle. Bring one handle and two divine ingots and just craft them together like any regular sword.
 starter.manual_page_6=  You will get the blade coming into shape, consider it a package. Touch it with your right hand (right-click) to see what the ingots decide to become. There are many possible results.
@@ -70,7 +74,7 @@ starter.manual_page_7=  The weapons you get doesn't recognize you, and vice vers
 
 starter.manual_page_8=  The Pure Ingots are quite flexible, and you can smelt it again. What you get are Pure Pearls. Most weapons can socket up to 5 pearls. The pearls boost the weapon in different ways.
 
-starter.manual_page_9=   I I\n    A\n   I I\n  The ingots like anvils. Build 4 ingots into an anvil's corner, you will get an Earth Charm.\n  >>Anvil<< the charm onto the divine weapon you craft, and see how the weapon grows stronger. It's more than an \"Earth\" mark in their name. 
+starter.manual_page_9=   I I\n    A\n   I I\n  The ingots like anvils. Build 4 ingots into an anvil's corner, you will get an Earth Charm.\n  Anvil the charm onto the divine weapon you craft, and see how the weapon grows stronger. It's more than an \"Earth\" mark in their name. 
 
 starter.manual_page_10=   GDG\n   DCD\n   GDG\n  Earth weapons are capable of entering their final form - Sky Weapon. Behold your weapon's true power.\n  Earth Charms can absorb 4 gold blocks plus 4 diamond blocks to grow into Sky Charms. Remember, only weapons on Earth Level can endure Sky's power. 
 

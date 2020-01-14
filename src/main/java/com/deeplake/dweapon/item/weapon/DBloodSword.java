@@ -42,6 +42,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static com.deeplake.dweapon.util.NBTStrDef.IDLGeneral.ServerAABB;
+
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DBloodSword extends DWeaponSwordBase {
 	// /give @p dweapon:blood_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
@@ -75,15 +77,15 @@ public class DBloodSword extends DWeaponSwordBase {
 			World world = evt.getEntity().getEntityWorld();
 			Vec3d pos = evt.getEntity().getPositionEyes(0);
 			if (!world.isRemote) {
-//				List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range,-range,-range), pos.addVector(range,range,range)));
-//				for (EntityLivingBase living:list ) {
-//					ItemStack stack = living.getHeldItemMainhand();
-//
-//					if (stack.getItem() instanceof DBloodSword && (ModItems.BLOOD_SWORD.IsEarth(stack) || ModItems.BLOOD_SWORD.IsSky(stack))) {
-//						living.heal(regen);
-//						world.playSound(null, living.getPosition(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.PLAYERS, 1f,2f);
-//					}
-//				}
+				List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, ServerAABB(pos.addVector(-range,-range,-range), pos.addVector(range,range,range)));
+				for (EntityLivingBase living:list ) {
+					ItemStack stack = living.getHeldItemMainhand();
+
+					if (stack.getItem() instanceof DBloodSword && (ModItems.BLOOD_SWORD.IsEarth(stack) || ModItems.BLOOD_SWORD.IsSky(stack))) {
+						living.heal(regen);
+						world.playSound(null, living.getPosition(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.PLAYERS, 1f,2f);
+					}
+				}
 			}
 			else
 			{

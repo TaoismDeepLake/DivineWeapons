@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModPotions;
 import com.deeplake.dweapon.util.Reference;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.Potion;
@@ -16,7 +17,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 
@@ -39,6 +42,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import static com.deeplake.dweapon.init.ModPotions.DEADLY;
 import static com.deeplake.dweapon.init.ModPotions.ZEN_HEART;
+import static com.deeplake.dweapon.util.NBTStrDef.IDLGeneral.ServerAABB;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DDeathSword extends DWeaponSwordBase {
@@ -101,14 +105,31 @@ public class DDeathSword extends DWeaponSwordBase {
 		}
 	}
 
+
+	static int RANGE = 3;
+	@SubscribeEvent
+	public void onSpawn(LivingSpawnEvent.CheckSpawn event) {
+		if(event.getEntityLiving() instanceof IMob) {
+			AxisAlignedBB aabb = new AxisAlignedBB(event.getX() - RANGE, event.getY() - RANGE, event.getZ() - RANGE, event.getX() + RANGE, event.getY() + RANGE, event.getZ() + RANGE);
+			DWeapons.LogWarning("AABB");
+			for(EntityPlayer player : event.getWorld().playerEntities) {
+				if(player.getActivePotionEffect(ZEN_HEART) == null && player.getEntityBoundingBox().intersects(aabb)) {
+					event.setResult(Event.Result.ALLOW);
+					return;
+				}
+			}
+		}
+	}
+
 	private static int deadly_buff_full_divider = 10;
 	private static float range = 5f;
 	//LivingDeathEvent
 	@SubscribeEvent
-	public static void onCreatureDie(LivingDeathEvent evt) {
-		World world = evt.getEntity().getEntityWorld();
-		EntityLivingBase dieOne = evt.getEntityLiving();
-		Vec3d pos = evt.getEntity().getPositionEyes(0);
+	public static void onCreatureDie(LivingDeathEvent event) {
+		World world = event.getEntity().getEntityWorld();
+		EntityLivingBase dieOne = event.getEntityLiving();
+		Vec3d pos = event.getEntity().getPositionEyes(0);
+
 		if (!world.isRemote) {
 			//wielder resist death
 			ItemStack stackDie = dieOne.getHeldItemMainhand();
@@ -117,29 +138,30 @@ public class DDeathSword extends DWeaponSwordBase {
 				dieOne.setHealth(dieOne.getMaxHealth() / 4);
 				dieOne.clearActivePotions();
 				world.playSound(null, dieOne.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL, SoundCategory.PLAYERS, 1f, 2f);
-				evt.setCanceled(true);
+				event.setCanceled(true);
 				return;
 			}
 
+
 			//wielder draws power from nearby deaths
-//			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
-//			for (EntityLivingBase living : list) {
-//				ItemStack stack = living.getHeldItemMainhand();
-//				if (stack.getItem() instanceof DDeathSword) {
-//					int buffLevel = GetDeadlyBuffLevel(living);
-//					//DWeapons.Log(String.format("deadly level = %s", buffLevel));
-//					//gives deadly buff
-//					if (buffLevel >= getDeadlyBuffMaxLevel(stack)) {
-//						buffLevel = getDeadlyBuffMaxLevel(stack) - 1;
-//					}
-//
-//					living.addPotionEffect(new PotionEffect(DEADLY, getDeadlyBuffTicks(stack), buffLevel));
-//					//play sound
-//					world.playSound(null, living.getPosition(), SoundEvents.ENTITY_GHAST_SCREAM, SoundCategory.PLAYERS, 1f, buffLevel * 0.2f);
-//					//heal
-//					living.heal(getDeathHealAmount(stack));
-//				}
-//			}
+			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, ServerAABB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
+			for (EntityLivingBase living : list) {
+				ItemStack stack = living.getHeldItemMainhand();
+				if (stack.getItem() instanceof DDeathSword) {
+					int buffLevel = GetDeadlyBuffLevel(living);
+					//DWeapons.Log(String.format("deadly level = %s", buffLevel));
+					//gives deadly buff
+					if (buffLevel >= getDeadlyBuffMaxLevel(stack)) {
+						buffLevel = getDeadlyBuffMaxLevel(stack) - 1;
+					}
+
+					living.addPotionEffect(new PotionEffect(DEADLY, getDeadlyBuffTicks(stack), buffLevel));
+					//play sound
+					world.playSound(null, living.getPosition(), SoundEvents.ENTITY_GHAST_SCREAM, SoundCategory.PLAYERS, 1f, buffLevel * 0.2f);
+					//heal
+					living.heal(getDeathHealAmount(stack));
+				}
+			}
 		} else {
 			//currently do nothing
 		}

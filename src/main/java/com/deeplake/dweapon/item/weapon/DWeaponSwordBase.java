@@ -278,8 +278,13 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 
 		if (DWeapons.proxy.isServer())
 		{
-			bookPages.appendTag(DWNBT.bookPageFromLine("Sorry. Temprorarily disabled"));
+			bookPages.appendTag(DWNBT.bookPageFromLineAndUrl(name + "Server manual is temporarily disabled. See info at the official website: ", "https://www.curseforge.com/minecraft/mc-mods/divineweapon"));
+
+			book.setTagInfo("author", new NBTTagString("The Lost Weapon Smith"));
+			book.setTagInfo("title", new NBTTagString("The Missing Manual"));
+
 			book.setTagInfo("pages", bookPages);
+			//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 			return book;
 		}
 		

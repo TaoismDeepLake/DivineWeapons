@@ -1,6 +1,7 @@
 package com.deeplake.dweapon.item.weapon;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
+import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -267,11 +268,11 @@ public class DDisarmRing extends DWeaponSwordBase {
 			World worldIn = living.world;
 			Vec3d pos = living.getPositionEyes(1.0F);
 
-//			List<Entity> entities = worldIn.getEntitiesWithinAABB(Entity.class,
-//					new AxisAlignedBB(pos.addVector(-horizontalRange, -2, -horizontalRange), pos.addVector(horizontalRange, 2, horizontalRange)));
-//			for (Entity entity : entities) {
-//				HandleProjectile(stack, entity, (EntityPlayer) living);
-//			}
+			List<Entity> entities = worldIn.getEntitiesWithinAABB(Entity.class,
+					IDLGeneral.ServerAABB(pos.addVector(-horizontalRange, -2, -horizontalRange), pos.addVector(horizontalRange, 2, horizontalRange)));
+			for (Entity entity : entities) {
+				HandleProjectile(stack, entity, (EntityPlayer) living);
+			}
 		}
 	}
 
@@ -364,18 +365,18 @@ public class DDisarmRing extends DWeaponSwordBase {
 		World worldIn = caster.world;
 		Vec3d pos = caster.getPositionEyes(1.0F);
 
-//		List<Entity> entities = worldIn.getEntitiesWithinAABB(Entity.class,
-//				new AxisAlignedBB(pos.addVector(-horizontalRange,-2,-horizontalRange), pos.addVector(horizontalRange,2,horizontalRange)));
-//		for (Entity entity : entities)
-//		{
-//			if (entity == caster) {
-//				continue;//skip self
-//			}
-//
-//			if (!(entity instanceof EntityPlayer) && entity instanceof EntityLivingBase) {
-//				DrawItemDirect((EntityLivingBase)entity, (EntityPlayer) caster, true);
-//			}
-//		}
+		List<Entity> entities = worldIn.getEntitiesWithinAABB(Entity.class,
+				IDLGeneral.ServerAABB(pos.addVector(-horizontalRange,-2,-horizontalRange), pos.addVector(horizontalRange,2,horizontalRange)));
+		for (Entity entity : entities)
+		{
+			if (entity == caster) {
+				continue;//skip self
+			}
+
+			if (!(entity instanceof EntityPlayer) && entity instanceof EntityLivingBase) {
+				DrawItemDirect((EntityLivingBase)entity, (EntityPlayer) caster, true);
+			}
+		}
 	}
 	//Tried to get the arrow from the entity.
 	//there is an implemented method, but it's protected.

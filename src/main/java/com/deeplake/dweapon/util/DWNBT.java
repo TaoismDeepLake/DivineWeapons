@@ -8,6 +8,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 
 public class DWNBT {
+	public final static int TICK_PER_SECOND = 20;
+
 	public int pearlCount;
 	public boolean isEarth;
 	public boolean isSky;

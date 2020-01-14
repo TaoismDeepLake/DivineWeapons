@@ -8,6 +8,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.vecmath.Vector3d;
 
+import com.deeplake.dweapon.init.ModPotions;
+import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
+import net.minecraft.init.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.LogManager;
 
@@ -23,21 +27,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -46,6 +40,9 @@ import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import static com.deeplake.dweapon.util.DWEntityUtil.TryRemoveGivenBuff;
+import static com.deeplake.dweapon.util.DWNBT.TICK_PER_SECOND;
 
 public class DSnowSword extends DWeaponSwordBase {
 	// /give @p dweapon:snow_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}
@@ -155,10 +152,90 @@ public class DSnowSword extends DWeaponSwordBase {
 		}
 	}
 
+	public boolean isMeditating(EntityPlayer player)
+	{
+		return player.isSneaking() && (player.motionX < 0.01f) &&  (player.motionZ < 0.01f) ;
+	}
+
+	public int getMeditationCD(ItemStack stack, World worldIn, Entity entityIn)
+	{
+		return TICK_PER_SECOND * 20;
+	}
+
+	public int getProtectionDuration(ItemStack stack, World worldIn, Entity entityIn)
+	{
+		return TICK_PER_SECOND * 60;
+	}
+
+	public float getSnowHaloRange(ItemStack stack, World worldIn, Entity entityIn)
+	{
+		return 10f;
+	}
+
+	public void meditation(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
+		if (entityIn instanceof EntityPlayerMP) {
+			EntityPlayerMP player =  (EntityPlayerMP) entityIn;
+			if (IsSnowingHere(player) && isSelected) {
+				player.addPotionEffect(new PotionEffect(ModPotions.SNOW_PROTECT, TICK_PER_SECOND, 0 ));
+			}
+
+			if (player.getActivePotionEffect(ModPotions.SNOW_PROTECT) != null)
+			{
+				if (isSelected) {
+					//cast a debuff halo
+					float range = getSnowHaloRange(stack, worldIn, entityIn);
+					Vec3d mypos = player.getPositionVector();
+					List<EntityLivingBase> list = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(mypos.addVector(-range, -range, -range), mypos.addVector(range, range, range)));
+					for (EntityLivingBase living : list) {
+						ItemStack stack2 = living.getHeldItemMainhand();
+						if (!(living instanceof EntityPlayer) && !(stack2.getItem() instanceof DSnowSword)) {
+							//snow sword cancels the effect
+							living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, TICK_PER_SECOND, 0));
+							living.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, TICK_PER_SECOND, 0));
+						}
+					}
+				}
+				else {
+					player.addPotionEffect(new PotionEffect(MobEffects.SPEED, TICK_PER_SECOND, 2));
+					player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, TICK_PER_SECOND, 0));
+				}
+			}
+			else {
+				if (player.getActivePotionEffect(ModPotions.SNOW_MED) != null)
+				{
+					if (isSelected) {
+						if (!isMeditating(player)) {
+							TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
+						} else if (player.getActivePotionEffect(ModPotions.SNOW_MED).getDuration() < TICK_PER_SECOND) {
+							TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
+							player.addPotionEffect(new PotionEffect(ModPotions.SNOW_PROTECT, getProtectionDuration(stack, worldIn, entityIn), 0));
+						}
+					}
+					else {
+						TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
+					}
+				}
+				else
+				{
+					if (isSelected && isMeditating(player))
+					{
+						player.addPotionEffect(new PotionEffect(ModPotions.SNOW_MED, getMeditationCD(stack, worldIn, entityIn), 0 ));
+					}
+				}
+			}
+		}
+
+
+	}
+
 	@Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+
+		meditation(stack, worldIn, entityIn, itemSlot, isSelected);
+
 
 		if (entityIn instanceof EntityPlayerMP)
 		{

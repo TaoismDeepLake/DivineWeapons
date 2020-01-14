@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
 import com.deeplake.dweapon.util.Reference;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.*;
@@ -39,6 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static com.deeplake.dweapon.init.ModPotions.DEADLY;
+import static com.deeplake.dweapon.init.ModPotions.SPACE_AFF;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DSpaceAffinitySword extends DWeaponSwordBase {
@@ -78,52 +81,82 @@ public class DSpaceAffinitySword extends DWeaponSwordBase {
 		Vec3d pos2 = new Vec3d(evt.getTargetX(), evt.getTargetY(), evt.getTargetZ());
 		if (!world.isRemote) {
 			//wielder stops nearby end-power teleporting and damage teleporters.
-//			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
-//			for (EntityLivingBase living : list) {
-//				ItemStack stack = living.getHeldItemMainhand();
-//				if (stack.getItem() instanceof DSpaceAffinitySword) {
-//					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
-//					//play sound
-//					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
-//					evt.setCanceled(true);
-//					return;
-//				}
-//			}
-//
-//			list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos2.addVector(-range, -range, -range), pos2.addVector(range, range, range)));
-//			for (EntityLivingBase living : list) {
-//				ItemStack stack = living.getHeldItemMainhand();
-//				if (stack.getItem() instanceof DSpaceAffinitySword) {
-//					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
-//					//play sound
-//					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
-//					evt.setCanceled(true);
-//					return;
-//				}
-//			}
+			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
+			for (EntityLivingBase living : list) {
+				ItemStack stack = living.getHeldItemMainhand();
+				if (stack.getItem() instanceof DSpaceAffinitySword) {
+					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
+					//play sound
+					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
+					evt.setCanceled(true);
+					return;
+				}
+			}
+
+			list = world.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(pos2.addVector(-range, -range, -range), pos2.addVector(range, range, range)));
+			for (EntityLivingBase living : list) {
+				ItemStack stack = living.getHeldItemMainhand();
+				if (stack.getItem() instanceof DSpaceAffinitySword) {
+					teleportee.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, slowTime, debuffLevel));
+					//play sound
+					world.playSound(null, living.getPosition(), SoundEvents.BLOCK_NOTE_HARP, SoundCategory.AMBIENT, 1f, 1f);
+					evt.setCanceled(true);
+					return;
+				}
+			}
 		} else {
 			//currently do nothing
 		}
 	}
-	
+
+	//Note: only players will call this.
+	//Monsters won't.
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+		if (isSelected && IsHigh(stack, entityIn.getPositionVector()) && !worldIn.isRemote)
+		{
+			((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(SPACE_AFF, 20, 0));
+		}
+	}
+
+	public boolean IsHigh(final ItemStack stack, final Vec3d pos)
+	{
+		double damageDivider = 16d;
+		if (IsSky(stack)) {
+			damageDivider = 128d;
+		}
+
+		float argX = (float)(Math.abs(pos.x % damageDivider));
+		float argY = (float)(Math.abs(pos.y % damageDivider));
+		float argZ = (float)(Math.abs(pos.z % damageDivider));
+
+		float damage = Math.max(Math.max(argX, argY), Math.max(argZ, minDamage(stack)));
+		return damage > (damageDivider * 15/16);
+	}
+
+	public float GetAttackDamage(final ItemStack stack, final Vec3d pos)
+	{
+		double damageDivider = 16d;
+		if (IsSky(stack)) {
+			damageDivider = 128d;
+		}
+
+		float argX = (float)(Math.abs(pos.x % damageDivider));
+		float argY = (float)(Math.abs(pos.y % damageDivider));
+		float argZ = (float)(Math.abs(pos.z % damageDivider));
+
+		float damage = Math.max(Math.max(argX, argY), Math.max(argZ, minDamage(stack)));
+		return damage;
+	}
+
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
 		if (player.world.isRemote) {
 			return false;
 		}
-
-		Vec3d pos = player.getPositionVector();
 		
-		double damageDivider = 16d;
-		if (IsSky(stack)) {
-			damageDivider = 128d;
-		}
-		
-		float argX = (float)(Math.abs(pos.x % damageDivider));
-		float argY = (float)(Math.abs(pos.y % damageDivider));
-		float argZ = (float)(Math.abs(pos.z % damageDivider));
-		
-		float damage = Math.max(Math.max(argX, argY), Math.max(argZ, minDamage(stack))) * ratio;
+		float damage = GetAttackDamage(stack, player.getPositionVector()) * ratio;
 		
 		boolean success = false;
 
