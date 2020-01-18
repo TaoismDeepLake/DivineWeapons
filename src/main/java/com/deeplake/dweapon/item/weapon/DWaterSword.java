@@ -86,6 +86,11 @@ public class DWaterSword extends DWeaponSwordBase {
 		return damage;
 	}
 
+	public boolean NoGravity(ItemStack stack, boolean isSneaking, boolean isSelected)
+	{
+		return (IsSky(stack) || (IsEarth(stack) && isSelected)) && isSneaking;
+	}
+
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
 	{
@@ -108,6 +113,7 @@ public class DWaterSword extends DWeaponSwordBase {
 
 				DWEntityUtil.TryRemoveDebuff(playerMP);
 			}
+			playerMP.setNoGravity(playerMP.isWet() && NoGravity(stack, playerMP.isSneaking(), isSelected));
 
 			//put out fire
 			if (playerMP.isBurning() && isSelected)

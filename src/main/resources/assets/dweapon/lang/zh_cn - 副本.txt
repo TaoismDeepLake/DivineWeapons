@@ -4,6 +4,10 @@ itemGroup.DWeaponWeaponTab=神兵
 
 //Buffs
 dweapon.potion.deadly=致死
+dweapon.potion.zen_heart=功德无量
+dweapon.potion.space_aff_1=空间共鸣
+dweapon.potion.snow_meditation=独钓寒雪
+dweapon.potion.snow_protection=风雪归人
 //unused
 dweapon.potion.deadly.4=致死 V
 dweapon.potion.deadly.5=致死 V
@@ -123,7 +127,7 @@ item.death_sword.manual_page_5=天、地级的此剑可以让拥有者蔑视死�
 item.space_affinity_sword.name=空间涨落
 item.space_affinity_sword.hidden=不稳定的剑
 
-item.space_affinity_sword.shared_desc=[傅里叶共鸣] 伤害和坐标有关
+item.space_affinity_sword.shared_desc=[傅里叶共鸣] 伤害和坐标有关，封印附近的末影传送。
 item.space_affinity_sword.sky_desc=伤害是 Max(x%%128, y%%128, z%%128, 16)， 长按右键传送回出生点
 item.space_affinity_sword.earth_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)， 长按右键传送回出生点
 item.space_affinity_sword.normal_desc=伤害是 Max(x%%16, y%%16, z%%16, %s)
@@ -342,3 +346,27 @@ item.water_sword.manual_page_4=  既然它是泪滴，就自然能用水（桶�
 item.water_sword.manual_page_5=  强化到地级时，它能让持有者更适应水。水下呼吸和速度效果肯定会非常有用。
 item.water_sword.manual_page_6=  强化到天级时，它能与天上的云共鸣，制造降雨，但在沙漠等炎热的地方无效。此外，它还会自动清除持有者身上所有的减益效果，包括凋零、缓慢等。
 item.water_sword.manual_page_7=  虽然它能灭火，但它在岩浆里效果不佳，因为岩浆主要是以持续的高热造成伤害，而非火焰本身。
+
+//
+item.monk_beads.name=无垢念珠
+item.monk_beads.hidden=白铁手串
+
+item.monk_beads.shared_desc=[禅]减免来自不死生物的伤害，右键诵经。
+item.monk_beads.sky_desc=免疫减益效果与不死伤害。
+item.monk_beads.earth_desc=手持时免疫减益效果。 不死伤害减免 %s 点，再减少 50% 。
+item.monk_beads.normal_desc=不死伤害减免 %s 点.
+item.monk_beads.damage_desc=基础伤害 : %s
+
+item.monk_beads.manual_title=无垢念珠
+item.monk_beads.manual_author=道家深湖
+item.monk_beads.manual_page_count=10
+item.monk_beads.manual_page_1=  僧人们的念珠。 \n【注意：此武器强化机制特殊】 
+item.monk_beads.manual_page_2=  念珠存在于不同宗教。佛教里代表着108中烦恼，也有说代表108位金刚。
+item.monk_beads.manual_page_3=  有人用来计数，有人用来穿戴。作为兵匠，你也大可用作武器。
+item.monk_beads.manual_page_4=  【涤净】纯净的念珠具有净化之力。主要用来驱散队友身上的debuff和拯救僵尸村民。每次拯救会积累功德。  
+item.monk_beads.manual_page_5=  【诵经】右键诵经，驱散一个自身减益效果，并有概率获得经验。等级越高概率越低。
+item.monk_beads.manual_page_6=  【功德】手持时，每5珠可以减免1点自身受到的不死来源伤害。主要是僵尸。
+item.monk_beads.manual_page_7=  这件神兵的升级只需持续镶嵌宝珠即可。初始具有8珠，镶至36珠时为地级，108个达天级。护符会转化成一定数量的宝珠。
+item.monk_beads.manual_page_8=  在地级， 【功德】 会再提供50%的不死减伤效果。 【禅心】使得你手持时免疫所有减益效果。
+item.monk_beads.manual_page_9=  天级时，你的无量【功德】使你免疫不死伤害。 并且，【功德】【禅心】无需手持就能发挥作用，放在包里即可。
+item.monk_beads.manual_page_10=  未完待续……

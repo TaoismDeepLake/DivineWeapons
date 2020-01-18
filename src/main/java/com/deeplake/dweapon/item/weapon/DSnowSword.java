@@ -154,7 +154,7 @@ public class DSnowSword extends DWeaponSwordBase {
 
 	public boolean isMeditating(EntityPlayer player)
 	{
-		return player.isSneaking() && (player.motionX < 0.01f) &&  (player.motionZ < 0.01f) ;
+		return !player.isSneaking() && (player.motionX < 0.01f) &&  (player.motionZ < 0.01f) ;
 	}
 
 	public int getMeditationCD(ItemStack stack, World worldIn, Entity entityIn)
@@ -167,66 +167,106 @@ public class DSnowSword extends DWeaponSwordBase {
 		return TICK_PER_SECOND * 60;
 	}
 
-	public float getSnowHaloRange(ItemStack stack, World worldIn, Entity entityIn)
+	public float getSnowHaloRange(int buffLevel)
 	{
 		return 10f;
 	}
 
+	public int getApplyBuffLevel(ItemStack stack){
+		return IsSky(stack) ? 1 : 0;
+	}
+
 	public void meditation(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
 	{
-		if (entityIn instanceof EntityPlayerMP) {
-			EntityPlayerMP player =  (EntityPlayerMP) entityIn;
+		if (entityIn instanceof EntityPlayer) {
+			EntityPlayer player =  (EntityPlayer) entityIn;
 			if (IsSnowingHere(player) && isSelected) {
-				player.addPotionEffect(new PotionEffect(ModPotions.SNOW_PROTECT, TICK_PER_SECOND, 0 ));
+				//Auto protect when held and snowing
+				ApplyProtection(stack, worldIn, player, TICK_PER_SECOND);
 			}
 
 			if (player.getActivePotionEffect(ModPotions.SNOW_PROTECT) != null)
 			{
+				int effectLevel = player.getActivePotionEffect(ModPotions.SNOW_PROTECT).getAmplifier();
 				if (isSelected) {
 					//cast a debuff halo
-					float range = getSnowHaloRange(stack, worldIn, entityIn);
+					float range = getSnowHaloRange(effectLevel);
 					Vec3d mypos = player.getPositionVector();
-					List<EntityLivingBase> list = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(mypos.addVector(-range, -range, -range), mypos.addVector(range, range, range)));
-					for (EntityLivingBase living : list) {
-						ItemStack stack2 = living.getHeldItemMainhand();
-						if (!(living instanceof EntityPlayer) && !(stack2.getItem() instanceof DSnowSword)) {
-							//snow sword cancels the effect
-							living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, TICK_PER_SECOND, 0));
-							living.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, TICK_PER_SECOND, 0));
-						}
-					}
-				}
-				else {
-					player.addPotionEffect(new PotionEffect(MobEffects.SPEED, TICK_PER_SECOND, 2));
-					player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, TICK_PER_SECOND, 0));
-				}
-			}
-			else {
-				if (player.getActivePotionEffect(ModPotions.SNOW_MED) != null)
-				{
-					if (isSelected) {
-						if (!isMeditating(player)) {
-							TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
-						} else if (player.getActivePotionEffect(ModPotions.SNOW_MED).getDuration() < TICK_PER_SECOND) {
-							TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
-							player.addPotionEffect(new PotionEffect(ModPotions.SNOW_PROTECT, getProtectionDuration(stack, worldIn, entityIn), 0));
-						}
+					if (worldIn.isRemote)
+					{
+						CreateParticleStorm(effectLevel, player);
 					}
 					else {
-						TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
+						List<EntityLivingBase> list = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(mypos.addVector(-range, -range, -range), mypos.addVector(range, range, range)));
+						for (EntityLivingBase living : list) {
+							ItemStack stack2 = living.getHeldItemMainhand();
+							if (!(living instanceof EntityPlayer) && !(stack2.getItem() instanceof DSnowSword)) {
+								//snow sword counters the effect.
+								living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+								living.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+							}
+						}
 					}
 				}
-				else
-				{
-					if (isSelected && isMeditating(player))
+				else {//not in hand
+					if (!worldIn.isRemote)
 					{
-						player.addPotionEffect(new PotionEffect(ModPotions.SNOW_MED, getMeditationCD(stack, worldIn, entityIn), 0 ));
+						//Snow retreat
+						player.addPotionEffect(new PotionEffect(MobEffects.SPEED, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+						player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, TICK_PER_SECOND, 0));
+					}
+					else {
+						CreateParticleStorm(effectLevel, player);
+						CreateParticleStorm(effectLevel, player);
+						CreateParticleStorm(effectLevel, player);
+					}
+				}
+			}//done: handling snow protection
+
+			//Meditation
+			if (!worldIn.isRemote) {
+				if (player.getActivePotionEffect(ModPotions.SNOW_MED) != null) {
+					if ((IsSky(stack) || IsEarth(stack)) && player.getActivePotionEffect(ModPotions.SNOW_MED).getDuration() < TICK_PER_SECOND) {
+						if (isSelected) {
+							ApplyProtection(stack, worldIn, player, getProtectionDuration(stack, worldIn, entityIn));
+						}
+					}
+
+					if (!isSelected || !isMeditating(player)) {
+						TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
+					}
+				} else {
+					if (isSelected && isMeditating(player)) {
+						player.addPotionEffect(new PotionEffect(ModPotions.SNOW_MED, getMeditationCD(stack, worldIn, entityIn), 0));
 					}
 				}
 			}
+
 		}
+	}
 
+	private void ApplyProtection(ItemStack stack, World worldIn, EntityLivingBase entityIn, int tick)
+	{
+		entityIn.addPotionEffect(new PotionEffect(ModPotions.SNOW_PROTECT, tick, getApplyBuffLevel(stack)));
+	}
 
+	private void CreateParticleStorm(int buffLevel, EntityLivingBase living) {
+		Random rand = new Random();
+		float range = getSnowHaloRange(buffLevel);
+		//double r = 1d;
+		int count = (int)(range * range * range / 2);
+		for (int i = 0; i < count; i++) {
+			double x = living.posX + (rand.nextDouble() - 0.5d) * range * 2;
+			double y = living.posY + rand.nextDouble() * range * 2;
+			double z = living.posZ + (rand.nextDouble() - 0.5d) * range * 2;
+
+			double vx = living.motionX;
+			double vy = living.motionY;
+			double vz = living.motionZ;
+
+			living.world.spawnParticle(EnumParticleTypes.SNOW_SHOVEL,
+					x,y,z,vx,vy,vz);
+		}
 	}
 
 	@Override
@@ -240,16 +280,17 @@ public class DSnowSword extends DWeaponSwordBase {
 		if (entityIn instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP playerMP = (EntityPlayerMP)(entityIn); 
-			
-			//creating snow
+
 			if (IsSky(stack) && isSelected)
-			{//same as snow golem
+			{
+				//anti fire
+				playerMP.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0));
+
+				//same as snow golem
 				int i = 0;
 	            int j = 0;
 	            int k = 0;
-				
-				playerMP.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, skyBuffTick, 0));
-			
+
 				for (int l = 0; l < 4; ++l)
 	            {
 	                i = MathHelper.floor(playerMP.posX + (double)((float)(l % 2 * 2 - 1) * 0.25F));
@@ -278,14 +319,13 @@ public class DSnowSword extends DWeaponSwordBase {
 					}
 					SetWeaponMode(stack, SNOWING_MODE);
 				}
-				else
+				else //change picture
 				{
 					if (IsSky(stack)) {
 						SetWeaponMode(stack, CAN_SNOW_MODE);
 					}else {
 						SetWeaponMode(stack, NORMAL_MODE);
 					}
-
 				}
 			}
 			else

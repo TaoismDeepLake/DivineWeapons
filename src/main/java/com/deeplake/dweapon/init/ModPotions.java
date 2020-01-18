@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModPotions {
@@ -87,15 +88,71 @@ public class ModPotions {
                     }
                 }
             }
+
+            //Apply damage multiplier
+            Collection<PotionEffect> activePotionEffectsAttacker = sourceCreature.getActivePotionEffects();
+            for (int i = 0; i < activePotionEffectsAttacker.size(); i++) {
+                PotionEffect buff = (PotionEffect)activePotionEffectsAttacker.toArray()[i];
+                if (buff.getPotion() instanceof BasePotion)
+                {
+                    BasePotion modBuff = (BasePotion)buff.getPotion();
+                    if (!world.isRemote)
+                    {
+                        evt.setAmount(modBuff.getAttackMultiplier(buff.getAmplifier()) * evt.getAmount());
+                    }
+                }
+            }
         }
 
-        PotionEffect curBuff = hurtOne.getActivePotionEffect(SNOW_PROTECT);
-        if (curBuff != null) {
-            if (!world.isRemote) {
-                //TODO:lower damage
-            } else {
-                //TODO:create some particle effect
+        //Base Damage Reduction
+        Collection<PotionEffect> activePotionEffects = hurtOne.getActivePotionEffects();
+        for (int i = 0; i < activePotionEffects.size(); i++) {
+            PotionEffect buff = (PotionEffect)activePotionEffects.toArray()[i];
+            if (buff.getPotion() instanceof BasePotion)
+            {
+                BasePotion modBuff = (BasePotion)buff.getPotion();
+                if (!world.isRemote)
+                {
+                    float reduceRatio = modBuff.getDamageReductionMultiplier(buff.getAmplifier());
+                    evt.setAmount(reduceRatio * evt.getAmount());
+                }
             }
+        }
+
+        for (int i = 0; i < activePotionEffects.size(); i++) {
+            PotionEffect buff = (PotionEffect)activePotionEffects.toArray()[i];
+            if (buff.getPotion() instanceof BasePotion)
+            {
+                BasePotion modBuff = (BasePotion)buff.getPotion();
+                if (world.isRemote)
+                {
+                    modBuff.playOnHitEffect(hurtOne, evt.getAmount());
+                }
+            }
+        }
+
+    }
+
+//  * At this point armor, potion and absorption modifiers have already been applied to damage - this is FINAL value.<br>
+//  * Also note that appropriate resources (like armor durability and absorption extra hearths) have already been consumed.<br>
+    @SubscribeEvent
+    public static void onCreatureDamaged(LivingDamageEvent evt) {
+        World world = evt.getEntity().getEntityWorld();
+        EntityLivingBase hurtOne = evt.getEntityLiving();
+        if (!world.isRemote) {
+//            Entity trueSource = evt.getSource().getTrueSource();
+//            if (trueSource instanceof EntityLivingBase){
+//                EntityLivingBase sourceCreature = (EntityLivingBase)trueSource;
+//                if (sourceCreature.isEntityUndead())
+//                {
+//                    PotionEffect curBuff = hurtOne.getActivePotionEffect(ZEN_HEART);
+//                    if (curBuff != null) {
+//                        evt.setCanceled(true);
+//                    }
+//                }
+//            }
+        } else {
+            //TODO:create some particle effect
         }
     }
 
@@ -131,24 +188,5 @@ public class ModPotions {
         }
     }
 
-    @SubscribeEvent
-    public static void onCreatureDamaged(LivingDamageEvent evt) {
-        World world = evt.getEntity().getEntityWorld();
-        EntityLivingBase hurtOne = evt.getEntityLiving();
-        if (!world.isRemote) {
-            Entity trueSource = evt.getSource().getTrueSource();
-            if (trueSource instanceof EntityLivingBase){
-                EntityLivingBase sourceCreature = (EntityLivingBase)trueSource;
-                if (sourceCreature.isEntityUndead())
-                {
-                    PotionEffect curBuff = hurtOne.getActivePotionEffect(ZEN_HEART);
-                    if (curBuff != null) {
-                        evt.setCanceled(true);
-                    }
-                }
-            }
-        } else {
-            //TODO:create some particle effect
-        }
-    }
+
 }

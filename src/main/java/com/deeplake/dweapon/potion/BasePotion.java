@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -16,6 +17,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BasePotion extends Potion {
     private static final ResourceLocation resource = new ResourceLocation("dweapon","textures/misc/potions.png");
     private final int iconIndex;
+    protected float damageReductionRatioBase = 0.0f;
+    protected float damageReductionRatioPerLevel = 0.0f;
+
+    protected float attackIncreaseRatioBase = 0.0f;
+    protected float attackIncreaseRatioPerLevel = 0.0f;
+
+
     public BasePotion(boolean isBadEffectIn, int liquidColorIn, String name, int icon) {
         super(isBadEffectIn, liquidColorIn);
         setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
@@ -28,6 +36,28 @@ public class BasePotion extends Potion {
 //    {
 //        return this.getName() + "." + this.getmo;
 //    }
+
+    public void playOnHitEffect(EntityLivingBase entityLivingBase, float damage)
+    {
+
+    }
+
+    public boolean isReady(int duration, int amplifier) {
+        return true;
+    }
+
+    public float getDamageReductionMultiplier(int level)
+    {
+        //cant deal negative damage
+        return Math.max(0f, damageReductionRatioBase + level * damageReductionRatioPerLevel);
+    }
+
+    public float getAttackMultiplier(int level)
+    {
+        //cant deal negative damage
+        return Math.max(0f, attackIncreaseRatioBase + level * attackIncreaseRatioPerLevel);
+    }
+
 
     @SideOnly(Side.CLIENT)
     private void render(int x, int y, float alpha) {
