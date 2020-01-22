@@ -17,6 +17,8 @@ public class PotionSnowProtection extends BasePotion {
         //attackIncreaseRatioPerLevel = 1.0f;
     }
 
+
+
     @Override
     public void performEffect(@Nonnull EntityLivingBase living, int amplified) {
         if (living.getHealth() < living.getMaxHealth())

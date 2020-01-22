@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import javax.vecmath.Vector3d;
 
 import com.deeplake.dweapon.init.ModPotions;
+import com.deeplake.dweapon.potion.BasePotion;
 import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
 import net.minecraft.init.*;
 import net.minecraft.util.*;
@@ -84,7 +85,7 @@ public class DSnowSword extends DWeaponSwordBase {
 		return base_damage;
     }
 	
-	public float getActualDamage(ItemStack stack, float ratio, float t, boolean isSnowing)
+	public float getActualDamage(ItemStack stack, float ratio, float t, boolean hasSnowProtection)
 	{	
 		float result = IsSky(stack) ? base_damage_sky :
 				(IsEarth(stack) ? base_damage_earth :
@@ -116,7 +117,7 @@ public class DSnowSword extends DWeaponSwordBase {
 			result *= 1 + (t_base - t) * ( 1 + pearl_damage_factor * pearlCount);
 		}
 
-		if (isSnowing) {
+		if (hasSnowProtection) {
 			result *= snowing_multiplier;
 		}
 
@@ -127,7 +128,7 @@ public class DSnowSword extends DWeaponSwordBase {
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
 		boolean isSnowing = IsSnowingHere(player);
 		float t = GetTemperatureHere(player);
-		float damage = getActualDamage(stack, ratio, t, isSnowing);
+		float damage = getActualDamage(stack, ratio, t, GetCurBuffLevel(player) >= 0);
 		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
 
 		if (player.world.isRemote) {
@@ -152,9 +153,15 @@ public class DSnowSword extends DWeaponSwordBase {
 		}
 	}
 
-	public boolean isMeditating(EntityPlayer player)
+	public static boolean isMeditating(EntityPlayer player)
 	{
-		return !player.isSneaking() && (player.motionX < 0.01f) &&  (player.motionZ < 0.01f) ;
+		return player.isSneaking() && (player.motionX < 0.01f) &&  (player.motionZ < 0.01f) ;
+	}
+
+	public static boolean heldingSnowSword(EntityPlayer player)
+	{
+		ItemStack stack = player.getHeldItemMainhand();
+		return stack != null && stack != ItemStack.EMPTY && (stack.getItem() instanceof DSnowSword);
 	}
 
 	public int getMeditationCD(ItemStack stack, World worldIn, Entity entityIn)
@@ -174,6 +181,17 @@ public class DSnowSword extends DWeaponSwordBase {
 
 	public int getApplyBuffLevel(ItemStack stack){
 		return IsSky(stack) ? 1 : 0;
+	}
+
+	public int GetCurBuffLevel(EntityLivingBase player)
+	{
+		if (player.getActivePotionEffect(ModPotions.SNOW_PROTECT) != null) {
+			return player.getActivePotionEffect(ModPotions.SNOW_PROTECT).getAmplifier();
+		}
+		else
+		{
+			return -1;
+		}
 	}
 
 	public void meditation(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
@@ -225,20 +243,34 @@ public class DSnowSword extends DWeaponSwordBase {
 
 			//Meditation
 			if (!worldIn.isRemote) {
-				if (player.getActivePotionEffect(ModPotions.SNOW_MED) != null) {
-					if ((IsSky(stack) || IsEarth(stack)) && player.getActivePotionEffect(ModPotions.SNOW_MED).getDuration() < TICK_PER_SECOND) {
-						if (isSelected) {
-							ApplyProtection(stack, worldIn, player, getProtectionDuration(stack, worldIn, entityIn));
+				if ((IsSky(stack) || IsEarth(stack)) && player.getActivePotionEffect(ModPotions.SNOW_MED).getDuration() <= TICK_PER_SECOND) {
+					if (isSelected) {
+						ApplyProtection(stack, worldIn, player, getProtectionDuration(stack, worldIn, entityIn));
+					}
+				}
+
+				if ((heldingSnowSword(player) && isMeditating(player))) {
+					//Meditation
+					boolean holdTheTiming = false;
+					if (player.getActivePotionEffect(ModPotions.SNOW_MED) != null)
+					{
+						PotionEffect buff = player.getActivePotionEffect(ModPotions.SNOW_MED);
+						int medDurationLeft = buff.getDuration();
+						if (medDurationLeft < TICK_PER_SECOND)
+						{
+							holdTheTiming = true;
 						}
 					}
-
-					if (!isSelected || !isMeditating(player)) {
-						TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
+					if (holdTheTiming)
+					{
+						player.addPotionEffect(new PotionEffect(ModPotions.SNOW_MED, TICK_PER_SECOND, 0, false, false));
 					}
-				} else {
-					if (isSelected && isMeditating(player)) {
-						player.addPotionEffect(new PotionEffect(ModPotions.SNOW_MED, getMeditationCD(stack, worldIn, entityIn), 0));
+					else {
+						player.addPotionEffect(new PotionEffect(ModPotions.SNOW_MED, getMeditationCD(stack, worldIn, entityIn), 0, false, false));
 					}
+				}
+				else {
+					TryRemoveGivenBuff(player, ModPotions.SNOW_MED);
 				}
 			}
 
