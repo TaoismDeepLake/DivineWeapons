@@ -98,7 +98,7 @@ public class ModPotions {
                     BasePotion modBuff = (BasePotion)buff.getPotion();
                     if (!world.isRemote)
                     {
-                        evt.setAmount(modBuff.getAttackMultiplier(buff.getAmplifier()) * evt.getAmount());
+                        evt.setAmount((1 + modBuff.getAttackMultiplier(buff.getAmplifier())) * evt.getAmount());
                     }
                 }
             }
@@ -114,7 +114,7 @@ public class ModPotions {
                 if (!world.isRemote)
                 {
                     float reduceRatio = modBuff.getDamageReductionMultiplier(buff.getAmplifier());
-                    evt.setAmount(reduceRatio * evt.getAmount());
+                    evt.setAmount((1 - reduceRatio) * evt.getAmount());
                 }
             }
         }
