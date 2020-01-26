@@ -5,7 +5,11 @@ import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import scala.tools.nsc.typechecker.Tags;
+
+import static com.deeplake.dweapon.util.NBTStrDef.DWNBTDef.BASE_DATA;
 
 public class DWNBT {
 	public final static int TICK_PER_SECOND = 20;
@@ -30,7 +34,20 @@ public class DWNBT {
 		readFromBasic(srcNBT);
 		basic = srcNBT;
 	}
-	
+
+	public static NBTTagCompound getTagSafe(NBTTagCompound tag, String key) {
+		if(tag == null) {
+			return new NBTTagCompound();
+		}
+
+		return tag.getCompoundTag(key);
+	}
+
+	public static NBTTagCompound getBaseTag(NBTTagCompound root) {
+		return getTagSafe(root, BASE_DATA);
+	}
+
+
 	public void readFromBasic(NBTTagCompound tag)
 	{
 		if (tag != null)

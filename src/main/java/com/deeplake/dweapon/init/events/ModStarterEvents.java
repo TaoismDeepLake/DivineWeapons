@@ -9,6 +9,8 @@ import com.deeplake.dweapon.util.Reference;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,14 +20,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
-@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
+import javax.swing.*;
+
+import static com.deeplake.dweapon.util.DWNBT.getTagSafe;
+import static com.deeplake.dweapon.util.Reference.MOD_ID;
+
+@Mod.EventBusSubscriber(modid = MOD_ID)
 public class ModStarterEvents {
 	
 	public static final String TAG_PLAYER_HAS_BOOK = DWNBTDef.STARTER_BOOK_GIVEN;
@@ -35,21 +44,31 @@ public class ModStarterEvents {
 	  @SubscribeEvent
 	  public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
 
-		  EntityPlayer player = event.player;
-		  
-	      boolean isBookGiven = DWNBTUtil.GetBoolean(event.player, TAG_PLAYER_HAS_BOOK, false);
-	      
-	      //DWeapons.LogWarning(String.format("TAG_PLAYER_HAS_BOOK = %s", isBookGiven));
-	      if(!isBookGiven) {
-	    	  ItemStack heirloom = new ItemStack(ModItems.HEIRLOOM);
-	    	  DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());
+		  NBTTagCompound playerData = event.player.getEntityData();
+		  NBTTagCompound data = getTagSafe(playerData, EntityPlayer.PERSISTED_NBT_TAG);
 
-	    	  //DWeapons.LogWarning("Temp skip give manual, because of a bug");
-	    	  event.player.addItemStackToInventory(heirloom);
-	    	  event.player.addItemStackToInventory(CreateManual(player));
-	    	  DWNBTUtil.SetBoolean(event.player, TAG_PLAYER_HAS_BOOK, true);
-	    	  DWeapons.LogWarning(String.format("Given starter items to player %s", player.getDisplayNameString()));
-	      }
+		  if(!data.getBoolean(TAG_PLAYER_HAS_BOOK)) {
+			  //ItemHandlerHelper.giveItemToPlayer(event.player, new ItemStack(TinkerCommons.book));
+			  data.setBoolean(TAG_PLAYER_HAS_BOOK, true);
+			  playerData.setTag(EntityPlayer.PERSISTED_NBT_TAG, data);
+
+			  EntityPlayer player = event.player;
+
+			  //boolean isBookGiven = DWNBTUtil.GetBoolean(event.player, TAG_PLAYER_HAS_BOOK, false);
+			  DWeapons.LogWarning(event.player.getUniqueID().toString());
+
+			  //DWeapons.LogWarning(String.format("TAG_PLAYER_HAS_BOOK = %s", isBookGiven));
+			  //if(!isBookGiven) {
+				  ItemStack heirloom = new ItemStack(ModItems.HEIRLOOM);
+				  DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());
+
+				  //DWeapons.LogWarning("Temp skip give manual, because of a bug");
+				  event.player.addItemStackToInventory(heirloom);
+				  event.player.addItemStackToInventory(CreateManual(player));
+				  //DWNBTUtil.SetBoolean(event.player, TAG_PLAYER_HAS_BOOK, true);
+				  DWeapons.LogWarning(String.format("Given starter items to player %s", player.getDisplayNameString()));
+			 // }
+		  }
 	  }
 
 	  public static ItemStack CreateManual(EntityPlayer player) {
@@ -109,4 +128,19 @@ public class ModStarterEvents {
 			//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 			return book;
   	}
+
+	public static void grantAdvancement(EntityPlayerMP playerMP, String advancementResource) {
+		Advancement advancement = playerMP.getServer().getAdvancementManager().getAdvancement(new ResourceLocation(MOD_ID, advancementResource));
+		if(advancement != null) {
+			AdvancementProgress advancementProgress = playerMP.getAdvancements().getProgress(advancement);
+			DWeapons.LogWarning( String.format("Achv %s %s", advancementProgress.toString(), advancementProgress.isDone()));
+			if(!advancementProgress.isDone()) {
+				// we use playerAdvancements.grantCriterion instead of progress.grantCriterion for the visibility stuff and toasts
+				advancementProgress.getRemaningCriteria().forEach(criterion -> playerMP.getAdvancements().grantCriterion(advancement, criterion));
+			}
+		}
+		else {
+			DWeapons.LogWarning("Cannot find achv:" + advancementResource);
+		}
+	}
 }

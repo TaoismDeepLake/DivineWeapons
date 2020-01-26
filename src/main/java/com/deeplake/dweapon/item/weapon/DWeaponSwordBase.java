@@ -42,8 +42,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEnhanceable{
 
-
-
 	public DWeaponSwordBase(String name, ToolMaterial material)
 	{
 		super(material);

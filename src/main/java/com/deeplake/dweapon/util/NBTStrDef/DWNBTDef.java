@@ -11,7 +11,6 @@ public class DWNBTDef {
 	public static final String IS_HEIRLOOM = "heirloom_of";
 	public static final String HATE = "hate";
 	
-	
 	public static final String BASE_DATA = "d_weapon_data";
 	
 	public static final String WEAPON_MODE = "weapon_mode";

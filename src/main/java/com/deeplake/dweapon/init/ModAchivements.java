@@ -24,38 +24,37 @@ public class ModAchivements {
 	  private static final String ADVANCEMENT_IRON_PICK = "minecraft:story/iron_tools";
 	  public static final String ADVANCEMENT_SHOOT_ARROW = "minecraft:adventure/shoot_arrow";
 
-	  @SubscribeEvent
-	  public void onCraft(PlayerEvent.ItemCraftedEvent event) {
-	    if(event.player == null ||
-	       event.player instanceof FakePlayer  ||
-	       !(event.player instanceof EntityPlayerMP) ||
-	       event.crafting.isEmpty()) {
-	      return;
-	    }
-	    
-	    DWeapons.LogWarning("EVENT: onCraft");
-	    
-	    EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
-	    Item item = event.crafting.getItem();
-	    if(item instanceof ItemBlock && ((ItemBlock) item).getBlock() == Blocks.CRAFTING_TABLE) {
-	      grantAdvancement(playerMP, ADVANCEMENT_STORY_ROOT);
-	    }
-	    // fire vanilla pickaxe crafting when crafting tinkers picks (hammers also count for completeness sake)
-	    
-	  }
+//	  @SubscribeEvent
+//	  public void onCraft(PlayerEvent.ItemCraftedEvent event) {
+//	    if(event.player == null ||
+//	       event.player instanceof FakePlayer  ||
+//	       !(event.player instanceof EntityPlayerMP) ||
+//	       event.crafting.isEmpty()) {
+//	      return;
+//	    }
+//
+//	    DWeapons.LogWarning("EVENT: onCraft");
+//
+//	    EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
+//	    Item item = event.crafting.getItem();
+//	    if(item instanceof ItemBlock && ((ItemBlock) item).getBlock() == Blocks.CRAFTING_TABLE) {
+//	      grantAdvancement(playerMP, ADVANCEMENT_STORY_ROOT);
+//	    }
+//	    // fire vanilla pickaxe crafting when crafting tinkers picks (hammers also count for completeness sak
+//	  }
 
-	  @SubscribeEvent
-	  public void onDamageEntity(LivingHurtEvent event) {
-	    DamageSource source = event.getSource();
-	    if(source.isProjectile()
-	       && !(source.getTrueSource() instanceof FakePlayer)
-	       && source.getTrueSource() instanceof EntityPlayerMP
-	       && source.getImmediateSource() instanceof EntityArrow) {
-	        grantAdvancement((EntityPlayerMP) source.getTrueSource(), ADVANCEMENT_SHOOT_ARROW);
-	    }
-	  }
+//	  @SubscribeEvent
+//	  public void onDamageEntity(LivingHurtEvent event) {
+//	    DamageSource source = event.getSource();
+//	    if(source.isProjectile()
+//	       && !(source.getTrueSource() instanceof FakePlayer)
+//	       && source.getTrueSource() instanceof EntityPlayerMP
+//	       && source.getImmediateSource() instanceof EntityArrow) {
+//	        grantAdvancement((EntityPlayerMP) source.getTrueSource(), ADVANCEMENT_SHOOT_ARROW);
+//	    }
+//	  }
 
-	  private void grantAdvancement(EntityPlayerMP playerMP, String advancementResource) {
+	  public void grantAdvancement(EntityPlayerMP playerMP, String advancementResource) {
 	    Advancement advancement = playerMP.getServer().getAdvancementManager().getAdvancement(new ResourceLocation(advancementResource));
 	    if(advancement != null) {
 	      AdvancementProgress advancementProgress = playerMP.getAdvancements().getProgress(advancement);
