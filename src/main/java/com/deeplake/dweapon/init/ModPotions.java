@@ -162,7 +162,7 @@ public class ModPotions {
         EntityLivingBase hurtOne = evt.getEntityLiving();
         if (!world.isRemote) {
             //Handle Space aff
-            if (hurtOne.getActivePotionEffect(SPACE_AFF) != null){
+            if (hurtOne.getActivePotionEffect(SPACE_AFF) != null || hurtOne.getActivePotionEffect(SNOW_MED) != null){
                 evt.setCanceled(true);
                 return;
             }
