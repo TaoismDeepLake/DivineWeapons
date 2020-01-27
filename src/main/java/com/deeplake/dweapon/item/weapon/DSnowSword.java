@@ -223,7 +223,7 @@ public class DSnowSword extends DWeaponSwordBase {
 							if (!(living instanceof EntityPlayer) && !(stack2.getItem() instanceof DSnowSword)) {
 								//snow sword counters the effect.
 								living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, TICK_PER_SECOND, getApplyBuffLevel(stack)));
-								living.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+								living.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, TICK_PER_SECOND, getApplyBuffLevel(stack)));
 							}
 						}
 					}
