@@ -56,7 +56,7 @@ public class DBloodSword extends DWeaponSwordBase {
 	
 	short pearl_count = 0;
 	
-	float damage_per_pearl = 4; 
+	float damage_per_pearl = 3;
 	float hurt_per_pearl = 0f;
 	
 	int buff_tick_per_pearl = 60;
