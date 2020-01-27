@@ -29,6 +29,8 @@ public class ModPotions {
     public static Potion SPACE_AFF;
     public static Potion SNOW_MED;
     public static Potion SNOW_PROTECT;
+    public static Potion SAGE_BOON;
+    public static Potion KING_BOON;
 
     @Nullable
     private static Potion getRegisteredMobEffect(String id)
@@ -56,11 +58,17 @@ public class ModPotions {
         SNOW_MED = new PotionSnowMeditation(false, 0xeeeeff, "snow_meditation", 3);
         SNOW_PROTECT = new PotionSnowProtection(false, 0xffffff, "snow_protection", 4);
 
+        KING_BOON = new PotionKingBoon(false, 0xFFFF11,"king_boon", 5);
+        SAGE_BOON = new PotionSageBoon(false, 0xFFFF11,"sage_boon", 6);
+
         evt.getRegistry().register(DEADLY);
         evt.getRegistry().register(ZEN_HEART);
         evt.getRegistry().register(SPACE_AFF);
         evt.getRegistry().register(SNOW_MED);
         evt.getRegistry().register(SNOW_PROTECT);
+
+        evt.getRegistry().register(KING_BOON);
+        evt.getRegistry().register(SAGE_BOON);
 
         //REGISTRY.register(1, new ResourceLocation("speed"), (new Potion(false, 8171462))
         // .setPotionName("effect.moveSpeed")
@@ -104,6 +112,11 @@ public class ModPotions {
             }
         }
 
+        if (evt.isCanceled())
+        {
+            return;
+        }
+
         //Base Damage Reduction
         Collection<PotionEffect> activePotionEffects = hurtOne.getActivePotionEffects();
         for (int i = 0; i < activePotionEffects.size(); i++) {
@@ -119,6 +132,7 @@ public class ModPotions {
             }
         }
 
+        //onHit effect
         for (int i = 0; i < activePotionEffects.size(); i++) {
             PotionEffect buff = (PotionEffect)activePotionEffects.toArray()[i];
             if (buff.getPotion() instanceof BasePotion)
@@ -180,6 +194,26 @@ public class ModPotions {
                             sourceCreature.knockBack(hurtOne, evt.getStrength(), -evt.getRatioX(), -evt.getRatioZ());
                         }
                         evt.setCanceled(true);
+                    }
+                }
+            }
+
+            //KB Reduction
+            if (evt.isCanceled())
+            {
+                return;
+            }
+
+            Collection<PotionEffect> activePotionEffects = hurtOne.getActivePotionEffects();
+            for (int i = 0; i < activePotionEffects.size(); i++) {
+                PotionEffect buff = (PotionEffect)activePotionEffects.toArray()[i];
+                if (buff.getPotion() instanceof BasePotion)
+                {
+                    BasePotion modBuff = (BasePotion)buff.getPotion();
+                    if (!world.isRemote)
+                    {
+                        float reduceRatio = modBuff.getKBResistanceMultiplier(buff.getAmplifier());
+                        evt.setStrength((1 - reduceRatio) * evt.getStrength());
                     }
                 }
             }

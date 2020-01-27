@@ -7,6 +7,13 @@ import java.util.logging.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.init.ModPotions;
+import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.DWeapons;
@@ -44,6 +51,8 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import static com.deeplake.dweapon.util.DWNBT.TICK_PER_SECOND;
 
 //Fu yue is raised from building
 public class DSageBuilder extends DWeaponSwordBase {
@@ -158,9 +167,7 @@ public class DSageBuilder extends DWeaponSwordBase {
 		living.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK,
 				x,y,z,vx,vy,vz);
 	}
-	
-	
-	
+
 	@Override
 	public void clientUseTick(ItemStack stack, EntityLivingBase living, int count) {
 //		//Particle;
@@ -184,7 +191,154 @@ public class DSageBuilder extends DWeaponSwordBase {
 			}
 		}		
 	}
-	 
+
+	public float getHaloRange(ItemStack stack)
+	{
+		return 15f;
+	}
+
+	public int getApplyBuffLevel(ItemStack stack){
+		return IsSky(stack) ? 1 : IsEarth(stack) ? 0 : -1;
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
+		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+
+		if (isSelected)
+		{
+			float range = getHaloRange(stack);
+			Vec3d mypos = entityIn.getPositionVector();
+			if (worldIn.isRemote)
+			{
+				//CreateParticleStorm(effectLevel, player);
+			}
+			else {
+				int buffLevel = getApplyBuffLevel(stack);
+				if (buffLevel >= 0)
+				{
+					List<EntityLivingBase> list = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(mypos.addVector(-range, -range, -range), mypos.addVector(range, range, range)));
+					for (EntityLivingBase living : list) {
+						if (living.getTeam() == entityIn.getTeam()) {
+							//snow sword counters the effect.
+							if (GetWeaponMode(stack) == SWORD_MODE)
+							{
+								living.addPotionEffect(new PotionEffect(ModPotions.KING_BOON, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+								living.addPotionEffect(new PotionEffect(MobEffects.SPEED, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+							}else //shovel mode
+							{
+								living.addPotionEffect(new PotionEffect(ModPotions.SAGE_BOON, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+								living.addPotionEffect(new PotionEffect(MobEffects.HASTE, TICK_PER_SECOND, getApplyBuffLevel(stack)));
+							}
+						}
+						else {
+
+						}
+					}
+				}
+			}
+		}
+	}
+
+	protected Item.ToolMaterial toolMaterial = ModItems.TOOL_MATERIAL_DIVINE;
+	/**
+	 * Check whether this Item can harvest the given Block
+	 */
+	public boolean canHarvestBlock(IBlockState blockIn, ItemStack stack)
+	{
+		if (GetWeaponMode(stack) == SWORD_MODE)
+		{
+			//merely copied ItemSword
+			return blockIn.getBlock() == Blocks.WEB;
+		}else {
+			//merely copied ItemPickaxe
+			Block block = blockIn.getBlock();
+
+			if (block == Blocks.OBSIDIAN)
+			{
+				return this.toolMaterial.getHarvestLevel() == 3;
+			}
+			else if (block != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE)
+			{
+				if (block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK)
+				{
+					if (block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE)
+					{
+						if (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE)
+						{
+							if (block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE)
+							{
+								if (block != Blocks.REDSTONE_ORE && block != Blocks.LIT_REDSTONE_ORE)
+								{
+									Material material = blockIn.getMaterial();
+
+									if (material == Material.ROCK)
+									{
+										return true;
+									}
+									else if (material == Material.IRON)
+									{
+										return true;
+									}
+									else
+									{
+										return material == Material.ANVIL;
+									}
+								}
+								else
+								{
+									return this.toolMaterial.getHarvestLevel() >= 2;
+								}
+							}
+							else
+							{
+								return this.toolMaterial.getHarvestLevel() >= 1;
+							}
+						}
+						else
+						{
+							return this.toolMaterial.getHarvestLevel() >= 1;
+						}
+					}
+					else
+					{
+						return this.toolMaterial.getHarvestLevel() >= 2;
+					}
+				}
+				else
+				{
+					return this.toolMaterial.getHarvestLevel() >= 2;
+				}
+			}
+			else
+			{
+				return this.toolMaterial.getHarvestLevel() >= 2;
+			}
+		}
+	}
+
+	protected float efficiency = 4.0F;
+	public float getDestroySpeed(ItemStack stack, IBlockState state) {
+		if (GetWeaponMode(stack) == SWORD_MODE)
+		{
+			//Sword
+			Material material = state.getMaterial();
+			return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getDestroySpeed(stack, state) : this.efficiency;
+		}
+		else {
+			//Pickaxe
+			Block block = state.getBlock();
+
+			if (block == Blocks.WEB) {
+				return 15.0F;
+			} else {
+				Material material = state.getMaterial();
+				return material != Material.PLANTS && material != Material.VINE && material != Material.CORAL && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
+			}
+		}
+	}
+
 	 /**
 	     * Called when a Block is right-clicked with this Item
 	     */
@@ -205,31 +359,42 @@ public class DSageBuilder extends DWeaponSwordBase {
     	
     	int entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(target, target.add(1, 1, 1))).size();
     	boolean noEntities = entities == 0;
-    	
-		if ((targetBlock.getBlock() == Blocks.AIR 	|| (targetBlock.getBlock().isReplaceable(worldIn, target)))
-			&& noEntities)
-		{
-			if (!worldIn.isRemote) 
-	    	{
-	    		worldIn.setBlockState(target, getBlockToPlace(stack));
-	    		
-	    		Random rand = new Random();
-	    		if (!IsSky(stack) || rand.nextInt(GetPearlCount(stack) + 1) == 0)
-	    		{	
-	    			//stack.setItemDamage(stack.getItemDamage() - 1);
-	    			stack.damageItem(1, player);
-	    			//stack.attemptDamageItem(amount, rand, damager)
-	    		}
-	    		
-	    		TrueNameReveal(stack, worldIn, player);
-	    	}
-	    	else
-	    	{
-//	    		worldIn.playSound(null, player.posX, player.posY, player.posZ, 
+
+    	if (player.isSneaking()) {
+			//removes a block
+			IBlockState removeTarget = worldIn.getBlockState(pos);
+			if (removeTarget.getBlock() == getBlockToPlace(stack))
+			{
+				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+				return EnumActionResult.SUCCESS;
+			}
+		} else {
+    		//builds a block
+			if ((targetBlock.getBlock() == Blocks.AIR || (targetBlock.getBlock().isReplaceable(worldIn, target)))
+					&& noEntities)
+			{
+				if (!worldIn.isRemote)
+				{
+					worldIn.setBlockState(target, getBlockToPlace(stack));
+
+					Random rand = new Random();
+					if (!IsSky(stack) || rand.nextInt(GetPearlCount(stack) + 1) == 0)
+					{
+						//stack.setItemDamage(stack.getItemDamage() - 1);
+						stack.damageItem(1, player);
+						//stack.attemptDamageItem(amount, rand, damager)
+					}
+
+					TrueNameReveal(stack, worldIn, player);
+				}
+				else
+				{
+//	    		worldIn.playSound(null, player.posX, player.posY, player.posZ,
 //	    				SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.6F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
-	    		player.playSound(SoundEvents.BLOCK_GRAVEL_PLACE, 0.6f, 1);
-	    	}
-			
+					player.playSound(SoundEvents.BLOCK_GRAVEL_PLACE, 0.6f, 1);
+				}
+			}
+
 			return EnumActionResult.SUCCESS;
 		}
     	
