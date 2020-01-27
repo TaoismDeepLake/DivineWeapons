@@ -51,6 +51,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import sun.security.ssl.Debug;
 
 import static com.deeplake.dweapon.util.DWNBT.TICK_PER_SECOND;
 
@@ -220,7 +221,8 @@ public class DSageBuilder extends DWeaponSwordBase {
 				{
 					List<EntityLivingBase> list = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(mypos.addVector(-range, -range, -range), mypos.addVector(range, range, range)));
 					for (EntityLivingBase living : list) {
-						if (living.getTeam() == entityIn.getTeam()) {
+						if (living == entityIn ||
+								(living.getTeam() == entityIn.getTeam() && (entityIn.getTeam() != null))) {
 							//snow sword counters the effect.
 							if (GetWeaponMode(stack) == SWORD_MODE)
 							{
@@ -363,7 +365,7 @@ public class DSageBuilder extends DWeaponSwordBase {
     	if (player.isSneaking()) {
 			//removes a block
 			IBlockState removeTarget = worldIn.getBlockState(pos);
-			if (removeTarget.getBlock() == getBlockToPlace(stack))
+			if (removeTarget.getBlock() == getBlockToPlace(stack).getBlock())
 			{
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 				return EnumActionResult.SUCCESS;
@@ -398,10 +400,10 @@ public class DSageBuilder extends DWeaponSwordBase {
 			return EnumActionResult.SUCCESS;
 		}
     	
-    	if (IsEarth(stack) ||IsSky(stack)) {
-    		return EnumActionResult.PASS;
-    	}
-    	
+//    	if (IsEarth(stack) ||IsSky(stack)) {
+//    		return EnumActionResult.PASS;
+//    	}
+//
     	return EnumActionResult.SUCCESS;
     }
 	

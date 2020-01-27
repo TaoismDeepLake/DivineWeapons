@@ -437,7 +437,7 @@ public class DDisarmRing extends DWeaponSwordBase {
 	 * Returns true if the item can be used on the given entity, e.g. shears on sheep.
 	 */
 	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand) {
-		if (target instanceof EntityLiving) {
+		if (target instanceof EntityLivingBase) {
 			if (IsSky(stack)) {
 				DrawItemDirect(target, playerIn, true);
 				return true;
@@ -448,7 +448,7 @@ public class DDisarmRing extends DWeaponSwordBase {
 			}
 		    else //man-made level
 			{
-				TryDisarm(stack, (EntityLiving) target, playerIn);
+				TryDisarm(stack, (EntityLivingBase) target, playerIn);
 			}
 		}
 
