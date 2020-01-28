@@ -128,19 +128,4 @@ public class ModStarterEvents {
 			//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 			return book;
   	}
-
-	public static void grantAdvancement(EntityPlayerMP playerMP, String advancementResource) {
-		Advancement advancement = playerMP.getServer().getAdvancementManager().getAdvancement(new ResourceLocation(MOD_ID, advancementResource));
-		if(advancement != null) {
-			AdvancementProgress advancementProgress = playerMP.getAdvancements().getProgress(advancement);
-			DWeapons.LogWarning( String.format("Achv %s %s", advancementProgress.toString(), advancementProgress.isDone()));
-			if(!advancementProgress.isDone()) {
-				// we use playerAdvancements.grantCriterion instead of progress.grantCriterion for the visibility stuff and toasts
-				advancementProgress.getRemaningCriteria().forEach(criterion -> playerMP.getAdvancements().grantCriterion(advancement, criterion));
-			}
-		}
-		else {
-			DWeapons.LogWarning("Cannot find achv:" + advancementResource);
-		}
-	}
 }

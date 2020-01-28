@@ -320,7 +320,7 @@ public class DMonkBeads extends DWeaponSwordBase implements IHasModel, IDWeaponE
         if (!worldIn.isRemote) {
             if (GetPearlCount(stack) < initialPearlCount) {
                 SetPearlCount(stack, initialPearlCount);
-                DWeapons.LogWarning("Set to " + initialPearlCount);
+                DWeapons.Log("Baeds set to " + initialPearlCount);
             }
         }
 

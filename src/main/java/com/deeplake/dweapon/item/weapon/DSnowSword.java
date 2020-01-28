@@ -256,7 +256,7 @@ public class DSnowSword extends DWeaponSwordBase {
 					boolean holdTheTiming = false;
 					if (EntityHasBuff(player, ModPotions.SNOW_MED))
 					{
-						DWeapons.LogWarning(String.format("counter = %d", EntityBuffCounter(player,  ModPotions.SNOW_MED)));
+						//DWeapons.LogWarning(String.format("counter = %d", EntityBuffCounter(player,  ModPotions.SNOW_MED)));
 						if (EntityBuffCounter(player,  ModPotions.SNOW_MED) < TICK_PER_SECOND)
 						{
 							holdTheTiming = true;

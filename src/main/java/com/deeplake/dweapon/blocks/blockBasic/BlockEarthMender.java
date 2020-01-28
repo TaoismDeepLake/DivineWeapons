@@ -51,7 +51,7 @@ public class BlockEarthMender extends BlockBase {
     	super.updateTick(worldIn, pos, state, rand);
 		if (!worldIn.isRemote)
         {
-			DWeapons.LogWarning("updateTick-------------------------");
+			//DWeapons.LogWarning("updateTick-------------------------");
         }
     }
     
@@ -68,7 +68,7 @@ public class BlockEarthMender extends BlockBase {
      */
     public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
     {
-    	DWeapons.LogWarning("randomTick-------------------------");
+    	//DWeapons.LogWarning("randomTick-------------------------");
         super.randomTick(worldIn, pos, state, random);
     }
     
@@ -150,7 +150,7 @@ public class BlockEarthMender extends BlockBase {
     		//Debug usage, for showing where has been checked
     		//worldIn.setBlockState(targetPos.up(3), Blocks.GLASS.getDefaultState());
     		
-    		DWeapons.LogWarning("onBlockActivated-------------------------");
+    		//DWeapons.LogWarning("onBlockActivated-------------------------");
         }
     	
         return false;

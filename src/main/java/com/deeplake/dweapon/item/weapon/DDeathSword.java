@@ -106,20 +106,19 @@ public class DDeathSword extends DWeaponSwordBase {
 	}
 
 
-	static int RANGE = 3;
-	@SubscribeEvent
-	public void onSpawn(LivingSpawnEvent.CheckSpawn event) {
-		if(event.getEntityLiving() instanceof IMob) {
-			AxisAlignedBB aabb = new AxisAlignedBB(event.getX() - RANGE, event.getY() - RANGE, event.getZ() - RANGE, event.getX() + RANGE, event.getY() + RANGE, event.getZ() + RANGE);
-			DWeapons.LogWarning("AABB");
-			for(EntityPlayer player : event.getWorld().playerEntities) {
-				if(player.getActivePotionEffect(ZEN_HEART) == null && player.getEntityBoundingBox().intersects(aabb)) {
-					event.setResult(Event.Result.ALLOW);
-					return;
-				}
-			}
-		}
-	}
+//	static int RANGE = 3;
+//	@SubscribeEvent
+//	public void onSpawn(LivingSpawnEvent.CheckSpawn event) {
+//		if(event.getEntityLiving() instanceof IMob) {
+//			AxisAlignedBB aabb = new AxisAlignedBB(event.getX() - RANGE, event.getY() - RANGE, event.getZ() - RANGE, event.getX() + RANGE, event.getY() + RANGE, event.getZ() + RANGE);
+//			for(EntityPlayer player : event.getWorld().playerEntities) {
+//				if(player.getActivePotionEffect(ZEN_HEART) == null && player.getEntityBoundingBox().intersects(aabb)) {
+//					event.setResult(Event.Result.ALLOW);
+//					return;
+//				}
+//			}
+//		}
+//	}
 
 	private static int deadly_buff_full_divider = 10;
 	private static float range = 5f;
@@ -267,7 +266,7 @@ public class DDeathSword extends DWeaponSwordBase {
 //			}
 			if (mode < MAX_MODE) {
 				SetWeaponMode(stack, mode + 1);
-				DWeapons.LogWarning("Mode ++");
+				//DWeapons.LogWarning("Mode ++");
 			}
 		}
 	}

@@ -245,7 +245,7 @@ public class SealedWeapon extends ItemBase {
 			break;
 		}
 		
-		DWeapons.LogWarning(result.getDisplayName());
+		DWeapons.Log(result.getDisplayName());
 		//DWeapons¡£LogWarning(result.getDisplayName());
 		if (result.isEmpty()){
 			DWeapons.LogWarning("EMPTY!!!");
@@ -257,7 +257,7 @@ public class SealedWeapon extends ItemBase {
 			 ((DWeaponSwordBase)(result.getItem())).SetPearlCount(result, 1);
 		 }
 		
-		 DWeapons.LogWarning("Given weapon:" + result.getDisplayName());
+		 DWeapons.Log("Given weapon:" + result.getDisplayName());
 		 
 		return result;
 	}
