@@ -8,6 +8,7 @@ import com.deeplake.dweapon.recipe.special.SkyEnhance;
 import com.deeplake.dweapon.recipe.special.StarterManual;
 import com.deeplake.dweapon.util.Reference;
 
+import com.deeplake.dweapon.util.config.ConfigHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -28,11 +29,14 @@ public class ModRecipes {
 		GameRegistry.addSmelting(ModItems.PURE_INGOT,
 				new ItemStack(ModItems.WEAPON_PEARL),  
 				0.1f);
-	
-		GameRegistry.addSmelting(ModItems.WEAPON_PEARL,
-				new ItemStack(ModItems.PURE_INGOT),
-				0.1f);
-		
+
+		if (ConfigHandler.ALLOW_PURE_CYCLE_BURN)
+		{
+			GameRegistry.addSmelting(ModItems.WEAPON_PEARL,
+					new ItemStack(ModItems.PURE_INGOT),
+					0.1f);
+		}
+
 		GameRegistry.addSmelting(ModBlocks.DIVINE_ORE,
 				new ItemStack(ModItems.DIVINE_INGOT),  
 				6f);
@@ -47,20 +51,20 @@ public class ModRecipes {
 	public static void registerRecipes(RegistryEvent.Register<IRecipe> evt) {
 		IForgeRegistry<IRecipe> r = evt.getRegistry();
 		r.register(new PearlSocket().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_socket_pearl")));
-		
-		//IForgeRegistry<IRecipe> r_eh = evt.getRegistry();
-		//r.register(new EarthEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_earth_enhance")));
-		
-		//IForgeRegistry<IRecipe> r_sky = evt.getRegistry();
-		//r.register(new SkyEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_sky_enhance")));
-		
-		//IForgeRegistry<IRecipe> r_book = evt.getRegistry();
+
+		if (ConfigHandler.ALLOW_CRAFT_TABLE_UPGRADE)
+		{
+			r.register(new EarthEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_earth_enhance")));
+			if (ConfigHandler.ALLOW_SKY_CRAFT)
+			{
+				r.register(new SkyEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_sky_enhance")));
+			}
+		}
+
 		r.register(new NameRevealByBook().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_name_reveal_by_book")));
-		
-		//IForgeRegistry<IRecipe> r_starter_book = evt.getRegistry();
+
 		r.register(new StarterManual().setRegistryName(new ResourceLocation(Reference.MOD_ID, "starter_manual_recipe")));
-		
-		//IForgeRegistry<IRecipe> r_hate = evt.getRegistry();
+
 		r.register(new MarkHate().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_mark_hate")));
 	}
 }

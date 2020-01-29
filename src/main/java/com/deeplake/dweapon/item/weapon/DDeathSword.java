@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModPotions;
 import com.deeplake.dweapon.util.Reference;
+import com.deeplake.dweapon.util.config.ConfigHandler;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
@@ -131,14 +132,19 @@ public class DDeathSword extends DWeaponSwordBase {
 
 		if (!world.isRemote) {
 			//wielder resist death
-			ItemStack stackDie = dieOne.getHeldItemMainhand();
-			if (stackDie.getItem() instanceof DDeathSword && (((DWeaponSwordBase)stackDie.getItem()).IsEarth(stackDie) || ((DWeaponSwordBase)stackDie.getItem()).IsSky(stackDie))) {
-				stackDie.damageItem(256, dieOne);
-				dieOne.setHealth(dieOne.getMaxHealth() / 4);
-				dieOne.clearActivePotions();
-				world.playSound(null, dieOne.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL, SoundCategory.PLAYERS, 1f, 2f);
-				event.setCanceled(true);
-				return;
+			if (ConfigHandler.DEATH_SWORD_REVIVE) {
+				ItemStack stackDie = dieOne.getHeldItemMainhand();
+				if (stackDie.getItem() instanceof DDeathSword && (((DWeaponSwordBase) stackDie.getItem()).IsEarth(stackDie) || ((DWeaponSwordBase) stackDie.getItem()).IsSky(stackDie))) {
+					if (!ConfigHandler.DEATH_SWORD_PREVENT_BREAK || (stackDie.getItemDamage() < stackDie.getItem().getMaxDamage(stackDie) - 256))
+					{
+						stackDie.damageItem(256, dieOne);
+						dieOne.setHealth(dieOne.getMaxHealth() / 4);
+						dieOne.clearActivePotions();
+						world.playSound(null, dieOne.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL, SoundCategory.PLAYERS, 1f, 2f);
+						event.setCanceled(true);
+					}
+					return;
+				}
 			}
 
 

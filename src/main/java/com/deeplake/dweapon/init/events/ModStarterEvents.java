@@ -9,6 +9,7 @@ import com.deeplake.dweapon.util.Reference;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 
+import com.deeplake.dweapon.util.config.ConfigHandler;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.resources.I18n;
@@ -43,32 +44,34 @@ public class ModStarterEvents {
 	//Thanks Cadiboo for telling me that
 	  @SubscribeEvent
 	  public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+	  		if (ConfigHandler.GIVE_STARTER_ITEMS)
+			{
+				NBTTagCompound playerData = event.player.getEntityData();
+				NBTTagCompound data = getTagSafe(playerData, EntityPlayer.PERSISTED_NBT_TAG);
 
-		  NBTTagCompound playerData = event.player.getEntityData();
-		  NBTTagCompound data = getTagSafe(playerData, EntityPlayer.PERSISTED_NBT_TAG);
+				if(!data.getBoolean(TAG_PLAYER_HAS_BOOK)) {
+					//ItemHandlerHelper.giveItemToPlayer(event.player, new ItemStack(TinkerCommons.book));
+					data.setBoolean(TAG_PLAYER_HAS_BOOK, true);
+					playerData.setTag(EntityPlayer.PERSISTED_NBT_TAG, data);
 
-		  if(!data.getBoolean(TAG_PLAYER_HAS_BOOK)) {
-			  //ItemHandlerHelper.giveItemToPlayer(event.player, new ItemStack(TinkerCommons.book));
-			  data.setBoolean(TAG_PLAYER_HAS_BOOK, true);
-			  playerData.setTag(EntityPlayer.PERSISTED_NBT_TAG, data);
+					EntityPlayer player = event.player;
 
-			  EntityPlayer player = event.player;
+					//boolean isBookGiven = DWNBTUtil.GetBoolean(event.player, TAG_PLAYER_HAS_BOOK, false);
+					DWeapons.LogWarning(event.player.getUniqueID().toString());
 
-			  //boolean isBookGiven = DWNBTUtil.GetBoolean(event.player, TAG_PLAYER_HAS_BOOK, false);
-			  DWeapons.LogWarning(event.player.getUniqueID().toString());
+					//DWeapons.LogWarning(String.format("TAG_PLAYER_HAS_BOOK = %s", isBookGiven));
+					//if(!isBookGiven) {
+					ItemStack heirloom = new ItemStack(ModItems.HEIRLOOM);
+					DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());
 
-			  //DWeapons.LogWarning(String.format("TAG_PLAYER_HAS_BOOK = %s", isBookGiven));
-			  //if(!isBookGiven) {
-				  ItemStack heirloom = new ItemStack(ModItems.HEIRLOOM);
-				  DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());
-
-				  //DWeapons.LogWarning("Temp skip give manual, because of a bug");
-				  event.player.addItemStackToInventory(heirloom);
-				  event.player.addItemStackToInventory(CreateManual(player));
-				  //DWNBTUtil.SetBoolean(event.player, TAG_PLAYER_HAS_BOOK, true);
-				  DWeapons.LogWarning(String.format("Given starter items to player %s", player.getDisplayNameString()));
-			 // }
-		  }
+					//DWeapons.LogWarning("Temp skip give manual, because of a bug");
+					event.player.addItemStackToInventory(heirloom);
+					event.player.addItemStackToInventory(CreateManual(player));
+					//DWNBTUtil.SetBoolean(event.player, TAG_PLAYER_HAS_BOOK, true);
+					DWeapons.LogWarning(String.format("Given starter items to player %s", player.getDisplayNameString()));
+					// }
+				}
+			}
 	  }
 
 	  public static ItemStack CreateManual(EntityPlayer player) {

@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.Reference;
+import com.deeplake.dweapon.util.config.ConfigHandler;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.*;
@@ -119,13 +120,18 @@ public class DBloodSword extends DWeaponSwordBase {
 	
 	public float getHurt(ItemStack stack)
 	{
-		if (IsSky(stack))
-		{
-			return skyHurt;
+		if (ConfigHandler.BLOOD_SWORD_DRAIN) {
+			if (IsSky(stack))
+			{
+				return skyHurt;
+			}
+			else
+			{
+				return base_hurt + GetPearlCount(stack) * hurt_per_pearl;
+			}
 		}
-		else
-		{
-			return base_hurt + GetPearlCount(stack) * hurt_per_pearl;
+		else {
+			return 0;
 		}
 	}
 	
@@ -279,13 +285,13 @@ public class DBloodSword extends DWeaponSwordBase {
 		if (stack.isItemDamaged())
 		{
 			if (!world.isRemote) {
-				
 				float preHP = living.getHealth();
-				
-				living.setHealth(preHP - healthPerRepair);//drain self
-				int curDamage = stack.getItemDamage();
-				
-				stack.setItemDamage(Math.max(curDamage - durabilityPerRepair, 0));
+				if (ConfigHandler.BLOOD_SWORD_SUICIDE || living.getHealth() > healthPerRepair){
+					living.setHealth(preHP - healthPerRepair);//drain self
+					int curDamage = stack.getItemDamage();
+
+					stack.setItemDamage(Math.max(curDamage - durabilityPerRepair, 0));
+				}
 			}
 			else
 			{
