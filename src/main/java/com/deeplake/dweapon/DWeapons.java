@@ -1,5 +1,6 @@
 package com.deeplake.dweapon;
 
+import com.deeplake.dweapon.util.RegistryHandler;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -15,6 +16,8 @@ import com.deeplake.dweapon.proxy.ProxyBase;
 import com.deeplake.dweapon.util.Reference;
 import com.deeplake.dweapon.world.ModWorldGen;
 
+import java.io.File;
+
 @Mod(modid = DWeapons.MODID, name = DWeapons.NAME, version = DWeapons.VERSION)
 public class DWeapons
 {
@@ -23,6 +26,7 @@ public class DWeapons
     public static final String VERSION = "0.3.4";
 
     public static Logger logger;
+    public static File config;
     
     public static final boolean SHOW_WARN = true;
 
@@ -33,7 +37,8 @@ public class DWeapons
     public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
-        GameRegistry.registerWorldGenerator(new ModWorldGen(), 100);
+        RegistryHandler.preInitRegistries(event);
+
     }
 
     @EventHandler
