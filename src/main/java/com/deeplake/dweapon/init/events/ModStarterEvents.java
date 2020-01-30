@@ -56,20 +56,12 @@ public class ModStarterEvents {
 
 					EntityPlayer player = event.player;
 
-					//boolean isBookGiven = DWNBTUtil.GetBoolean(event.player, TAG_PLAYER_HAS_BOOK, false);
-					DWeapons.LogWarning(event.player.getUniqueID().toString());
-
-					//DWeapons.LogWarning(String.format("TAG_PLAYER_HAS_BOOK = %s", isBookGiven));
-					//if(!isBookGiven) {
 					ItemStack heirloom = new ItemStack(ModItems.HEIRLOOM);
 					DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());
 
-					//DWeapons.LogWarning("Temp skip give manual, because of a bug");
 					event.player.addItemStackToInventory(heirloom);
 					event.player.addItemStackToInventory(CreateManual(player));
-					//DWNBTUtil.SetBoolean(event.player, TAG_PLAYER_HAS_BOOK, true);
-					DWeapons.LogWarning(String.format("Given starter items to player %s", player.getDisplayNameString()));
-					// }
+					DWeapons.Log(String.format("Given starter items to player %s", player.getDisplayNameString()));
 				}
 			}
 	  }
@@ -84,17 +76,17 @@ public class ModStarterEvents {
 			NBTTagList bookPages = new NBTTagList();
 			String name = "starter";
 
-			if (DWeapons.proxy.isServer())
-			{
-				bookPages.appendTag(DWNBT.bookPageFromLineAndUrl(name + "Server manual is temporarily disabled. See info at the official website: ", "https://www.curseforge.com/minecraft/mc-mods/divineweapon"));
-
-				book.setTagInfo("author", new NBTTagString("The Lost Weapon Smith"));
-				book.setTagInfo("title", new NBTTagString("The Missing Manual"));
-
-				book.setTagInfo("pages", bookPages);
-				//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
-				return book;
-			}
+//			if (DWeapons.proxy.isServer())
+//			{
+//				bookPages.appendTag(DWNBT.bookPageFromLineAndUrl(name + "Server manual is temporarily disabled. See info at the official website: ", "https://www.curseforge.com/minecraft/mc-mods/divineweapon"));
+//
+//				book.setTagInfo("author", new NBTTagString("The Lost Weapon Smith"));
+//				book.setTagInfo("title", new NBTTagString("The Missing Manual"));
+//
+//				book.setTagInfo("pages", bookPages);
+//				//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
+//				return book;
+//			}
 
 
 			String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
