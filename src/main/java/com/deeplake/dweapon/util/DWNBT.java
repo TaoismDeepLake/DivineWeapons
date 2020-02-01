@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import scala.tools.nsc.typechecker.Tags;
 
 import static com.deeplake.dweapon.util.NBTStrDef.DWNBTDef.BASE_DATA;
@@ -33,6 +35,11 @@ public class DWNBT {
 	{
 		readFromBasic(srcNBT);
 		basic = srcNBT;
+	}
+
+	public static NBTTagString GetTranslatedTagString(String key)
+	{
+		return new NBTTagString(ITextComponent.Serializer.componentToJson(new TextComponentTranslation(key)));
 	}
 
 	public static NBTTagCompound getTagSafe(NBTTagCompound tag, String key) {
@@ -88,7 +95,7 @@ public class DWNBT {
 	{
 		//str.replace("{PlayerName}", replacement)
 		
-		return new NBTTagString("[\"\",{\"text\":\"" + str + "\"}]");
+		return DWNBT.GetTranslatedTagString(str);
 	}
 	
 	public static NBTTagString bookPageFromLineAndUrl(String str, String url)
@@ -107,17 +114,18 @@ public class DWNBT {
 	
 	public static NBTTagString bookPageFromUnlocalizedLine(String key, String url)
 	{
-		return bookPageFromLineAndUrl(I18n.format(key), url);
+		return bookPageFromLineAndUrl(key, url);
 	}
 	
 	public static NBTTagString bookPageFromUnlocalizedLine(String key, EntityPlayer player)
 	{
-		String playerName = I18n.format(DWNBTDef.DEFAULT_PLAYER_NAME);
-		if (player != null) {
-			playerName = player.getDisplayNameString();
-		}
-
-		String result = I18n.format(key).replace("{PlayerName}", playerName);
-		return bookPageFromLine(result);
+		return DWNBT.GetTranslatedTagString(key);
+//		String playerName = I18n.format(DWNBTDef.DEFAULT_PLAYER_NAME);
+//		if (player != null) {
+//			playerName = player.getDisplayNameString();
+//		}
+//
+//		String result = I18n.format(key).replace("{PlayerName}", playerName);
+//		return bookPageFromLine(result);
 	}
 }
