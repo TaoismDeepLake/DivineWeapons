@@ -94,7 +94,7 @@ public class ModStarterEvents {
 
 			String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
 			
-			int pageCount = 0;
+			int pageCount = 10;
 			boolean hasManual = false;
 			try {
 				pageCount = Integer.parseInt(pageCountString);
