@@ -22,8 +22,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -34,7 +32,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.swing.*;
 
-import static com.deeplake.dweapon.util.DWNBT.GetTranslatedTagString;
 import static com.deeplake.dweapon.util.DWNBT.getTagSafe;
 import static com.deeplake.dweapon.util.Reference.MOD_ID;
 
@@ -117,27 +114,18 @@ public class ModStarterEvents {
 				}
 				bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine(name + DWNBTDef.MANUAL_PAGE_KEY + pageCount, "https://www.curseforge.com/minecraft/mc-mods/divineweapon"));
 				
-				book.setTagInfo("author", DWNBT.GetTranslatedTagString(name + DWNBTDef.MANUAL_AUTHOR));
-				book.setTagInfo("title", DWNBT.GetTranslatedTagString(I18n.format(name + DWNBTDef.MANUAL_TITLE)));
+				book.setTagInfo("author", new NBTTagString(I18n.format(name + DWNBTDef.MANUAL_AUTHOR)));
+				book.setTagInfo("title", new NBTTagString(I18n.format(name + DWNBTDef.MANUAL_TITLE)));
 			}
 			else
 			{
-				bookPages.appendTag(GetTranslatedTagString("item.shared.missing_manual_content"));
-				book.setTagInfo("author", DWNBT.GetTranslatedTagString("item.shared.missing_manual_author"));
-				book.setTagInfo("title", DWNBT.GetTranslatedTagString("item.shared.missing_manual_title"));
+				bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine("item.shared.missing_manual_content"));
+				book.setTagInfo("author", new NBTTagString(I18n.format("item.shared.missing_manual_author")));
+				book.setTagInfo("title", new NBTTagString(I18n.format("item.shared.missing_manual_title")));
 			}
 
 	        book.setTagInfo("pages", bookPages);
 			//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 			return book;
   	}
-
-	private static void addTranslatedPages(NBTTagList bookPages, String translationKey, int pageCount) {
-		for (int i = 1; i <= pageCount; i++) {
-			bookPages.appendTag((GetTranslatedTagString(translationKey + "." + i)));
-		}
-	}
-
-
-
 }
