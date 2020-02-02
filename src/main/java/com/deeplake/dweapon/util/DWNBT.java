@@ -109,7 +109,7 @@ public class DWNBT {
 	
 	public static NBTTagString bookPageFromUnlocalizedLine(String key)
 	{
-		return bookPageFromLine(I18n.format(key));
+		return bookPageFromLine(key);
 	}
 	
 	public static NBTTagString bookPageFromUnlocalizedLine(String key, String url)

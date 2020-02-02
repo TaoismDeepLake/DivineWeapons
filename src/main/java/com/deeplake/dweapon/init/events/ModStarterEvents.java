@@ -91,18 +91,23 @@ public class ModStarterEvents {
 //				return book;
 //			}
 
+		    int pageCount = 10;
+		    boolean hasManual = true;
 
-			String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
-			
-			int pageCount = 10;
-			boolean hasManual = false;
-			try {
-				pageCount = Integer.parseInt(pageCountString);
-				hasManual = true;
-			} catch (NumberFormatException e) {
-				pageCount = 0;
+		    if (DWeapons.proxy.isServer())
+			{
+				
 			}
-			
+		    else {
+				String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
+				try {
+					pageCount = Integer.parseInt(pageCountString);
+					hasManual = true;
+				} catch (NumberFormatException e) {
+					pageCount = 0;
+				}
+			}
+
 			if (hasManual)
 			{
 				int i = 1;
