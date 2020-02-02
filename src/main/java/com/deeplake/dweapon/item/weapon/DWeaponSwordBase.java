@@ -273,24 +273,22 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		
 		NBTTagList bookPages = new NBTTagList();
 		String name = getUnlocalizedName();
-		int pageCount = 10;
 
 		if (DWeapons.proxy.isServer())
 		{
-			int i = 1;
-			for (i = 1; i <= pageCount; i++)
-			{
-				bookPages.appendTag(DWNBT.bookPageFromUnlocalizedLine(name + DWNBTDef.MANUAL_PAGE_KEY + i));
-			}
-			book.setTagInfo("author", DWNBT.bookPageFromUnlocalizedLine(name + DWNBTDef.MANUAL_AUTHOR));
-			book.setTagInfo("title", DWNBT.bookPageFromUnlocalizedLine(name + DWNBTDef.MANUAL_TITLE));
+			bookPages.appendTag(DWNBT.bookPageFromLineAndUrl(name + "Server manual is temporarily disabled. See info at the official website: ", "https://www.curseforge.com/minecraft/mc-mods/divineweapon"));
 
+			book.setTagInfo("author", new NBTTagString("The Lost Weapon Smith"));
+			book.setTagInfo("title", new NBTTagString("The Missing Manual"));
+
+			book.setTagInfo("pages", bookPages);
+			//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
 			return book;
 		}
 		
 		String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
 		
-		pageCount = 0;
+		int pageCount = 0;
 		boolean hasManual = false;
 		try {
 			pageCount = Integer.parseInt(pageCountString);
