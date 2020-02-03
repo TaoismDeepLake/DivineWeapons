@@ -2,6 +2,8 @@ itemGroup.DWeaponMainTab=DivineWeapon
 itemGroup.DWeaponMiscTab=DWeapon Misc
 itemGroup.DWeaponWeaponTab=Divine Weapons
 
+dweapon.server_no_manual=Server play manual is WIP.
+
 //Buffs
 dweapon.potion.deadly=Deadly
 dweapon.potion.zen_heart=Countless Virtue
@@ -91,7 +93,7 @@ item.blood_sword.shared_desc=[Blood Burst] Let out your own blood to increase da
 item.blood_sword.sky_desc=Drain 5 Heart, deal 100 damage.[Str X, Regen II]. 
 item.blood_sword.earth_desc=Drain %s Heart, deal %s damage.[Heals on nearby damage][Regen I]
 item.blood_sword.normal_desc=Drain %s Heart, deal %s damage.[Heals on nearby damage]
-item.blood_sword.damage_desc=Attack Damage : %s
+
 
 item.blood_sword.manual_title=Bloodburst
 item.blood_sword.manual_author=Taoism DeepLake

@@ -221,8 +221,9 @@ public class DSageBuilder extends DWeaponSwordBase {
 				{
 					List<EntityLivingBase> list = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, IDLGeneral.ServerAABB(mypos.addVector(-range, -range, -range), mypos.addVector(range, range, range)));
 					for (EntityLivingBase living : list) {
-						if (living == entityIn ||
-								(living.getTeam() == entityIn.getTeam() && (entityIn.getTeam() != null))) {
+						if (living instanceof EntityPlayer) {
+//						if (living == entityIn ||
+//								(living.getTeam() == entityIn.getTeam() && (entityIn.getTeam() != null))) {
 							//snow sword counters the effect.
 							if (GetWeaponMode(stack) == SWORD_MODE)
 							{

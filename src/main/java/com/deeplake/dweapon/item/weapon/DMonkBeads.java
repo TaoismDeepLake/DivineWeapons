@@ -279,6 +279,8 @@ public class DMonkBeads extends DWeaponSwordBase implements IHasModel, IDWeaponE
         player.setActiveHand(hand);
         ItemStack stack = player.getHeldItem(hand);
 
+        player.getCooldownTracker().setCooldown(stack.getItem(),3);
+
         //DWeapons.Log(player.getDisplayNameString() + " made a pray.");
         if ((player.getRNG().nextInt(player.experienceLevel + 1) == 0)) {
             if (world.isRemote) {

@@ -3,10 +3,13 @@ package com.deeplake.dweapon.util.NBTStrDef;
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModPotions;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.awt.*;
 
@@ -26,5 +29,14 @@ public class IDLGeneral {
     {
         PotionEffect effect = livingBase.getActivePotionEffect(buff);
         return effect == null ? -1 : effect.getDuration();
+    }
+
+    public static void BroadCastByKey(String key) {
+        FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendMessage(new TextComponentTranslation(key));
+    }
+
+    public static void SendMsgToPlayer(EntityPlayerMP playerMP, String key)
+    {
+        playerMP.sendMessage(new TextComponentTranslation(key));
     }
 }

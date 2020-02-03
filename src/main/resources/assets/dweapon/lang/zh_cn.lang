@@ -2,6 +2,9 @@ itemGroup.DWeaponMainTab=神兵
 itemGroup.DWeaponMiscTab=神兵杂物
 itemGroup.DWeaponWeaponTab=神兵
 
+dweapon.server_no_manual=服务器手册研发中……
+
+
 //Buffs
 dweapon.potion.deadly=致死
 dweapon.potion.zen_heart=功德无量
@@ -372,3 +375,4 @@ item.monk_beads.manual_page_7=  这件神兵的升级只需持续镶嵌宝珠即
 item.monk_beads.manual_page_8=  在地级， 【功德】 会再提供50%的不死减伤效果。 【禅心】使得你手持时免疫所有减益效果。
 item.monk_beads.manual_page_9=  天级时，你的无量【功德】使你免疫不死伤害。 并且，【功德】【禅心】无需手持就能发挥作用，放在包里即可。
 item.monk_beads.manual_page_10=  未完待续……
+

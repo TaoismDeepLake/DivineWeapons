@@ -40,6 +40,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static com.deeplake.dweapon.util.NBTStrDef.IDLGeneral.SendMsgToPlayer;
+
 public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEnhanceable{
 
 	public DWeaponSwordBase(String name, ToolMaterial material)
@@ -62,7 +64,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		ModItems.ITEMS.add(this);
 	}
 
-	public static boolean RefundPearlsAtSky = true;
+	public boolean RefundPearlsAtSky = true;
 
 	public boolean IsSky(ItemStack stack)
 	{
@@ -262,7 +264,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		
 	}
 	//---------------------------------------------------------------
-	public ItemStack CreateManual() {
+	public ItemStack CreateManual(EntityPlayer player) {
 		//TODO: req I18n. Not on server
 		ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
 
@@ -276,14 +278,20 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 
 		if (DWeapons.proxy.isServer())
 		{
-			bookPages.appendTag(DWNBT.bookPageFromLineAndUrl(name + "Server manual is temporarily disabled. See info at the official website: ", "https://www.curseforge.com/minecraft/mc-mods/divineweapon"));
+		    if (player instanceof EntityPlayerMP)
+            {
+                SendMsgToPlayer((EntityPlayerMP)player, "dweapon.server_no_manual");
+            }
 
-			book.setTagInfo("author", new NBTTagString("The Lost Weapon Smith"));
-			book.setTagInfo("title", new NBTTagString("The Missing Manual"));
 
-			book.setTagInfo("pages", bookPages);
+//			bookPages.appendTag(DWNBT.bookPageFromLineAndUrl(name + "Server manual is temporarily disabled. See info at the official website: ", "https://www.curseforge.com/minecraft/mc-mods/divineweapon"));
+//
+//			book.setTagInfo("author", new NBTTagString("The Lost Weapon Smith"));
+//			book.setTagInfo("title", new NBTTagString("The Missing Manual"));
+//
+//			book.setTagInfo("pages", bookPages);
 			//DWeapons.LogWarning("[FFFFF: Book NBT]" + book.getTagCompound().toString());
-			return book;
+			return ItemStack.EMPTY;
 		}
 		
 		String pageCountString = I18n.format(name + DWNBTDef.MANUAL_PAGE_COUNT);
@@ -443,7 +451,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     		
     		if (IsManualReady(stack))
     		{
-    			player.addItemStackToInventory(CreateManual());
+    			player.addItemStackToInventory(CreateManual(player));
     			SetManualReady(stack, false);
     		}
     		//achievement TODO		
