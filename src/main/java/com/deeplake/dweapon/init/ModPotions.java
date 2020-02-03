@@ -58,8 +58,8 @@ public class ModPotions {
         SNOW_MED = new PotionSnowMeditation(false, 0xeeeeff, "snow_meditation", 3);
         SNOW_PROTECT = new PotionSnowProtection(false, 0xffffff, "snow_protection", 4);
 
-        KING_BOON = new PotionKingBoon(false, 0xFFFF11,"king_boon", 5);
-        SAGE_BOON = new PotionSageBoon(false, 0xFFFF11,"sage_boon", 6);
+        SAGE_BOON = new PotionSageBoon(false, 0xFFFF11,"sage_boon", 5);
+        KING_BOON = new PotionKingBoon(false, 0xFFFF11,"king_boon", 6);
 
         evt.getRegistry().register(DEADLY);
         evt.getRegistry().register(ZEN_HEART);

@@ -42,6 +42,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import static com.deeplake.dweapon.util.config.ConfigHandler.MONK_BEADS_MAX_EFFECTIVE_LEVEL;
+
 //Just for copying
 public class DMonkBeads extends DWeaponSwordBase implements IHasModel, IDWeaponEnhanceable {
     // /give @p dweapon:monk_beads 1 0 {is_earth:false, is_sky:false, pearl_count:0}
@@ -279,6 +281,11 @@ public class DMonkBeads extends DWeaponSwordBase implements IHasModel, IDWeaponE
         player.setActiveHand(hand);
         ItemStack stack = player.getHeldItem(hand);
 
+        if (MONK_BEADS_MAX_EFFECTIVE_LEVEL >= 0 && player.experienceLevel > MONK_BEADS_MAX_EFFECTIVE_LEVEL)
+        {
+            return ActionResult.newResult(EnumActionResult.PASS, stack);
+        }
+        
         player.getCooldownTracker().setCooldown(stack.getItem(),3);
 
         //DWeapons.Log(player.getDisplayNameString() + " made a pray.");

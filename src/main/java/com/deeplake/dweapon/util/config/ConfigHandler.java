@@ -4,6 +4,7 @@ import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.util.Reference;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import scala.Int;
 
 import java.io.File;
 
@@ -23,6 +24,8 @@ public class ConfigHandler {
     public static boolean BLOOD_SWORD_SUICIDE = false;
     public static boolean DEATH_SWORD_REVIVE = true;
     public static boolean DEATH_SWORD_PREVENT_BREAK = false;
+    public static int MONK_BEADS_MAX_EFFECTIVE_LEVEL = -1;
+
 
     public static void init(File file)
     {
@@ -49,6 +52,7 @@ public class ConfigHandler {
         BLOOD_SWORD_SUICIDE = config.getBoolean("BLOOD_SWORD_SUICIDE", category, true, "Blood sword can kill the user by using.");
         DEATH_SWORD_REVIVE = config.getBoolean("DEATH_SWORD_REVIVE", category, true, "The Death sword can revive player at 1/4 max durability.");
         DEATH_SWORD_PREVENT_BREAK = config.getBoolean("DEATH_SWORD_PREVENT_BREAK", category, false, "The death sword won't break it self to revive the player.");
+        MONK_BEADS_MAX_EFFECTIVE_LEVEL = config.getInt("DEATH_SWORD_PREVENT_BREAK", category, -1, -1, Int.MaxValue(),"The monk beads can't give xp when the player is over this level. (-1 = unlimited)");
 
         config.save();
     }
