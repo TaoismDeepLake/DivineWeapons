@@ -7,6 +7,7 @@ import com.deeplake.dweapon.util.DWEntityUtil;
 import com.deeplake.dweapon.util.IHasModel;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
+import com.deeplake.dweapon.util.Reference;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -31,6 +32,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -44,7 +46,6 @@ import java.util.Random;
 
 import static com.deeplake.dweapon.util.config.ConfigHandler.MONK_BEADS_MAX_EFFECTIVE_LEVEL;
 
-//Just for copying
 public class DMonkBeads extends DWeaponSwordBase implements IHasModel, IDWeaponEnhanceable {
     // /give @p dweapon:monk_beads 1 0 {is_earth:false, is_sky:false, pearl_count:0}
     public DMonkBeads(String name, ToolMaterial material) {
