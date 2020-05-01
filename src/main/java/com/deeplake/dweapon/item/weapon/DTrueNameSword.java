@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
+import com.deeplake.dweapon.util.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.DWeapons;
@@ -72,14 +73,14 @@ public class DTrueNameSword extends DWeaponSwordBase {
 	
 	public float getDamageMultiplier(ItemStack stack)
 	{
-		float damage = 2;
+		float damage =  ModConfig.GAMEPLAY_CONF.NAME_SWORD_HUMAN_FACTOR;
 		if (IsSky(stack))
 		{
-			damage = 10;
+			damage = ModConfig.GAMEPLAY_CONF.NAME_SWORD_SKY_FACTOR;
 		} 
 		else if (IsEarth(stack))
 		{
-			damage = 5;
+			damage = ModConfig.GAMEPLAY_CONF.NAME_SWORD_EARTH_FACTOR;
 		}
 		
 		return damage;
@@ -157,6 +158,5 @@ public class DTrueNameSword extends DWeaponSwordBase {
     public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		return getActualDamage(stack, 1);
-
     }
 }

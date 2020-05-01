@@ -8,7 +8,7 @@ import com.deeplake.dweapon.recipe.special.SkyEnhance;
 import com.deeplake.dweapon.recipe.special.StarterManual;
 import com.deeplake.dweapon.util.Reference;
 
-import com.deeplake.dweapon.util.config.ConfigHandler;
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -30,7 +30,7 @@ public class ModRecipes {
 				new ItemStack(ModItems.WEAPON_PEARL),  
 				0.1f);
 
-		if (ConfigHandler.ALLOW_PURE_CYCLE_BURN)
+		if (ModConfig.CRAFT_CONF.ALLOW_PURE_CYCLE_BURN)
 		{
 			GameRegistry.addSmelting(ModItems.WEAPON_PEARL,
 					new ItemStack(ModItems.PURE_INGOT),
@@ -52,10 +52,10 @@ public class ModRecipes {
 		IForgeRegistry<IRecipe> r = evt.getRegistry();
 		r.register(new PearlSocket().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_socket_pearl")));
 
-		if (ConfigHandler.ALLOW_CRAFT_TABLE_UPGRADE)
+		if (ModConfig.CRAFT_CONF.ALLOW_CRAFT_TABLE_UPGRADE)
 		{
 			r.register(new EarthEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_earth_enhance")));
-			if (ConfigHandler.ALLOW_SKY_CRAFT)
+			if (ModConfig.CRAFT_CONF.ALLOW_SKY_CRAFT)
 			{
 				r.register(new SkyEnhance().setRegistryName(new ResourceLocation(Reference.MOD_ID, "sword_sky_enhance")));
 			}

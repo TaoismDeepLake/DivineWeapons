@@ -1,19 +1,26 @@
-package com.deeplake.dweapon.init;
+package com.deeplake.dweapon.potion;
 
 import com.deeplake.dweapon.DWeapons;
+import com.deeplake.dweapon.item.weapon.DDeathSword;
 import com.deeplake.dweapon.item.weapon.DMonkBeads;
+import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 import com.deeplake.dweapon.potion.*;
 import com.deeplake.dweapon.util.Reference;
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Bootstrap;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,6 +28,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
+import java.util.List;
+
+import static com.deeplake.dweapon.util.NBTStrDef.IDLGeneral.ServerAABB;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModPotions {
@@ -31,6 +41,8 @@ public class ModPotions {
     public static Potion SNOW_PROTECT;
     public static Potion SAGE_BOON;
     public static Potion KING_BOON;
+    public static Potion DEATH_BOOM;
+    public static Potion EROSION;
 
     @Nullable
     private static Potion getRegisteredMobEffect(String id)
@@ -61,6 +73,10 @@ public class ModPotions {
         SAGE_BOON = new PotionSageBoon(false, 0xFFFF11,"sage_boon", 5);
         KING_BOON = new PotionKingBoon(false, 0xFFFF11,"king_boon", 6);
 
+        DEATH_BOOM = new PotionDeathBoom(true, 0xff6666, "death_boom", 7);
+
+        EROSION = new PotionErosion(true, 0x22ff33, "erosion", 8);
+
         evt.getRegistry().register(DEADLY);
         evt.getRegistry().register(ZEN_HEART);
         evt.getRegistry().register(SPACE_AFF);
@@ -69,6 +85,8 @@ public class ModPotions {
 
         evt.getRegistry().register(KING_BOON);
         evt.getRegistry().register(SAGE_BOON);
+
+        evt.getRegistry().register(DEATH_BOOM);
 
         //REGISTRY.register(1, new ResourceLocation("speed"), (new Potion(false, 8171462))
         // .setPotionName("effect.moveSpeed")
@@ -222,5 +240,19 @@ public class ModPotions {
         }
     }
 
+    @SubscribeEvent
+    public static void onCreatureDie(LivingDeathEvent event) {
+        World world = event.getEntity().getEntityWorld();
+        EntityLivingBase dieOne = event.getEntityLiving();
+        Vec3d pos = event.getEntity().getPositionEyes(0);
 
+        if (!world.isRemote) {
+            if (dieOne.getActivePotionEffect(DEATH_BOOM) != null)
+            {
+                world.createExplosion(dieOne, dieOne.posX, dieOne.posY, dieOne.posZ, 4,true);
+            }
+        } else {
+            //currently do nothing
+        }
+    }
 }

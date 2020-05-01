@@ -1,7 +1,5 @@
 package com.deeplake.dweapon.util.NBTStrDef;
 
-import com.deeplake.dweapon.DWeapons;
-import com.deeplake.dweapon.init.ModPotions;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
@@ -10,8 +8,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-
-import java.awt.*;
 
 public class IDLGeneral {
     //server side dont have this constructor.

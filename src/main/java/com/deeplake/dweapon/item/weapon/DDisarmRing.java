@@ -2,6 +2,7 @@ package com.deeplake.dweapon.item.weapon;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -86,10 +87,12 @@ public class DDisarmRing extends DWeaponSwordBase {
 		{
 			if (!targetCreature.world.isRemote) {
 				if (IsSky(stack)) {
-					DrawItemDirect(targetCreature, player, true);
+					DrawItemDirect(targetCreature, player, true, stack);
+					TryPayDurability(stack, player);
 				}
 				else{
-					Disarm(targetCreature);
+					Disarm(targetCreature, player, stack);
+					TryPayDurability(stack, player);
 				}
 			}
 		}
@@ -102,26 +105,45 @@ public class DDisarmRing extends DWeaponSwordBase {
 	}
 
 	//makes the target throw away the main-hand item
-	private void Disarm(final EntityLivingBase targetCreature)
+	private void Disarm(final EntityLivingBase targetCreature, EntityPlayer player, ItemStack ringStack)
 	{
 		if (targetCreature.world.isRemote) {
 			targetCreature.playSound(SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.5f, 1);
 		}
 		else {
 			ItemStack held = targetCreature.getHeldItemMainhand();
+
+			if (!held.isEmpty())
+			{
+				TryPayDurability(ringStack, player);
+			}
+
 			EnumHand enumHand = EnumHand.MAIN_HAND;
 			targetCreature.setHeldItem(enumHand, ItemStack.EMPTY);
 			targetCreature.entityDropItem(held, 0);
 		}
 	}
+
+	private void TryPayDurability(ItemStack stack, EntityPlayer from)
+	{
+		if (ModConfig.GAMEPLAY_CONF.DISARM_COST_DURABILITY)
+		{
+			stack.damageItem(1, from);
+		}
+	}
+
 	//takes the main-hand item directly to owner's inventory
-	private void DrawItemDirect(final EntityLivingBase targetCreature, final EntityPlayer player, final boolean includeOffhand)
+	private void DrawItemDirect(final EntityLivingBase targetCreature, final EntityPlayer player, final boolean includeOffhand, ItemStack ringStack)
 	{
 		if (targetCreature.world.isRemote) {
 			targetCreature.playSound(SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.5f, 1);
 		}
 		else {
 			ItemStack held = targetCreature.getHeldItemMainhand();
+			if (!held.isEmpty())
+			{
+				TryPayDurability(ringStack, player);
+			}
 			EnumHand enumHand = EnumHand.MAIN_HAND;
 			targetCreature.setHeldItem(enumHand, ItemStack.EMPTY);
 			player.addItemStackToInventory(held);
@@ -374,7 +396,7 @@ public class DDisarmRing extends DWeaponSwordBase {
 			}
 
 			if (!(entity instanceof EntityPlayer) && entity instanceof EntityLivingBase) {
-				DrawItemDirect((EntityLivingBase)entity, (EntityPlayer) caster, true);
+				DrawItemDirect((EntityLivingBase)entity, (EntityPlayer) caster, true, stack);
 			}
 		}
 	}
@@ -439,11 +461,11 @@ public class DDisarmRing extends DWeaponSwordBase {
 	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand) {
 		if (target instanceof EntityLivingBase) {
 			if (IsSky(stack)) {
-				DrawItemDirect(target, playerIn, true);
+				DrawItemDirect(target, playerIn, true, stack);
 				return true;
 			}
 		    else if (IsEarth(stack)) {
-				DrawItemDirect(target, playerIn, false);
+				DrawItemDirect(target, playerIn, false, stack);
 				return true;
 			}
 		    else //man-made level

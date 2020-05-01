@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.Reference;
-import com.deeplake.dweapon.util.config.ConfigHandler;
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.*;
@@ -120,7 +120,7 @@ public class DBloodSword extends DWeaponSwordBase {
 	
 	public float getHurt(ItemStack stack)
 	{
-		if (ConfigHandler.BLOOD_SWORD_DRAIN) {
+		if (ModConfig.GAMEPLAY_CONF.BLOOD_SWORD_DRAIN) {
 			if (IsSky(stack))
 			{
 				return skyHurt;
@@ -286,7 +286,7 @@ public class DBloodSword extends DWeaponSwordBase {
 		{
 			if (!world.isRemote) {
 				float preHP = living.getHealth();
-				if (ConfigHandler.BLOOD_SWORD_SUICIDE || living.getHealth() > healthPerRepair){
+				if (ModConfig.GAMEPLAY_CONF.BLOOD_SWORD_SUICIDE || living.getHealth() > healthPerRepair){
 					living.setHealth(preHP - healthPerRepair);//drain self
 					int curDamage = stack.getItemDamage();
 

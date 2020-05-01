@@ -3,7 +3,7 @@ package com.deeplake.dweapon.init.events;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.weapon.IDWeaponEnhanceable;
 import com.deeplake.dweapon.util.Reference;
-import com.deeplake.dweapon.util.config.ConfigHandler;
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -67,7 +67,7 @@ public class ModCraftingEvents {
                     //They can only be fixed
                     return;
                 } else if (leftType.IsEarth(left)) {
-                    if (ConfigHandler.ALLOW_SKY_CRAFT && event.getRight().getItem().getUnlocalizedName().equals(skyName)){
+                    if (ModConfig.CRAFT_CONF.ALLOW_SKY_CRAFT && event.getRight().getItem().getUnlocalizedName().equals(skyName)){
                         ItemStack swordResult = left.copy();
                         leftType.SetSky(swordResult);
 

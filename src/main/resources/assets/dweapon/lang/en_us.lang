@@ -58,7 +58,7 @@ item.shared.right_click_open=Right click to unseal
 
 
 
-//Starter Manual
+#Starter Manual
 dweapon:default_player_name=Friend
 starter.manual_title=Your First Divine Weapon
 starter.manual_author=Taoism DeepLake
@@ -85,7 +85,7 @@ starter.manual_page_10=   GDG\n   DCD\n   GDG\n  Earth weapons are capable of en
 starter.manual_page_11=  You can let any Pure or Divine ingot write this book by crafting them together.\n  Last but not least, a spell of blessing is enclosed.
 starter.manual_page_12=Future shifts, Divine watches
 
-//-------------
+
 item.blood_sword.name=Bloodburst
 item.blood_sword.hidden=A Bloody Sword
 
@@ -104,7 +104,8 @@ item.blood_sword.manual_page_3=If you don't strike with your full strength, the 
 item.blood_sword.manual_page_4=It's a good idea to bring some medicine with you to replenish the loss of your blood, though true bloodlords can drain health from their enemies. It's also a good idea to build a stronger body, if possible.
 item.blood_sword.manual_page_5=I have given this gift to many warriors. They either let the power take over their mind and their life, or sealed it because of the curse. Perhaps you are the right person to use it?
 item.blood_sword.manual_page_6=When it recognizes its true master, it will draw nearby creatures blood. Whenever a nearby creature is hurt, the wield will be healed by a small amount.
-//demonstration of percentages and quotation marks
+
+#demonstration of percentages and quotation marks
 item.blood_sword.manual_page_999=Debug says, "Is this ok?" No.
 item.blood_sword.manual_page_7=Debug says, \"Is this ok?\" Yes, it is
 item.blood_sword.manual_page_8=Debug says, \\"Is this ok?\\" No. 
@@ -114,7 +115,7 @@ item.blood_sword.manual_page_11=Debug says, Is this 100%%? Yes, it is
 item.blood_sword.manual_page_12=Debug says, Is this 100\%? No.
 item.blood_sword.manual_page_13=Debug says, Is this 100\\%? No.
 
-//-------------
+#-------------
 item.death_sword.name=Death Within
 item.death_sword.hidden=A Dark Sword
 
@@ -133,7 +134,7 @@ item.death_sword.manual_page_3=Whenever a nearby creature dies, the wielder heal
 item.death_sword.manual_page_4=If the owner already have Deadly buff, it will increase the buff level by 1, but not beyond max level(1/3/10 for human/earth/sky). Pearls increase base damage and the buff duration.
 item.death_sword.manual_page_5=The death sword can defy death at earth and sky level. When the wielder is about to die, it will spend 1/4 durability to revive its master at 1/4 health and remove all buff/debuffs. 
 item.death_sword.manual_page_6=Any nearby death grants deadly buff. Try sacrificing chicken to it.
-//-------------
+#-------------
 item.space_affinity_sword.name=Space Fluctuation
 item.space_affinity_sword.hidden=Some Unstable Sword
 
@@ -153,7 +154,7 @@ item.space_affinity_sword.manual_page_4=I taught her to look in the eye of F3. A
 item.space_affinity_sword.manual_page_5=She also managed to understand basic arithmetic. Finally found a worthy one, I take out my gift. A blade that deals damage based on the coordinates. Max(x%%16, y%%16, z%%16, pearl_count).
 item.space_affinity_sword.manual_page_6=I told her the formula so she can max out the damage when needed and make harmless touches when practicing with others. \"Now try focusing your mind on it.\" I said and she did so. 
 item.space_affinity_sword.manual_page_7=\"Now relax your mind.\" I smiled as she vanished. The sword teleported her home. Now she will find her "position" with her stronger and faster mates. She will one day develops her skill to Max(x%%128, y%%128, z%%128, 16).
-//-------------
+#-------------
 item.sage_builder.name=Fu Yue Shovel
 item.sage_builder.hidden=Random Building Tool
 
@@ -196,7 +197,7 @@ item.sage_builder.manual_page_3=The King talked with him and considered him as t
 item.sage_builder.manual_page_4=Fu Yue Shovel is just inspired by the story. You can build with it. Some construction today, some dynasty in the future.
 item.sage_builder.manual_page_5=When this building tool finds its true master, it can transform into a sword, which stands as Wu Ding.
 
-//-------------
+#-----------
 item.snow_sword.name=Forged in Snow
 item.snow_sword.hidden=A Cold Sword
 
@@ -214,7 +215,7 @@ item.snow_sword.manual_page_2=This Snow Sword, or Forged in Snow, is a condensed
 item.snow_sword.manual_page_3=Since it's Forged in Snow and forged with snow, you need only snow blocks to repair it. What's more, it catches the blizzard to replenish itself. 
 item.snow_sword.manual_page_4=Snowballs are critical to blazes. Snow swords, however, if forged poorly, will only melt in the hot temperature of nether. Best forged ones cut in hot deserts just like snowballs on blazes, and summons snowstorms in cold places. 
 item.snow_sword.manual_page_5=Snowmans leave a snow trail when moving but only in cold places. Maybe when you become a snowman, so will you.
-//---------------
+#-------------
 item.power_triangle.name=Triangle of Power
 item.power_triangle.name.attack=Triangle of Attack
 item.power_triangle.name.defense=Triangle of Defense
@@ -253,7 +254,7 @@ item.power_triangle.manual_page_8=I wished it can boost all three aspects, but s
 item.power_triangle.manual_page_9=Then the idea hit me - what if I carry three of this at the same time? I tried a few methods and finally succeeded after many tries. It no longer needs to be held to function, and the divine power eliminated the evaporation.
 item.power_triangle.manual_page_10=Oh, it does regenerate health in defense mode. You don't feel any regeneration buff because the regen buff in this world simply won't work on this mechanic, so I make it regen in another way.
 
-//---------------
+#-------------
 item.gold_sword.name=Infinite Gold
 item.gold_sword.hidden=Golden Trident
 
@@ -277,7 +278,7 @@ item.gold_sword.manual_page_7=However the fool's greed grew and patience dwindle
 item.gold_sword.manual_page_8=He grabbed the sword as soon as I finished - and swung it at me. It landed. Meanwhile, a giant block of gold dropped out of nowhere and crushed his head. Pure gold contaminated by his foulness.
 item.gold_sword.manual_page_9=I took my work back and laughed painfully. Charm protected me from physical damage, but it killed me to learn not to give my power and trust away to random poor, even they cried for help.  And I will try form other than the sword. 
 
-//---------------
+#-------------
 item.true_name_sword.name=Name Nemesis
 item.true_name_sword.hidden=Sword with A Name
 
@@ -296,7 +297,7 @@ item.true_name_sword.manual_page_2=  First you rename a paper at an anvil to mak
 item.true_name_sword.manual_page_3=  Note that in servers you may need to name the mob in the server's language.
 item.true_name_sword.manual_page_4=  Base damage is (5 + pearl). Earth rank deal 2x damage, Sky rank deal 5x damage. Name-match damage multiplier is 2,5,10 for man-made, earth, and sky. 
 
-//---------------
+#-------------
 item.future_sword.name=Sword from Future
 item.future_sword.hidden=Conceptional Sword
 
@@ -313,7 +314,7 @@ item.future_sword.manual_page_count=2
 item.future_sword.manual_page_1=  This sword's power changes from time to time. It heralds a weapon coming in the future.
 item.future_sword.manual_page_2=  Currently, its about water.
 
-//
+#
 item.disarm_ring.name=Lao-Tze Ring
 item.disarm_ring.hidden=Disarmer
 
@@ -332,7 +333,7 @@ item.disarm_ring.manual_page_3=  I made a similar weapon. The prototype can disa
 item.disarm_ring.manual_page_4=  When reinforced to earth level, the weapon will be drawn directly into your pocket, so the opponent can't pick it up again.
 item.disarm_ring.manual_page_5=  When reinforced to sky level, arrows will be safely tucked into your pocket. Hold RMB will disarm all nearby non-player creatures, and items in both hands will be taken.
 
-//
+#
 item.water_sword.name=Teardrop from Sky
 item.water_sword.hidden=Water Sword
 

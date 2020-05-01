@@ -2,26 +2,19 @@ package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.vecmath.Vector3d;
 
-import com.deeplake.dweapon.init.ModPotions;
-import com.deeplake.dweapon.potion.BasePotion;
+import com.deeplake.dweapon.potion.ModPotions;
 import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
 import net.minecraft.init.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.Vec3d;
-import org.apache.logging.log4j.LogManager;
 
-import com.deeplake.dweapon.DWeapons;
-import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -32,15 +25,12 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
 import static com.deeplake.dweapon.util.DWEntityUtil.TryRemoveGivenBuff;
 import static com.deeplake.dweapon.util.DWNBT.TICK_PER_SECOND;
@@ -330,7 +320,6 @@ public class DSnowSword extends DWeaponSwordBase {
 	                j = MathHelper.floor(playerMP.posY);
 	                k = MathHelper.floor(playerMP.posZ + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25F));
 	                BlockPos blockpos = new BlockPos(i, j, k);
-
 	                if (playerMP.world.getBlockState(blockpos).getMaterial() == Material.AIR && 
 	                		playerMP.world.getBiome(blockpos).getTemperature(blockpos) < 0.8F &&
 	                		Blocks.SNOW_LAYER.canPlaceBlockAt(playerMP.world, blockpos))

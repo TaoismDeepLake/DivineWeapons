@@ -12,6 +12,7 @@ import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.ItemBase;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -161,17 +162,17 @@ public class SealedWeapon extends ItemBase {
 	{
 		int count = WeaponIndex.LAST.ordinal();
 		int[] factor = new int[count];
-		factor[WeaponIndex.BLOOD_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.DEATH_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.SPACE_AF_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.BUILDER_INDEX.ordinal()] = 6;
-		factor[WeaponIndex.SNOW_INDEX.ordinal()] = 6;
-		factor[WeaponIndex.POWER_TRIANGLE_INDEX.ordinal()] = 6;
-		factor[WeaponIndex.GOLD_INDEX.ordinal()] = 6;
-		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.WATER_INDEX.ordinal()] = 10;
-		factor[WeaponIndex.BEADS_INDEX.ordinal()] = 6;
+		factor[WeaponIndex.BLOOD_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.BLOOD_SWORD;
+		factor[WeaponIndex.DEATH_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.death_sword;
+		factor[WeaponIndex.SPACE_AF_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.space_affinity_sword;
+		factor[WeaponIndex.BUILDER_INDEX.ordinal()] =ModConfig.LOTTERY_CONF_NORM.sage_builder;
+		factor[WeaponIndex.SNOW_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.snow_sword;
+		factor[WeaponIndex.POWER_TRIANGLE_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.power_triangle;
+		factor[WeaponIndex.GOLD_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.gold_sword;
+		factor[WeaponIndex.TRUENAME_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.true_name_sword;
+		factor[WeaponIndex.DISARMER_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.disarm_ring;
+		factor[WeaponIndex.WATER_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.water_sword;
+		factor[WeaponIndex.BEADS_INDEX.ordinal()] = ModConfig.LOTTERY_CONF_NORM.monk_beads;
 		return  factor;
 	}
 

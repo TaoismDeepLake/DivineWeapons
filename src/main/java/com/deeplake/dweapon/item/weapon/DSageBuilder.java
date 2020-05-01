@@ -2,42 +2,34 @@ package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.deeplake.dweapon.init.ModPotions;
+import com.deeplake.dweapon.potion.ModPotions;
 import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import org.apache.logging.log4j.LogManager;
 
-import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
@@ -47,11 +39,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
-import sun.security.ssl.Debug;
 
 import static com.deeplake.dweapon.util.DWNBT.TICK_PER_SECOND;
 

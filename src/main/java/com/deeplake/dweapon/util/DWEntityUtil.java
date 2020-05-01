@@ -1,9 +1,6 @@
 package com.deeplake.dweapon.util;
 
-import com.deeplake.dweapon.init.ModPotions;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 

@@ -9,7 +9,7 @@ import com.deeplake.dweapon.util.Reference;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 
-import com.deeplake.dweapon.util.config.ConfigHandler;
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.resources.I18n;
@@ -45,7 +45,7 @@ public class ModStarterEvents {
 	//Thanks Cadiboo for telling me that
 	  @SubscribeEvent
 	  public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-	  		if (ConfigHandler.GIVE_STARTER_ITEMS)
+	  		if (ModConfig.GENERAL_CONF.GIVE_STARTER_ITEMS)
 			{
 				NBTTagCompound playerData = event.player.getEntityData();
 				NBTTagCompound data = getTagSafe(playerData, EntityPlayer.PERSISTED_NBT_TAG);

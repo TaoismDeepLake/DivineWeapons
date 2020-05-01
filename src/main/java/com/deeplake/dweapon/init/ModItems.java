@@ -76,6 +76,8 @@ public class ModItems {
 	public static final Item WEAPON_HANDLE = new ItemBase("weapon_handle");
 
 	public static final DMonkBeads MONK_BEADS = new DMonkBeads("monk_beads", TOOL_MATERIAL_DIVINE);
+
+	public static final DJugglerSword JUGGLER_SWORD = new DJugglerSword("juggler_sword", TOOL_MATERIAL_DIVINE);
 	//public static final Item COPPER_HELMET = new ArmorBase("copper_helmet", ARMOR_MATERIAL_COPPER, 1, EntityEquipmentSlot.HEAD);
 	
 	//public static final Item BUFF_FOOD_1 = new FoodBase("buff_food_1", 8, 4.8f, false);

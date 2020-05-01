@@ -1,28 +1,17 @@
 package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
-import com.deeplake.dweapon.DWeapons;
-import com.deeplake.dweapon.init.ModPotions;
 import com.deeplake.dweapon.util.Reference;
-import com.deeplake.dweapon.util.config.ConfigHandler;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.init.PotionTypes;
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 
@@ -31,18 +20,15 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
-import static com.deeplake.dweapon.init.ModPotions.DEADLY;
-import static com.deeplake.dweapon.init.ModPotions.ZEN_HEART;
+import static com.deeplake.dweapon.potion.ModPotions.DEADLY;
+import static com.deeplake.dweapon.potion.ModPotions.ZEN_HEART;
 import static com.deeplake.dweapon.util.NBTStrDef.IDLGeneral.ServerAABB;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -132,10 +118,10 @@ public class DDeathSword extends DWeaponSwordBase {
 
 		if (!world.isRemote) {
 			//wielder resist death
-			if (ConfigHandler.DEATH_SWORD_REVIVE) {
+			if (ModConfig.GAMEPLAY_CONF.DEATH_SWORD_REVIVE) {
 				ItemStack stackDie = dieOne.getHeldItemMainhand();
 				if (stackDie.getItem() instanceof DDeathSword && (((DWeaponSwordBase) stackDie.getItem()).IsEarth(stackDie) || ((DWeaponSwordBase) stackDie.getItem()).IsSky(stackDie))) {
-					if (!ConfigHandler.DEATH_SWORD_PREVENT_BREAK || (stackDie.getItemDamage() < stackDie.getItem().getMaxDamage(stackDie) - 256))
+					if (!ModConfig.GAMEPLAY_CONF.DEATH_SWORD_PREVENT_BREAK || (stackDie.getItemDamage() < stackDie.getItem().getMaxDamage(stackDie) - 256))
 					{
 						stackDie.damageItem(256, dieOne);
 						dieOne.setHealth(dieOne.getMaxHealth() / 4);

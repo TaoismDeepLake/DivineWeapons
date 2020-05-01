@@ -2,23 +2,17 @@ package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
 import com.deeplake.dweapon.util.Reference;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.apache.logging.log4j.LogManager;
 
 import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
@@ -28,7 +22,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
@@ -38,10 +31,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
-import static com.deeplake.dweapon.init.ModPotions.DEADLY;
-import static com.deeplake.dweapon.init.ModPotions.SPACE_AFF;
+import static com.deeplake.dweapon.potion.ModPotions.SPACE_AFF;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class DSpaceAffinitySword extends DWeaponSwordBase {

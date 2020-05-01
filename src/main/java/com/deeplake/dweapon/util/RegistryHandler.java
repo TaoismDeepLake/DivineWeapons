@@ -3,7 +3,7 @@ package com.deeplake.dweapon.util;
 import com.deeplake.dweapon.init.ModBlocks;
 import com.deeplake.dweapon.init.ModItems;
 
-import com.deeplake.dweapon.util.config.ConfigHandler;
+import com.deeplake.dweapon.util.config.ModConfig;
 import com.deeplake.dweapon.world.ModWorldGen;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -52,6 +52,6 @@ public class RegistryHandler {
 	{
 		GameRegistry.registerWorldGenerator(new ModWorldGen(), 100);
 		//ModEntityInit.registerEntities();
-		ConfigHandler.registerConfig(event);
+		//ModConfig.registerConfig(event);
 	}
 }
