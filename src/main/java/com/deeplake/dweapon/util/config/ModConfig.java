@@ -34,7 +34,6 @@ public class ModConfig {
          */
         @Config.LangKey("dweapon.conf.general.give_starter_items")
         @Config.Comment("A starter manual and a heirloom will be given to new players.")
-        @Config.RequiresMcRestart
         public boolean GIVE_STARTER_ITEMS = true;
 
     }
@@ -123,47 +122,39 @@ public class ModConfig {
     public static class GameplayConf {
         @Config.LangKey("conf.spawn.BLOOD_SWORD_DRAIN")
         @Config.Comment("Blood sword will hurt the user when user.")
-        @Config.RequiresMcRestart
+
         public boolean BLOOD_SWORD_DRAIN = true;
 
         @Config.LangKey("conf.spawn.BLOOD_SWORD_SUICIDE")
         @Config.Comment("Blood sword can kill the user by using.")
-        @Config.RequiresMcRestart
         public boolean BLOOD_SWORD_SUICIDE = true;
 
         @Config.LangKey("conf.spawn.DEATH_SWORD_REVIVE")
         @Config.Comment("The Death sword can revive player at 1/4 max durability.")
-        @Config.RequiresMcRestart
         public boolean DEATH_SWORD_REVIVE = true;
 
         @Config.LangKey("conf.spawn.DEATH_SWORD_PREVENT_BREAK")
         @Config.Comment("The death sword won't break it self to revive the player.")
-        @Config.RequiresMcRestart
         public boolean DEATH_SWORD_PREVENT_BREAK = true;
 
         @Config.LangKey("conf.spawn.MONK_BEADS_MAX_EFFECTIVE_LEVEL")
         @Config.Comment("The monk beads can't give xp when the player is over this level. (-1 = unlimited)")
-        @Config.RequiresMcRestart
         public int MONK_BEADS_MAX_EFFECTIVE_LEVEL = -1;
 
         @Config.LangKey("conf.spawn.DISARM_COST_DURABILITY")
         @Config.Comment("The disarm ring will spent durability when disarming.")
-        @Config.RequiresMcRestart
         public boolean DISARM_COST_DURABILITY = false;
 
         @Config.LangKey("conf.spawn.NAME_SWORD_HUMAN_FACTOR")
         @Config.Comment("The true name sword damage multiplier at correct name in human level")
-        @Config.RequiresMcRestart
         public int NAME_SWORD_HUMAN_FACTOR = 2;
 
         @Config.LangKey("conf.spawn.NAME_SWORD_EARTH_FACTOR")
         @Config.Comment("The true name sword damage multiplier at correct name in earth level")
-        @Config.RequiresMcRestart
         public int NAME_SWORD_EARTH_FACTOR = 3;
 
         @Config.LangKey("conf.spawn.NAME_SWORD_SKY_FACTOR")
         @Config.Comment("The true name sword damage multiplier at correct name in sky level")
-        @Config.RequiresMcRestart
         public int NAME_SWORD_SKY_FACTOR = 5;
 
     }
