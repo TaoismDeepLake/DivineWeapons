@@ -358,7 +358,7 @@ item.monk_beads.hidden=白铁手串
 
 item.monk_beads.shared_desc=[禅]减免来自不死生物的伤害，右键诵经。
 item.monk_beads.sky_desc=免疫减益效果与不死伤害。
-item.monk_beads.earth_desc=手持时免疫减益效果。 不死伤害减免 %s 点，再减少 50% 。
+item.monk_beads.earth_desc=手持时免疫减益效果。 不死伤害减免 %s 点，再减少 50%% 。
 item.monk_beads.normal_desc=不死伤害减免 %s 点.
 item.monk_beads.damage_desc=基础伤害 : %s
 
@@ -366,13 +366,13 @@ item.monk_beads.manual_title=无垢念珠
 item.monk_beads.manual_author=道家深湖
 item.monk_beads.manual_page_count=10
 item.monk_beads.manual_page_1=  僧人们的念珠。 \n【注意：此武器强化机制特殊】 
-item.monk_beads.manual_page_2=  念珠存在于不同宗教。佛教里代表着108中烦恼，也有说代表108位金刚。
+item.monk_beads.manual_page_2=  念珠存在于不同宗教。佛教里代表着108种烦恼，也有说代表108位金刚。
 item.monk_beads.manual_page_3=  有人用来计数，有人用来穿戴。作为兵匠，你也大可用作武器。
 item.monk_beads.manual_page_4=  【涤净】纯净的念珠具有净化之力。主要用来驱散队友身上的debuff和拯救僵尸村民。每次拯救会积累功德。  
 item.monk_beads.manual_page_5=  【诵经】右键诵经，驱散一个自身减益效果，并有概率获得经验。等级越高概率越低。
 item.monk_beads.manual_page_6=  【功德】手持时，每5珠可以减免1点自身受到的不死来源伤害。主要是僵尸。
 item.monk_beads.manual_page_7=  这件神兵的升级只需持续镶嵌宝珠即可。初始具有8珠，镶至36珠时为地级，108个达天级。护符会转化成一定数量的宝珠。
-item.monk_beads.manual_page_8=  在地级， 【功德】 会再提供50%的不死减伤效果。 【禅心】使得你手持时免疫所有减益效果。
+item.monk_beads.manual_page_8=  在地级， 【功德】 会再提供50%%的不死减伤效果。 【禅心】使得你手持时免疫所有减益效果。
 item.monk_beads.manual_page_9=  天级时，你的无量【功德】使你免疫不死伤害。 并且，【功德】【禅心】无需手持就能发挥作用，放在包里即可。
 item.monk_beads.manual_page_10=  未完待续……
 

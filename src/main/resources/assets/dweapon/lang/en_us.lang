@@ -360,7 +360,7 @@ item.monk_beads.hidden=Beads
 
 item.monk_beads.shared_desc=[Zen]Reduces damage from undead sources. Right click to pray.
 item.monk_beads.sky_desc=Immune to debuffs and damage form undead sources.
-item.monk_beads.earth_desc=Immune to debuffs. Undead damage is reduced by %s and 50% will be absorbed.
+item.monk_beads.earth_desc=Immune to debuffs. Undead damage is reduced by %s and 50%% will be absorbed.
 item.monk_beads.normal_desc=Undead damage is reduced by %s.
 item.monk_beads.damage_desc=Base Damage : %s
 
@@ -374,6 +374,6 @@ item.monk_beads.manual_page_4=  [Cleanse]The beads carry pure power, use them on
 item.monk_beads.manual_page_5=  [Prayer]Count the beads while praying. It cleanses a debuff from you and have chance to give you experience.
 item.monk_beads.manual_page_6=  [Virtue]The virtue protects you from sins - undead related damage. Each 5 pearl will reduce 1 point undead damage. Active when handheld.
 item.monk_beads.manual_page_7=  To upgrade this weapon, simply accumulate the beads. You can stack at most 108 beads. It will be earth-level at 36 beads and sky-level at 108 beads.
-item.monk_beads.manual_page_8=  At earth level, [Virtue] will give another 50% undead damage prevention. [Zen Heart] will make you immune to debuffs when handheld.
+item.monk_beads.manual_page_8=  At earth level, [Virtue] will give another 50%% undead damage prevention. [Zen Heart] will make you immune to debuffs when handheld.
 item.monk_beads.manual_page_9=  At sky level, Your unmatched [Virtue] will make you immune to undead damage. [Virtue] and [Zen Heart] works in inventory, no need to hold the beads in your hand.
 item.monk_beads.manual_page_10=  To be continued...
