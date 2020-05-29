@@ -649,7 +649,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     }
 
     public boolean isNeedDamageDesc = true;
-	@SideOnly(Side.CLIENT)
+	////@SideOnly(Side.CLIENT)
     public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn)
     {
     	return 7.0f;

@@ -339,7 +339,7 @@ public class DWaterSword extends DWeaponSwordBase {
 		addDamageInformation(stack, worldIn, tooltip, flagIn);
 	}
 
-	@SideOnly(Side.CLIENT)
+	//@SideOnly(Side.CLIENT)
     public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn)
 	{
 		return getActualDamage(stack, 1, false);
