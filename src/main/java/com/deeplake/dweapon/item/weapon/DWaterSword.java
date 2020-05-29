@@ -2,6 +2,7 @@ package com.deeplake.dweapon.item.weapon;
 
 import com.deeplake.dweapon.util.DWEntityUtil;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
+import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -13,7 +14,6 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagString;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +25,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -37,17 +36,12 @@ public class DWaterSword extends DWeaponSwordBase {
 		
 	}
 	static final float base_damage = 4;
-	public static final float baseDamageAttackMode = 4;//2 hearts
+	public static final float baseDamageAttackMode = 5;//2 hearts
 	public static final float pearlDamage = 1;//0.5 hearts
 	public static final float earthDamageModifier = 1.5f;
-	public static final float skyDamageModifier = 3f;
-
-	static final float pearl_damage_factor = 0.2f;
-	static final float t_base = 1.0f;//temperature_base
-	static final float t_max = 2.0f;//hotest temperature
 
 	private static final float wet_multiplier = 2.0f;//damage rate when wet
-	private static final float sky_base_damage = 25.0f;
+	private static final float sky_base_damage = 75.0f;
 	private static final int skyBuffTick = 10;
 
 	private static int weatherSummonTick = 100;
@@ -55,18 +49,21 @@ public class DWaterSword extends DWeaponSwordBase {
 	public static final int CAN_RAIN_MODE = 1;
 	public static final int RAINING_MODE = 2;
 
+	public static final String BUCKET = "has_bucket";
+
 	@Override
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairMaterial) {
-		boolean isWaterRelated = repairMaterial.getItem() == Items.WATER_BUCKET;
+		boolean isWaterRelated = repairMaterial.getItem() == Items.WATER_BUCKET ||
+				repairMaterial.getUnlocalizedName().equals("idealland:gua_2");
 
 		return isWaterRelated || super.getIsRepairable(stack, repairMaterial);
 	}
 
-	@Override
-	public float getAttackDamage()
-	{
-		return base_damage;
-	}
+//	@Override
+//	public float getAttackDamage()
+//	{
+//		return base_damage;
+//	}
 
 	public float getActualDamage(ItemStack stack, float ratio, boolean isWet)
 	{
@@ -95,6 +92,18 @@ public class DWaterSword extends DWeaponSwordBase {
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
 	{
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+
+		//todo:fill the bucket in mainhand
+		//todo:repair gives bucket
+//		if (!worldIn.isRemote)
+//		{
+//			if (DWNBTUtil.GetBoolean(stack, BUCKET))
+//			{
+//				EntityPlayer player = (EntityPlayer)(entityIn);
+//				player.addItemStackToInventory(new ItemStack(Items.BUCKET));
+//				DWNBTUtil.SetBoolean(stack, BUCKET, true);
+//			}
+//		}
 
 		if (entityIn instanceof EntityPlayerMP)
 		{
@@ -159,12 +168,10 @@ public class DWaterSword extends DWeaponSwordBase {
 	@Override
 	public boolean AttackDelegate(final ItemStack stack, final EntityPlayer player, final Entity target, float ratio) {
 
-		float preHP = player.getHealth();
-
 		float damage = getActualDamage(stack, ratio, player.isWet());
 
 		boolean success = false;
-		success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), damage);
+		success = target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player).setMagicDamage(), damage);
 
 		if (success)
 		{
@@ -333,7 +340,7 @@ public class DWaterSword extends DWeaponSwordBase {
 	}
 
 	@SideOnly(Side.CLIENT)
-    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn)
 	{
 		return getActualDamage(stack, 1, false);
 	}

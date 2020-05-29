@@ -133,7 +133,6 @@ public class DDeathSword extends DWeaponSwordBase {
 				}
 			}
 
-
 			//wielder draws power from nearby deaths
 			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, ServerAABB(pos.addVector(-range, -range, -range), pos.addVector(range, range, range)));
 			for (EntityLivingBase living : list) {
@@ -325,7 +324,7 @@ public class DDeathSword extends DWeaponSwordBase {
 	}
 
 @SideOnly(Side.CLIENT)
-    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn)
 	{
 		return getActualDamage(stack, 1f);
 	}

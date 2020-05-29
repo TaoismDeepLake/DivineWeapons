@@ -4,8 +4,6 @@ itemGroup.DWeaponWeaponTab=神兵
 
 dweapon.server_no_manual=服务器手册研发中……
 
-
-//Buffs
 dweapon.potion.deadly=致死
 dweapon.potion.zen_heart=功德无量
 dweapon.potion.space_aff_1=空间共鸣
@@ -13,15 +11,14 @@ dweapon.potion.snow_meditation=独钓寒雪
 dweapon.potion.snow_protection=风雪归人
 dweapon.potion.sage_boon=贤臣加护
 dweapon.potion.king_boon=帝王威光
-//unused
+
 dweapon.potion.deadly.4=致死 V
 dweapon.potion.deadly.5=致死 V
 dweapon.potion.deadly.6=致死 VI
 dweapon.potion.deadly.7=致死 VII
-dweapon.potion.deadly.8=九死一生 
+dweapon.potion.deadly.8=九死一生
 dweapon.potion.deadly.9=一击必杀
 
-//Blocks
 tile.divine_ore.name=神铁矿
 tile.pure_ore.name=洁铁矿
 
@@ -43,7 +40,7 @@ postfix.is_sky.name=·天
 item.dweapon_name_format=%s %s%s
 
 item.shared.heirloom_desc=(%s的传家宝)
-item.shared.hidden_desc=????
+item.shared.hidden_desc=与书合成后，可解锁说明
 item.shared.sky_desc=天之兵
 item.shared.earth_desc=地之兵
 item.shared.pearl_desc=宝珠数：%s
@@ -56,34 +53,35 @@ item.shared.missing_manual_author=????
 
 item.shared.right_click_open=右键拆封
 
-//Starter Manual
+
+
 dweapon:default_player_name=朋友
 starter.manual_title=神兵初见
 starter.manual_author=道家深湖
 starter.manual_page_count=11
 starter.manual_page_1={PlayerName}:\n    大家好，我是练习时长两天半的Modder……\n    咳咳，我是塑世师道家深湖，阁下世界的访客。我等塑世师，也称为Mod制作者，所做之事就是给各个世界带来改变。你的世界可能已经有了不少我们做的调整了。\n我在此呈上我们的礼物：神兵。
 
-starter.manual_page_2=下去挖矿。\n烧炼之。\n合成为剑。\n拆封。\n以书鉴真名，\n以珠强魔力，\n以符提档次。\n天神兵，便是力量的化身。
+starter.manual_page_2=下矿洞。\n满载归。\n合成剑。\n拆其封。\n以书鉴真名，\n以珠强魔力，\n以符提档次。\n天神兵，便是力量的化身。
 
 starter.manual_page_3=在铁深度可见白色洁铁矿，以铁镐挖之；\n在钻石的深度可见五彩光亮的神铁矿，以钻石镐挖之。\n然后，像铁一样熔炼它们。所得产物非常漂亮。\n你说并不漂亮？好吧，随你，不关键。
 
 starter.manual_page_4=  / /\n   / \n  / /\n  把五根木棍如上合成，就能做好神兵骨架。神兵骨架是制作神兵的基础物品，就像原版里的木棍。两神铁锭、一神兵骨架就能开始干活了，跟合成别的剑一样。
 
 starter.manual_page_5=所得的是即将成型的神兵，你可以理解为一个包裹。你应该已经有一件了，就是那个传家宝。右手抚摸（右键）它，它就会成型，成型的结果有很多种。建议在生存模式下进行，创造模式下它不太愿意成型。
-
 starter.manual_page_6=你和这兵器还只是初次见面。给他们本书，他们便会做自我介绍。如果你把写有说明书的搞丢了，或者就单纯是喜欢听神兵自我介绍，可以重新合成。神兵会不厌其烦地自我介绍。
+
 starter.manual_page_7=洁铁锭很可塑，你可以把锭再烧成珠。大多数兵器都可以镶嵌最多五个洁铁珠以强化。天级兵器不需要神铁珠，地级升天时会自动归还其上的所有洁铁珠。
 
 starter.manual_page_8=铁  铁\n  砧\n铁  铁\n    神铁锭和铁砧相性优良。把铁砧四角镶嵌神铁锭，你就得到一个地之护符。在铁砧上把护符镶嵌进你的神兵，看看它变成啥样了？地神兵可不只是名字里多个“地”字。
 
 starter.manual_page_9=金钻金\n钻符钻\n金钻金\n    地神兵可以强化到最终形态：天神兵。见证它们的神力吧。地护符加上四个金块，四个钻石块可以做成天符。记得只有已经接受过地级强化的神兵才能承受天级强化。
 
-starter.manual_page_10=神铁锭或者洁铁锭可以和空书本合成本书。\n最后，附上我的祝愿： 
+starter.manual_page_10=神铁锭或者洁铁锭可以和空书本合成本书。\n最后，附上我的祝愿：
 
 starter.manual_page_11=未来纵变幻 神兵常相随
+starter.manual_page_12=Future shifts, Divine watches
 
 
-//-------------
 item.blood_sword.name=血候刃
 item.blood_sword.hidden=血红剑
 
@@ -91,6 +89,7 @@ item.blood_sword.shared_desc=[血脉放出] 放出自己的血以提升伤害，
 item.blood_sword.sky_desc=损失自己5颗心，造成100伤害。[力量 X, 生命回复 II]
 item.blood_sword.earth_desc=损失 %s 颗心，造成 %s 伤害。[Regen I]
 item.blood_sword.normal_desc=损失 %s 颗心，造成 %s 伤害。
+
 
 item.blood_sword.manual_title=血候刃
 item.blood_sword.manual_author=道家深湖
@@ -100,17 +99,18 @@ item.blood_sword.manual_page_2=每当血侯刃见血的时候，他就会抽一�
 item.blood_sword.manual_page_3=如果你不全力劈砍的话，基础伤害会下降，但抽血造成的额外伤害并不会受影响。
 item.blood_sword.manual_page_4=带些药品弥补失血是个好主意，虽然真正的血侯可以直接从敌手处吸血。它会吸收主人的血，也会吸收敌人的血，所有的血液，都来者不拒。
 item.blood_sword.manual_page_5=我曾经把它赐予多位战士。他们要么让这柄魔剑彻底驾驭自己，直到流光最后一滴血，要么因恐惧避而不用，变成懦夫，也许你才是它的真命之主，谁知道呢？
-//demonstration of percentages and quotation marks
 item.blood_sword.manual_page_6=Debug says, "Is this ok?" No.
+
+# demonstration of percentages and quotation marks
+item.blood_sword.manual_page_999=Debug says, "Is this ok?" No.
 item.blood_sword.manual_page_7=Debug says, \"Is this ok?\" Yes, it is
-item.blood_sword.manual_page_8=Debug says, \\"Is this ok?\\" No. 
+item.blood_sword.manual_page_8=Debug says, \\"Is this ok?\\" No.
 item.blood_sword.manual_page_9=Debug says, \\\"Is this ok?\\\" No.
 item.blood_sword.manual_page_10=Debug says, Is this 100%? No.
 item.blood_sword.manual_page_11=Debug says, Is this 100%%? Yes, it is
 item.blood_sword.manual_page_12=Debug says, Is this 100\%? No.
 item.blood_sword.manual_page_13=Debug says, Is this 100\\%? No.
 
-//-------------
 item.death_sword.name=勾魂剑
 item.death_sword.hidden=黑剑
 
@@ -125,10 +125,10 @@ item.death_sword.manual_author=道家深湖
 item.death_sword.manual_page_count=5
 item.death_sword.manual_page_1=勾魂剑也称断命剑。\n人固有一死。不管强大或弱小，终难逃一死。
 item.death_sword.manual_page_2=小怪当然好解决。不过考虑一个有25535生命的怪，你的附魔钻石剑又有何作为呢？还有，你是否见过无限血的怪？我见过。
-item.death_sword.manual_page_3=每当附近生物死去时，持剑者会吸收其灵魂，恢复0.5/1/2心的生命，并获得一层致死buff。每层致死buff给予此剑具有10%%的秒杀能力，以及1点额外伤害。 
+item.death_sword.manual_page_3=每当附近生物死去时，持剑者会吸收其灵魂，恢复0.5/1/2心的生命，并获得一层致死buff。每层致死buff给予此剑具有10%%的秒杀能力，以及1点额外伤害。
 item.death_sword.manual_page_4=如果持剑者此时已经有了致死buff，则时间会刷新，并且buff会加一层，但不超过1/3/10层（有些版本的MC里buff超过IV时不能正常显示）。宝珠可以加大基础伤害，并延长buff。
 item.death_sword.manual_page_5=天、地级的此剑可以让拥有者蔑视死亡。当持剑者死去时，剑将消耗1/4耐久以复活持有者，并清除身上的所有效果。
-//-------------
+item.death_sword.manual_page_6=Any nearby death grants deadly buff. Try sacrificing chicken to it.
 item.space_affinity_sword.name=空间涨落
 item.space_affinity_sword.hidden=不稳定的剑
 
@@ -143,25 +143,13 @@ item.space_affinity_sword.manual_author=道家深湖
 item.space_affinity_sword.manual_page_count=7
 item.space_affinity_sword.manual_page_1=也称空间共鸣剑
 item.space_affinity_sword.manual_page_2=我游历数个世界，见过诸多蠢人，最后见到这位小姑娘。不算聪明、不算强壮、不算敏捷，但聪慧达理。
-item.space_affinity_sword.manual_page_3=她没有听说过笛卡尔坐标，不过我解释了这个全是XYZ的东西时，她大概懂了。她觉得这很有意思，却是子虚乌有，并问我如何想出这么复杂的东西。 
-item.space_affinity_sword.manual_page_4=我教她开F3之眼。几经尝试后她做到了，震惊地发现她曾经错过了如此惊涛骇浪般向她涌来的信息。为了防止她被信息压垮，我教她了闭天眼的方法。 
+item.space_affinity_sword.manual_page_3=她没有听说过笛卡尔坐标，不过我解释了这个全是XYZ的东西时，她大概懂了。她觉得这很有意思，却是子虚乌有，并问我如何想出这么复杂的东西。
+item.space_affinity_sword.manual_page_4=我教她开F3之眼。几经尝试后她做到了，震惊地发现她曾经错过了如此惊涛骇浪般向她涌来的信息。为了防止她被信息压垮，我教她了闭天眼的方法。
 item.space_affinity_sword.manual_page_5=我也教会了她基础算术。终于遇到一个配得上它的人了，我取出那把宝剑。宝剑的威力与坐标有关，公式是Max(x%%16, y%%16, z%%16, 宝珠数)。
 item.space_affinity_sword.manual_page_6=我教给她公式。掌握这把剑的诀窍后，她就能在关键时刻使出全力，又在和别人练习的时候不致弄伤对手。“现在，紧握宝剑，试着聚精会神。” 她照着我说的做了。
 item.space_affinity_sword.manual_page_7=“好，放松。”她消失了，我露出了欣慰的笑容。那把剑把她传送回家了。现在她应该能在她更强壮或更敏捷的同伴间找准“位置”了吧。也终有一天，她能把这把剑发挥出 Max(x%%128, y%%128, z%%128, 16)的威力。
-//-------------
 item.sage_builder.name=傅说铲
 item.sage_builder.hidden=一把建筑工具
-
-item.sage_builder.shared_desc=[版筑之间] 右键放置方块，宝珠相当于耐久附魔。
-item.sage_builder.sky_desc=放置混凝土。长按1s切换颜色，进一步长按变为武丁剑。
-item.sage_builder.sky_desc.sword=长按右键变回傅说铲。
-
-item.sage_builder.earth_desc=放置砖块。长按变为武丁剑。
-item.sage_builder.earth_desc.sword=长按右键变回傅说铲。
-
-item.sage_builder.normal_desc=右键放置泥土。
-
-item.sage_builder.damage_desc=平均伤害：%s
 
 item.sage_builder.name.sword=武丁剑
 item.sage_builder.name.black=傅说铲[黑]
@@ -181,16 +169,27 @@ item.sage_builder.name.silver=傅说铲[淡灰]
 item.sage_builder.name.white=傅说铲[白]
 item.sage_builder.name.yellow=傅说铲[黄]
 
+
+item.sage_builder.shared_desc=[版筑之间] 右键放置方块，宝珠相当于耐久附魔。
+
+item.sage_builder.sky_desc=放置混凝土。长按1s切换颜色，进一步长按变为武丁剑。
+item.sage_builder.sky_desc.sword=长按右键变回傅说铲。
+
+item.sage_builder.earth_desc=放置砖块。长按变为武丁剑。
+item.sage_builder.earth_desc.sword=长按右键变回傅说铲。
+
+item.sage_builder.normal_desc=右键放置泥土。
+item.sage_builder.damage_desc=平均伤害：%s
+
 item.sage_builder.manual_title=傅说铲
 item.sage_builder.manual_author=道家深湖
 item.sage_builder.manual_page_count=5
 item.sage_builder.manual_page_1=商王武丁即位时，国力已倾颓。一晚，他梦到有一个隐士跟他讲道，“我姓傅名说。如果有人找到我的话，他就知道我不只是个囚徒了。”
 item.sage_builder.manual_page_2=武丁醒来后思索，“傅”即辅佐，“说”（古同“悦”）是百姓欢悦，这便是能辅佐我的贤人啊。于是他召来画师，绘出梦中人的样子，并在全国找寻。他真的在北边找到了一个叫“说”的人，据说本来是个贤者，后来因贫困而卖身，同囚犯一起筑城。
-item.sage_builder.manual_page_3=武丁与其交谈后，认定他就是梦中所见的圣贤，赐姓“傅”，并借他之力重振国家。 
+item.sage_builder.manual_page_3=武丁与其交谈后，认定他就是梦中所见的圣贤，赐姓“傅”，并借他之力重振国家。
 item.sage_builder.manual_page_4=舜发于畎亩之中，傅说举于版筑之间，胶鬲举于鱼盐之中，管夷吾举于士，孙叔敖举于海，百里奚举于市。故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。
 item.sage_builder.manual_page_5=当它寻得真正主人之时，将会自如地在武丁之剑和傅说铲之剑变换。我觉得这把武器还有改进空间。
 
-//-------------
 item.snow_sword.name=凝雪錾花剑
 item.snow_sword.hidden=冷冰冰的剑
 
@@ -208,7 +207,6 @@ item.snow_sword.manual_page_2=凝雪錾花剑，也称雪之剑，就是以飞�
 item.snow_sword.manual_page_3=它在雪中铸成，以雪凝成，只需要雪块便可修复磨损。更神的是，它会吸收空中的飞雪修复自己。
 item.snow_sword.manual_page_4=雪球对烈焰人有奇效，但如果雪剑制作不精，只会在下界的酷暑中消融。精铸的雪剑才能在炎热的沙漠中像雪球砸烈焰人般削铁如泥。最好的雪剑甚至可以在寒冷的区域召唤风雪。
 item.snow_sword.manual_page_5=在不算炎热的地区，雪傀儡行走时会留下雪迹。如果你成了雪人，你也能。
-//---------------
 item.power_triangle.name=能量三角
 item.power_triangle.name.attack=攻相三角
 item.power_triangle.name.defense=守相三角
@@ -238,20 +236,19 @@ item.power_triangle.manual_author=道家深湖
 item.power_triangle.manual_page_count=10
 item.power_triangle.manual_page_1=长按右键以在攻击、防御、速度模式间切换。宝珠可以减少切换模式所需的时间，并增加攻击模式的伤害。
 item.power_triangle.manual_page_2=我曾经遇到过一个小三角，一个叫提可的小孩。在他的世界里，生物都呈几何形状
-item.power_triangle.manual_page_3=他具有一个很有趣的能力：把他的生命转化为能量，能量转化为灵气，灵气转化为生命。他不像我们受伤时可以自己愈合，但他的灵气可以持续恢复。 
+item.power_triangle.manual_page_3=他具有一个很有趣的能力：把他的生命转化为能量，能量转化为灵气，灵气转化为生命。他不像我们受伤时可以自己愈合，但他的灵气可以持续恢复。
 item.power_triangle.manual_page_4=于是，他受伤的时候，就会把他满满的灵气转换为生命。满血复活！之后再转换几次，他就能元气满满。简单说来，他的不同状态轮回恢复。
 item.power_triangle.manual_page_5=所以我就要制作一个能把经验、饥饿度和生命值轮换的小玩意吗？才不呢。
-item.power_triangle.manual_page_6=我制作了更直接的东西：一项可以轮流强化攻击、防御或速度的垂饰，但只有在手持时才好用。打造了这样一件复杂的东西后，我稍事休息。 
+item.power_triangle.manual_page_6=我制作了更直接的东西：一项可以轮流强化攻击、防御或速度的垂饰，但只有在手持时才好用。打造了这样一件复杂的东西后，我稍事休息。
 item.power_triangle.manual_page_7=当它变成剑（攻击模式）的时候，击中就消耗耐久度。当它作为力场产生器的时候，仅仅是手持就会使得它开始蒸发，并消耗耐久。如果不想浪费的话，还是把它变回武器为妙。或者，把它收起来也能避免蒸发。
 item.power_triangle.manual_page_8=要是它能同时强化这三个方面该多好！但是这样一件小容器无法承载这么强的能量，我也是搞炸了好几个试验品才得知的。我最多也就能做三件，然后在手间杂耍般交换。
 item.power_triangle.manual_page_9=然后我意识到：干脆同时拿着三件，一件提供一种能力呗？我试了几次，终于做出来这样一批精品。不需要手持就能生效，并且神力使得它不会在生效的时候蒸发。
 item.power_triangle.manual_page_10=哦，它在防御模式的时候确实能治愈伤口，只是你感觉不到。这个世界的生命恢复机制与这件饰品不相容，所以我就让他直接治愈伤口了。
 
-//---------------
 item.gold_sword.name=点金杖
 item.gold_sword.hidden=黄金棍
 
-item.gold_sword.shared_desc=[税收] 攻击时获得财富 
+item.gold_sword.shared_desc=[税收] 攻击时获得财富
 item.gold_sword.sky_desc=产出金块
 item.gold_sword.earth_desc=有 %s%% 概率获得金锭
 item.gold_sword.normal_desc=有 %s%% 概率获得金粒
@@ -270,16 +267,15 @@ item.gold_sword.manual_page_6=我在见到那个傻瓜用我的点金刀割他�
 item.gold_sword.manual_page_7=我便造访他，问道，想不想让金子的产出变快点？他当然同意了。我接过那把已经沾污了的短剑，注入了更强的咒术，说道，完成了。
 item.gold_sword.manual_page_8=他立刻抢过来，照着我就砍。在他砍中我的一瞬间，一个巨大的金块凭空冒了出来，砸死了他。
 item.gold_sword.manual_page_9=我哈哈大笑，捡走了我的作品然后离开了。我身上的保护咒使得我受的伤微乎其微，但我的心灵受到的伤害无法弥补。
-item.gold_sword.manual_page_10=我再也不会随便给穷困者施舍我的神力了，哪怕他求我也不会。只有配的上的人，才会获得我的帮助。
 
-//---------------
 item.true_name_sword.name=真铭已刻
 item.true_name_sword.hidden=有铭之剑
 
-item.true_name_sword.shared_desc=[真铭]对具有某名称的生物造成额外伤害。用纸来改变选定名称。 
+item.true_name_sword.shared_desc=[真铭]对具有某名称的生物造成额外伤害。用纸来改变选定名称。
 item.true_name_sword.sky_desc=对%s造成10倍伤害
 item.true_name_sword.earth_desc=对%s造成5倍伤害
 item.true_name_sword.normal_desc=对%s造成2倍伤害
+
 item.true_name_sword.damage_desc=基础伤害：%s
 
 item.true_name_sword.manual_title=真铭已刻
@@ -288,10 +284,8 @@ item.true_name_sword.manual_page_count=4
 item.true_name_sword.manual_page_1=  名字中蕴含着你所不知道的魔力，就像是金角银角的葫芦，又或者是克苏鲁的呼唤。当这柄剑铭记某个名字时，它就死定了。
 item.true_name_sword.manual_page_2=  它可以根据对方的名字下达判决。在铁砧上重命名纸张来制作“裁决”，把裁决合成到剑上就可以让剑记住这个名字，如“僵尸”。此剑会对具有该名称的生物造成额外伤害。
 item.true_name_sword.manual_page_3=  当然，当世界的造物主（在其他玩家的服务器时）并不是你时，你得需要用此世界主人的语言来命名。什么？你不会他的语言，那就没办法了，就算你把本地资源包里的所有生物都改名为“僵尸”，也毫无用处。
-item.true_name_sword.manual_page_4=  基础伤害是（5+宝珠数）；地级伤害翻倍，天级则是10倍。攻击指定名字的生物时，伤害倍率再乘2（人）、5（地）、10（天） 
+item.true_name_sword.manual_page_4=  基础伤害是（5+宝珠数）；地级伤害翻倍，天级则是10倍。攻击指定名字的生物时，伤害倍率再乘2（人）、5（地）、10（天）
 
-
-//---------------
 item.future_sword.name=明日之剑
 item.future_sword.hidden=概念之剑
 
@@ -299,6 +293,7 @@ item.future_sword.shared_desc=[????]与水有关
 item.future_sword.sky_desc=???
 item.future_sword.earth_desc=???
 item.future_sword.normal_desc=???
+
 item.future_sword.damage_desc=基础伤害：%s
 
 item.future_sword.manual_title=明日之剑
@@ -307,7 +302,6 @@ item.future_sword.manual_page_count=2
 item.future_sword.manual_page_1=  这把剑的能力随着时间变化，它预兆着未来里某把武器的到来。
 item.future_sword.manual_page_2=  就目前来看，它或许能带来一场海啸，或者只是清清泉水，不管怎么说，它似乎跟水有关。
 
-//---------------
 item.disarm_ring.name=金刚琢
 item.disarm_ring.hidden=紫光环
 
@@ -325,13 +319,7 @@ item.disarm_ring.manual_page_2=  “我那金刚镯乃是我过函谷关化魔�
 item.disarm_ring.manual_page_3=  “琢”通“镯”。这件神兵的设计灵感来自于《西游记》中相关描写，青牛怪有个能套走其他人法宝的法宝，让天界众神、十八罗汉都吃了不少苦头。我在这世界游历时，常见到有白骨精手持附魔良弓，待我击杀之时，却发现弓已损坏，真是可惜。于是我想起了这段描述，便试着研制一件能抢人武器的法宝。
 item.disarm_ring.manual_page_4=  打造了原型金刚镯之后，我就和朋友如月尝试。最初只能把她右手里的物品打掉。但有的时候她握得紧些，就打不掉，需要再来几次。为了强化它的能力，我把洁铁烧成珠，注入原型，发现更可靠了。镶嵌五个珠子的时候已经是百发百中。
 item.disarm_ring.manual_page_5=  为了在演练的时候不打伤如月，我设计成打人时能打掉物品，虚晃一下（右键）也能打掉物品。后来我觉得这其实很不错，就保留了这个设计。
-item.disarm_ring.manual_page_6=  《西游》里，金刚镯可以套走投掷来的兵器，我几经尝试，做到了拦截周围的箭矢和火箭弹。然而，实测并不好用，我得全神贯注地操作金刚镯，但这就让我难以战斗了，陷入了被动防御。
-item.disarm_ring.manual_page_7=  我的设计是击中目标的时候，让对方主手的物品脱手，但其实这并不够。我跟如月的一次演练中，打掉了她的剑，但她马上又捡起来了，反手就是一剑。这给我以不小的打击。
-item.disarm_ring.manual_page_8=  于是我几经尝试，使用了天之符强化，最终做出来了实用的天级金刚镯。我手持它的时候，它会自动把周围的箭矢和火焰弹吸过来，放进我包里。如月见到的时候惊呆了。另一方面，如果我集中精力发动它，周围所有人的双手所持物品都会进我口袋。
-item.disarm_ring.manual_page_9=  但是如月提醒了我一件事。假如我需要和她并肩作战，那么这神兵也会把她的武器吸走。于是我又做了些小的修改，让它范围吸的时候，不吸具有强大灵性的我们（玩家）。但是，我保留了单个抢走别人物品的能力。如果拿它对着某个人吸，或者拿它打人，不论打到的是谁，都得把武器双手奉上。
-item.disarm_ring.manual_page_10=  它已经能吸掉周围的水火，但是还不能吸走沙子。我希望持有者最终不会被活埋。
 
-//
 item.water_sword.name=天泣
 item.water_sword.hidden=水刀
 
@@ -344,15 +332,14 @@ item.water_sword.damage_desc=基础伤害：%s
 item.water_sword.manual_title=天之泣
 item.water_sword.manual_author=道家深湖
 item.water_sword.manual_page_count=7
-item.water_sword.manual_page_1=  水之剑。  
-item.water_sword.manual_page_2=  这把武器的概念来自于手游《阴阳师》里的雨女。雨女本是一个等待丈夫归来的渔妇，但执念令她化作妖怪。 
-item.water_sword.manual_page_3=  她具有降雨和净化之力，并且会对敌人减速。不过，对于这个世界似乎不太合适。 
+item.water_sword.manual_page_1=  水之剑。
+item.water_sword.manual_page_2=  这把武器的概念来自于手游《阴阳师》里的雨女。雨女本是一个等待丈夫归来的渔妇，但执念令她化作妖怪。
+item.water_sword.manual_page_3=  她具有降雨和净化之力，并且会对敌人减速。不过，对于这个世界似乎不太合适。
 item.water_sword.manual_page_4=  既然它是泪滴，就自然能用水（桶）修复。在湿润的时候，它更能保持锋芒，伤害更高。作为水，它会自动帮持有者灭掉身上的火，但也会给被砍的人灭火。
 item.water_sword.manual_page_5=  强化到地级时，它能让持有者更适应水。水下呼吸和速度效果肯定会非常有用。
 item.water_sword.manual_page_6=  强化到天级时，它能与天上的云共鸣，制造降雨，但在沙漠等炎热的地方无效。此外，它还会自动清除持有者身上所有的减益效果，包括凋零、缓慢等。
 item.water_sword.manual_page_7=  虽然它能灭火，但它在岩浆里效果不佳，因为岩浆主要是以持续的高热造成伤害，而非火焰本身。
 
-//
 item.monk_beads.name=无垢念珠
 item.monk_beads.hidden=白铁手串
 
@@ -365,14 +352,19 @@ item.monk_beads.damage_desc=基础伤害 : %s
 item.monk_beads.manual_title=无垢念珠
 item.monk_beads.manual_author=道家深湖
 item.monk_beads.manual_page_count=10
-item.monk_beads.manual_page_1=  僧人们的念珠。 \n【注意：此武器强化机制特殊】 
+item.monk_beads.manual_page_1=  僧人们的念珠。 \n【注意：此武器强化机制特殊】
 item.monk_beads.manual_page_2=  念珠存在于不同宗教。佛教里代表着108种烦恼，也有说代表108位金刚。
 item.monk_beads.manual_page_3=  有人用来计数，有人用来穿戴。作为兵匠，你也大可用作武器。
-item.monk_beads.manual_page_4=  【涤净】纯净的念珠具有净化之力。主要用来驱散队友身上的debuff和拯救僵尸村民。每次拯救会积累功德。  
+item.monk_beads.manual_page_4=  【涤净】纯净的念珠具有净化之力。主要用来驱散队友身上的debuff和拯救僵尸村民。每次拯救会积累功德。
 item.monk_beads.manual_page_5=  【诵经】右键诵经，驱散一个自身减益效果，并有概率获得经验。等级越高概率越低。
 item.monk_beads.manual_page_6=  【功德】手持时，每5珠可以减免1点自身受到的不死来源伤害。主要是僵尸。
 item.monk_beads.manual_page_7=  这件神兵的升级只需持续镶嵌宝珠即可。初始具有8珠，镶至36珠时为地级，108个达天级。护符会转化成一定数量的宝珠。
 item.monk_beads.manual_page_8=  在地级， 【功德】 会再提供50%%的不死减伤效果。 【禅心】使得你手持时免疫所有减益效果。
 item.monk_beads.manual_page_9=  天级时，你的无量【功德】使你免疫不死伤害。 并且，【功德】【禅心】无需手持就能发挥作用，放在包里即可。
 item.monk_beads.manual_page_10=  未完待续……
-
+item.disarm_ring.manual_page_10=  它已经能吸掉周围的水火，但是还不能吸走沙子。我希望持有者最终不会被活埋。
+item.disarm_ring.manual_page_6=  《西游》里，金刚镯可以套走投掷来的兵器，我几经尝试，做到了拦截周围的箭矢和火箭弹。然而，实测并不好用，我得全神贯注地操作金刚镯，但这就让我难以战斗了，陷入了被动防御。
+item.disarm_ring.manual_page_7=  我的设计是击中目标的时候，让对方主手的物品脱手，但其实这并不够。我跟如月的一次演练中，打掉了她的剑，但她马上又捡起来了，反手就是一剑。这给我以不小的打击。
+item.disarm_ring.manual_page_8=  于是我几经尝试，使用了天之符强化，最终做出来了实用的天级金刚镯。我手持它的时候，它会自动把周围的箭矢和火焰弹吸过来，放进我包里。如月见到的时候惊呆了。另一方面，如果我集中精力发动它，周围所有人的双手所持物品都会进我口袋。
+item.disarm_ring.manual_page_9=  但是如月提醒了我一件事。假如我需要和她并肩作战，那么这神兵也会把她的武器吸走。于是我又做了些小的修改，让它范围吸的时候，不吸具有强大灵性的我们（玩家）。但是，我保留了单个抢走别人物品的能力。如果拿它对着某个人吸，或者拿它打人，不论打到的是谁，都得把武器双手奉上。
+item.gold_sword.manual_page_10=我再也不会随便给穷困者施舍我的神力了，哪怕他求我也不会。只有配的上的人，才会获得我的帮助。

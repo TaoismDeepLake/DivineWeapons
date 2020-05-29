@@ -2,6 +2,7 @@ package com.deeplake.dweapon.item.weapon;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
@@ -10,7 +11,11 @@ import javax.annotation.Nullable;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.Reference;
 import com.deeplake.dweapon.util.config.ModConfig;
+import com.google.common.collect.Multimap;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -52,6 +57,8 @@ public class DBloodSword extends DWeaponSwordBase {
 		super(name, material);
 	}
 
+	protected static final UUID BLOOD_BLADE_MODIFIER = UUID.fromString("c9449137-95c8-43b0-b4a0-3e8ed7449e3f");
+
 	float base_damage = 4;
 	float base_hurt = 1f;
 	
@@ -63,7 +70,7 @@ public class DBloodSword extends DWeaponSwordBase {
 	int buff_tick_per_pearl = 60;
 	
 	//sky
-	float skyDamage = 100;
+	float skyDamage = 200;
 	float skyHurt = 10;
 	
 	int skyStrengthLevel = 10;
@@ -300,5 +307,32 @@ public class DBloodSword extends DWeaponSwordBase {
 		}
 		
 		return;
+	}
+
+	public float getExtraHealth(ItemStack stack)
+	{
+		float per_pearl = 2f;
+		if (IsSky(stack))
+		{
+			return 80f;
+		}else if (IsEarth(stack))
+		{
+			return 30f + GetPearlCount(stack) * per_pearl;
+		}else
+		{
+			return 10f + GetPearlCount(stack) * per_pearl;
+		}
+	}
+
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(slot);
+
+		if (slot == EntityEquipmentSlot.MAINHAND)
+		{
+			multimap.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(BLOOD_BLADE_MODIFIER, "Blood Blade Modifier", (double)getExtraHealth(stack), 0));
+		}
+
+		return multimap;
 	}
 }

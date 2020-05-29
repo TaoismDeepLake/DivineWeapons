@@ -2,22 +2,17 @@ package com.deeplake.dweapon.item.weapon;
 
 import com.deeplake.dweapon.potion.ModPotions;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -229,7 +224,7 @@ public class DJugglerSword extends DWeaponSwordBase {
     }
 	
 	@SideOnly(Side.CLIENT)
-    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn)
     {
     	return getActualDamage(stack, 1, null);
     }

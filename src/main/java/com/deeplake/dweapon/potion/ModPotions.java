@@ -240,19 +240,19 @@ public class ModPotions {
         }
     }
 
-    @SubscribeEvent
-    public static void onCreatureDie(LivingDeathEvent event) {
-        World world = event.getEntity().getEntityWorld();
-        EntityLivingBase dieOne = event.getEntityLiving();
-        Vec3d pos = event.getEntity().getPositionEyes(0);
-
-        if (!world.isRemote) {
-            if (dieOne.getActivePotionEffect(DEATH_BOOM) != null)
-            {
-                world.createExplosion(dieOne, dieOne.posX, dieOne.posY, dieOne.posZ, 4,true);
-            }
-        } else {
-            //currently do nothing
-        }
-    }
+//    @SubscribeEvent
+//    public static void onCreatureDie(LivingDeathEvent event) {
+//        World world = event.getEntity().getEntityWorld();
+//        EntityLivingBase dieOne = event.getEntityLiving();
+//        Vec3d pos = event.getEntity().getPositionEyes(0);
+//
+//        if (!world.isRemote) {
+//            if (dieOne.getActivePotionEffect(DEATH_BOOM) != null)
+//            {
+//                world.createExplosion(dieOne, dieOne.posX, dieOne.posY, dieOne.posZ, 4,true);
+//            }
+//        } else {
+//            //currently do nothing
+//        }
+//    }
 }

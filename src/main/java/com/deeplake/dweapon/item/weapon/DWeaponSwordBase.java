@@ -13,14 +13,19 @@ import com.deeplake.dweapon.util.IHasModel;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -539,7 +544,7 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
     	//Trys to force override the ItemStack.getTooltip failed,
         //because the damage attr are added after getTooltip.
     	//This is the way I found to hide the damage descrption.
-    	ForceHideVanillaAttr(stack);
+    	//ForceHideVanillaAttr(stack);
     	
     	//An attempt to force override the name in ItemStack.getTooltip
     	//Abandoned because not much point
@@ -645,16 +650,16 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 
     public boolean isNeedDamageDesc = true;
 	@SideOnly(Side.CLIENT)
-    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn)
     {
     	return 7.0f;
     }
     @SideOnly(Side.CLIENT)
     public void addDamageInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	if (isNeedDamageDesc) {
-	    	String dmgDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_DAMAGE, GetReferenceDamage(stack, worldIn, tooltip, flagIn));
-			tooltip.add(dmgDesc);
-    	}
+//    	if (isNeedDamageDesc) {
+//	    	String dmgDesc = I18n.format(getUnlocalizedName()+DWNBTDef.TOOLTIP_DAMAGE, GetReferenceDamage(stack, worldIn));
+//			tooltip.add(dmgDesc);
+//    	}
     }
     
     
@@ -714,5 +719,19 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		WorldInfo worldInfo = player.world.getWorldInfo();
 		boolean raining = worldInfo.isRaining();
 		return !CanSnowHere(player) && raining;
+	}
+
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
+
+		if (slot == EntityEquipmentSlot.MAINHAND)
+		{
+			//1 = empty hand damage
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)GetReferenceDamage(stack, null) - 1f, 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.4000000953674316D, 0));
+		}
+
+		return multimap;
 	}
 }

@@ -121,7 +121,7 @@ public class DSliencerSword extends DWeaponSwordBase {
     }
 	
 	@SideOnly(Side.CLIENT)
-    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public float GetReferenceDamage(ItemStack stack, @Nullable World worldIn)
     {
     	return getActualDamage(stack, 1);
     }
