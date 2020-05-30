@@ -87,7 +87,7 @@ item.blood_sword.hidden=血红剑
 
 item.blood_sword.shared_desc=[血脉放出] 放出自己的血以提升伤害，可以抽自己的血修复
 item.blood_sword.sky_desc=损失自己5颗心，造成100伤害。[力量 X, 生命回复 II]
-item.blood_sword.earth_desc=损失 %s 颗心，造成 %s 伤害。[Regen I]
+item.blood_sword.earth_desc=损失 %s 颗心，造成 %s 伤害。[生命回复 I]
 item.blood_sword.normal_desc=损失 %s 颗心，造成 %s 伤害。
 
 
@@ -193,7 +193,7 @@ item.sage_builder.manual_page_5=当它寻得真正主人之时，将会自如地
 item.snow_sword.name=凝雪錾花剑
 item.snow_sword.hidden=冷冰冰的剑
 
-item.snow_sword.shared_desc=[覆雪] 下雪时伤害翻倍，并且自动修复。可以用雪块修补。
+item.snow_sword.shared_desc=[覆雪] 下雪时伤害三倍，并且自动修复。可以用雪块修补。
 item.snow_sword.sky_desc=手持时获得抗火保护，行走时留下雪迹，寒冷地区可以强令降雪。
 item.snow_sword.earth_desc=冰冷和炎热的地区伤害增加。
 item.snow_sword.normal_desc=伤害随寒冷程度增加。
@@ -362,9 +362,22 @@ item.monk_beads.manual_page_7=  这件神兵的升级只需持续镶嵌宝珠即
 item.monk_beads.manual_page_8=  在地级， 【功德】 会再提供50%%的不死减伤效果。 【禅心】使得你手持时免疫所有减益效果。
 item.monk_beads.manual_page_9=  天级时，你的无量【功德】使你免疫不死伤害。 并且，【功德】【禅心】无需手持就能发挥作用，放在包里即可。
 item.monk_beads.manual_page_10=  未完待续……
+dweapon.shared.press_shift=长按Shift查看说明
 item.disarm_ring.manual_page_10=  它已经能吸掉周围的水火，但是还不能吸走沙子。我希望持有者最终不会被活埋。
 item.disarm_ring.manual_page_6=  《西游》里，金刚镯可以套走投掷来的兵器，我几经尝试，做到了拦截周围的箭矢和火箭弹。然而，实测并不好用，我得全神贯注地操作金刚镯，但这就让我难以战斗了，陷入了被动防御。
 item.disarm_ring.manual_page_7=  我的设计是击中目标的时候，让对方主手的物品脱手，但其实这并不够。我跟如月的一次演练中，打掉了她的剑，但她马上又捡起来了，反手就是一剑。这给我以不小的打击。
 item.disarm_ring.manual_page_8=  于是我几经尝试，使用了天之符强化，最终做出来了实用的天级金刚镯。我手持它的时候，它会自动把周围的箭矢和火焰弹吸过来，放进我包里。如月见到的时候惊呆了。另一方面，如果我集中精力发动它，周围所有人的双手所持物品都会进我口袋。
 item.disarm_ring.manual_page_9=  但是如月提醒了我一件事。假如我需要和她并肩作战，那么这神兵也会把她的武器吸走。于是我又做了些小的修改，让它范围吸的时候，不吸具有强大灵性的我们（玩家）。但是，我保留了单个抢走别人物品的能力。如果拿它对着某个人吸，或者拿它打人，不论打到的是谁，都得把武器双手奉上。
+item.divine_ingot.desc=神兵制作材料
+item.earth_charm.desc=可在铁砧将神兵强化至【地】级
 item.gold_sword.manual_page_10=我再也不会随便给穷困者施舍我的神力了，哪怕他求我也不会。只有配的上的人，才会获得我的帮助。
+item.heirloom.desc=右键拆封，好好保存。
+item.pure_ingot.desc=神兵修复材料
+item.sealed_weapon.desc=右键拆封
+item.sky_charm.desc=可在铁砧将【地】神兵强化至【天】级
+item.weapon_burnt.desc=【小心烫手】右键水以冷却
+item.weapon_burnt.name=热熔神兵原型
+item.weapon_handle.desc=神兵合成材料
+item.weapon_pearl.desc=与神兵合成，基本的强化材料
+item.weapon_prototype.desc=在炉子里烧熔以继续锻造
+item.weapon_prototype.name=神兵原型

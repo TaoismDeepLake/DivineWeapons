@@ -13,6 +13,7 @@ import com.deeplake.dweapon.util.IHasModel;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
 
+import com.deeplake.dweapon.util.config.ModConfig;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
@@ -273,6 +274,10 @@ public class DWeaponSwordBase extends ItemSword implements IHasModel, IDWeaponEn
 		//TODO: req I18n. Not on server
 		ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
 
+		if (DWeapons.proxy.isServer() && !ModConfig.GENERAL_CONF.GIVE_SERVER_MANUAL)
+		{
+			return ItemStack.EMPTY;
+		}
 
 		// https://minecraftjson.com/
 		

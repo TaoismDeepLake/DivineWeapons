@@ -61,7 +61,11 @@ public class ModStarterEvents {
 					DWeaponSwordBase.SetOwner(heirloom, player.getDisplayNameString());
 
 					event.player.addItemStackToInventory(heirloom);
-					event.player.addItemStackToInventory(CreateManual(player));
+					if (!DWeapons.proxy.isServer() || ModConfig.GENERAL_CONF.GIVE_SERVER_MANUAL)
+					{
+						event.player.addItemStackToInventory(CreateManual(player));
+					}
+
 					DWeapons.Log(String.format("Given starter items to player %s", player.getDisplayNameString()));
 				}
 			}

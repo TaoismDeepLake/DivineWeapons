@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.deeplake.dweapon.item.ItemBase;
 import com.deeplake.dweapon.item.misc.Heirloom;
+import com.deeplake.dweapon.item.misc.ItemWeaponAfterBurn;
 import com.deeplake.dweapon.item.misc.SealedWeapon;
 import com.deeplake.dweapon.item.weapon.*;
 import com.deeplake.dweapon.util.Reference;
@@ -55,7 +56,10 @@ public class ModItems {
 	//public static final ItemBase DIVINE_ANVIL = new ItemBase("divine_anvil");
 	public static final ItemBase SKY_CHARM = new ItemBase("sky_charm");
 	public static final ItemBase EARTH_CHARM = new ItemBase("earth_charm");
-	
+
+	public static final ItemBase WEAPON_PROTOTYPE = new ItemBase("weapon_prototype");
+	public static final ItemWeaponAfterBurn WEAPON_AFTER_BURN = new ItemWeaponAfterBurn("weapon_burnt");
+
 	public static final SealedWeapon SEALED_WEAPON = new SealedWeapon("sealed_weapon");
 	public static final Heirloom HEIRLOOM = new Heirloom("heirloom");
 	

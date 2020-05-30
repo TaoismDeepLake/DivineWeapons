@@ -1,8 +1,13 @@
 package com.deeplake.dweapon.item.weapon;
 
+import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.util.DWEntityUtil;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTDef;
 import com.deeplake.dweapon.util.NBTStrDef.DWNBTUtil;
+import com.deeplake.dweapon.util.NBTStrDef.IDLGeneral;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -17,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
@@ -27,6 +33,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
+
+import static com.deeplake.dweapon.util.NBTStrDef.IDLGeneral.isWaterRelated;
 
 //Test Weapon.
 public class DWaterSword extends DWeaponSwordBase {
@@ -188,6 +196,37 @@ public class DWaterSword extends DWeaponSwordBase {
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		boolean successFlag = false;
+		ItemStack stack = player.getHeldItem(hand);
+		int curDamage = stack.getItemDamage();
+		if (curDamage == 0)
+		{
+			return EnumActionResult.PASS;
+		}
+
+		IBlockState targetBlock = worldIn.getBlockState(pos);
+		RayTraceResult raytraceresult = this.rayTrace(worldIn, player, true);
+		BlockPos blockpos = raytraceresult.getBlockPos();
+		IBlockState iblockstate = worldIn.getBlockState(blockpos);
+		Material material = iblockstate.getMaterial();
+
+		if (material == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL) == 0) {
+			successFlag = true;
+		}
+
+		if (!successFlag && isWaterRelated(targetBlock))
+		{
+			successFlag = true;
+		}
+
+		int repairAmount = 10;
+		if (successFlag)
+		{
+			stack.setItemDamage(curDamage - repairAmount);
+			player.getCooldownTracker().setCooldown(stack.getItem(), 4);
+			player.playSound(SoundEvents.ENTITY_GENERIC_DRINK, 1f, 1f);
+			return EnumActionResult.SUCCESS;
+		}
 		return EnumActionResult.PASS;
 	}
 

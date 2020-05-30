@@ -44,7 +44,10 @@ public class ModRecipes {
 		GameRegistry.addSmelting(ModBlocks.PURE_ORE,
 				new ItemStack(ModItems.PURE_INGOT),
 				3f);
-		
+
+		GameRegistry.addSmelting(ModItems.WEAPON_PROTOTYPE,
+				new ItemStack(ModItems.WEAPON_AFTER_BURN),
+				3f);
 	}
 	
 	@SubscribeEvent

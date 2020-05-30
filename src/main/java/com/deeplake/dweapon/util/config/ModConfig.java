@@ -36,6 +36,10 @@ public class ModConfig {
         @Config.Comment("A starter manual and a heirloom will be given to new players.")
         public boolean GIVE_STARTER_ITEMS = true;
 
+        @Config.LangKey("dweapon.conf.general.give_server_manual")
+        @Config.Comment("Manuals will be given on servers.")
+        @Config.RequiresMcRestart
+        public boolean GIVE_SERVER_MANUAL = false;
     }
 
     @Config.LangKey("configgui.dweapon.category.Menu0.CraftConf")

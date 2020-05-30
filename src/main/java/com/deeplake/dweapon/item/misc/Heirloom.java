@@ -29,18 +29,9 @@ import net.minecraftforge.client.event.sound.SoundSetupEvent;
 
 
 public class Heirloom extends SealedWeapon {
-
-	public Heirloom() {
-		super();
-	}
 	
 	public Heirloom(String name) {
-		setUnlocalizedName(name);
-		setRegistryName(name);
-		//setCreativeTab(ModCreativeTab.DW_MAIN);
-		
-		ModItems.ITEMS.add(this);
-		//This item will not be obtainable from the creation inventory.
+		super(name);
 	}
 
 	protected int[] GetFactorGroup()

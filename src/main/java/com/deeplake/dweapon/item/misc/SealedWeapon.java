@@ -53,14 +53,13 @@ enum WeaponIndex{
 
 public class SealedWeapon extends ItemBase {
 
-	public SealedWeapon() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+//	public SealedWeapon() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
 	
 	public SealedWeapon(String name) {
 		super(name);
-		
 	}
 	
 	@Nonnull

@@ -9,6 +9,7 @@ import com.deeplake.dweapon.DWeapons;
 import com.deeplake.dweapon.init.ModItems;
 import com.deeplake.dweapon.item.weapon.DWeaponSwordBase;
 
+import com.deeplake.dweapon.util.config.ModConfig;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -27,6 +28,8 @@ public class NameRevealByBook extends IForgeRegistryEntry.Impl<IRecipe> implemen
 
 	@Override
 	public boolean matches(@Nonnull InventoryCrafting var1, @Nonnull World var2) {
+
+
 		boolean foundBook = false;
 		boolean foundSword = false;
 
@@ -41,6 +44,14 @@ public class NameRevealByBook extends IForgeRegistryEntry.Impl<IRecipe> implemen
 
 					DWeaponSwordBase sword = (DWeaponSwordBase)stack.getItem();
 					foundSword = true;
+					if (DWeapons.proxy.isServer() && !ModConfig.GENERAL_CONF.GIVE_SERVER_MANUAL)
+					{
+						if (!DWeaponSwordBase.IsNameHidden(stack))
+						{
+							//server side prevents
+							return  false;
+						}
+					}
 				}
 				else if (stack.getItem().getUnlocalizedName(stack).equals(bookName))
 				{//found a pearl

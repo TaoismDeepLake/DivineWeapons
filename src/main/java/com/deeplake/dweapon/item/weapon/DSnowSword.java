@@ -46,13 +46,13 @@ public class DSnowSword extends DWeaponSwordBase {
 
 	static final float base_damage = 5f;
 	static final float base_damage_earth = 10f;
-	static final float base_damage_sky = 20f;
+	static final float base_damage_sky = 50f;
 
 	static final float pearl_damage_factor = 0.2f;
 	static final float t_base = 1.0f;//temperature_base
 	//static final float t_max = 2.0f;//hotest temperature
 	
-	static final float snowing_multiplier = 2.0f;//damage rate when snowing
+	static final float snowing_multiplier = 3.0f;//damage rate when snowing
 	
 	static final int skyBuffTick = 100;
 

@@ -228,11 +228,8 @@ public class ModPotions {
                 if (buff.getPotion() instanceof BasePotion)
                 {
                     BasePotion modBuff = (BasePotion)buff.getPotion();
-                    if (!world.isRemote)
-                    {
-                        float reduceRatio = modBuff.getKBResistanceMultiplier(buff.getAmplifier());
-                        evt.setStrength((1 - reduceRatio) * evt.getStrength());
-                    }
+                    float reduceRatio = modBuff.getKBResistanceMultiplier(buff.getAmplifier());
+                    evt.setStrength((1 - reduceRatio) * evt.getStrength());
                 }
             }
         } else {

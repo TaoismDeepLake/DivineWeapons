@@ -31,6 +31,7 @@ import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+//juggler blade: damage up for audience count ,taunts, and damage up for debuff count
 //Test Weapon.
 public class DFutureSword extends DWeaponSwordBase {
 	// /give @p dweapon:future_sword 1 0 {is_earth:false, is_sky:false, pearl_count:0}

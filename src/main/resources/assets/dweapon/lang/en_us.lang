@@ -4,7 +4,9 @@ itemGroup.DWeaponWeaponTab=Divine Weapons
 
 dweapon.server_no_manual=Server play manual is WIP.
 
-//Buffs
+dweapon.shared.press_shift=Hold Shift to show desc
+
+#Buffs
 dweapon.potion.deadly=Deadly
 dweapon.potion.zen_heart=Countless Virtue
 dweapon.potion.space_aff_1=Space Affinity
@@ -13,7 +15,7 @@ dweapon.potion.snow_protection=Boon of Blizzard
 dweapon.potion.sage_boon=Boon of Sage
 dweapon.potion.king_boon=Boon of King
 
-//unused
+#unused
 dweapon.potion.deadly.4=Deadly V
 dweapon.potion.deadly.5=Deadly V
 dweapon.potion.deadly.6=Deadly VI
@@ -21,20 +23,39 @@ dweapon.potion.deadly.7=Deadly VII
 dweapon.potion.deadly.8=Deadly IX
 dweapon.potion.deadly.9=Death Bringer
 
-//Blocks
+#Blocks
 tile.divine_ore.name=Divine Ore
 tile.pure_ore.name=Pure Ore
 
 item.weapon_handle.name=Weapon Handle
+item.weapon_handle.desc=Divine weapon crafting material.
 
-item.sealed_weapon.name=Weapon Coming into Shape
+item.weapon_prototype.name=Prototype of A Weapon
+item.weapon_prototype.desc=Smelt this in a furnace to continue.
+
+item.weapon_burnt.name=Molten Weapon Prototype
+item.weapon_burnt.desc=[CAUTION HOT!]Right click water to cool it down.
+
+item.sealed_weapon.name=Wrapped Weapon
+item.sealed_weapon.desc=Right click to see what you get.
+
 item.heirloom.name=Heirloom
+item.heirloom.desc=Right click to see what you have here. Try to keep it well.
 
 item.weapon_pearl.name=Pure Pearl
+item.weapon_pearl.desc=Craft with weapon to enhance it.
+
 item.divine_ingot.name=Divine Ingot
+item.divine_ingot.desc=Divine weapon crafting material.
+
 item.pure_ingot.name=Pure Ingot
+item.pure_ingot.desc=Divine weapon reparing material.
+
 item.sky_charm.name=Charm of Sky
+item.sky_charm.desc=Enhance earth-level divine weapons to sky-level at anvil.
+
 item.earth_charm.name=Charm of Earth
+item.earth_charm.desc=Enhance divine weapons to earth-level at anvil.
 
 postfix.pearl_count.name=[Px%s]
 postfix.is_earth.name=[Earth]
@@ -201,7 +222,7 @@ item.sage_builder.manual_page_5=When this building tool finds its true master, i
 item.snow_sword.name=Forged in Snow
 item.snow_sword.hidden=A Cold Sword
 
-item.snow_sword.shared_desc=[Snow Covered] Doubles the damage and self-repair when snowing. Can be repaired by snow blocks.
+item.snow_sword.shared_desc=[Snow Covered] Triples the damage and self-repair when snowing. Can be repaired by snow blocks.
 item.snow_sword.sky_desc=Holding it grants anti-fire buff, walking leaves a trail of snow. Can summon blizzard in cold places.
 item.snow_sword.earth_desc=Increase damage in hot AND cold places.
 item.snow_sword.normal_desc=Increase damage in cold places.
@@ -277,7 +298,7 @@ item.gold_sword.manual_page_6=I thought this will be fine until I saw a fool cut
 item.gold_sword.manual_page_7=However the fool's greed grew and patience dwindled. Therefore I visited him, asked if he wanted the gold to come faster. Of course, he agreed. I took my prototype and enhanced its power.
 item.gold_sword.manual_page_8=He grabbed the sword as soon as I finished - and swung it at me. It landed. Meanwhile, a giant block of gold dropped out of nowhere and crushed his head. Pure gold contaminated by his foulness.
 item.gold_sword.manual_page_9=I took my work back and laughed painfully. Charm protected me from physical damage, but it killed me to learn not to give my power and trust away to random poor, even they cried for help.  And I will try form other than the sword. 
-
+item.gold_sword.manual_page_10=xxx
 #-------------
 item.true_name_sword.name=Name Nemesis
 item.true_name_sword.hidden=Sword with A Name
@@ -332,6 +353,11 @@ item.disarm_ring.manual_page_2=  The ring can take away all kinds of weapons fro
 item.disarm_ring.manual_page_3=  I made a similar weapon. The prototype can disarm the target on hit. Right-clicking can do it, too. To be exact, disarming means make the target drop item in the main hand. Hold RMB can deflect arrows. 
 item.disarm_ring.manual_page_4=  When reinforced to earth level, the weapon will be drawn directly into your pocket, so the opponent can't pick it up again.
 item.disarm_ring.manual_page_5=  When reinforced to sky level, arrows will be safely tucked into your pocket. Hold RMB will disarm all nearby non-player creatures, and items in both hands will be taken.
+item.disarm_ring.manual_page_6= xxxx
+item.disarm_ring.manual_page_7=  xxxx
+item.disarm_ring.manual_page_8=  xxx
+item.disarm_ring.manual_page_9= xxx
+item.disarm_ring.manual_page_10=  xxx
 
 #
 item.water_sword.name=Teardrop from Sky
@@ -354,7 +380,7 @@ item.water_sword.manual_page_5=  When reinforced to earth level, it will make it
 item.water_sword.manual_page_6=  When reinforced to sky level, it can call raindrops from the sky, but only at places where can rain (not hot like a desert). It will also cleanse all debuffs.
 item.water_sword.manual_page_7=  Although it puts out fire on wielder, it can't help much in lava, which hurts because of the sustaining heat, not the flame.
 
-//
+
 item.monk_beads.name=Zen Beads
 item.monk_beads.hidden=Beads
 
