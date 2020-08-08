@@ -56,8 +56,6 @@ public class ItemBase extends Item implements IHasModel {
 		}
 		return "";
 	}
-
-
 	
 	@Override
 	public void registerModels() 

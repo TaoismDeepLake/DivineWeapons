@@ -151,7 +151,7 @@ public class DBloodSword extends DWeaponSwordBase {
 		if (!player.capabilities.isCreativeMode && !isRemote) {
 			//since in creative mode you can't see your health bar,
 			//kiling you by draining makes no sense(yeah this code can kill creative players)
-			player.setHealth(preHP - getHurt(stack));//drain self
+			player.attackEntityFrom(new DamageSource("blood_drain").setDamageIsAbsolute(), getHurt(stack));
 		}
 		float damage = getActualDamage(stack, ratio);
 		
@@ -294,7 +294,14 @@ public class DBloodSword extends DWeaponSwordBase {
 			if (!world.isRemote) {
 				float preHP = living.getHealth();
 				if (ModConfig.GAMEPLAY_CONF.BLOOD_SWORD_SUICIDE || living.getHealth() > healthPerRepair){
-					living.setHealth(preHP - healthPerRepair);//drain self
+					if (living.getHealth() < healthPerRepair)
+					{
+						living.attackEntityFrom(new DamageSource("blood_drain").setDamageIsAbsolute(), healthPerRepair);
+					}
+					else {
+						living.setHealth(preHP - healthPerRepair);//drain self
+					}
+
 					int curDamage = stack.getItemDamage();
 
 					stack.setItemDamage(Math.max(curDamage - durabilityPerRepair, 0));

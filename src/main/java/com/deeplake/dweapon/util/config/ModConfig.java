@@ -40,6 +40,11 @@ public class ModConfig {
         @Config.Comment("Manuals will be given on servers.")
         @Config.RequiresMcRestart
         public boolean GIVE_SERVER_MANUAL = false;
+
+        @Config.LangKey("dweapon.conf.general.manual_into_chat")
+        @Config.Comment("Manuals will be given as chat info")
+        @Config.RequiresMcRestart
+        public boolean TALK_INTO_CHAT = false;
     }
 
     @Config.LangKey("configgui.dweapon.category.Menu0.CraftConf")
@@ -131,7 +136,7 @@ public class ModConfig {
 
         @Config.LangKey("conf.spawn.BLOOD_SWORD_SUICIDE")
         @Config.Comment("Blood sword can kill the user by using.")
-        public boolean BLOOD_SWORD_SUICIDE = true;
+        public boolean BLOOD_SWORD_SUICIDE = false;
 
         @Config.LangKey("conf.spawn.DEATH_SWORD_REVIVE")
         @Config.Comment("The Death sword can revive player at 1/4 max durability.")

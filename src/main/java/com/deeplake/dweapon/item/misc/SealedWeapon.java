@@ -120,42 +120,42 @@ public class SealedWeapon extends ItemBase {
 	/**
      * How long it takes to use or consume an item
      */
-	@Override
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
-        return 72000;
-    }
-	
-	//Animation
-		@Nonnull
-		@Override
-		public EnumAction getItemUseAction(ItemStack stack) {
-
-			return EnumAction.BOW;
-			
-		}
-	
-	/**
-     * Called when the player stops using an Item (stops holding the right mouse button).
-     */
-	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase living, int time) {
-		//change mode
-//		if (!world.isRemote) {
-//			EntityPlayer player = (EntityPlayer)living;
+//	@Override
+//    public int getMaxItemUseDuration(ItemStack stack)
+//    {
+//        return 72000;
+//    }
 //
-//				stack.shrink(1);
-//				
-//				player.addItemStackToInventory(GetRandomWeapon());
-//				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
-//				player.addExperience(10);
+//	//Animation
+//		@Nonnull
+//		@Override
+//		public EnumAction getItemUseAction(ItemStack stack) {
 //
-//			
-//	        return ;
-//			
+//			return EnumAction.BOW;
+//
 //		}
-//		return;
-	}
+//
+//	/**
+//     * Called when the player stops using an Item (stops holding the right mouse button).
+//     */
+//	@Override
+//	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase living, int time) {
+//		//change mode
+////		if (!world.isRemote) {
+////			EntityPlayer player = (EntityPlayer)living;
+////
+////				stack.shrink(1);
+////
+////				player.addItemStackToInventory(GetRandomWeapon());
+////				player.playSound(SoundEvents.BLOCK_WOOD_BUTTON_CLICK_ON, 1f, 1f);
+////				player.addExperience(10);
+////
+////
+////	        return ;
+////
+////		}
+////		return;
+//	}
 
 	protected int[] GetFactorGroup()
 	{

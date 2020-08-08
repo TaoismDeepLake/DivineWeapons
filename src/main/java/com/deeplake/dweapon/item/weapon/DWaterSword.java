@@ -101,18 +101,6 @@ public class DWaterSword extends DWeaponSwordBase {
 	{
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
 
-		//todo:fill the bucket in mainhand
-		//todo:repair gives bucket
-//		if (!worldIn.isRemote)
-//		{
-//			if (DWNBTUtil.GetBoolean(stack, BUCKET))
-//			{
-//				EntityPlayer player = (EntityPlayer)(entityIn);
-//				player.addItemStackToInventory(new ItemStack(Items.BUCKET));
-//				DWNBTUtil.SetBoolean(stack, BUCKET, true);
-//			}
-//		}
-
 		if (entityIn instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP playerMP = (EntityPlayerMP)(entityIn);
@@ -130,7 +118,7 @@ public class DWaterSword extends DWeaponSwordBase {
 
 				DWEntityUtil.TryRemoveDebuff(playerMP);
 			}
-			playerMP.setNoGravity(playerMP.isWet() && NoGravity(stack, playerMP.isSneaking(), isSelected));
+			//playerMP.setNoGravity(playerMP.isWet() && NoGravity(stack, playerMP.isSneaking(), isSelected));
 
 			//put out fire
 			if (playerMP.isBurning() && isSelected)
